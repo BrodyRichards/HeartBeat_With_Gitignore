@@ -8,8 +8,9 @@ public class RadioControl : MonoBehaviour
 
     
     public static int currentMood = 0;
+    public static bool isMusic = false;
     private SpriteRenderer sr;
-    private enum Mood { sad, intense, happy};
+    private enum Mood { idle, sad, intense, happy};
     [SerializeField] private AudioClip sadSong;
     [SerializeField] private AudioClip intenseSong;
     [SerializeField] private AudioClip happySong;
@@ -19,35 +20,39 @@ public class RadioControl : MonoBehaviour
     public Sprite happy;
     public Sprite sad;
     public Sprite intense;
+    public Sprite idle;
 
     Sprite[] sprites;
     AudioClip[] audioClips;
     private void Start()
     {
-        sprites = new Sprite[] { sad, intense, happy };
+        sprites = new Sprite[] { idle, sad, intense, happy };
         audioClips = new AudioClip[] { sadSong, intenseSong, happySong };
-        currentMood = (int)Mood.sad;
+        currentMood = (int)Mood.idle;
 
         sr = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
-        audioSource.Play();
+        
 
     }
 
     private void OnMouseDown()
     {
        
-        if (enabled)
+        if (characterSwitcher.isMusicGuyInCharge)
         {
-            currentMood = (currentMood + 1) % 3;
-
-            audioSource.clip = audioClips[currentMood];
+            currentMood = currentMood % 3 + 1;
+            
+            audioSource.clip = audioClips[(currentMood -1) % 3];
+            
             sr.sprite = sprites[currentMood];
 
             audioSource.Play();
+            isMusic = true;
         }
         else
         {
+            
             Debug.Log("disabled");
         }
         
@@ -58,6 +63,22 @@ public class RadioControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (characterSwitcher.isMusicGuyInCharge)
+        {
+            if (PauseUI.IsPaused)
+            {
+                audioSource.Pause();
+            }
+            else if (!PauseUI.IsPaused)
+            {
+                audioSource.UnPause();
+            }
+        }
+        else
+        {
+            currentMood = (int)Mood.idle;
+            audioSource.Pause();
+        }
         
     }
 }

@@ -42,6 +42,7 @@ public class PauseUI : MonoBehaviour
 
     public void Pause()
     {
+
         pauseUI.SetActive(true);
         Time.timeScale = 0f;
         IsPaused = true;
@@ -50,6 +51,7 @@ public class PauseUI : MonoBehaviour
     public void Restart()
     {
         StartCoroutine(LoadAsyncScene(thisSceneIndex));
+        IsPaused = false;
         Time.timeScale = 1f;
     }
 
@@ -61,6 +63,7 @@ public class PauseUI : MonoBehaviour
             StartCoroutine(LoadAsyncScene(thisSceneIndex - 1));
         }
         Time.timeScale = 1f;
+        IsPaused = false;
     }
 
     IEnumerator LoadAsyncScene(int nextSceneIndex)
