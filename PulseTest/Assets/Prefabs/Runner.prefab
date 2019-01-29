@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3115117728781549439}
   - component: {fileID: 5344135700402538964}
   m_Layer: 0
-  m_Name: NPC
+  m_Name: Runner
   m_TagString: Person
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

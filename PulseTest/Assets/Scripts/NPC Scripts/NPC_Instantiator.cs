@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class NPC_Instantiator : MonoBehaviour
 {
-    private int npcCount = 20;
+    private int npcCount = 30;
+    
+    public GameObject[] NPCs; //contains the 3 types of NPCs
 
-    public GameObject npcObj;
-    public GameObject loner;
     public GameObject area;   //quad
     private int areaX, areaY; //get the size of the quad
     // Start is called before the first frame update
@@ -18,19 +18,12 @@ public class NPC_Instantiator : MonoBehaviour
 
         for (int i = 0; i < npcCount; i++) //create and instantiate the npcs (we can make it more complicated later)
         {
+            int choice = Random.Range(0, 3);
             int ranX = Random.Range(-areaX, areaX);
             int ranY = Random.Range(-areaY, areaY);
             Vector3 pos = new Vector3(ranX, ranY, -1);
             Quaternion rot = new Quaternion(0, 0, 0, 0);
-            if (i % 2 == 0)
-            {
-                Instantiate(npcObj, pos, rot);
-            }
-            else
-            {
-                Instantiate(loner, pos, rot);
-            }
-
+            Instantiate(NPCs[choice], pos, rot);
         }
     }
 
