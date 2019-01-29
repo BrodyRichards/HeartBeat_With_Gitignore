@@ -7,6 +7,8 @@ public class NPC_Instantiator : MonoBehaviour
     private int npcCount = 30;
     
     public GameObject[] NPCs; //contains the 3 types of NPCs
+    private List<GameObject> groupies;
+    private int num;
 
     public GameObject area;   //quad
     private int areaX, areaY; //get the size of the quad
@@ -24,6 +26,16 @@ public class NPC_Instantiator : MonoBehaviour
             Vector3 pos = new Vector3(ranX, ranY, -1);
             Quaternion rot = new Quaternion(0, 0, 0, 0);
             Instantiate(NPCs[choice], pos, rot);
+            if (choice == 3)
+            {
+                groupies.Add(NPCs[choice]);
+                num++;
+            }
+        }
+
+        for (int i = 0; i < num; i++)
+        {
+            groupies[i].GetComponent<Groupies>().manager = this.gameObject;
         }
     }
 
