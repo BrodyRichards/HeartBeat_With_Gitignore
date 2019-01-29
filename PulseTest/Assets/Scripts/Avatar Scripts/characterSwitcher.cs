@@ -92,6 +92,9 @@ public class characterSwitcher : MonoBehaviour
             case 2:
                 B.GetComponent<BallThrow>().enabled = true;
                 break;
+            case 3:
+                B.transform.GetChild(0).gameObject.GetComponent<RadioControl>().enabled = true;
+                break;
             default:
                 break;
         }
@@ -106,12 +109,17 @@ public class characterSwitcher : MonoBehaviour
         {
             case 0:
                 findGO(2).GetComponent<BallThrow>().enabled = false;
+                findGO(3).transform.GetChild(0).gameObject.GetComponent<RadioControl>().enabled = false;
                 break;
             case 1:
                 findGO(2).GetComponent<BallThrow>().enabled = false;
+                findGO(3).transform.GetChild(0).gameObject.GetComponent<RadioControl>().enabled = false;
+                break;
+            case 2:
+                findGO(3).transform.GetChild(0).gameObject.GetComponent<RadioControl>().enabled = false;
                 break;
             case 3:
-                findGO(2).GetComponent<BallThrow>().enabled = false;
+                findGO(2).GetComponent<BallThrow>().enabled = false;                
                 break;
             default:
                 break;

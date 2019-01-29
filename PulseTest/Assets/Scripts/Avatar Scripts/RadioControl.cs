@@ -20,11 +20,12 @@ public class RadioControl : MonoBehaviour
     public Sprite sad;
     public Sprite intense;
 
-    
-
-    void Start()
+    Sprite[] sprites;
+    AudioClip[] audioClips;
+    private void Start()
     {
-
+        sprites = new Sprite[] { sad, intense, happy };
+        audioClips = new AudioClip[] { sadSong, intenseSong, happySong };
         currentMood = (int)Mood.sad;
 
         sr = GetComponent<SpriteRenderer>();
@@ -35,18 +36,21 @@ public class RadioControl : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Sprite[] sprites = { sad, intense, happy };
-        AudioClip[] audioClips = { sadSong, intenseSong, happySong };
-
-        currentMood = (currentMood + 1) % 3;
-
-        audioSource.clip = audioClips[currentMood];
-        sr.sprite = sprites[currentMood];
-
        
+        if (enabled)
+        {
+            currentMood = (currentMood + 1) % 3;
 
+            audioSource.clip = audioClips[currentMood];
+            sr.sprite = sprites[currentMood];
 
-        audioSource.Play();
+            audioSource.Play();
+        }
+        else
+        {
+            Debug.Log("disabled");
+        }
+        
 
 
     }
