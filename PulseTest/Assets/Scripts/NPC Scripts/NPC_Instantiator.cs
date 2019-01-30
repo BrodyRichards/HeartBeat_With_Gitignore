@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class NPC_Instantiator : MonoBehaviour
 {
-    private int npcCount = 20;
+    private int npcCount = 30;
+    
+    public GameObject[] NPCs; //contains the 3 types of NPCs
+    private List<GameObject> groupies;
+    private int num;
 
-    public GameObject npcObj;
-    public GameObject loner;
     public GameObject area;   //quad
     private int areaX, areaY; //get the size of the quad
     // Start is called before the first frame update
@@ -18,19 +20,22 @@ public class NPC_Instantiator : MonoBehaviour
 
         for (int i = 0; i < npcCount; i++) //create and instantiate the npcs (we can make it more complicated later)
         {
+            int choice = Random.Range(0, 3);
             int ranX = Random.Range(-areaX, areaX);
             int ranY = Random.Range(-areaY, areaY);
             Vector3 pos = new Vector3(ranX, ranY, -1);
             Quaternion rot = new Quaternion(0, 0, 0, 0);
-            if (i % 2 == 0)
+            Instantiate(NPCs[choice], pos, rot);
+            if (choice == 3)
             {
-                Instantiate(npcObj, pos, rot);
+                groupies.Add(NPCs[choice]);
+                num++;
             }
-            else
-            {
-                Instantiate(loner, pos, rot);
-            }
+        }
 
+        for (int i = 0; i < num; i++)
+        {
+            groupies[i].GetComponent<Groupies>().manager = this.gameObject;
         }
     }
 

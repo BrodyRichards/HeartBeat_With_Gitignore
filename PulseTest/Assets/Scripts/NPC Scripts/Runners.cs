@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 //using UnityEngine.AI; may need this in the future??
 
-public class NPCs : MonoBehaviour
+public class Runners : MonoBehaviour
 {
     Vector3 target;
     private GameObject area;   //quad
