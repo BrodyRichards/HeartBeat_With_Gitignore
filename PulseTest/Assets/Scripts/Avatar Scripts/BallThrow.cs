@@ -6,23 +6,60 @@ public class BallThrow : MonoBehaviour
 {
     public GameObject ball;
     public float offset;
+    public Animator anim;
+
+    private bool towardRight;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        towardRight = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 throwAngle = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        float rotZ = Mathf.Atan2(throwAngle.y, throwAngle.x) * Mathf.Rad2Deg;
-        Quaternion q = Quaternion.Euler(0f, 0f, rotZ + offset);
+        
 
         if (Input.GetMouseButtonDown(0))
         {
-            Instantiate(ball, transform.position, q);
+            //Vector for Raycast, takes mouse position
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //Decompose to 2D vector
+            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+
+            if (mousePos2D.x < transform.position.x && towardRight)
+            {
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                towardRight = false;
+            }else if (mousePos2D.x > transform.position.x && !towardRight)
+            {
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                towardRight = true;
+            }
+
+            anim.SetBool("isThrowing", true);
+
+            Invoke("PutOutBall", 0.6f);
+
+
         }
+        else
+        {
+            anim.SetBool("isThrowing", false);
+        }
+
+        
+       
     }
+
+    void PutOutBall()
+    {
+        Vector3 throwAngle = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        float rotZ = Mathf.Atan2(throwAngle.y, throwAngle.x) * Mathf.Rad2Deg;
+        Quaternion q = Quaternion.Euler(0f, 0f, rotZ + offset);
+        Instantiate(ball, transform.position, q);
+    }
+
+  
 }
