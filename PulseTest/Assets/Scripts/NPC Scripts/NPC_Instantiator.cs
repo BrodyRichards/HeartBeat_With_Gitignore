@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class NPC_Instantiator : MonoBehaviour
 {
-    private int npcCount = 20;
+    private int npcCount = 8;
     
     public GameObject[] NPCs; //contains the 3 types of NPCs
     public GameObject[] groupies;
     public GameObject groupiePrefab;
-    private int groupCount = 10;
+    private int groupCount = 8;
     private int num;
 
     public GameObject area;   //quad
