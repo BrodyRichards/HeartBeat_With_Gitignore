@@ -8,11 +8,12 @@ public class McMovement : MonoBehaviour
 
     private Vector2 direction;
     private float speed = 5f;
-    private double worldX = 21.9;
+    private double worldX;
     void Start()
     {
         direction = Vector2.right;
         anim.SetBool("isWalking", true);
+        worldX = GameObject.Find("/Quad").transform.localScale.x / 2;
     }
 
     void Update()

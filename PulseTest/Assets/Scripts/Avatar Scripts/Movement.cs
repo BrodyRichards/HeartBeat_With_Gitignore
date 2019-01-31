@@ -7,20 +7,39 @@ public class Movement : MonoBehaviour {
     [SerializeField]
     private float speed = 20f;
     private Vector2 direction;
+    private double worldX;
+    private double worldY;
 
     protected bool walking = false;
 
-
+    void Start()
+    {
+        worldX = GameObject.Find("/Quad").transform.localScale.x / 2;
+        worldY = GameObject.Find("/Quad").transform.localScale.y / 2;
+    }
 
     // Update is called once per frame
-    void Update () {
+    void Update() {
         getInput();
         Move();
-	}
+    }
 
     public void Move()
     {
-        transform.Translate(direction * speed * Time.deltaTime);
+        
+        if ( (transform.position.x > worldX && direction == Vector2.right ) ||
+            (transform.position.x < - worldX && direction == Vector2.left) ||
+            (transform.position.y > worldY && direction == Vector2.up) ||
+            (transform.position.y < - worldY && direction == Vector2.down))
+        {
+            Debug.Log("hit the bound");
+        }
+        else
+        {
+            transform.Translate(direction * speed * Time.deltaTime);
+        }
+
+
     }
 
     protected void getInput()
