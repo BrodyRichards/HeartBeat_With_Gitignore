@@ -5,28 +5,18 @@ using UnityEngine;
 
 public class Groupies : MonoBehaviour
 {
-    Vector3 target;
-    private GameObject area;   //quad
-    private int areaX, areaY; //get the size of the quad
-    private float speed = 5f;
-
     public GameObject manager;
+    private Vector2 compare;
     public Vector2 location = Vector2.zero;
     public Vector2 velocity;
     Vector2 goalPos = Vector2.zero;
     Vector2 currentForce;
-
     // Start is called before the first frame update
     void Start()
     {
-        area = GameObject.Find("Quad");
-        areaX = ((int)area.transform.localScale.x) / 2;
-        areaY = ((int)area.transform.localScale.y) / 2;
-        int ranX = Random.Range(-areaX, areaX);
-        int ranY = Random.Range(-areaY, areaY);
-        //target = new Vector3(ranX, ranY, -1);
         location = new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y);
         velocity = new Vector2(Random.Range(0.01f, 0.1f), Random.Range(0.01f, 0.1f));
+        compare = new Vector2(1.5f, 1.5f);
     }
 
     Vector2 seek(Vector2 target)
@@ -37,8 +27,65 @@ public class Groupies : MonoBehaviour
     void applyForce(Vector2 f)
     {
         Vector3 force = new Vector3(f.x, f.y, 0);
+        if (force.magnitude > manager.GetComponent<NPC_Instantiator>().maxForce)
+        {
+            force = force.normalized;
+            force *= manager.GetComponent<NPC_Instantiator>().maxForce;
+        }
         this.GetComponent<Rigidbody2D>().AddForce(force);
+        if (this.GetComponent<Rigidbody2D>().velocity.magnitude > manager.GetComponent<NPC_Instantiator>().maxVelocity)
+        {
+            this.GetComponent<Rigidbody2D>().velocity = this.GetComponent<Rigidbody2D>().velocity.normalized;
+            this.GetComponent<Rigidbody2D>().velocity *= manager.GetComponent<NPC_Instantiator>().maxVelocity;
+        }
         Debug.DrawRay(this.transform.position, force, Color.white);
+    }
+
+    Vector2 align()
+    {
+        float neighbordist = manager.GetComponent<NPC_Instantiator>().neighbourDistance;
+        Vector2 sum = Vector2.zero;
+        int count = 0;
+        foreach (GameObject other in manager.GetComponent<NPC_Instantiator>().groupies)
+        {
+            if (other == this.gameObject) continue;
+            float d = Vector2.Distance(location, other.GetComponent<Groupies>().location);
+            if (d < neighbordist)
+            {
+                sum += other.GetComponent<Groupies>().velocity;
+                count++;
+            }
+        }
+        if (count > 0)
+        {
+            sum /= count;
+            Vector2 steer = sum - velocity;
+            return steer;
+        }
+        return Vector2.zero;
+    }
+
+    Vector2 cohesion()
+    {
+        float neighbordist = manager.GetComponent<NPC_Instantiator>().neighbourDistance;
+        Vector2 sum = Vector2.zero;
+        int count = 0;
+        foreach (GameObject other in manager.GetComponent<NPC_Instantiator>().groupies)
+        {
+            if (other == this.gameObject) continue;
+            float d = Vector2.Distance(location, other.GetComponent<Groupies>().location);
+            if (d < neighbordist)
+            {
+                sum += other.GetComponent<Groupies>().location;
+                count++;
+            }
+        }
+        if (count > 0)
+        {
+            sum /= count;
+            return seek(sum);
+        }
+        return Vector2.zero;
     }
 
     void flock()
@@ -46,39 +93,26 @@ public class Groupies : MonoBehaviour
         location = this.transform.position;
         velocity = this.GetComponent<Rigidbody2D>().velocity;
 
-        Vector2 gl;
-        gl = seek(goalPos);
-        currentForce = gl;
-        currentForce = currentForce.normalized;
-
+        if (Random.Range(0, 50) <= 1)
+        {
+            Vector2 ali = align();
+            Vector2 coh = cohesion();
+            Vector2 gl;
+            gl = seek(goalPos);
+            Vector2 gl2 = new Vector2(Mathf.Abs(gl.x), Mathf.Abs(gl.y));
+            if (gl2.x < compare.x && gl2.y < compare.y){
+                this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
+            }
+            currentForce = gl + ali + coh;
+            currentForce = currentForce.normalized;
+        }
         applyForce(currentForce);
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
-        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        if (transform.position == target)
-        {
-            int ranX = Random.Range(-areaX, areaX);
-            int ranY = Random.Range(-areaY, areaY);
-            target = new Vector3(ranX, ranY, -1);
-        }
-        */
-        /*
-        if (this.gameObject.transform.position == goalPos)
-        {
-
-        }
-        */
         flock();
-        int ranX = Random.Range(-areaX, areaX);
-        int ranY = Random.Range(-areaY, areaY);
-        target = new Vector3(ranX, ranY, -1);
-        //goalPos = new Vector2(ranX, ranY);
-        goalPos = area.transform.position;
-        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        //Debug.Log(goalPos);
+        goalPos = manager.GetComponent<NPC_Instantiator>().target;
     }
 }
