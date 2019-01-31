@@ -46,6 +46,9 @@ TagManager:
   - name: UICanvas
     uniqueID: 3229432217
     locked: 0
+  - name: Props
+    uniqueID: 1920224899
+    locked: 0
   - name: Character
     uniqueID: 2092895947
     locked: 0

@@ -25,14 +25,13 @@ public class BallThrow : MonoBehaviour
         {
             //Vector for Raycast, takes mouse position
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //Decompose to 2D vector
-            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
-            if (mousePos2D.x < transform.position.x && towardRight)
+         
+            // check the character direction 
+            if (mousePos.x < transform.position.x && towardRight)
             {
                 transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
                 towardRight = false;
-            }else if (mousePos2D.x > transform.position.x && !towardRight)
+            }else if (mousePos.x > transform.position.x && !towardRight)
             {
                 transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
                 towardRight = true;
@@ -40,6 +39,7 @@ public class BallThrow : MonoBehaviour
 
             anim.SetBool("isThrowing", true);
 
+            // postpone 0.6 seconds to finish the animation 
             Invoke("PutOutBall", 0.6f);
 
 
