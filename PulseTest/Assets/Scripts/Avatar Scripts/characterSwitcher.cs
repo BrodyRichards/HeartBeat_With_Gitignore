@@ -89,6 +89,9 @@ public class characterSwitcher : MonoBehaviour
 
         switch (charChoice)
         {
+            case 1:
+                B.GetComponent<RabbitJump>().enabled = true;
+                break;
             case 2:
                 B.GetComponent<BallThrow>().enabled = true;
                 break;
@@ -108,6 +111,9 @@ public class characterSwitcher : MonoBehaviour
         switch (charChoice)
         {
             case 0:
+                //Finding GameObject 1 which is the rabbit
+                findGO(1).GetComponent<RabbitJump>().enabled = false;
+                //Finding GameObject 2 which is the ball thrower
                 findGO(2).GetComponent<BallThrow>().enabled = false;
                 findGO(2).GetComponent<Animator>().SetBool("isThrowing", false);
                 isMusicGuyInCharge = false;
@@ -119,11 +125,17 @@ public class characterSwitcher : MonoBehaviour
                 isMusicGuyInCharge = false;
                 break;
             case 2:
+                findGO(1).GetComponent<RabbitJump>().enabled = false;
                 isMusicGuyInCharge = false;
                 break;
             case 3:
+<<<<<<< HEAD
                 findGO(2).GetComponent<BallThrow>().enabled = false;
                 findGO(2).GetComponent<Animator>().SetBool("isThrowing", false);
+=======
+                findGO(1).GetComponent<RabbitJump>().enabled = false;
+                findGO(2).GetComponent<BallThrow>().enabled = false;                
+>>>>>>> parent of c853669... Revert "Merge branch 'RabbitCarrying' into improve-startscreen"
                 break;
             default:
                 break;
