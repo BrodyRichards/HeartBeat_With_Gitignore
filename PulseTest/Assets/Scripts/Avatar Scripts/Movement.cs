@@ -6,17 +6,18 @@ public class Movement : MonoBehaviour {
 
     [SerializeField]
     private float speed = 20f;
-    
+    public static bool isRight = true;
     private Vector2 direction;
     private double worldX;
     private double worldY;
 
-    protected bool walking = false;
 
     void Start()
     {
         worldX = GameObject.Find("/Quad").transform.localScale.x / 2;
         worldY = GameObject.Find("/Quad").transform.localScale.y / 2;
+
+        
     }
 
     // Update is called once per frame
@@ -37,6 +38,16 @@ public class Movement : MonoBehaviour {
         }
         else
         {
+            if (direction == Vector2.right && transform.localScale.x < 0)
+            {
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                
+            }
+            else if (direction == Vector2.left && transform.localScale.x > 0)
+            {
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                
+            }
             transform.Translate(direction * speed * Time.deltaTime);
         }
 
@@ -46,7 +57,6 @@ public class Movement : MonoBehaviour {
     protected void getInput()
     {
         direction = Vector2.zero;
-        walking = false;
 
         if (Input.GetKey(KeyCode.W)){
             direction = Vector2.up;
@@ -55,7 +65,7 @@ public class Movement : MonoBehaviour {
         if (Input.GetKey(KeyCode.A))
         {
             direction = Vector2.left;
-            walking = true;
+            
         }
 
         if (Input.GetKey(KeyCode.S)){
@@ -65,7 +75,7 @@ public class Movement : MonoBehaviour {
         if (Input.GetKey(KeyCode.D))
         {
             direction = Vector2.right;
-            walking = true;
+            
         }
     }
 }
