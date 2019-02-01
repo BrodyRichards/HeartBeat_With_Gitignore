@@ -11,12 +11,16 @@ public class Groupies : MonoBehaviour
     public Vector2 velocity;
     Vector2 goalPos = Vector2.zero;
     Vector2 currentForce;
+    private Vector3 scale;
+    private Vector3 scaleOpposite;
     // Start is called before the first frame update
     void Start()
     {
         location = new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y);
         velocity = new Vector2(Random.Range(0.01f, 0.1f), Random.Range(0.01f, 0.1f));
         compare = new Vector2(1.5f, 1.5f);
+        scale = transform.localScale;
+        scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
 
     Vector2 seek(Vector2 target)
@@ -27,6 +31,15 @@ public class Groupies : MonoBehaviour
     void applyForce(Vector2 f)
     {
         Vector3 force = new Vector3(f.x, f.y, 0);
+        if (this.GetComponent<Rigidbody2D>().velocity.x < 0)
+        {
+            Debug.Log(this.GetComponent<Rigidbody2D>().velocity.x);
+            transform.localScale = scaleOpposite;
+        }
+        else
+        {
+            transform.localScale = scale;
+        }
         if (force.magnitude > manager.GetComponent<NPC_Instantiator>().maxForce)
         {
             force = force.normalized;
@@ -39,6 +52,7 @@ public class Groupies : MonoBehaviour
             this.GetComponent<Rigidbody2D>().velocity *= manager.GetComponent<NPC_Instantiator>().maxVelocity;
         }
         Debug.DrawRay(this.transform.position, force, Color.white);
+    
     }
 
     Vector2 align()
@@ -112,7 +126,32 @@ public class Groupies : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        flock();
         goalPos = manager.GetComponent<NPC_Instantiator>().target;
+        //directionCheck(goalPos.x, transform.position.x);
+        flock();
+
     }
+    /*
+    void directionCheck(float target, float pos) //WHY DOES THIS GOTTA BE SO DAMN COMPLICATED MAN 
+    {
+        if (target >= 0)
+        {
+            if (pos >= 0)
+            {
+                if (target >= pos) { transform.localScale = scale; }
+                else if (target <= pos) { transform.localScale = scaleOpposite; }
+            }
+            else if (pos <= 0) { transform.localScale = scale; }
+        }
+        else if (target <= 0)
+        {
+            if (pos >= 0) { transform.localScale = scaleOpposite; }
+            else if (pos <= 0)
+            {
+                if (target >= pos) { transform.localScale = scale; }
+                else if (target < pos) { transform.localScale = scaleOpposite; }
+            }
+        }
+    }
+    */
 }
