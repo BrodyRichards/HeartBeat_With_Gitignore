@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour {
 
     [SerializeField]
     private float speed = 20f;
+    
     private Vector2 direction;
     private double worldX;
     private double worldY;
