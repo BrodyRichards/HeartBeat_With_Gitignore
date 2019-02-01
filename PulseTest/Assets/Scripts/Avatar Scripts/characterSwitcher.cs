@@ -129,13 +129,10 @@ public class characterSwitcher : MonoBehaviour
                 isMusicGuyInCharge = false;
                 break;
             case 3:
-<<<<<<< HEAD
                 findGO(2).GetComponent<BallThrow>().enabled = false;
                 findGO(2).GetComponent<Animator>().SetBool("isThrowing", false);
-=======
                 findGO(1).GetComponent<RabbitJump>().enabled = false;
-                findGO(2).GetComponent<BallThrow>().enabled = false;                
->>>>>>> parent of c853669... Revert "Merge branch 'RabbitCarrying' into improve-startscreen"
+                
                 break;
             default:
                 break;
