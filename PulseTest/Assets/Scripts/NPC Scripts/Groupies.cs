@@ -33,7 +33,6 @@ public class Groupies : MonoBehaviour
         Vector3 force = new Vector3(f.x, f.y, 0);
         if (this.GetComponent<Rigidbody2D>().velocity.x < 0)
         {
-            Debug.Log(this.GetComponent<Rigidbody2D>().velocity.x);
             transform.localScale = scaleOpposite;
         }
         else
