@@ -9,7 +9,7 @@ public class FadingTxt : MonoBehaviour
     private bool faded = false;
     private float tweenDuration = 2.0f;
     private float tweenUpperbound = 0.95f;
-    private float tweenLowerbound = 0.2f;
+    private float tweenLowerbound = 0.5f;
     
     void Start()
     {

@@ -57,11 +57,11 @@ public class PauseUI : MonoBehaviour
 
     public void Quit()
     {
-        
-        if (thisSceneIndex != 0)
-        {
-            StartCoroutine(LoadAsyncScene(thisSceneIndex - 1));
-        }
+        Application.Quit();
+        //if (thisSceneIndex != 0)
+        //{
+        //    StartCoroutine(LoadAsyncScene(thisSceneIndex - 1));
+        //}
         Time.timeScale = 1f;
         IsPaused = false;
     }

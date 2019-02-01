@@ -52,3 +52,6 @@ TagManager:
   - name: Character
     uniqueID: 2092895947
     locked: 0
+  - name: Front Props
+    uniqueID: 2264900701
+    locked: 0
