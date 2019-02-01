@@ -687,8 +687,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bef3af1c4fd893b4e97adb44ab8f50a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bushes: {fileID: 1226010349}
   obj: {fileID: 1453256351}
+  avatar1: {fileID: 1520229863}
+  avatar2: {fileID: 616797539}
+  avatar3: {fileID: 118138679}
+  avatar4: {fileID: 1332290333}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

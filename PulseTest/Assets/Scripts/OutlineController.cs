@@ -14,10 +14,10 @@ public class OutlineController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ballkid = GameObject.Find("/Bushes/2");
-        radioguy = GameObject.Find("/Bushes/3");
-        randomkid = GameObject.Find("/Bushes/0");
-        rabbit = GameObject.Find("/Bushes/1");
+        ballkid = GameObject.Find("2");
+        radioguy = GameObject.Find("3");
+        randomkid = GameObject.Find("0");
+        rabbit = GameObject.Find("1");
         go = new GameObject[]{ ballkid, radioguy, randomkid, rabbit };
         ballkid.GetComponent<SpriteGlowEffect>().enabled = true;
         //Debug.Log(ballkid);
