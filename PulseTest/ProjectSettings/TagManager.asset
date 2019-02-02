@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Avatars
   - Person
+  - MC
   layers:
   - Default
   - TransparentFX
