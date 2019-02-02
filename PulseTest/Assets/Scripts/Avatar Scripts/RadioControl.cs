@@ -42,11 +42,9 @@ public class RadioControl : MonoBehaviour
 
     private void OnMouseDown()
     {
-       
         if (characterSwitcher.isMusicGuyInCharge)
         {
-            backgroundMusic.Pause();
-            isBG = false;
+           
 
             currentMood = currentMood % 3 + 1;
             
@@ -72,7 +70,12 @@ public class RadioControl : MonoBehaviour
     {
         if (characterSwitcher.isMusicGuyInCharge)
         {
-            
+
+            if (isBG)
+            {
+                backgroundMusic.Pause();
+                isBG = false;
+            }
 
             if (PauseUI.IsPaused)
             {
