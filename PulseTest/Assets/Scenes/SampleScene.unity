@@ -360,11 +360,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glowColor: {r: 1, g: 0.6, b: 0, a: 1}
-  glowBrightness: 5.9
-  outlineWidth: 5
-  alphaThreshold: 0.941
-  drawOutside: 0
+  glowColor: {r: 1, g: 1, b: 1, a: 0.047058824}
+  glowBrightness: 3.01
+  outlineWidth: 1
+  alphaThreshold: 0.08
+  drawOutside: 1
   enableInstancing: 0
 --- !u!1 &193627805
 GameObject:
@@ -871,11 +871,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glowColor: {r: 1, g: 1, b: 1, a: 1}
-  glowBrightness: 2
+  glowColor: {r: 1, g: 1, b: 1, a: 0.047058824}
+  glowBrightness: 3.01
   outlineWidth: 1
-  alphaThreshold: 0.01
-  drawOutside: 0
+  alphaThreshold: 0.08
+  drawOutside: 1
   enableInstancing: 0
 --- !u!61 &616797545
 BoxCollider2D:
@@ -1514,7 +1514,129 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7949546077993324215}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1332290334
+--- !u!82 &1332290334
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332290333}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 3bf54ba4cc375134bb7fa59469e36760, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!61 &1332290335
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332290333}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 7.2, y: 10.8}
+    newSize: {x: 7.2, y: 10.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 6, y: 10}
+  m_EdgeRadius: 0
+--- !u!114 &1332290338
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1523,15 +1645,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1332290333}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
+  m_Script: {fileID: 11500000, guid: 057111a3533dd54479cc3f4c42b25cec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glowColor: {r: 1, g: 0.6, b: 0, a: 1}
-  glowBrightness: 2
-  outlineWidth: 1
-  alphaThreshold: 0.01
-  drawOutside: 0
-  enableInstancing: 0
+  isBG: 0
+  sadSong: {fileID: 8300000, guid: 3bf54ba4cc375134bb7fa59469e36760, type: 3}
+  intenseSong: {fileID: 8300000, guid: de04e97c7c24ac34ab916c7b5905edc0, type: 3}
+  happySong: {fileID: 8300000, guid: 5bfc60d36f7c62e499bdc8d1971bcdb3, type: 3}
+  happy: {fileID: 21300000, guid: 121fa4d01f2d1514ba6b093cfad84284, type: 3}
+  sad: {fileID: 21300000, guid: 4c69a8179feef7b449d079d3c2ba758c, type: 3}
+  intense: {fileID: 21300000, guid: 68df201312a3d79469f641d7562a3e22, type: 3}
+  idle: {fileID: 21300000, guid: 121fa4d01f2d1514ba6b093cfad84284, type: 3}
 --- !u!1 &1333830097 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7476491800978798943, guid: dd3fe1050f0365448a1aca5ddba2b87d,
@@ -1550,11 +1674,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glowColor: {r: 1, g: 1, b: 1, a: 1}
-  glowBrightness: 10
-  outlineWidth: 8
-  alphaThreshold: 0.904
-  drawOutside: 0
+  glowColor: {r: 1, g: 1, b: 1, a: 0.047058824}
+  glowBrightness: 5
+  outlineWidth: 1
+  alphaThreshold: 0.08
+  drawOutside: 1
   enableInstancing: 0
 --- !u!61 &1333830103
 BoxCollider2D:
@@ -2969,11 +3093,117 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7949546078330371559, guid: 48155d0dc3239bb47a12698a68bd0831,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 121fa4d01f2d1514ba6b093cfad84284,
+        type: 3}
+    - target: {fileID: 7949546078330371559, guid: 48155d0dc3239bb47a12698a68bd0831,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7949546078330371559, guid: 48155d0dc3239bb47a12698a68bd0831,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 7.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7949546078330371559, guid: 48155d0dc3239bb47a12698a68bd0831,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 10.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7949546078330371559, guid: 48155d0dc3239bb47a12698a68bd0831,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7949546078330371559, guid: 48155d0dc3239bb47a12698a68bd0831,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7949546078330371559, guid: 48155d0dc3239bb47a12698a68bd0831,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7949546077602243823, guid: 48155d0dc3239bb47a12698a68bd0831,
         type: 3}
       propertyPath: happySong
       value: 
       objectReference: {fileID: 8300000, guid: 5bfc60d36f7c62e499bdc8d1971bcdb3, type: 3}
+    - target: {fileID: 7949546077602243823, guid: 48155d0dc3239bb47a12698a68bd0831,
+        type: 3}
+      propertyPath: happy
+      value: 
+      objectReference: {fileID: 21300000, guid: 121fa4d01f2d1514ba6b093cfad84284,
+        type: 3}
+    - target: {fileID: 7949546077602243823, guid: 48155d0dc3239bb47a12698a68bd0831,
+        type: 3}
+      propertyPath: sad
+      value: 
+      objectReference: {fileID: 21300000, guid: 4c69a8179feef7b449d079d3c2ba758c,
+        type: 3}
+    - target: {fileID: 7949546077602243823, guid: 48155d0dc3239bb47a12698a68bd0831,
+        type: 3}
+      propertyPath: intense
+      value: 
+      objectReference: {fileID: 21300000, guid: 68df201312a3d79469f641d7562a3e22,
+        type: 3}
+    - target: {fileID: 7949546077602243823, guid: 48155d0dc3239bb47a12698a68bd0831,
+        type: 3}
+      propertyPath: idle
+      value: 
+      objectReference: {fileID: 21300000, guid: 121fa4d01f2d1514ba6b093cfad84284,
+        type: 3}
+    - target: {fileID: 7949546077602243808, guid: 48155d0dc3239bb47a12698a68bd0831,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 121fa4d01f2d1514ba6b093cfad84284,
+        type: 3}
+    - target: {fileID: 4511121683239264123, guid: 48155d0dc3239bb47a12698a68bd0831,
+        type: 3}
+      propertyPath: glowBrightness
+      value: 3.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511121683239264123, guid: 48155d0dc3239bb47a12698a68bd0831,
+        type: 3}
+      propertyPath: glowColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511121683239264123, guid: 48155d0dc3239bb47a12698a68bd0831,
+        type: 3}
+      propertyPath: glowColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511121683239264123, guid: 48155d0dc3239bb47a12698a68bd0831,
+        type: 3}
+      propertyPath: outlineWidth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511121683239264123, guid: 48155d0dc3239bb47a12698a68bd0831,
+        type: 3}
+      propertyPath: alphaThreshold
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511121683239264123, guid: 48155d0dc3239bb47a12698a68bd0831,
+        type: 3}
+      propertyPath: glowColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511121683239264123, guid: 48155d0dc3239bb47a12698a68bd0831,
+        type: 3}
+      propertyPath: glowColor.a
+      value: 0.047058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511121683239264123, guid: 48155d0dc3239bb47a12698a68bd0831,
+        type: 3}
+      propertyPath: drawOutside
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48155d0dc3239bb47a12698a68bd0831, type: 3}
 --- !u!1001 &8432465858589808403
