@@ -5,17 +5,40 @@ using UnityEngine;
 public class RabbitJump : MonoBehaviour
 {
     private bool beingCarried = false;
+    private Rigidbody2D rb;
+    private double currentPosX;
+    private double lastPosX;
 
+    public Animator anim;
+   
     // Start is called before the first frame update
     void Start()
     {
-        
+         lastPosX = transform.position.x;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        DetectMovement();
         jumpIntoArms();
+    }
+
+    private void DetectMovement()
+    {
+        currentPosX = transform.position.x;
+        if (currentPosX != lastPosX)
+        {
+            Debug.Log("rabbit is moving");
+            anim.SetBool("isMoving", true);
+        }
+        else
+        {
+            anim.SetBool("isMoving", false);
+        }
+
+        lastPosX = transform.position.x;
     }
 
     public void jumpIntoArms()
@@ -27,6 +50,7 @@ public class RabbitJump : MonoBehaviour
                 transform.parent = null;
                 GetComponent<Movement>().enabled = true;
                 beingCarried = false;
+                anim.SetBool("isCarried", false);
             }
             else
             {
@@ -48,7 +72,10 @@ public class RabbitJump : MonoBehaviour
                     if (distance < 2f)
                     {
                         beingCarried = true;
+                        anim.SetBool("isCarried", true);
+                        transform.position = new Vector3(hit.collider.gameObject.transform.position.x + 0.1f, hit.collider.gameObject.transform.position.y, -1);
                         transform.parent = hit.collider.gameObject.transform;
+                        
                         GetComponent<Movement>().enabled = false;
                         Debug.Log("I'm being carried");
                     }
