@@ -39,7 +39,7 @@ public class RabbitJump : MonoBehaviour
                 RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
                 //Check if an avatar was clicked on
-                if (hit.collider != null && hit.collider.gameObject.tag == "Person")
+                if (hit.collider != null && (hit.collider.gameObject.tag == "Person" || hit.collider.gameObject.tag == "MC"))
                 {
                     //Check distance from object
                     Debug.Log("I want to jump into " + hit.collider.gameObject.name + "'s arms");
