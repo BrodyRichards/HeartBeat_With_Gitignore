@@ -117,7 +117,6 @@ public class characterSwitcher : MonoBehaviour
                 findGO(2).GetComponent<BallThrow>().enabled = false;
                 findGO(2).GetComponent<Animator>().SetBool("isThrowing", false);
                 isMusicGuyInCharge = false;
-                
                 break;
             case 1:
                 findGO(2).GetComponent<BallThrow>().enabled = false;

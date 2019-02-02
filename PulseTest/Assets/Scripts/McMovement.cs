@@ -7,7 +7,7 @@ public class McMovement : MonoBehaviour
     public Animator anim;
 
     private Vector2 direction;
-    private float speed = 5f;
+    public float speed = 4f;
     private double worldX;
     void Start()
     {
