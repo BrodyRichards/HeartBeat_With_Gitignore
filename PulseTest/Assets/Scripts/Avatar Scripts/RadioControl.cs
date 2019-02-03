@@ -71,7 +71,7 @@ public class RadioControl : MonoBehaviour
         if (characterSwitcher.isMusicGuyInCharge)
         {
 
-            if (isBG)
+            if (isBG && currentMood!=(int)Mood.idle)
             {
                 backgroundMusic.Pause();
                 isBG = false;
