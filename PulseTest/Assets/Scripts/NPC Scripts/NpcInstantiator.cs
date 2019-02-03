@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPC_Instantiator : MonoBehaviour
+public class NpcInstantiator : MonoBehaviour
 {
     private int npcCount = 8;
     
@@ -14,9 +14,9 @@ public class NPC_Instantiator : MonoBehaviour
 
     public GameObject area;   //quad
     private int areaX, areaY; //get the size of the quad
-    public int neighbourDistance = 50;
+    public int neighbourDistance = 100;
     public float maxForce = 0.5f;
-    public float maxVelocity = 1.0f;
+    public float maxVelocity = 2.0f;
     public Vector2 target;
     // Start is called before the first frame update
     void Start()

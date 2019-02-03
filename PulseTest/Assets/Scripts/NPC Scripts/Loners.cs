@@ -26,7 +26,7 @@ public class Loners : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Person")
+        if (other.tag == "Person" || other.tag == "Avatars" || other.tag == "MC")
         {
             int ranX = Random.Range(-areaX, areaX);
             int ranY = Random.Range(-areaY, areaY);
