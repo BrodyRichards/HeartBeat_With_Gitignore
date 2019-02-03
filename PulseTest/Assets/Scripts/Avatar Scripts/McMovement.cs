@@ -19,7 +19,7 @@ public class McMovement : MonoBehaviour
     void Update()
     {
         transform.Translate(Time.deltaTime * speed * direction);
-        if ( transform.position.x > worldX  || transform.position.x + Mathf.Epsilon < - worldX)
+        if ( transform.position.x > ( worldX - 2 ) || transform.position.x < ( - worldX + 2))
         {
             direction *= -1;
             transform.localScale = new Vector3(- transform.localScale.x, transform.localScale.y, transform.localScale.z);
