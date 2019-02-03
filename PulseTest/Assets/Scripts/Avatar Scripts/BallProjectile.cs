@@ -22,10 +22,16 @@ public class BallProjectile : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, distance, hittableObjects);
         if (hit.collider != null && hit.collider.gameObject.name != "2")
         {
-            if (hit.collider.CompareTag("Avatars") || hit.collider.CompareTag("MC"))
+            if (hit.collider.CompareTag("Avatars"))
             {
                 Debug.Log("Ouch! You hit " + hit.collider.gameObject.name);
             }
+            else if (hit.collider.CompareTag("MC"))
+            {
+                EmoControl.mcBallHit += 1;
+            }
+
+
             destroyBall();
         }
         transform.Translate(Vector2.up * speed * Time.deltaTime);

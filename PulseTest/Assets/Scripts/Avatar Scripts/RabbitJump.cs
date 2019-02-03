@@ -50,6 +50,7 @@ public class RabbitJump : MonoBehaviour
                 transform.parent = null;
                 GetComponent<Movement>().enabled = true;
                 beingCarried = false;
+                EmoControl.rabbitHug = false;
                 anim.SetBool("isCarried", false);
             }
             else
@@ -75,6 +76,10 @@ public class RabbitJump : MonoBehaviour
                         anim.SetBool("isCarried", true);
                         transform.position = new Vector3(hit.collider.gameObject.transform.position.x + 0.1f, hit.collider.gameObject.transform.position.y, -1);
                         transform.parent = hit.collider.gameObject.transform;
+                        if (hit.collider.gameObject.name == "MC")
+                        {
+                            EmoControl.rabbitHug = true;
+                        }
                         
                         GetComponent<Movement>().enabled = false;
                         Debug.Log("I'm being carried");
