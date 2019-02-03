@@ -13,14 +13,22 @@ public class Groupies : MonoBehaviour
     Vector2 currentForce;
     private Vector3 scale;
     private Vector3 scaleOpposite;
+
+    private GameObject master;
+    GameObject Emo;
+    private int music;
+    private int check;
     // Start is called before the first frame update
     void Start()
     {
+        master = GameObject.Find("GameObject");
         location = new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y);
         velocity = new Vector2(Random.Range(0.1f, 1f), Random.Range(0.1f, 1f));
-        compare = new Vector2(2.5f, 2.5f);
+        compare = new Vector2(4.0f, 4.0f);
         scale = transform.localScale;
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        music = RadioControl.currentMood;
+        check = music;
     }
 
     Vector2 seek(Vector2 target)
@@ -126,8 +134,42 @@ public class Groupies : MonoBehaviour
     void Update()
     {
         goalPos = manager.GetComponent<NpcInstantiator>().target;
+        check = music;
+        music = RadioControl.currentMood;
+        if (music != check)
+        {
+            checkMusic();
+        }
         flock();
     }
-   
-    
+
+    private void checkMusic()
+    {
+        if (RadioControl.currentMood == 1)
+        {
+            Emo = master.GetComponent<NpcInstantiator>().sadFace;
+        }
+        else if (RadioControl.currentMood == 2)
+        {
+            Emo = master.GetComponent<NpcInstantiator>().madFace;
+        }
+        else if (RadioControl.currentMood == 3)
+        {
+            Emo = master.GetComponent<NpcInstantiator>().happyFace;
+        }
+        addEmo();
+    }
+    private void addEmo()
+    {
+        int count = transform.childCount;
+        for (int i = 0; i < count; i++)
+        {
+            GameObject.Destroy(transform.GetChild(i).gameObject);
+        }
+        Vector3 offset = new Vector3(0, 3.5f, 0);
+        GameObject balloon = Instantiate(Emo, transform.localPosition + offset, transform.rotation);
+        balloon.transform.parent = transform;
+    }
+
+
 }
