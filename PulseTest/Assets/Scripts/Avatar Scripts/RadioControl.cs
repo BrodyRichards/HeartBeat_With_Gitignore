@@ -52,6 +52,8 @@ public class RadioControl : MonoBehaviour
             
             sr.sprite = sprites[currentMood];
 
+            Debug.Log("CURRENT CURRY" + currentMood);
+
             audioSource.Play();
             isMusic = true;
         }
@@ -73,6 +75,7 @@ public class RadioControl : MonoBehaviour
 
             if (isBG && currentMood!=(int)Mood.idle)
             {
+               
                 backgroundMusic.Pause();
                 isBG = false;
             }
@@ -93,7 +96,12 @@ public class RadioControl : MonoBehaviour
                 backgroundMusic.Play();
                 isBG = true;
             }
+            
             currentMood = (int)Mood.idle;
+           
+
+            sr.sprite = sprites[currentMood];
+            audioSource.clip = null;
             audioSource.Pause();
         }
         

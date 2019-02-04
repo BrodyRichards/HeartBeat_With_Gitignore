@@ -141,6 +141,16 @@ public class Groupies : MonoBehaviour
             checkMusic();
         }
         flock();
+        if (characterSwitcher.isMusicGuyInCharge == false){
+            int count = transform.childCount;
+            for (int i = 0; i < count; i++)
+            {
+                if (transform.GetChild(i).gameObject.tag != "Avatars")
+                {
+                    GameObject.Destroy(transform.GetChild(i).gameObject);
+                }
+            }
+        }   
     }
 
     private void checkMusic()

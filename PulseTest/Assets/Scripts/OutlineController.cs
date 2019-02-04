@@ -16,9 +16,9 @@ public class OutlineController : MonoBehaviour
     {
         ballkid = GameObject.Find("2");
         radioguy = GameObject.Find("3");
-        randomkid = GameObject.Find("0");
+        //randomkid = GameObject.Find("0");
         rabbit = GameObject.Find("1");
-        go = new GameObject[]{ ballkid, radioguy, randomkid, rabbit };
+        go = new GameObject[]{ ballkid, radioguy, rabbit };
         ballkid.GetComponent<SpriteGlowEffect>().enabled = true;
         //Debug.Log(ballkid);
         Debug.Log(ballkid.name);

@@ -64,7 +64,7 @@ public class characterSwitcher : MonoBehaviour
     //and disables their movement script
     private void disableOthers()
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 1; i < 4; i++)
         {
             if (charChoice != i)
             {
@@ -110,14 +110,14 @@ public class characterSwitcher : MonoBehaviour
 
         switch (charChoice)
         {
-            case 0:
-                //Finding GameObject 1 which is the rabbit
-                findGO(1).GetComponent<RabbitJump>().enabled = false;
-                //Finding GameObject 2 which is the ball thrower
-                findGO(2).GetComponent<BallThrow>().enabled = false;
-                findGO(2).GetComponent<Animator>().SetBool("isThrowing", false);
-                isMusicGuyInCharge = false;
-                break;
+            //case 0:
+            //    //Finding GameObject 1 which is the rabbit
+            //    findGO(1).GetComponent<RabbitJump>().enabled = false;
+            //    //Finding GameObject 2 which is the ball thrower
+            //    findGO(2).GetComponent<BallThrow>().enabled = false;
+            //    findGO(2).GetComponent<Animator>().SetBool("isThrowing", false);
+            //    isMusicGuyInCharge = false;
+            //    break;
             case 1:
                 findGO(2).GetComponent<BallThrow>().enabled = false;
                 findGO(2).GetComponent<Animator>().SetBool("isThrowing", false);
