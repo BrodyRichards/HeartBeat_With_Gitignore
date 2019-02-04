@@ -40,28 +40,10 @@ public class RadioControl : MonoBehaviour
 
     }
 
-    private void OnMouseDown()
+    private void OnMouseOver()
     {
-        if (characterSwitcher.isMusicGuyInCharge)
-        {
-           
-
-            currentMood = currentMood % 3 + 1;
-            
-            audioSource.clip = audioClips[(currentMood -1) % 3];
-            
-            sr.sprite = sprites[currentMood];
-
-            Debug.Log("CURRENT CURRY" + currentMood);
-
-            audioSource.Play();
-            isMusic = true;
-        }
-        else
-        {
-            
-            Debug.Log("disabled");
-        }
+        
+       
         
 
 
@@ -70,6 +52,30 @@ public class RadioControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (characterSwitcher.isMusicGuyInCharge)
+            {
+
+
+                currentMood = currentMood % 3 + 1;
+
+                audioSource.clip = audioClips[(currentMood - 1) % 3];
+
+                sr.sprite = sprites[currentMood];
+
+                //Debug.Log("CURRENT CURRY" + currentMood);
+
+                audioSource.Play();
+                isMusic = true;
+            }
+            else
+            {
+
+                Debug.Log("disabled");
+            }
+            
+        }
         if (characterSwitcher.isMusicGuyInCharge)
         {
 

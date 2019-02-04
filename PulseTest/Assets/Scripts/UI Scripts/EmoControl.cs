@@ -18,7 +18,7 @@ public class EmoControl : MonoBehaviour
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
-        sr.enabled = false;
+        sr.sprite = null;
     }
 
     // Update is called once per frame
@@ -27,13 +27,13 @@ public class EmoControl : MonoBehaviour
         ReactToMusic();
         if (mcBallHit > 1)
         {
-            sr.enabled = true;
+           
             sr.sprite = angry;
             Invoke("DestroyEmotion", 1f);
         }
         else if (rabbitHug)
         {
-            sr.enabled = true;
+           
             sr.sprite = happy;
         }
         
@@ -53,19 +53,20 @@ public class EmoControl : MonoBehaviour
         switch (RadioControl.currentMood)
         {
             case 1:
-                sr.enabled = true;
+                //sr.enabled = true;
                 sr.sprite = sad;
                 break;
             case 2:
-                sr.enabled = true;
+                //sr.enabled = true;
                 sr.sprite = gross;
                 break;
             case 3:
-                sr.enabled = true;
+                //sr.enabled = true;
                 sr.sprite = happy;
                 break;
             default:
-                sr.enabled = false;
+                //sr.enabled = false;
+                sr.sprite = null;
                 break;
         }
     }
