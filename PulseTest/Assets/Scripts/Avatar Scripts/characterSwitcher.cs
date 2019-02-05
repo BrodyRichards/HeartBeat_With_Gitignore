@@ -110,10 +110,9 @@ public class characterSwitcher : MonoBehaviour
 
         switch (charChoice)
         {
-            //case 0:
-            //    //Finding GameObject 1 which is the rabbit
+            //case 0: this should follow the mouse
+            //    //locate mouse
             //    findGO(1).GetComponent<RabbitJump>().enabled = false;
-            //    //Finding GameObject 2 which is the ball thrower
             //    findGO(2).GetComponent<BallThrow>().enabled = false;
             //    findGO(2).GetComponent<Animator>().SetBool("isThrowing", false);
             //    isMusicGuyInCharge = false;
