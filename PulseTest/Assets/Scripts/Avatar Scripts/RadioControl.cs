@@ -64,7 +64,7 @@ public class RadioControl : MonoBehaviour
         
     }
 
-    public void ChangeMusic()
+    private void ChangeMusic()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -109,7 +109,7 @@ public class RadioControl : MonoBehaviour
         }
     }
 
-    public void UIControl()
+    private void UIControl()
     {
         if (PauseUI.IsPaused)
         {
