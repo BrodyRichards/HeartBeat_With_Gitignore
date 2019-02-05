@@ -5,8 +5,6 @@ using UnityEngine;
 public class RadioControl : MonoBehaviour
 {
     // Start is called before the first frame update
-
-    
     public static int currentMood = 0;
     public static bool isMusic = false;
     public bool isBG;
@@ -40,76 +38,86 @@ public class RadioControl : MonoBehaviour
 
     }
 
-    private void OnMouseOver()
+    // Update is called once per frame
+    private void Update()
     {
         
        
-        
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (characterSwitcher.isMusicGuyInCharge)
-            {
-
-
-                currentMood = currentMood % 3 + 1;
-
-                audioSource.clip = audioClips[(currentMood - 1) % 3];
-
-                sr.sprite = sprites[currentMood];
-
-                //Debug.Log("CURRENT CURRY" + currentMood);
-
-                audioSource.Play();
-                isMusic = true;
-            }
-            else
-            {
-
-                Debug.Log("disabled");
-            }
-            
-        }
         if (characterSwitcher.isMusicGuyInCharge)
         {
+            ChangeMusic();
 
-            if (isBG && currentMood!=(int)Mood.idle)
-            {
-               
-                backgroundMusic.Pause();
-                isBG = false;
-            }
+            TurnBgOff();
+            
+            UIControl();
 
-            if (PauseUI.IsPaused)
-            {
-                audioSource.Pause();
-            }
-            else if (!PauseUI.IsPaused)
-            {
-                audioSource.UnPause();
-            }
+            
         }
         else
         {
-            if (!isBG)
-            {
-                backgroundMusic.Play();
-                isBG = true;
-            }
-            
-            currentMood = (int)Mood.idle;
-           
 
-            sr.sprite = sprites[currentMood];
-            audioSource.clip = null;
-            audioSource.Pause();
+            TurnBgOn();
+            
+            ResetThisGuy();
+           
         }
         
+    }
+
+    public void ChangeMusic()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            currentMood = currentMood % 3 + 1;
+
+            audioSource.clip = audioClips[(currentMood - 1) % 3];
+
+            sr.sprite = sprites[currentMood];
+
+            //Debug.Log("CURRENT CURRY" + currentMood);
+
+            audioSource.Play();
+            isMusic = true;
+
+        }
+    }
+    private void ResetThisGuy()
+    {
+        currentMood = (int)Mood.idle;
+        sr.sprite = sprites[currentMood];
+        audioSource.clip = null;
+        audioSource.Pause();
+    }
+
+
+    private void TurnBgOff()
+    {
+        if (isBG && currentMood != (int)Mood.idle)
+        {
+
+            backgroundMusic.Pause();
+            isBG = false;
+        }
+    }
+
+    private void TurnBgOn()
+    {
+        if (!isBG)
+        {
+            backgroundMusic.Play();
+            isBG = true;
+        }
+    }
+
+    public void UIControl()
+    {
+        if (PauseUI.IsPaused)
+        {
+            audioSource.Pause();
+        }
+        else if (!PauseUI.IsPaused)
+        {
+            audioSource.UnPause();
+        }
     }
 }
