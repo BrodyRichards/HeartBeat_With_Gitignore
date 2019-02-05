@@ -5,8 +5,10 @@ using UnityEngine;
 public class BallThrow : MonoBehaviour
 {
     public GameObject ball;
+    public GameObject newBall;
     public float offset;
     public Animator anim;
+    private bool thrownBall = false;
     
 
     private bool towardRight;
@@ -20,10 +22,9 @@ public class BallThrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        
-        if (Input.GetMouseButtonDown(0) )
+        if (Input.GetMouseButtonDown(0) && !thrownBall)
         {
+            thrownBall = true;
             //Vector for Raycast, takes mouse position
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -52,19 +53,17 @@ public class BallThrow : MonoBehaviour
                 // postpone 0.6 seconds to finish the animation 
                 Invoke("PutOutBall", 0.6f);
             }
-            
-
-
-
         }
         else
         {
             anim.SetBool("isThrowing", false);
-
         }
 
-        
-       
+        if (Input.GetKey(KeyCode.Space) && thrownBall)
+        {
+            PickupBall();
+        }
+
     }
 
     void PutOutBall()
@@ -75,5 +74,17 @@ public class BallThrow : MonoBehaviour
         Instantiate(ball, transform.position, q);
     }
 
-  
+    void PickupBall()
+    {
+        newBall = GameObject.Find("newBall");
+        float distance = Vector3.Distance(transform.position, newBall.transform.position);
+        //Debug.Log(distance);
+        if(distance < 2f)
+        {
+            thrownBall = false;
+            Destroy(newBall);
+        }
+    }
+
+
 }
