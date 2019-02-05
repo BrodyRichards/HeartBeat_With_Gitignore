@@ -16,6 +16,8 @@ public class Loners : MonoBehaviour
     GameObject Emo;
     private int music;
     private int check;
+
+    private bool holdBunny = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,14 +54,28 @@ public class Loners : MonoBehaviour
         {
             checkMusic();
         }
-        if (characterSwitcher.isMusicGuyInCharge == false)
+        if (characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false)
+        {
+            holdBunny = false;
+            int count = transform.childCount;
+            for (int i = 0; i < count; i++)
+            {
+                if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
+                {
+                    GameObject.Destroy(transform.GetChild(i).gameObject);
+                }
+            }
+        }
+        if (RabbitJump.beingCarried)
         {
             int count = transform.childCount;
             for (int i = 0; i < count; i++)
             {
-                if (transform.GetChild(i).gameObject.tag != "Avatars")
+                if (transform.GetChild(i).gameObject.tag == "Avatars" && holdBunny == false)
                 {
-                    GameObject.Destroy(transform.GetChild(i).gameObject);
+                    holdBunny = true;
+                    Emo = master.GetComponent<NpcInstantiator>().happyFace;
+                    addEmo();
                 }
             }
         }
@@ -90,17 +106,17 @@ public class Loners : MonoBehaviour
 
     private void checkMusic()
     {
-        if (RadioControl.currentMood == 1)
+        if (RadioControl.currentMood == 1) //sad music
+        {
+            Emo = master.GetComponent<NpcInstantiator>().happyFace;
+        }
+        else if (RadioControl.currentMood == 2) //scary music
         {
             Emo = master.GetComponent<NpcInstantiator>().sadFace;
         }
-        else if (RadioControl.currentMood == 2)
-        {
-            Emo = master.GetComponent<NpcInstantiator>().madFace;
-        }
         else if (RadioControl.currentMood == 3)
         {
-            Emo = master.GetComponent<NpcInstantiator>().happyFace;
+            Emo = master.GetComponent<NpcInstantiator>().madFace; //happy music
         }
         addEmo();
     }
@@ -109,7 +125,10 @@ public class Loners : MonoBehaviour
         int count = transform.childCount;
         for (int i = 0; i < count; i++)
         {
-            GameObject.Destroy(transform.GetChild(i).gameObject);
+            if (transform.GetChild(i).gameObject.tag != "Avatars")
+            {
+                GameObject.Destroy(transform.GetChild(i).gameObject);
+            }
         }
         Vector3 offset = new Vector3(0, 3.5f, 0);
         GameObject balloon = Instantiate(Emo, transform.localPosition + offset, transform.rotation);
