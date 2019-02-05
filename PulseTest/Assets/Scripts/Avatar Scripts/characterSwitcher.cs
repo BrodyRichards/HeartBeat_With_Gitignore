@@ -8,7 +8,7 @@ public class characterSwitcher : MonoBehaviour
     //This enables you to see and set the field from inspector but 
     //it is hidden from other scripts and objects. 
     //charChoice represents which named object to move
-    public static int charChoice = 2;
+    public static int charChoice = 3;
     public static bool isMusicGuyInCharge;
 
     // Use this for initialization
