@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RabbitJump : MonoBehaviour
 {
-    private bool beingCarried = false;
+    public static bool beingCarried = false;
     private Rigidbody2D rb;
     private double currentPosX;
     private double lastPosX;

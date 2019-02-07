@@ -21,6 +21,7 @@ public class CameraMovement : MonoBehaviour
 
     private Vector3 offset;     //offset for camera 
     private Camera cam;
+
     void Start()
     {
         avatars = new GameObject[4];

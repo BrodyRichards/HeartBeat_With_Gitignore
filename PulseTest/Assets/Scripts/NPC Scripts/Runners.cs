@@ -17,6 +17,8 @@ public class Runners : MonoBehaviour
     private int music;
     private int check;
 
+    private bool holdBunny = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,18 +41,29 @@ public class Runners : MonoBehaviour
         directionCheck(target.x, transform.position.x);
         check = music;
         music = RadioControl.currentMood;
-        if (music != check)
+        if (music != check) { checkMusic(); }
+        if (characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false)
         {
-            checkMusic();
+            holdBunny = false;
+            int count = transform.childCount;
+            for (int i = 0; i < count; i++)
+            {
+                if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
+                {
+                    GameObject.Destroy(transform.GetChild(i).gameObject);
+                }
+            }  
         }
-        if (characterSwitcher.isMusicGuyInCharge == false)
+        if (RabbitJump.beingCarried)
         {
             int count = transform.childCount;
             for (int i = 0; i < count; i++)
             {
-                if (transform.GetChild(i).gameObject.tag != "Avatars")
+                if (transform.GetChild(i).gameObject.tag == "Avatars" && holdBunny == false)
                 {
-                    GameObject.Destroy(transform.GetChild(i).gameObject);
+                    holdBunny = true;
+                    Emo = master.GetComponent<NpcInstantiator>().happyFace;
+                    addEmo();
                 }
             }
         }
@@ -93,11 +106,11 @@ public class Runners : MonoBehaviour
         }
         else if (RadioControl.currentMood == 2)
         {
-            Emo = master.GetComponent<NpcInstantiator>().madFace;
+            Emo = master.GetComponent<NpcInstantiator>().happyFace;
         }
         else if (RadioControl.currentMood == 3)
         {
-            Emo = master.GetComponent<NpcInstantiator>().happyFace;
+            Emo = master.GetComponent<NpcInstantiator>().madFace;
         }
         addEmo();
     }
@@ -106,7 +119,10 @@ public class Runners : MonoBehaviour
         int count = transform.childCount;
         for (int i = 0; i < count; i++)
         {
-            GameObject.Destroy(transform.GetChild(i).gameObject);
+            if (transform.GetChild(i).gameObject.tag != "Avatars")
+            {
+                GameObject.Destroy(transform.GetChild(i).gameObject);
+            }
         }
         Vector3 offset = new Vector3(0, 3.5f, 0);
         GameObject balloon = Instantiate(Emo, transform.localPosition + offset, transform.rotation);

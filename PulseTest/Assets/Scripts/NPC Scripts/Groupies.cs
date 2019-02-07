@@ -6,6 +6,7 @@ using UnityEngine;
 public class Groupies : MonoBehaviour
 {
     public GameObject manager;
+    private float speed = 5f;
     private Vector2 compare;
     public Vector2 location = Vector2.zero;
     public Vector2 velocity;
@@ -18,6 +19,10 @@ public class Groupies : MonoBehaviour
     GameObject Emo;
     private int music;
     private int check;
+
+    private bool holdBunny = false;
+
+    public Vector3 target;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,109 +35,11 @@ public class Groupies : MonoBehaviour
         music = RadioControl.currentMood;
         check = music;
     }
-
-    Vector2 seek(Vector2 target)
-    {
-        return (target - location);
-    }
-
-    void applyForce(Vector2 f)
-    {
-        Vector3 force = new Vector3(f.x, f.y, 0);
-        if (this.GetComponent<Rigidbody2D>().velocity.x < 0)
-        {
-            transform.localScale = scaleOpposite;
-        }
-        else
-        {
-            transform.localScale = scale;
-        }
-        if (force.magnitude > manager.GetComponent<NpcInstantiator>().maxForce)
-        {
-            force = force.normalized;
-            force *= manager.GetComponent<NpcInstantiator>().maxForce;
-        }
-        this.GetComponent<Rigidbody2D>().AddForce(force);
-        if (this.GetComponent<Rigidbody2D>().velocity.magnitude > manager.GetComponent<NpcInstantiator>().maxVelocity)
-        {
-            this.GetComponent<Rigidbody2D>().velocity = this.GetComponent<Rigidbody2D>().velocity.normalized;
-            this.GetComponent<Rigidbody2D>().velocity *= manager.GetComponent<NpcInstantiator>().maxVelocity;
-        }
-        Debug.DrawRay(this.transform.position, force, Color.white);
     
-    }
-
-    Vector2 align()
-    {
-        float neighbordist = manager.GetComponent<NpcInstantiator>().neighbourDistance;
-        Vector2 sum = Vector2.zero;
-        int count = 0;
-        foreach (GameObject other in manager.GetComponent<NpcInstantiator>().groupies)
-        {
-            if (other == this.gameObject) continue;
-            float d = Vector2.Distance(location, other.GetComponent<Groupies>().location);
-            if (d < neighbordist)
-            {
-                sum += other.GetComponent<Groupies>().velocity;
-                count++;
-            }
-        }
-        if (count > 0)
-        {
-            sum /= count;
-            Vector2 steer = sum - velocity;
-            return steer;
-        }
-        return Vector2.zero;
-    }
-
-    Vector2 cohesion()
-    {
-        float neighbordist = manager.GetComponent<NpcInstantiator>().neighbourDistance;
-        Vector2 sum = Vector2.zero;
-        int count = 0;
-        foreach (GameObject other in manager.GetComponent<NpcInstantiator>().groupies)
-        {
-            if (other == this.gameObject) continue;
-            float d = Vector2.Distance(location, other.GetComponent<Groupies>().location);
-            if (d < neighbordist)
-            {
-                sum += other.GetComponent<Groupies>().location;
-                count++;
-            }
-        }
-        if (count > 0)
-        {
-            sum /= count;
-            return seek(sum);
-        }
-        return Vector2.zero;
-    }
-
-    void flock()
-    {
-        location = this.transform.position;
-        velocity = this.GetComponent<Rigidbody2D>().velocity;
-
-        if (Random.Range(0, 50) <= 1)
-        {
-            Vector2 ali = align();
-            Vector2 coh = cohesion();
-            Vector2 gl;
-            gl = seek(goalPos);
-            Vector2 gl2 = new Vector2(Mathf.Abs(gl.x), Mathf.Abs(gl.y));
-            if (gl2.x < compare.x && gl2.y < compare.y){
-                this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
-            }
-            currentForce = gl + ali + coh;
-            currentForce = currentForce.normalized;
-        }
-        applyForce(currentForce);
-    }
-
     // Update is called once per frame
     void Update()
     {
+        directionCheck(target.x, transform.position.x);
         goalPos = manager.GetComponent<NpcInstantiator>().target;
         check = music;
         music = RadioControl.currentMood;
@@ -140,17 +47,54 @@ public class Groupies : MonoBehaviour
         {
             checkMusic();
         }
-        flock();
-        if (characterSwitcher.isMusicGuyInCharge == false){
+        if (characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false)
+        {
+            holdBunny = false;
             int count = transform.childCount;
             for (int i = 0; i < count; i++)
             {
-                if (transform.GetChild(i).gameObject.tag != "Avatars")
+                if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
                 {
                     GameObject.Destroy(transform.GetChild(i).gameObject);
                 }
             }
-        }   
+        }
+        if (RabbitJump.beingCarried)
+        {
+            int count = transform.childCount;
+            for (int i = 0; i < count; i++)
+            {
+                if (transform.GetChild(i).gameObject.tag == "Avatars" && holdBunny == false)
+                {
+                    holdBunny = true;
+                    Emo = master.GetComponent<NpcInstantiator>().happyFace;
+                    addEmo();
+                }
+            }
+        }
+        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+    }
+
+    void directionCheck(float target, float pos) //WHY DOES THIS GOTTA BE SO DAMN COMPLICATED MAN 
+    {
+        if (target >= 0)
+        {
+            if (pos >= 0)
+            {
+                if (target >= pos) { transform.localScale = scale; }
+                else if (target <= pos) { transform.localScale = scaleOpposite; }
+            }
+            else if (pos <= 0) { transform.localScale = scale; }
+        }
+        else if (target <= 0)
+        {
+            if (pos >= 0) { transform.localScale = scaleOpposite; }
+            else if (pos <= 0)
+            {
+                if (target >= pos) { transform.localScale = scale; }
+                else if (target < pos) { transform.localScale = scaleOpposite; }
+            }
+        }
     }
 
     private void checkMusic()
@@ -174,7 +118,10 @@ public class Groupies : MonoBehaviour
         int count = transform.childCount;
         for (int i = 0; i < count; i++)
         {
-            GameObject.Destroy(transform.GetChild(i).gameObject);
+            if (transform.GetChild(i).gameObject.tag != "Avatars")
+            {
+                GameObject.Destroy(transform.GetChild(i).gameObject);
+            }
         }
         Vector3 offset = new Vector3(0, 3.5f, 0);
         GameObject balloon = Instantiate(Emo, transform.localPosition + offset, transform.rotation);
