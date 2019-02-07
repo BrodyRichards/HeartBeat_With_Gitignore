@@ -30,25 +30,25 @@ public class CameraMovement : MonoBehaviour
         offset = new Vector3(0, 0, -10);
         choice = obj.GetComponent<characterSwitcher>().getChar();       //sync choice from script with this one
         avatar = avatars[choice];
-        //transform.position = avatar.position + offset;                    //camera jumps to character position
+        transform.position = avatar.transform.position + offset;                    //camera jumps to character position
 
-        avatar = GameObject.Find("MC");
+        //avatar = GameObject.Find("MC");
     }
 
     void LateUpdate()
     {
-        //choice = obj.GetComponent<characterSwitcher>().getChar();
-        //avatar = avatars[choice];
-        //if (Vector3.Distance(transform.position, avatar.transform.position) > 5f) //when character switches
-        //{
-        //    Vector3 target = avatar.transform.position + offset;
-        //    transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        //}
-        //else
-        //{
-        //    transform.position = avatar.transform.position + offset;            //camera follows character
-        //}
+        choice = obj.GetComponent<characterSwitcher>().getChar();
+        avatar = avatars[choice];
+        if (Vector3.Distance(transform.position, avatar.transform.position) > 5f) //when character switches
+        {
+            Vector3 target = avatar.transform.position + offset;
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        }
+        else
+        {
+            transform.position = avatar.transform.position + offset;            //camera follows character
+        }
 
-        transform.position = avatar.transform.position + offset;
+        //transform.position = avatar.transform.position + offset;
     }
 }
