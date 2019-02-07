@@ -31,7 +31,6 @@ public class BallProjectile : MonoBehaviour
                 EmoControl.mcBallHit += 1;
             }
 
-
             destroyBall();
         }
         transform.Translate(Vector2.up * speed * Time.deltaTime);
@@ -41,5 +40,7 @@ public class BallProjectile : MonoBehaviour
     {
         //Sound and special FX can go here
         Destroy(gameObject);
+        GameObject newBall = Instantiate(gameObject, transform.position, Quaternion.identity);
+        newBall.name = "newBall";
     }
 }
