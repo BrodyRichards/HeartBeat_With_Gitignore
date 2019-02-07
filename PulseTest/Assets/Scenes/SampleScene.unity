@@ -301,6 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 441668313290248685, guid: 3b6e258204e847a41ad93c2777423f62, type: 3}
+  newBall: {fileID: 0}
   offset: -90
   anim: {fileID: 118138685}
 --- !u!61 &118138684
@@ -804,7 +805,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 30
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2375,7 +2376,8 @@ MonoBehaviour:
   neighbourDistance: 50
   maxForce: 0.5
   maxVelocity: 1
-  target: {x: 0, y: 0}
+  target: {x: 0, y: 0, z: 0}
+  groupiePos: []
 --- !u!114 &1453256356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3781,12 +3783,12 @@ PrefabInstance:
     - target: {fileID: 7949546078330371558, guid: 48155d0dc3239bb47a12698a68bd0831,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -34.9
+      value: -56.7
       objectReference: {fileID: 0}
     - target: {fileID: 7949546078330371558, guid: 48155d0dc3239bb47a12698a68bd0831,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 7949546078330371558, guid: 48155d0dc3239bb47a12698a68bd0831,
         type: 3}
