@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallProjectile : MonoBehaviour
+public class NPCBallProjectile : MonoBehaviour
 {
     public float speed;
     public float lifetime;
@@ -20,19 +20,12 @@ public class BallProjectile : MonoBehaviour
     void Update()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, distance, hittableObjects);
-        if (hit.collider != null && hit.collider.gameObject.name != "2")
+        if (hit.collider != null && hit.collider.gameObject.tag != "Person")
         {
-            if (hit.collider.CompareTag("Person"))
+            if (hit.collider.gameObject.name == "2")
             {
-                GameObject NPC = hit.collider.gameObject;
-                NPC.GetComponent<PlayCatch>().hitByBall();
                 Debug.Log("Ouch! You hit " + hit.collider.gameObject.name);
-            }
-            else if (hit.collider.CompareTag("MC"))
-            {
-                GameObject MC = hit.collider.gameObject;
-                MC.GetComponent<PlayCatch>().hitByBall();
-                EmoControl.mcBallHit += 1;
+                hit.collider.gameObject.GetComponent<BallThrow>().thrownBall = false;
             }
 
             destroyBall();
