@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 950103261764361770}
+  - component: {fileID: 4725001187680325888}
   - component: {fileID: 950103261764361773}
   - component: {fileID: 950103261764361771}
-  - component: {fileID: 950103261764361769}
   - component: {fileID: 950103261764361775}
   - component: {fileID: 950103261764361768}
   - component: {fileID: 950103261764361774}
@@ -36,6 +36,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4725001187680325888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950103261764361764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 982030dc2e71529489526956964bc59d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 20
 --- !u!114 &950103261764361773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,19 +115,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &950103261764361769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 950103261764361764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 982030dc2e71529489526956964bc59d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 8
 --- !u!61 &950103261764361775
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -157,6 +157,7 @@ MonoBehaviour:
   newBall: {fileID: 0}
   offset: -90
   anim: {fileID: 950103261764361774}
+  thrownBall: 0
 --- !u!95 &950103261764361774
 Animator:
   serializedVersion: 3
