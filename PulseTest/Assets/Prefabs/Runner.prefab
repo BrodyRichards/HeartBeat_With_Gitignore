@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3206349071821307082}
   - component: {fileID: 3115117728781549439}
   - component: {fileID: 5344135700402538964}
-  m_Layer: 0
+  - component: {fileID: 4077814569576629753}
+  m_Layer: 9
   m_Name: Runner
   m_TagString: Person
   m_Icon: {fileID: 0}
@@ -131,3 +132,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b6f43fb2b1a6c64ea4c7a8fce80585e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4077814569576629753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3979756376367142934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5c2516897d05840b9d39c44257f4b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 441668313290248685, guid: 3b6e258204e847a41ad93c2777423f62,
+    type: 3}
+  to: {fileID: 950103261764361770, guid: 161ec8754d04ffb4485fb6c99cd22544, type: 3}
+  offset: -90

@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 267450480309719173}
   - component: {fileID: 8576682957579071937}
   - component: {fileID: 6865483416378683871}
+  - component: {fileID: 7261722426891715402}
   m_Layer: 0
   m_Name: ball2
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,5 +97,21 @@ MonoBehaviour:
   lifetime: 1.5
   hittableObjects:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 512
   distance: 0.25
+--- !u!58 &7261722426891715402
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441668313290248685}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.009651184, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.0859108

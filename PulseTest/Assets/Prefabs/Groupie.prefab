@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 8389502171091223096}
   - component: {fileID: 8389502171091223095}
   - component: {fileID: 7716898876403729812}
-  m_Layer: 0
+  - component: {fileID: 8688176018218024031}
+  m_Layer: 9
   m_Name: Groupie
   m_TagString: Person
   m_Icon: {fileID: 0}
@@ -135,3 +136,4 @@ MonoBehaviour:
   location: {x: 0, y: 0}
   velocity: {x: 0, y: 0}
   target: {x: 0, y: 0, z: 0}
+

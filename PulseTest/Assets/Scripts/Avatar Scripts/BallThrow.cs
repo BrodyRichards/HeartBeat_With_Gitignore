@@ -8,7 +8,7 @@ public class BallThrow : MonoBehaviour
     public GameObject newBall;
     public float offset;
     public Animator anim;
-    private bool thrownBall = false;
+    public bool thrownBall = false;
     
 
     private bool towardRight;
@@ -59,7 +59,8 @@ public class BallThrow : MonoBehaviour
             anim.SetBool("isThrowing", false);
         }
 
-        if (Input.GetKey(KeyCode.Space) && thrownBall)
+        //Check to see that a ball was thrown and that it is resting stationary on the ground
+        if (Input.GetKey(KeyCode.Space) && thrownBall && GameObject.Find("newBall") != null)
         {
             PickupBall();
         }
