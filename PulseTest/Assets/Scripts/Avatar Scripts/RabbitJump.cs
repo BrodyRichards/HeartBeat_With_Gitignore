@@ -43,7 +43,8 @@ public class RabbitJump : MonoBehaviour
 
     public void jumpIntoArms()
     {
-        if (Input.GetMouseButtonDown(1))
+        if(beingCarried){Debug.Log("Rabbit is being Carried");}
+        if (Input.GetKeyDown("space"))
         {
             if (beingCarried)
             {
@@ -55,19 +56,16 @@ public class RabbitJump : MonoBehaviour
             }
             else
             {
-                //Vector for Raycast, takes mouse position
-                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                //Decompose to 2D vector
-                Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+                
 
                 //Raycast hit register for mouse position
-                RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero);
 
-                //Check if an avatar was clicked on
+                //Check if an avatar is close enough to another person
                 if (hit.collider != null && (hit.collider.gameObject.tag == "Person" || hit.collider.gameObject.tag == "MC"))
                 {
                     //Check distance from object
-                    Debug.Log("I want to jump into " + hit.collider.gameObject.name + "'s arms");
+                    //Debug.Log("I want to jump into " + hit.collider.gameObject.name + "'s arms");
                     float distance = Vector3.Distance(transform.position, hit.collider.gameObject.transform.position);
                     //Debug.Log(distance);
                     if (distance < 2f)

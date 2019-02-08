@@ -21,8 +21,21 @@ public class BallThrow : MonoBehaviour
     void Update()
     {
 
+        Vector3 mousePosi = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 mousePosi2D = new Vector2(mousePosi.x, mousePosi.y);
+        RaycastHit2D hit2 = Physics2D.Raycast(mousePosi2D, Vector2.zero);
         
-        if (Input.GetMouseButtonDown(0) )
+        //Use this if hovering over someone
+        if (hit2.collider != null)
+        {
+            
+
+            string name = hit2.collider.gameObject.name;
+            Debug.Log(name);
+            
+        }
+            
+        if (Input.GetKeyDown("space") )
         {
             //Vector for Raycast, takes mouse position
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
