@@ -130,8 +130,9 @@ public class Loners : MonoBehaviour
                 GameObject.Destroy(transform.GetChild(i).gameObject);
             }
         }
-        Vector3 offset = new Vector3(0, 3.5f, 0);
+        Vector3 offset = new Vector3(0, 4.5f, 0);
         GameObject balloon = Instantiate(Emo, transform.localPosition + offset, transform.rotation);
+        balloon.GetComponent<SpriteRenderer>().sortingLayerName = "Character";
         balloon.transform.parent = transform;
     }
 }

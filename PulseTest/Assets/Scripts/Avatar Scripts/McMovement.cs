@@ -28,7 +28,7 @@ public class McMovement : MonoBehaviour
         // some initializations
         walkedIn = false;
         isFlipped = false;
-        anim.SetBool("isWalking", true);
+        anim.SetBool("isWalking", false);
         currentGoal = 0;
         lastX = transform.position.x;
         // get world x bound 
@@ -56,6 +56,7 @@ public class McMovement : MonoBehaviour
         // check whether the radio guy has been activated yet 
         if (RadioControl.isMusic)
         {
+            anim.SetBool("isWalking", true);
             GoToWaypoints(step);
         }
         FlipAssetDirection();

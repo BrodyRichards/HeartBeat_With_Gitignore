@@ -8,7 +8,7 @@ public class characterSwitcher : MonoBehaviour
     //This enables you to see and set the field from inspector but 
     //it is hidden from other scripts and objects. 
     //charChoice represents which named object to move
-    public static int charChoice = 2;
+    [HideInInspector]public static int charChoice = 3;
     public static bool isMusicGuyInCharge;
 
     // Use this for initialization
@@ -16,6 +16,8 @@ public class characterSwitcher : MonoBehaviour
     {
         //Initially disable all but the chosen one
         disableOthers();
+        GameObject.Find("3").GetComponent<Movement>().enabled = false;
+        isMusicGuyInCharge = false;
     }
 
     // Update is called once per frame
@@ -54,9 +56,13 @@ public class characterSwitcher : MonoBehaviour
             }
 
             //Activate the object chosen and disable all the others
-            GameObject choice = findGO(charChoice);
-            Enable(choice);
-            disableOthers();
+            if (charChoice!= -1)
+            {
+                GameObject choice = findGO(charChoice);
+                Enable(choice);
+                disableOthers();
+            }
+            
         }
     }
 
@@ -91,12 +97,15 @@ public class characterSwitcher : MonoBehaviour
         {
             case 1:
                 B.GetComponent<RabbitJump>().enabled = true;
+                GameObject.Find("Q1").GetComponent<SpriteRenderer>().enabled = false;
                 break;
             case 2:
                 B.GetComponent<BallThrow>().enabled = true;
+                GameObject.Find("Q2").GetComponent<SpriteRenderer>().enabled = false;
                 break;
             case 3:
                 isMusicGuyInCharge = true;
+                GameObject.Find("Q3").GetComponent<SpriteRenderer>().enabled = false;
                 break;
             default:
                 break;

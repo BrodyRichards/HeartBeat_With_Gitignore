@@ -29,17 +29,20 @@ public class CameraMovement : MonoBehaviour
         cam = GetComponent<Camera>();
         cam.clearFlags = CameraClearFlags.SolidColor;
         offset = new Vector3(0, 0, -10);
-        choice = obj.GetComponent<characterSwitcher>().getChar();       //sync choice from script with this one
-        avatar = avatars[choice];
-        transform.position = avatar.transform.position + offset;                    //camera jumps to character position
+        transform.position = GameObject.Find("MC").transform.position + offset;                    //camera jumps to character position
 
         //avatar = GameObject.Find("MC");
     }
 
     void LateUpdate()
     {
-        choice = obj.GetComponent<characterSwitcher>().getChar();
-        avatar = avatars[choice];
+        
+     
+        avatar = avatars[characterSwitcher.charChoice];
+      
+            
+       
+       
         if (Vector3.Distance(transform.position, avatar.transform.position) > 5f) //when character switches
         {
             Vector3 target = avatar.transform.position + offset;
