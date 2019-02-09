@@ -26,8 +26,8 @@ public class Runners : MonoBehaviour
         area = GameObject.Find("Quad");
         areaX = ((int)area.transform.localScale.x) / 2 - 1;
         areaY = ((int)area.transform.localScale.y) / 2 - 1;
-        int ranX = Random.Range(-areaX, areaX);
-        int ranY = Random.Range(-areaY, areaY);
+        int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
+        int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
         target = new Vector3(ranX, ranY, -1);
         scale = transform.localScale;
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
@@ -70,8 +70,8 @@ public class Runners : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime); 
         if (transform.position == target)
         {
-            int ranX = Random.Range(-areaX, areaX);
-            int ranY = Random.Range(-areaY, areaY);
+            int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
+            int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
             target = new Vector3(ranX, ranY, -1);    
         }
     }

@@ -30,15 +30,15 @@ public class NpcInstantiator : MonoBehaviour
     {
         areaX = ((int)area.transform.localScale.x) / 2 - 1;
         areaY = ((int)area.transform.localScale.y) / 2 - 1;
-        int ranX = Random.Range(-areaX, areaX);
-        int ranY = Random.Range(-areaY, areaY);
+        int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
+        int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
         center = new Vector3(ranX, ranY, -1);
         groupiePos = new Vector3[groupCount];
         for (int i = 0; i < npcCount; i++) //create and instantiate the npcs (we can make it more complicated later)
         {
             int choice = Random.Range(0, 2);
-            ranX = Random.Range(-areaX, areaX);
-            ranY = Random.Range(-areaY, areaY);
+            ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
+            ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
             Vector3 pos = new Vector3(ranX, ranY, -1);
             Quaternion rot = new Quaternion(0, 0, 0, 0);
             Instantiate(NPCs[choice], pos, rot);
@@ -47,8 +47,8 @@ public class NpcInstantiator : MonoBehaviour
         groupies = new GameObject[groupCount];
         for (int i = 0; i < groupCount; i++)
         {
-            ranX = Random.Range(-areaX, areaX);
-            ranY = Random.Range(-areaY, areaY);
+            ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
+            ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
             Vector3 pos = new Vector3(ranX, ranY, -1);
             groupies[i] = Instantiate(groupiePrefab, pos, Quaternion.identity) as GameObject;
             groupies[i].GetComponent<SpriteRenderer>().sortingLayerName = "Character";
