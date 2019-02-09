@@ -22,7 +22,7 @@ public class Runners : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        master = GameObject.Find("GameObject");
+        master = GameObject.Find("GameController");
         area = GameObject.Find("Quad");
         areaX = ((int)area.transform.localScale.x) / 2 - 1;
         areaY = ((int)area.transform.localScale.y) / 2 - 1;

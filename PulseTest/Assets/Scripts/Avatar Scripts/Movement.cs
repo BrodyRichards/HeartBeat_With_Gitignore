@@ -8,15 +8,11 @@ public class Movement : MonoBehaviour {
     private float speed = 20f;
     public static bool isRight = true;
     private Vector2 direction;
-    private double worldX;
-    private double worldY;
-
+    
 
     void Start()
     {
-        worldX = GameObject.Find("/Quad").transform.localScale.x / 2;
-        worldY = GameObject.Find("/Quad").transform.localScale.y / 2;
-
+        
         
     }
 
@@ -29,10 +25,10 @@ public class Movement : MonoBehaviour {
     public void Move()
     {
         
-        if ( (transform.position.x > worldX && direction == Vector2.right ) ||
-            (transform.position.x < - worldX && direction == Vector2.left) ||
-            (transform.position.y > worldY && direction == Vector2.up) ||
-            (transform.position.y < - worldY && direction == Vector2.down))
+        if ( (transform.position.x > Playground.RightX && direction == Vector2.right ) ||
+            (transform.position.x < Playground.LeftX && direction == Vector2.left) ||
+            (transform.position.y > Playground.UpperY && direction == Vector2.up) ||
+            (transform.position.y < Playground.LowerY && direction == Vector2.down))
         {
             Debug.Log("hit the bound");
         }

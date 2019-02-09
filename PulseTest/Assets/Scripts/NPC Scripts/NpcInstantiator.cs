@@ -42,6 +42,7 @@ public class NpcInstantiator : MonoBehaviour
             Vector3 pos = new Vector3(ranX, ranY, -1);
             Quaternion rot = new Quaternion(0, 0, 0, 0);
             Instantiate(NPCs[choice], pos, rot);
+            NPCs[choice].GetComponent<SpriteRenderer>().sortingLayerName = "Character";
         }
         groupies = new GameObject[groupCount];
         for (int i = 0; i < groupCount; i++)
@@ -50,7 +51,7 @@ public class NpcInstantiator : MonoBehaviour
             ranY = Random.Range(-areaY, areaY);
             Vector3 pos = new Vector3(ranX, ranY, -1);
             groupies[i] = Instantiate(groupiePrefab, pos, Quaternion.identity) as GameObject;
-
+            groupies[i].GetComponent<SpriteRenderer>().sortingLayerName = "Character";
             groupies[i].GetComponent<Groupies>().manager = this.gameObject;
             groupies[i].GetComponent<Groupies>().target = RandomCircle(center, 3f, groupCount, i);
 

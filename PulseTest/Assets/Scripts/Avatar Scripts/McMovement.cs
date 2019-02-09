@@ -119,8 +119,8 @@ public class McMovement : MonoBehaviour
     // turn the mc around when hitting world bound, not really necessary anymore but have just in case 
     private void BoundCheck()
     {
-        if ((transform.position.x > (worldX - 2) && direction == Vector2.right) ||
-            (transform.position.x < (-worldX + 2) && direction == Vector2.left))
+        if ((transform.position.x > Playground.RightX && direction == Vector2.right) ||
+            (transform.position.x < Playground.LeftX && direction == Vector2.left))
         {
             direction *= -1;
             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);

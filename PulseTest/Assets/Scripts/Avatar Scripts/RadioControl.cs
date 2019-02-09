@@ -32,7 +32,7 @@ public class RadioControl : MonoBehaviour
 
         sr = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
-        backgroundMusic = GameObject.Find("/GameObject").GetComponent<AudioSource>();
+        backgroundMusic = GameObject.Find("/GameController").GetComponent<AudioSource>();
 
         isBG = true;
 

@@ -48,6 +48,12 @@ TagManager:
   - name: UICanvas
     uniqueID: 3229432217
     locked: 0
+  - name: Background
+    uniqueID: 2856727057
+    locked: 0
+  - name: Background Props
+    uniqueID: 1822444261
+    locked: 0
   - name: Props
     uniqueID: 1920224899
     locked: 0

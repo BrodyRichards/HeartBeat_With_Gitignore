@@ -26,7 +26,7 @@ public class Groupies : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        master = GameObject.Find("GameObject");
+        master = GameObject.Find("GameController");
         location = new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y);
         velocity = new Vector2(Random.Range(0.1f, 1f), Random.Range(0.1f, 1f));
         compare = new Vector2(4.0f, 4.0f);

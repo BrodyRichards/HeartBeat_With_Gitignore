@@ -22,7 +22,7 @@ public class Loners : MonoBehaviour
     void Start()
     {
         area = GameObject.Find("Quad");
-        master = GameObject.Find("GameObject");
+        master = GameObject.Find("GameController");
         areaX = ((int)area.transform.localScale.x) / 2 - 1;
         areaY = ((int)area.transform.localScale.y) / 2 - 1;
         int ranX = Random.Range(-areaX, areaX);
