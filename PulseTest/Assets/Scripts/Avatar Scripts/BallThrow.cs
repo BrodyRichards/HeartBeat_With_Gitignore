@@ -16,6 +16,7 @@ public class BallThrow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        anim.SetBool("hasBall", true);
         towardRight = true;
     }
 
@@ -50,20 +51,25 @@ public class BallThrow : MonoBehaviour
                 }
 
                 anim.SetBool("isThrowing", true);
+                
 
                 // postpone 0.6 seconds to finish the animation 
                 Invoke("PutOutBall", 0.6f);
+
+                
             }
         }
         else
         {
             anim.SetBool("isThrowing", false);
+            
         }
 
         //Check to see that a ball was thrown and that it is resting stationary on the ground
         if (Input.GetKey(KeyCode.Space) && thrownBall && GameObject.Find("newBall") != null)
         {
             PickupBall();
+            
         }
 
     }
@@ -74,6 +80,7 @@ public class BallThrow : MonoBehaviour
         float rotZ = Mathf.Atan2(throwAngle.y, throwAngle.x) * Mathf.Rad2Deg;
         Quaternion q = Quaternion.Euler(0f, 0f, rotZ + offset);
         Instantiate(ball, transform.position, q);
+        anim.SetBool("hasBall", false);
     }
 
     void PickupBall()
@@ -85,6 +92,7 @@ public class BallThrow : MonoBehaviour
         {
             thrownBall = false;
             Destroy(newBall);
+            anim.SetBool("hasBall", true);
         }
     }
 

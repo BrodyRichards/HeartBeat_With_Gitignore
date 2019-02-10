@@ -45,5 +45,6 @@ public class PlayCatch : MonoBehaviour
         bp.lifetime = 1.5f;
         bp.distance = 0.25f;
         bp.hittableObjects |= (1 << LayerMask.NameToLayer("Avatar"));
+        //GameObject.Find("3").GetComponent<Animator>().SetBool("hasBall", true);
     }
 }

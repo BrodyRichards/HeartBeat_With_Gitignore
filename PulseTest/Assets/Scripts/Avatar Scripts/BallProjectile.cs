@@ -36,6 +36,7 @@ public class BallProjectile : MonoBehaviour
             }
 
             destroyBall();
+            GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", true);
         }
 
         transform.Translate(Vector2.up * speed * Time.deltaTime);
@@ -52,5 +53,10 @@ public class BallProjectile : MonoBehaviour
         Destroy(gameObject);
         GameObject newBall = Instantiate(gameObject, transform.position, Quaternion.identity);
         newBall.name = "newBall";
+    }
+
+    private void getBallAnim()
+    {
+
     }
 }
