@@ -54,10 +54,7 @@ TagManager:
   - name: Background Props
     uniqueID: 1822444261
     locked: 0
-  - name: Props
-    uniqueID: 1920224899
-    locked: 0
-  - name: Character
+  - name: Main
     uniqueID: 2092895947
     locked: 0
   - name: Front Props
