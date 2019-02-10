@@ -498,7 +498,7 @@ Transform:
   m_GameObject: {fileID: 260472801}
   m_LocalRotation: {x: -0.008726465, y: -0, z: -0, w: 0.999962}
   m_LocalPosition: {x: 54.500004, y: 7.4, z: -1.9592394}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 2.74902, y: 2.74902, z: 0.91634}
   m_Children: []
   m_Father: {fileID: 378475789}
   m_RootOrder: 11
@@ -656,7 +656,7 @@ Transform:
   m_GameObject: {fileID: 312782132}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 39.5, y: 8, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 2.67, y: 2.67, z: 0.89}
   m_Children: []
   m_Father: {fileID: 378475789}
   m_RootOrder: 7
@@ -1143,33 +1143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c70c92fabc197c408f95ebf98302b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sr: {fileID: 0}
 --- !u!1 &618959235
 GameObject:
   m_ObjectHideFlags: 0
@@ -1397,7 +1370,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 74107606cf8171042a6a674a2343cd1a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.26666668}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.67058825}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1591,7 +1564,7 @@ Transform:
   m_GameObject: {fileID: 694501039}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 48, y: 10.7, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 2.69079, y: 2.69079, z: 0.89693}
   m_Children: []
   m_Father: {fileID: 378475789}
   m_RootOrder: 14
@@ -3521,7 +3494,7 @@ MonoBehaviour:
   happy: {fileID: 21300000, guid: 121fa4d01f2d1514ba6b093cfad84284, type: 3}
   sad: {fileID: 21300000, guid: 4c69a8179feef7b449d079d3c2ba758c, type: 3}
   intense: {fileID: 21300000, guid: 68df201312a3d79469f641d7562a3e22, type: 3}
-  idle: {fileID: 21300000, guid: 121fa4d01f2d1514ba6b093cfad84284, type: 3}
+  idle: {fileID: 21300000, guid: bfdeeae930f193e4b9fd04dc0da2d54e, type: 3}
 --- !u!1 &1333830097 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7476491800978798943, guid: dd3fe1050f0365448a1aca5ddba2b87d,
@@ -5603,7 +5576,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 121fa4d01f2d1514ba6b093cfad84284,
+      objectReference: {fileID: 21300000, guid: bfdeeae930f193e4b9fd04dc0da2d54e,
         type: 3}
     - target: {fileID: 7949546078330371559, guid: 48155d0dc3239bb47a12698a68bd0831,
         type: 3}

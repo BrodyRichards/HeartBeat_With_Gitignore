@@ -24,11 +24,11 @@ public class Movement : MonoBehaviour {
 
     public void Move()
     {
-        
-        if ( (transform.position.x > Playground.RightX && direction == Vector2.right ) ||
-            (transform.position.x < Playground.LeftX && direction == Vector2.left) ||
-            (transform.position.y > Playground.UpperY && direction == Vector2.up) ||
-            (transform.position.y < Playground.LowerY && direction == Vector2.down))
+        var v2 = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        if ( (transform.position.x > Playground.RightX && v2.x > 0 ) ||
+            (transform.position.x < Playground.LeftX && v2.x < 0) ||
+            (transform.position.y > Playground.UpperY && v2.y > 0) ||
+            (transform.position.y < Playground.LowerY && v2.y < 0))
         {
             Debug.Log("hit the bound");
         }
@@ -44,7 +44,8 @@ public class Movement : MonoBehaviour {
                 transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
                 
             }
-            transform.Translate(direction * speed * Time.deltaTime);
+            
+            transform.Translate(speed * v2.normalized * Time.deltaTime);
         }
 
 
