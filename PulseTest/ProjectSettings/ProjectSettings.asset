@@ -580,10 +580,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 2
-  cloudProjectId: 30b9bfc4-e569-4241-a715-5cf7f4fc6e86
+  cloudProjectId: 49e12816-428f-4d46-b24f-a17ea80c85c2
   framebufferDepthMemorylessMode: 0
   projectName: PulseTest
-  organizationId: jfpimentel
+  organizationId: shuoenli819
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

@@ -53,6 +53,8 @@ public class PauseUI : MonoBehaviour
         StartCoroutine(LoadAsyncScene(thisSceneIndex));
         IsPaused = false;
         Time.timeScale = 1f;
+        characterSwitcher.charChoice = 3;
+        RadioControl.isMusic = false;
     }
 
     public void Quit()
