@@ -5,8 +5,8 @@ using UnityEngine;
 public class SortRender : MonoBehaviour
 {
     
-    [SerializeField]
-    private int offset = 0;
+    
+    public int offset = 0;
     [SerializeField]
     private bool destroy = false;
     private int depth = 500;

@@ -1021,7 +1021,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1177,7 +1177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glowColor: {r: 1, g: 1, b: 1, a: 0.047058824}
+  glowColor: {r: 0, g: 1, b: 0.8360357, a: 0.047058824}
   glowBrightness: 3.01
   outlineWidth: 4
   alphaThreshold: 0.08
@@ -4001,7 +4001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glowColor: {r: 1, g: 1, b: 1, a: 0.047058824}
+  glowColor: {r: 1, g: 1, b: 1, a: 0}
   glowBrightness: 5
   outlineWidth: 1
   alphaThreshold: 0.08
@@ -4239,7 +4239,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1453256351}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d82c89560f636246917326eae428516, type: 3}
   m_Name: 
@@ -5933,6 +5933,21 @@ PrefabInstance:
       propertyPath: speed
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 950103261764361773, guid: 161ec8754d04ffb4485fb6c99cd22544,
+        type: 3}
+      propertyPath: glowColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 950103261764361773, guid: 161ec8754d04ffb4485fb6c99cd22544,
+        type: 3}
+      propertyPath: glowColor.b
+      value: 0.78378844
+      objectReference: {fileID: 0}
+    - target: {fileID: 950103261764361773, guid: 161ec8754d04ffb4485fb6c99cd22544,
+        type: 3}
+      propertyPath: glowColor.g
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 161ec8754d04ffb4485fb6c99cd22544, type: 3}
 --- !u!1001 &4736211969614876213
@@ -6304,7 +6319,7 @@ PrefabInstance:
     - target: {fileID: 4511121683239264123, guid: 48155d0dc3239bb47a12698a68bd0831,
         type: 3}
       propertyPath: glowColor.b
-      value: 1
+      value: 0.76264405
       objectReference: {fileID: 0}
     - target: {fileID: 4511121683239264123, guid: 48155d0dc3239bb47a12698a68bd0831,
         type: 3}
@@ -6319,7 +6334,7 @@ PrefabInstance:
     - target: {fileID: 4511121683239264123, guid: 48155d0dc3239bb47a12698a68bd0831,
         type: 3}
       propertyPath: glowColor.r
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4511121683239264123, guid: 48155d0dc3239bb47a12698a68bd0831,
         type: 3}
