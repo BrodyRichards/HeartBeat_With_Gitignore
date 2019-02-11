@@ -7,13 +7,11 @@ using UnityEngine.UI;
 
 public class TransitStates : MonoBehaviour
 {
-    public Slider slider;
-    public Text text;
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("In start Menu");
-        slider.gameObject.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -21,8 +19,6 @@ public class TransitStates : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            text.gameObject.SetActive(false);
-            slider.gameObject.SetActive(true);
             StartCoroutine(LoadAsyncScene(1));
             
         }
@@ -36,7 +32,7 @@ public class TransitStates : MonoBehaviour
         while (!asyncLoad.isDone)
         {
             float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f);
-            slider.value = progress;
+            //slider.value = progress;
             if (progress > 0.9f)
             {
                 asyncLoad.allowSceneActivation = true;
