@@ -5,10 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour {
 
     [SerializeField]
-    private float maxSpeed = 20f;
-    private float currSpeed = 0f;
-    public float acceleration;
-    public float deceleration;
+    private float speed = 20f;
     public static bool isRight = true;
     private Vector2 direction;
     
@@ -48,17 +45,7 @@ public class Movement : MonoBehaviour {
                 
             }
             
-            if(direction != Vector2.zero && currSpeed < maxSpeed)
-            {
-                currSpeed += acceleration;
-            }
-
-            if(direction == Vector2.zero && currSpeed > 0)
-            {
-                currSpeed -= deceleration;
-            }
-
-            transform.Translate(currSpeed * v2.normalized * Time.deltaTime);
+            transform.Translate(speed * v2.normalized * Time.deltaTime);
         }
 
 

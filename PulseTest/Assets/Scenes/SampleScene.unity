@@ -1104,9 +1104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982030dc2e71529489526956964bc59d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 20
-  acceleration: 1
-  deceleration: 5
+  speed: 10
 --- !u!114 &616797542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4373,9 +4371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982030dc2e71529489526956964bc59d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 20
-  acceleration: 0
-  deceleration: 0
+  speed: 20
 --- !u!114 &1520229865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5933,21 +5929,6 @@ PrefabInstance:
       propertyPath: speed
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 4725001187680325888, guid: 161ec8754d04ffb4485fb6c99cd22544,
-        type: 3}
-      propertyPath: acceleration
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4725001187680325888, guid: 161ec8754d04ffb4485fb6c99cd22544,
-        type: 3}
-      propertyPath: deceleration
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4725001187680325888, guid: 161ec8754d04ffb4485fb6c99cd22544,
-        type: 3}
-      propertyPath: maxSpeed
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 950103261764361773, guid: 161ec8754d04ffb4485fb6c99cd22544,
         type: 3}
       propertyPath: glowColor.r
@@ -6370,21 +6351,6 @@ PrefabInstance:
         type: 3}
       propertyPath: speed
       value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7949546078330371557, guid: 48155d0dc3239bb47a12698a68bd0831,
-        type: 3}
-      propertyPath: acceleration
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7949546078330371557, guid: 48155d0dc3239bb47a12698a68bd0831,
-        type: 3}
-      propertyPath: deceleration
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7949546078330371557, guid: 48155d0dc3239bb47a12698a68bd0831,
-        type: 3}
-      propertyPath: maxSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48155d0dc3239bb47a12698a68bd0831, type: 3}
@@ -6870,21 +6836,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1.2
       objectReference: {fileID: 0}
-    - target: {fileID: 8432465857790698848, guid: 2043ab088f5415b41992cb8f0c082e8b,
-        type: 3}
-      propertyPath: m_Name
-      value: ResumeText
-      objectReference: {fileID: 0}
-    - target: {fileID: 8432465858190347773, guid: 2043ab088f5415b41992cb8f0c082e8b,
-        type: 3}
-      propertyPath: m_Name
-      value: QuitText
-      objectReference: {fileID: 0}
-    - target: {fileID: 8432465858544415893, guid: 2043ab088f5415b41992cb8f0c082e8b,
-        type: 3}
-      propertyPath: m_Name
-      value: ReplayText
-      objectReference: {fileID: 0}
     - target: {fileID: 8432465857790698854, guid: 2043ab088f5415b41992cb8f0c082e8b,
         type: 3}
       propertyPath: m_Color.r
@@ -7062,6 +7013,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.1082038
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432465857790698848, guid: 2043ab088f5415b41992cb8f0c082e8b,
+        type: 3}
+      propertyPath: m_Name
+      value: ResumeText
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432465858190347773, guid: 2043ab088f5415b41992cb8f0c082e8b,
+        type: 3}
+      propertyPath: m_Name
+      value: QuitText
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432465858544415893, guid: 2043ab088f5415b41992cb8f0c082e8b,
+        type: 3}
+      propertyPath: m_Name
+      value: ReplayText
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2043ab088f5415b41992cb8f0c082e8b, type: 3}
