@@ -1103,7 +1103,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982030dc2e71529489526956964bc59d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  maxSpeed: 20
+  acceleration: 0.5
+  deceleration: 5
 --- !u!114 &616797542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4370,7 +4372,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982030dc2e71529489526956964bc59d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  maxSpeed: 20
+  acceleration: 0
+  deceleration: 0
 --- !u!114 &1520229865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5933,6 +5937,16 @@ PrefabInstance:
       propertyPath: speed
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4725001187680325888, guid: 161ec8754d04ffb4485fb6c99cd22544,
+        type: 3}
+      propertyPath: acceleration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4725001187680325888, guid: 161ec8754d04ffb4485fb6c99cd22544,
+        type: 3}
+      propertyPath: deceleration
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 950103261764361773, guid: 161ec8754d04ffb4485fb6c99cd22544,
         type: 3}
       propertyPath: glowColor.r
@@ -6350,6 +6364,16 @@ PrefabInstance:
         type: 3}
       propertyPath: speed
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7949546078330371557, guid: 48155d0dc3239bb47a12698a68bd0831,
+        type: 3}
+      propertyPath: acceleration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7949546078330371557, guid: 48155d0dc3239bb47a12698a68bd0831,
+        type: 3}
+      propertyPath: deceleration
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48155d0dc3239bb47a12698a68bd0831, type: 3}
