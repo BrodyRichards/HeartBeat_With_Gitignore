@@ -17,6 +17,7 @@ public class CameraMovement : MonoBehaviour
     private int lookMC = 0;
     private int mcCheck;
     private bool reachMC = false;
+    private Vector3 mcLo;
 
     private float speed = 20f;
     private int choice;
@@ -38,10 +39,11 @@ public class CameraMovement : MonoBehaviour
 
     void LateUpdate()
     {
+        mcLo = mainChar.transform.position + offset;
         avatar = avatars[characterSwitcher.charChoice];
         mcCheck = lookMC;
         lookMC = EmoControl.hasEmo ? 1 : 0;
-        if (Vector3.Distance(transform.position, avatar.transform.position) > 5f && EmoControl.hasEmo == false) //when character switches
+        if (Vector3.Distance(transform.position, avatar.transform.position) > 5f && lookMC == 0) //when character switches
         {
             target = avatar.transform.position + offset;
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
@@ -49,11 +51,16 @@ public class CameraMovement : MonoBehaviour
         else
         {
             if (mcCheck != lookMC && reachMC == false)
+            //if (mcCheck != lookMC || (reachMC == false && EmoControl.hasEmo))
             {
-                lookAtMC();
+                
+                target = mcLo;
+                //Debug.Log(mcLo);
+                //lookAtMC();
             }
             else
             {
+       
                 compare = transform.position;
                 transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);           //camera follows character  
                 if (compare == transform.position)
@@ -65,8 +72,10 @@ public class CameraMovement : MonoBehaviour
         }
     }
 
+    /*
     void lookAtMC()
     {
         target = mainChar.transform.position + offset;
     }
+    */
 }
