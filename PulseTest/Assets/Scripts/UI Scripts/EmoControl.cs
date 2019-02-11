@@ -14,6 +14,8 @@ public class EmoControl : MonoBehaviour
     public static int mcBallHit = 0;
     public static bool rabbitHug = false;
 
+    public static bool hasEmo = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,13 +29,13 @@ public class EmoControl : MonoBehaviour
         ReactToMusic();
         if (mcBallHit > 1)
         {
-           
+            hasEmo = true;
             sr.sprite = angry;
             Invoke("DestroyEmotion", 1f);
         }
         else if (rabbitHug)
         {
-           
+            hasEmo = true;
             sr.sprite = happy;
         }
         
@@ -43,6 +45,7 @@ public class EmoControl : MonoBehaviour
 
     public void DestroyEmotion()
     {
+        hasEmo = false;
         sr.enabled = false;
         mcBallHit *= 0;
         
@@ -50,22 +53,27 @@ public class EmoControl : MonoBehaviour
 
     public void ReactToMusic()
     {
+
         switch (RadioControl.currentMood)
         {
             case 1:
                 //sr.enabled = true;
+                hasEmo = true;
                 sr.sprite = sad;
                 break;
             case 2:
                 //sr.enabled = true;
+                hasEmo = true;
                 sr.sprite = gross;
                 break;
             case 3:
                 //sr.enabled = true;
+                hasEmo = true;
                 sr.sprite = happy;
                 break;
             default:
                 //sr.enabled = false;
+                hasEmo = false;
                 sr.sprite = null;
                 break;
         }

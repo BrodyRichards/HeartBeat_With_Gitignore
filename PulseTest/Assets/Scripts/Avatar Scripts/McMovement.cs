@@ -5,8 +5,6 @@ using UnityEngine;
 public class McMovement : MonoBehaviour
 {
     public Animator anim;
-    
-    
 
     private Vector2[] mcWaypoints;
     private Vector2 musicGuyLo;

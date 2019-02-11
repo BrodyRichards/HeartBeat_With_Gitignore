@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-
-    //public Transform bushes;    //use Transform for the GameObjects since only the positions are needed
-    //Transform bush;             //this will be the target position 
     public GameObject obj;      //necessary to access characterSwitcher script
 
     public GameObject avatar1;
@@ -16,11 +13,18 @@ public class CameraMovement : MonoBehaviour
     private GameObject[] avatars;
     private GameObject avatar;
 
-    private float speed = 8f;
+    public GameObject mainChar;
+    private int lookMC = 0;
+    private int mcCheck;
+    private bool reachMC = false;
+
+    private float speed = 20f;
     private int choice;
 
     private Vector3 offset;     //offset for camera 
     private Camera cam;
+    private Vector3 target;
+    Vector3 compare;
 
     void Start()
     {
@@ -30,29 +34,39 @@ public class CameraMovement : MonoBehaviour
         cam.clearFlags = CameraClearFlags.SolidColor;
         offset = new Vector3(0, 0, -10);
         transform.position = GameObject.Find("MC").transform.position + offset;                    //camera jumps to character position
-
-        //avatar = GameObject.Find("MC");
     }
 
     void LateUpdate()
     {
-        
-     
         avatar = avatars[characterSwitcher.charChoice];
-      
-            
-       
-       
-        if (Vector3.Distance(transform.position, avatar.transform.position) > 5f) //when character switches
+        mcCheck = lookMC;
+        lookMC = EmoControl.hasEmo ? 1 : 0;
+        if (Vector3.Distance(transform.position, avatar.transform.position) > 5f && EmoControl.hasEmo == false) //when character switches
         {
-            Vector3 target = avatar.transform.position + offset;
+            target = avatar.transform.position + offset;
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
         }
         else
         {
-            transform.position = avatar.transform.position + offset;            //camera follows character
+            if (mcCheck != lookMC && reachMC == false)
+            {
+                lookAtMC();
+            }
+            else
+            {
+                compare = transform.position;
+                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);           //camera follows character  
+                if (compare == transform.position)
+                {
+                    target = avatar.transform.position + offset;
+                }
+                reachMC = false;
+            }  
         }
+    }
 
-        //transform.position = avatar.transform.position + offset;
+    void lookAtMC()
+    {
+        target = mainChar.transform.position + offset;
     }
 }

@@ -995,6 +995,7 @@ MonoBehaviour:
   avatar2: {fileID: 616797539}
   avatar3: {fileID: 118138679}
   avatar4: {fileID: 1332290333}
+  mainChar: {fileID: 1333830097}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -5853,11 +5854,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1226010349}
     m_Modifications:
-    - target: {fileID: 950103261764361764, guid: 161ec8754d04ffb4485fb6c99cd22544,
-        type: 3}
-      propertyPath: m_Name
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 950103261764361770, guid: 161ec8754d04ffb4485fb6c99cd22544,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5923,10 +5919,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.7
       objectReference: {fileID: 0}
-    - target: {fileID: 950103261764361771, guid: 161ec8754d04ffb4485fb6c99cd22544,
+    - target: {fileID: 950103261764361764, guid: 161ec8754d04ffb4485fb6c99cd22544,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
+      propertyPath: m_Name
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4725001187680325888, guid: 161ec8754d04ffb4485fb6c99cd22544,
         type: 3}
@@ -5947,6 +5943,11 @@ PrefabInstance:
         type: 3}
       propertyPath: glowColor.g
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 950103261764361771, guid: 161ec8754d04ffb4485fb6c99cd22544,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 161ec8754d04ffb4485fb6c99cd22544, type: 3}
