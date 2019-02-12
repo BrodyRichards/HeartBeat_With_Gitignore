@@ -74,8 +74,6 @@ public class RadioControl : MonoBehaviour
 
             sr.sprite = sprites[currentMood];
 
-            //Debug.Log("CURRENT CURRY" + currentMood);
-
             audioSource.Play();
             isMusic = true;
 

@@ -17,7 +17,6 @@ public class CameraMovement : MonoBehaviour
     private int lookMC = 0;
     private int mcCheck;
     private bool reachMC = false;
-    private Vector3 mcLo;
 
     private float speed = 20f;
     private int choice;
@@ -25,7 +24,9 @@ public class CameraMovement : MonoBehaviour
     private Vector3 offset;     //offset for camera 
     private Camera cam;
     private Vector3 target;
-    Vector3 compare;
+
+    float time;
+    float timer;
 
     void Start()
     {
@@ -35,11 +36,13 @@ public class CameraMovement : MonoBehaviour
         cam.clearFlags = CameraClearFlags.SolidColor;
         offset = new Vector3(0, 0, -10);
         transform.position = GameObject.Find("MC").transform.position + offset;                    //camera jumps to character position
+        time = Time.fixedUnscaledTime;
+        timer = time;
     }
 
     void LateUpdate()
     {
-        mcLo = mainChar.transform.position + offset;
+        time = Time.fixedUnscaledTime;
         avatar = avatars[characterSwitcher.charChoice];
         mcCheck = lookMC;
         lookMC = EmoControl.hasEmo ? 1 : 0;
@@ -50,32 +53,34 @@ public class CameraMovement : MonoBehaviour
         }
         else
         {
-            if (mcCheck != lookMC && reachMC == false)
-            //if (mcCheck != lookMC || (reachMC == false && EmoControl.hasEmo))
+            
+            if (mcCheck != lookMC) 
             {
-                
-                target = mcLo;
-                //Debug.Log(mcLo);
-                //lookAtMC();
+                timer = time + 3.0f;
+                reachMC = false;
+            }
+            if (timer >= time)
+            {
+                target = mainChar.transform.position + offset;
             }
             else
             {
-       
-                compare = transform.position;
-                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);           //camera follows character  
-                if (compare == transform.position)
+                if (transform.position == target)
+                {
+                    reachMC = true;
+                }
+                if (reachMC == false)
+                {
+                    timer += 3.0f;
+                }
+                else
                 {
                     target = avatar.transform.position + offset;
                 }
-                reachMC = false;
-            }  
+            }
+
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
         }
     }
-
-    /*
-    void lookAtMC()
-    {
-        target = mainChar.transform.position + offset;
-    }
-    */
+    
 }
