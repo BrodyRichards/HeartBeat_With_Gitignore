@@ -7,11 +7,6 @@ public class Groupies : MonoBehaviour
 {
     public GameObject manager;
     private float speed = 5f;
-    private Vector2 compare;
-    public Vector2 location = Vector2.zero;
-    public Vector2 velocity;
-    Vector2 goalPos = Vector2.zero;
-    Vector2 currentForce;
     private Vector3 scale;
     private Vector3 scaleOpposite;
 
@@ -27,9 +22,6 @@ public class Groupies : MonoBehaviour
     void Start()
     {
         master = GameObject.Find("GameController");
-        location = new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y);
-        velocity = new Vector2(Random.Range(0.1f, 1f), Random.Range(0.1f, 1f));
-        compare = new Vector2(4.0f, 4.0f);
         scale = transform.localScale;
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         music = RadioControl.currentMood;
@@ -40,7 +32,6 @@ public class Groupies : MonoBehaviour
     void Update()
     {
         directionCheck(target.x, transform.position.x);
-        goalPos = manager.GetComponent<NpcInstantiator>().target;
         check = music;
         music = RadioControl.currentMood;
         if (music != check)
@@ -75,7 +66,7 @@ public class Groupies : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
     }
 
-    void directionCheck(float target, float pos) //WHY DOES THIS GOTTA BE SO DAMN COMPLICATED MAN 
+    void directionCheck(float target, float pos) 
     {
         if (target >= 0)
         {

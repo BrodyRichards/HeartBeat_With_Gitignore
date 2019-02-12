@@ -6,8 +6,6 @@ using UnityEngine;
 public class Runners : MonoBehaviour
 {
     Vector3 target;
-    private GameObject area;   //quad
-    private int areaX, areaY; //get the size of the quad
     private float speed = 5f;
     private Vector3 scale;
     private Vector3 scaleOpposite;
@@ -23,9 +21,6 @@ public class Runners : MonoBehaviour
     void Start()
     {
         master = GameObject.Find("GameController");
-        area = GameObject.Find("Quad");
-        areaX = ((int)area.transform.localScale.x) / 2 - 1;
-        areaY = ((int)area.transform.localScale.y) / 2 - 1;
         int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
         int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
         target = new Vector3(ranX, ranY, -1);
