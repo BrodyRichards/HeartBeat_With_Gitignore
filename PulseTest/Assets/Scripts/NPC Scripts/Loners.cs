@@ -6,8 +6,6 @@ using UnityEngine;
 public class Loners : MonoBehaviour
 {
     Vector3 target;
-    private GameObject area;   //quad
-    private int areaX, areaY; //get the size of the quad
     private float speed = 5f;
     private Vector3 scale;
     private Vector3 scaleOpposite;
@@ -21,10 +19,7 @@ public class Loners : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        area = GameObject.Find("Quad");
         master = GameObject.Find("GameController");
-        areaX = ((int)area.transform.localScale.x) / 2 - 1;
-        areaY = ((int)area.transform.localScale.y) / 2 - 1;
         int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
         int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
         target = new Vector3(ranX, ranY, -1);

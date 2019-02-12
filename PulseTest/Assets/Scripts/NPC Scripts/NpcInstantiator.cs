@@ -16,8 +16,6 @@ public class NpcInstantiator : MonoBehaviour
     public GameObject madFace;
     public GameObject happyFace;
 
-    public GameObject area;   //quad
-    private int areaX, areaY; //get the size of the quad
     public int neighbourDistance = 100;
     public float maxForce = 0.5f;
     public float maxVelocity = 2.0f;
@@ -28,8 +26,6 @@ public class NpcInstantiator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        areaX = ((int)area.transform.localScale.x) / 2 - 1;
-        areaY = ((int)area.transform.localScale.y) / 2 - 1;
         int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
         int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
         center = new Vector3(ranX, ranY, -1);
