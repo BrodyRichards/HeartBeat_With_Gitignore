@@ -8,6 +8,7 @@ TagManager:
   - Person
   - MC
   - Ball
+  - Snow
   layers:
   - Default
   - TransparentFX
@@ -59,4 +60,7 @@ TagManager:
     locked: 0
   - name: Front Props
     uniqueID: 2264900701
+    locked: 0
+  - name: Snow
+    uniqueID: 594697131
     locked: 0
