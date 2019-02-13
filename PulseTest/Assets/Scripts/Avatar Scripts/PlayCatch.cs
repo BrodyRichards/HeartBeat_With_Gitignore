@@ -14,7 +14,7 @@ public class PlayCatch : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        to = GameObject.Find("2").transform;
     }
 
     // Update is called once per frame
