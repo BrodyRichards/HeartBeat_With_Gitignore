@@ -53,9 +53,7 @@ public class BallThrow : MonoBehaviour
                 
 
                 // postpone 0.6 seconds to finish the animation 
-                Invoke("PutOutBall", 0.6f);
-
-                
+                StartCoroutine(PutOutBall(mousePos));
             }
         }
         else
@@ -68,14 +66,15 @@ public class BallThrow : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && thrownBall && GameObject.Find("newBall") != null)
         {
             PickupBall();
-            
         }
 
     }
 
-    void PutOutBall()
+    IEnumerator PutOutBall(Vector3 mousePos)
     {
-        Vector3 throwAngle = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        yield return new WaitForSeconds(0.6f);
+        //Vector3 throwAngle = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        Vector3 throwAngle = mousePos - transform.position;
         float rotZ = Mathf.Atan2(throwAngle.y, throwAngle.x) * Mathf.Rad2Deg;
         Quaternion q = Quaternion.Euler(0f, 0f, rotZ + offset);
         Instantiate(ball, transform.position, q);
