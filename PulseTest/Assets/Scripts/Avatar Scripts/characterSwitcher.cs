@@ -32,7 +32,7 @@ public class characterSwitcher : MonoBehaviour
         return charChoice;
     }
 
-    //Function to handle character switching when 'E' is pressed
+    //Function to handle character switching 
     private void switchCharacter()
     {
         //Looking for 'Left Mouse Button' to be pressed
