@@ -91,7 +91,14 @@ public class characterSwitcher : MonoBehaviour
     //Enables a game object's script
     private void Enable(GameObject B)
     {
-        B.GetComponent<Movement>().enabled = true;
+        if(charChoice == 1 && RabbitJump.beingCarried)
+        {
+
+        }
+        else
+        {
+            B.GetComponent<Movement>().enabled = true;
+        }
 
         switch (charChoice)
         {

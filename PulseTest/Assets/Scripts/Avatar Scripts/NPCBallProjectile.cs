@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class NPCBallProjectile : MonoBehaviour
 {
-    public float speed;
-    public float lifetime;
+    public float speed = 9f;
+    public float lifetime = 1.5f;
     public LayerMask hittableObjects;
     //This is like its hitbox
-    public float distance;
+    public float distance = 0.25f;
 
     // Start is called before the first frame update
     void Start()

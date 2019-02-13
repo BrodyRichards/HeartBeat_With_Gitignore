@@ -23,11 +23,12 @@ public class PlayCatch : MonoBehaviour
         
     }
 
-    Quaternion getAngle()
-    { 
+    Quaternion npcGetAngle()
+    {
         Vector3 dirVector = to.position - transform.position;
         float angleZ = Mathf.Atan2(dirVector.y, dirVector.x) * Mathf.Rad2Deg;
         Quaternion q = Quaternion.Euler(0f, 0f, angleZ + offset);
+        //Quaternion q = Quaternion.LookRotation(to.position - transform.position);
 
         return q;
     }
@@ -35,15 +36,15 @@ public class PlayCatch : MonoBehaviour
     public void hitByBall()
     {
         Debug.Log("Detected collision");
-        //Get quaternion with correct angle information from monster to player
-        Quaternion q = getAngle();
-        //Create projectile of type projectile, at current lychee position, with rotation info in quaternion q
+        //Get quaternion with correct angle information from avatar to player
+        Quaternion q = npcGetAngle();
+        //Create projectile of type projectile, at current avatar position, with rotation info in quaternion q
         GameObject npcBall = Instantiate(projectile, transform.position, q);
+        //Disable avatar's version of ball projectile script
         npcBall.GetComponent<BallProjectile>().enabled = false;
+        //Give the NPC a projectile script
         NPCBallProjectile bp = npcBall.AddComponent<NPCBallProjectile>();
-        bp.speed = 9f;
-        bp.lifetime = 1.5f;
-        bp.distance = 0.25f;
+        //Set variables for projectile script
         bp.hittableObjects |= (1 << LayerMask.NameToLayer("Avatar"));
         //GameObject.Find("3").GetComponent<Animator>().SetBool("hasBall", true);
     }

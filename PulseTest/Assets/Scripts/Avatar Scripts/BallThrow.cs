@@ -26,7 +26,6 @@ public class BallThrow : MonoBehaviour
         
         if (Input.GetMouseButtonDown(0) && !thrownBall)
         {
-            thrownBall = true;
             //Vector for Raycast, takes mouse position
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -38,7 +37,7 @@ public class BallThrow : MonoBehaviour
             //If a hit is registered, find which object was hit
             if (hit.collider == null || hit.collider.gameObject.tag != "Avatars")
             {
-
+                thrownBall = true;
                 // check the character direction 
                 if (mousePos.x < transform.position.x && transform.localScale.x > 0)
                 {
