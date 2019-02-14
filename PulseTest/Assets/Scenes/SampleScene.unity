@@ -7866,7 +7866,7 @@ PrefabInstance:
     - target: {fileID: 8389502171091223095, guid: 13eda64546eca1444861c1b3d54e2d8c,
         type: 3}
       propertyPath: m_BodyType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7716898876403729812, guid: 13eda64546eca1444861c1b3d54e2d8c,
         type: 3}
@@ -8271,8 +8271,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1920224899
-  m_SortingLayer: 0
+  m_SortingLayerID: 1822444261
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7d0151ad13e9bf8488fb384c60ceac1c, type: 3}
   m_Color: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 0.45882353}
@@ -9012,7 +9012,6 @@ MonoBehaviour:
   madFace: {fileID: 3208327874510192596, guid: d501c81a0a8933547852a2fc5a157c5f, type: 3}
   happyFace: {fileID: 2411102427334925327, guid: 5cfd747efabad7b4b8e689953021f80c,
     type: 3}
-  area: {fileID: 834572973}
   neighbourDistance: 50
   maxForce: 0.5
   maxVelocity: 1
@@ -9430,11 +9429,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 2092895947
-  m_SortingLayer: 4
+  m_SortingLayerID: 1822444261
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7d0151ad13e9bf8488fb384c60ceac1c, type: 3}
-  m_Color: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 0.45882353}
+  m_Color: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 0.67058825}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -10501,11 +10500,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1920224899
-  m_SortingLayer: 0
+  m_SortingLayerID: 1822444261
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 59d6bbe7fea378540a8b8984c58a03bf, type: 3}
-  m_Color: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 0.7254902}
+  m_Color: {r: 0.745283, g: 0.745283, b: 0.745283, a: 0.5254902}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -11045,11 +11044,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.7
       objectReference: {fileID: 0}
-    - target: {fileID: 950103261764361771, guid: 161ec8754d04ffb4485fb6c99cd22544,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4725001187680325888, guid: 161ec8754d04ffb4485fb6c99cd22544,
         type: 3}
       propertyPath: speed
@@ -11084,6 +11078,11 @@ PrefabInstance:
         type: 3}
       propertyPath: glowColor.g
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 950103261764361771, guid: 161ec8754d04ffb4485fb6c99cd22544,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 161ec8754d04ffb4485fb6c99cd22544, type: 3}
@@ -11997,6 +11996,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 8432465857790698848, guid: 2043ab088f5415b41992cb8f0c082e8b,
+        type: 3}
+      propertyPath: m_Name
+      value: ResumeText
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432465858190347773, guid: 2043ab088f5415b41992cb8f0c082e8b,
+        type: 3}
+      propertyPath: m_Name
+      value: QuitText
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432465858544415893, guid: 2043ab088f5415b41992cb8f0c082e8b,
+        type: 3}
+      propertyPath: m_Name
+      value: ReplayText
+      objectReference: {fileID: 0}
     - target: {fileID: 8432465857790698854, guid: 2043ab088f5415b41992cb8f0c082e8b,
         type: 3}
       propertyPath: m_Color.r
@@ -12174,21 +12188,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.1082038
-      objectReference: {fileID: 0}
-    - target: {fileID: 8432465857790698848, guid: 2043ab088f5415b41992cb8f0c082e8b,
-        type: 3}
-      propertyPath: m_Name
-      value: ResumeText
-      objectReference: {fileID: 0}
-    - target: {fileID: 8432465858190347773, guid: 2043ab088f5415b41992cb8f0c082e8b,
-        type: 3}
-      propertyPath: m_Name
-      value: QuitText
-      objectReference: {fileID: 0}
-    - target: {fileID: 8432465858544415893, guid: 2043ab088f5415b41992cb8f0c082e8b,
-        type: 3}
-      propertyPath: m_Name
-      value: ReplayText
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2043ab088f5415b41992cb8f0c082e8b, type: 3}
