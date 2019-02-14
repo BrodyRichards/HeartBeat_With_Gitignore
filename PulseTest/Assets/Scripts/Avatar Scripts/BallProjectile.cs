@@ -24,9 +24,9 @@ public class BallProjectile : MonoBehaviour
         {
             if (hit.collider.CompareTag("Person"))
             {
+                Debug.Log("Ouch! You hit " + hit.collider.gameObject.name);
                 GameObject NPC = hit.collider.gameObject;
                 NPC.GetComponent<PlayCatch>().hitByBall();
-                Debug.Log("Ouch! You hit " + hit.collider.gameObject.name);
             }
             else if (hit.collider.CompareTag("MC"))
             {

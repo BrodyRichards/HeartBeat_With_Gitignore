@@ -26,7 +26,6 @@ public class BallThrow : MonoBehaviour
         
         if ((Input.GetMouseButtonDown(1) || Input.GetKeyDown("space")) && !thrownBall)
         {
-            thrownBall = true;
             //Vector for Raycast, takes mouse position
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -38,7 +37,7 @@ public class BallThrow : MonoBehaviour
             //If a hit is registered, find which object was hit
             if (hit.collider == null || hit.collider.gameObject.tag != "Avatars")
             {
-
+                thrownBall = true;
                 // check the character direction 
                 if (mousePos.x < transform.position.x && transform.localScale.x > 0)
                 {
@@ -54,9 +53,7 @@ public class BallThrow : MonoBehaviour
                 
 
                 // postpone 0.6 seconds to finish the animation 
-                Invoke("PutOutBall", 0.6f);
-
-                
+                StartCoroutine(PutOutBall(mousePos));
             }
         }
         else
@@ -69,14 +66,15 @@ public class BallThrow : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && thrownBall && GameObject.Find("newBall") != null)
         {
             PickupBall();
-            
         }
 
     }
 
-    void PutOutBall()
+    IEnumerator PutOutBall(Vector3 mousePos)
     {
-        Vector3 throwAngle = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        yield return new WaitForSeconds(0.6f);
+        //Vector3 throwAngle = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        Vector3 throwAngle = mousePos - transform.position;
         float rotZ = Mathf.Atan2(throwAngle.y, throwAngle.x) * Mathf.Rad2Deg;
         Quaternion q = Quaternion.Euler(0f, 0f, rotZ + offset);
         Instantiate(ball, transform.position, q);

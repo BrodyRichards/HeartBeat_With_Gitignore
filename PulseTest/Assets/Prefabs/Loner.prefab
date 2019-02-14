@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 1001851377677301852}
   - component: {fileID: 5602467251099108035}
   - component: {fileID: 2918702905846968192}
-  - component: {fileID: 96565724108491632}
   - component: {fileID: 7098715591042046654}
   - component: {fileID: 5429563289573589688}
   - component: {fileID: 6459303504167385979}
+  - component: {fileID: 569707848746584127}
   m_Layer: 9
   m_Name: Loner
   m_TagString: Person
@@ -105,22 +105,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &96565724108491632
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8576220664124497193}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1.86
 --- !u!114 &7098715591042046654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 441668313290248685, guid: 3b6e258204e847a41ad93c2777423f62,
     type: 3}
-  to: {fileID: 950103261764361770, guid: 161ec8754d04ffb4485fb6c99cd22544, type: 3}
+  to: {fileID: 0}
   offset: -90
 --- !u!114 &6459303504167385979
 MonoBehaviour:
@@ -163,3 +147,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: 10
   destroy: 0
+--- !u!61 &569707848746584127
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8576220664124497193}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.2045331, y: -0.034090042}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 7.2, y: 10.8}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.3365345, y: 9.504625}
+  m_EdgeRadius: 0

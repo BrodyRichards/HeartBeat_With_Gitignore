@@ -33,7 +33,7 @@ public class Movement : MonoBehaviour {
             (transform.position.y > Playground.UpperY && v2.y > 0) ||
             (transform.position.y < Playground.LowerY && v2.y < 0))
         {
-            Debug.Log("hit the bound");
+            //Debug.Log("hit the bound");
         }
         else
         {
