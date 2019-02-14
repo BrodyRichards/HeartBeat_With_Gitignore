@@ -66,7 +66,7 @@ public class RadioControl : MonoBehaviour
 
     private void ChangeMusic()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)|| Input.GetMouseButtonDown(1))
         {
             currentMood = currentMood % 3 + 1;
 

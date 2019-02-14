@@ -24,7 +24,7 @@ public class BallThrow : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetMouseButtonDown(0) && !thrownBall)
+        if ((Input.GetMouseButtonDown(1) || Input.GetKeyDown("space")) && !thrownBall)
         {
             thrownBall = true;
             //Vector for Raycast, takes mouse position
