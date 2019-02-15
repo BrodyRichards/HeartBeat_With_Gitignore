@@ -71,7 +71,7 @@ public class RabbitJump : MonoBehaviour
                     Debug.Log("I want to jump into " + hit.collider.gameObject.name + "'s arms");
                     float distance = Vector2.Distance(transform.position, hit.collider.gameObject.transform.position);
                     //Debug.Log(distance);
-                    //if (distance < 2f)
+                    if (distance < 3f)
                     {
                         beingCarried = true;
                         anim.SetBool("isCarried", true);

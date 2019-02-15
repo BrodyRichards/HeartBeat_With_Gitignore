@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7949546078330371559}
   - component: {fileID: 7949546078330371557}
   - component: {fileID: 4511121683239264123}
+  - component: {fileID: 6380825573891868367}
   m_Layer: 8
   m_Name: 3
   m_TagString: Avatars
@@ -93,7 +94,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982030dc2e71529489526956964bc59d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  maxSpeed: 20
+  acceleration: 0
+  deceleration: 0
 --- !u!114 &4511121683239264123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,3 +115,22 @@ MonoBehaviour:
   alphaThreshold: 0.01
   drawOutside: 0
   enableInstancing: 0
+--- !u!95 &6380825573891868367
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7949546078330371576}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8b506a9146735054692c943607446b96, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
