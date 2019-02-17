@@ -26,6 +26,7 @@ public class NPCBallProjectile : MonoBehaviour
             {
                 Debug.Log("Ouch! You hit " + hit.collider.gameObject.name);
                 hit.collider.gameObject.GetComponent<BallThrow>().thrownBall = false;
+                
             }
 
             destroyBall();
@@ -37,6 +38,7 @@ public class NPCBallProjectile : MonoBehaviour
     private void destroyBall()
     {
         Destroy(gameObject);
+        
     }
 
     private void stationaryBall()

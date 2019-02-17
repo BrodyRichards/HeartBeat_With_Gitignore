@@ -11,11 +11,13 @@ public class Movement : MonoBehaviour {
     public float deceleration;
     public static bool isRight = true;
     private Vector2 direction;
+
+    public Animator anim;
     
 
     void Start()
     {
-        
+        anim.SetBool("isWalking", false);
         
     }
 
@@ -28,6 +30,14 @@ public class Movement : MonoBehaviour {
     public void Move()
     {
         var v2 = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        if (v2.x != 0 || v2.y !=0)
+        {
+            anim.SetBool("isWalking", true);
+        }
+        else
+        {
+            anim.SetBool("isWalking", false);
+        }
         if ( (transform.position.x > Playground.RightX && v2.x > 0 ) ||
             (transform.position.x < Playground.LeftX && v2.x < 0) ||
             (transform.position.y > Playground.UpperY && v2.y > 0) ||

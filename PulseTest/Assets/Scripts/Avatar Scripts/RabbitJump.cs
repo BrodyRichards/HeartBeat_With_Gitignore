@@ -21,7 +21,7 @@ public class RabbitJump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DetectMovement();
+        //DetectMovement();
         jumpIntoArms();
     }
 

@@ -251,6 +251,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 950103261848615187}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &118138680 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 950103261764361774, guid: 161ec8754d04ffb4485fb6c99cd22544,
+    type: 3}
+  m_PrefabInstance: {fileID: 950103261848615187}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &118138681 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 950103261764361770, guid: 161ec8754d04ffb4485fb6c99cd22544,
@@ -1298,6 +1304,7 @@ MonoBehaviour:
   maxSpeed: 20
   acceleration: 1
   deceleration: 5
+  anim: {fileID: 616797547}
 --- !u!114 &616797542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9541,6 +9548,7 @@ MonoBehaviour:
   maxSpeed: 20
   acceleration: 0
   deceleration: 0
+  anim: {fileID: 0}
 --- !u!114 &1520229865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11526,6 +11534,11 @@ PrefabInstance:
       propertyPath: maxSpeed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4725001187680325888, guid: 161ec8754d04ffb4485fb6c99cd22544,
+        type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 118138680}
     - target: {fileID: 950103261764361773, guid: 161ec8754d04ffb4485fb6c99cd22544,
         type: 3}
       propertyPath: glowColor.r
@@ -11980,6 +11993,11 @@ PrefabInstance:
       propertyPath: maxSpeed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7949546078330371557, guid: 48155d0dc3239bb47a12698a68bd0831,
+        type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1332290336}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48155d0dc3239bb47a12698a68bd0831, type: 3}
 --- !u!1001 &8432465858589808403
