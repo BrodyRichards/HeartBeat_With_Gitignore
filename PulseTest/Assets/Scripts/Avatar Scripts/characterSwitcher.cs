@@ -141,13 +141,15 @@ public class characterSwitcher : MonoBehaviour
                 break;
             case 2:
                 findGO(1).GetComponent<RabbitJump>().enabled = false;
+                findGO(1).GetComponent<Animator>().SetBool("isWalking", false);
                 isMusicGuyInCharge = false;
                 break;
             case 3:
                 findGO(2).GetComponent<BallThrow>().enabled = false;
                 findGO(2).GetComponent<Animator>().SetBool("isThrowing", false);
                 findGO(1).GetComponent<RabbitJump>().enabled = false;
-                
+                findGO(1).GetComponent<Animator>().SetBool("isWalking", false);
+
                 break;
             default:
                 break;

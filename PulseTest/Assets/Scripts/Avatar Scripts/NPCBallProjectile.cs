@@ -30,6 +30,7 @@ public class NPCBallProjectile : MonoBehaviour
             }
 
             destroyBall();
+            GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", true);
         }
 
         transform.Translate(Vector2.up * speed * Time.deltaTime);

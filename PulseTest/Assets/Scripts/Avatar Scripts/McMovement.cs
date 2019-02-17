@@ -36,15 +36,18 @@ public class McMovement : MonoBehaviour
 
     }
 
-    void FixedUpdate()
+    void Update()
     {
 
         float step = speed * Time.deltaTime;
         // check whether the radio guy has been activated yet 
-        if (RadioControl.isMusic)
+        if (RadioControl.isMusic && !EmoControl.emoChanged)
         {
             anim.SetBool("isWalking", true);
             GoToWaypoints(step);
+        }else if (EmoControl.emoChanged)
+        {
+            anim.SetBool("isWalking", false);
         }
         FlipAssetDirection();
 
