@@ -27,16 +27,18 @@ public class BallProjectile : MonoBehaviour
                 Debug.Log("Ouch! You hit " + hit.collider.gameObject.name);
                 GameObject NPC = hit.collider.gameObject;
                 NPC.GetComponent<PlayCatch>().hitByBall();
+                GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", false);
             }
             else if (hit.collider.CompareTag("MC"))
             {
                 GameObject MC = hit.collider.gameObject;
                 MC.GetComponent<PlayCatch>().hitByBall();
                 EmoControl.mcBallHit += 1;
+                GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", false);
             }
 
             destroyBall();
-            GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", true);
+            
         }
 
         transform.Translate(Vector2.up * speed * Time.deltaTime);

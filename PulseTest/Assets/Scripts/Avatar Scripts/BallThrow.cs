@@ -18,6 +18,7 @@ public class BallThrow : MonoBehaviour
     void Start()
     {
         anim.SetBool("hasBall", true);
+        anim.SetBool("isThrowing", false);
         towardRight = true;
     }
 
@@ -34,7 +35,7 @@ public class BallThrow : MonoBehaviour
 
             //Raycast hit register for mouse position
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-
+            
             //If a hit is registered, find which object was hit
             if (hit.collider == null || hit.collider.gameObject.tag != "Avatars")
             {
@@ -51,16 +52,17 @@ public class BallThrow : MonoBehaviour
                 }
 
                 anim.SetBool("isThrowing", true);
-                
+
 
                 // postpone 0.6 seconds to finish the animation 
                 StartCoroutine(PutOutBall(mousePos));
+
             }
         }
         else
         {
             anim.SetBool("isThrowing", false);
-            
+
         }
 
         //Check to see that a ball was thrown and that it is resting stationary on the ground
@@ -80,6 +82,8 @@ public class BallThrow : MonoBehaviour
         Quaternion q = Quaternion.Euler(0f, 0f, rotZ + offset);
         Instantiate(ball, transform.position, q);
         anim.SetBool("hasBall", false);
+        //
+
     }
 
     void PickupBall()
