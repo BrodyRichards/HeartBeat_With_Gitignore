@@ -30,14 +30,7 @@ public class Movement : MonoBehaviour {
     public void Move()
     {
         var v2 = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        if (v2.x != 0 || v2.y !=0)
-        {
-            anim.SetBool("isWalking", true);
-        }
-        else
-        {
-            anim.SetBool("isWalking", false);
-        }
+        
         if ( (transform.position.x > Playground.RightX && v2.x > 0 ) ||
             (transform.position.x < Playground.LeftX && v2.x < 0) ||
             (transform.position.y > Playground.UpperY && v2.y > 0) ||
@@ -67,6 +60,16 @@ public class Movement : MonoBehaviour {
             {
                 currSpeed -= deceleration;
             }
+            
+            if (currSpeed != 0)
+            {
+                anim.SetBool("isWalking", true);
+
+            }
+            else
+            {
+                anim.SetBool("isWalking", false);
+            }
 
             transform.Translate(currSpeed * v2.normalized * Time.deltaTime);
         }
@@ -78,8 +81,10 @@ public class Movement : MonoBehaviour {
     {
         direction = Vector2.zero;
 
-        if (Input.GetKey(KeyCode.W)){
+        if (Input.GetKey(KeyCode.W))
+        {
             direction = Vector2.up;
+            
         }
 
         if (Input.GetKey(KeyCode.A))
@@ -88,14 +93,18 @@ public class Movement : MonoBehaviour {
             
         }
 
-        if (Input.GetKey(KeyCode.S)){
+        if (Input.GetKey(KeyCode.S))
+        {
             direction = Vector2.down;
+            
         }
 
         if (Input.GetKey(KeyCode.D))
         {
             direction = Vector2.right;
-            
+
         }
+
+       
     }
 }
