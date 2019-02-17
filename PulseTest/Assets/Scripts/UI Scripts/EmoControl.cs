@@ -26,10 +26,13 @@ public class EmoControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         ReactToMusic();
+        
         if (mcBallHit > 1)
         {
             hasEmo = true;
+            sr.enabled = true;
             sr.sprite = angry;
             Invoke("DestroyEmotion", 1f);
         }
