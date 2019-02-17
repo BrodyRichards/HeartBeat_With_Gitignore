@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NPCBallProjectile : MonoBehaviour
 {
-    public float speed = 9f;
+    public float speed = 12f;
     public float lifetime = 1.5f;
     public LayerMask hittableObjects;
     //This is like its hitbox
@@ -26,10 +26,9 @@ public class NPCBallProjectile : MonoBehaviour
             {
                 Debug.Log("Ouch! You hit " + hit.collider.gameObject.name);
                 hit.collider.gameObject.GetComponent<BallThrow>().thrownBall = false;
-                
+                destroyBall();
             }
 
-            destroyBall();
             GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", true);
         }
 

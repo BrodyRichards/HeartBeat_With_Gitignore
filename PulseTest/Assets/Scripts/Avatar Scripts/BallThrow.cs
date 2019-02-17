@@ -7,6 +7,7 @@ public class BallThrow : MonoBehaviour
     public GameObject ball;
     public GameObject newBall;
     public float offset;
+    public float pickupDist;
     public Animator anim;
     public bool thrownBall = false;
     
@@ -86,7 +87,7 @@ public class BallThrow : MonoBehaviour
         newBall = GameObject.Find("newBall");
         float distance = Vector3.Distance(transform.position, newBall.transform.position);
         //Debug.Log(distance);
-        if(distance < 2f)
+        if(distance < pickupDist)
         {
             thrownBall = false;
             Destroy(newBall);
