@@ -36,8 +36,8 @@ public class McMovement : MonoBehaviour
         ballKidLo = GameObject.Find("2").transform.position;
         rabbitLo = GameObject.Find("1").transform.position;
         // put into array with some random waypoints, highly customizable 
-        mcWaypoints = new Vector2[] {new Vector2(-44f, 2f), new Vector2(-50f, 2f), musicGuyLo,
-            new Vector2(-27, 2), new Vector2(-13f, -6f), rabbitLo, new Vector2(23f, -2f), new Vector2(37f, -6f), new Vector2(63f, -3f), new Vector2(-13f, -6f), new Vector2(-70f, -8f) };
+        mcWaypoints = new Vector2[] {new Vector2(-86f, 2f),
+            new Vector2(-50f, -15f), new Vector2(-10f, -15f), new Vector2(-50f, -15f), new Vector2(51f, -15f), new Vector2(23f, -2f), new Vector2(8f, -8f), new Vector2(58f, 6f), new Vector2(87f, 6f), new Vector2(58f, 6f), new Vector2(121f, -6f) };
         
         // the array storing whether a waypoint has been reached 
         arrivals = new bool[mcWaypoints.Length];
