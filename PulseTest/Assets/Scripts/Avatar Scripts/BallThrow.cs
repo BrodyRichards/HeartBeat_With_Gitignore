@@ -19,6 +19,7 @@ public class BallThrow : MonoBehaviour
     {
         anim.SetBool("hasBall", true);
         anim.SetBool("isThrowing", false);
+
         towardRight = true;
     }
 
@@ -56,14 +57,12 @@ public class BallThrow : MonoBehaviour
 
                 // postpone 0.6 seconds to finish the animation 
                 StartCoroutine(PutOutBall(mousePos));
+                StartCoroutine(ResetAnimation());
 
             }
         }
-        else
-        {
-            anim.SetBool("isThrowing", false);
 
-        }
+       
 
         //Check to see that a ball was thrown and that it is resting stationary on the ground
         if (Input.GetKey(KeyCode.Space) && thrownBall && GameObject.Find("newBall") != null)
@@ -82,6 +81,7 @@ public class BallThrow : MonoBehaviour
         Quaternion q = Quaternion.Euler(0f, 0f, rotZ + offset);
         Instantiate(ball, transform.position, q);
         anim.SetBool("hasBall", false);
+        
         //
 
     }
@@ -99,5 +99,10 @@ public class BallThrow : MonoBehaviour
         }
     }
 
+    IEnumerator ResetAnimation()
+    {
+        yield return new WaitForSeconds(0.2f);
+        anim.SetBool("isThrowing", false);
+    }
 
 }
