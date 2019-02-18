@@ -53,6 +53,7 @@ public class BallThrow : MonoBehaviour
                 }
 
                 anim.SetBool("isThrowing", true);
+                anim.SetBool("isThrowing", true);
 
 
                 // postpone 0.6 seconds to finish the animation 
@@ -61,7 +62,7 @@ public class BallThrow : MonoBehaviour
 
             }
         }
-
+        
        
 
         //Check to see that a ball was thrown and that it is resting stationary on the ground
@@ -101,7 +102,7 @@ public class BallThrow : MonoBehaviour
 
     IEnumerator ResetAnimation()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.25f);
         anim.SetBool("isThrowing", false);
     }
 
