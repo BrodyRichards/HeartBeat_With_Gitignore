@@ -41,6 +41,14 @@ public class BallProjectile : MonoBehaviour
             
         }
 
+        if( transform.position.x > Playground.RightX ||
+            transform.position.x < Playground.LeftX  ||
+            transform.position.y > Playground.UpperY ||
+            transform.position.y < Playground.LowerY)
+        {
+            stationaryBall();
+        }
+
         transform.Translate(Vector2.up * speed * Time.deltaTime);
     }
 
