@@ -63,8 +63,8 @@ public class RabbitJump : MonoBehaviour
                     Debug.Log("I want to jump into " + hit.collider.gameObject.name + "'s arms");
                     float distance = Vector2.Distance(transform.position, hit.collider.gameObject.transform.position);
                     //Debug.Log(distance);
-                    if (distance < 3f)
-                    {
+                    //if (distance < 3f)
+                    //{
                         beingCarried = true;
                         anim.SetBool("isCarried", true);
                         transform.position = new Vector3(hit.collider.gameObject.transform.position.x + 0.1f, hit.collider.gameObject.transform.position.y, -1);
@@ -77,7 +77,7 @@ public class RabbitJump : MonoBehaviour
                         GetComponent<Movement>().enabled = false;
                         GetComponent<SortRender>().offset = 0;
                         Debug.Log("I'm being carried");
-                    }
+                    //}
                 }
             }
             

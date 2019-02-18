@@ -47,6 +47,8 @@ public class EmoControl : MonoBehaviour
             emoChanged = true;
             Invoke("ChangeEmoBack", 1f);
         }
+     
+            
         
 
 
@@ -63,6 +65,7 @@ public class EmoControl : MonoBehaviour
     public void ChangeEmoBack()
     {
         emoChanged = false;
+        
     }
 
     public void ReactToMusic()
