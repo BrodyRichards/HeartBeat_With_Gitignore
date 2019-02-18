@@ -7,7 +7,8 @@ public class RadioControl : MonoBehaviour
     // Start is called before the first frame update
     public static int currentMood = 0;
     public static bool isMusic = false;
-    public bool isBG;
+    public ParticleSystem ps;
+    private bool isBG;
     private SpriteRenderer sr;
     private enum Mood { idle, sad, intense, happy};
     [SerializeField] private AudioClip sadSong;
@@ -24,10 +25,12 @@ public class RadioControl : MonoBehaviour
 
     Sprite[] sprites;
     AudioClip[] audioClips;
+    Color[] particleColors;
     private void Start()
     {
         sprites = new Sprite[] { idle, sad, intense, happy };
         audioClips = new AudioClip[] { sadSong, intenseSong, happySong };
+        particleColors = new Color[] { Color.cyan, Color.magenta, Color.white };
         currentMood = (int)Mood.idle;
 
         sr = GetComponent<SpriteRenderer>();
@@ -35,6 +38,7 @@ public class RadioControl : MonoBehaviour
         backgroundMusic = GameObject.Find("/GameController").GetComponent<AudioSource>();
 
         isBG = true;
+        ps.Stop();
 
     }
 
@@ -45,6 +49,8 @@ public class RadioControl : MonoBehaviour
        
         if (characterSwitcher.isMusicGuyInCharge)
         {
+            
+
             ChangeMusic();
 
             TurnBgOff();
@@ -55,6 +61,7 @@ public class RadioControl : MonoBehaviour
         }
         else
         {
+            ps.Stop();
 
             TurnBgOn();
             
@@ -68,6 +75,8 @@ public class RadioControl : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space)|| Input.GetMouseButtonDown(1))
         {
+            
+
             currentMood = currentMood % 3 + 1;
 
             audioSource.clip = audioClips[(currentMood - 1) % 3];
@@ -76,6 +85,8 @@ public class RadioControl : MonoBehaviour
 
             audioSource.Play();
 
+            EmitParticles();
+                
             isMusic = true;
 
         }
@@ -88,6 +99,12 @@ public class RadioControl : MonoBehaviour
         audioSource.Pause();
     }
 
+    private void EmitParticles()
+    {
+
+        ps.startColor = particleColors[currentMood - 1];
+        ps.Play();
+    }
 
     private void TurnBgOff()
     {
