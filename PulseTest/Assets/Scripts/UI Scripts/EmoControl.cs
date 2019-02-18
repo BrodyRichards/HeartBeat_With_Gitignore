@@ -13,6 +13,7 @@ public class EmoControl : MonoBehaviour
 
     public static int mcBallHit = 0;
     public static bool rabbitHug = false;
+    private bool rabitJustHug = false;
 
     public static bool hasEmo = false;
     public static bool emoChanged = false;
@@ -41,19 +42,23 @@ public class EmoControl : MonoBehaviour
         }
         else if (rabbitHug)
         {
+            rabitJustHug = true;
             hasEmo = true;
             sr.enabled = true;
             sr.sprite = happy;
-            emoChanged = true;
-            Invoke("ChangeEmoBack", 1f);
+           
+
+
         }
-     
-            
+        
+        
+           
+    
         
 
 
     }
-
+   
     public void DestroyEmotion()
     {
         hasEmo = false;
