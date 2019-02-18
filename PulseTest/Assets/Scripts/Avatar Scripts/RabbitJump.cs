@@ -28,15 +28,7 @@ public class RabbitJump : MonoBehaviour
     private void DetectMovement()
     {
         currentPosX = transform.position.x;
-        if (currentPosX != lastPosX)
-        {
-            //Debug.Log("rabbit is moving");
-            anim.SetBool("isMoving", true);
-        }
-        else
-        {
-            anim.SetBool("isMoving", false);
-        }
+        
 
         lastPosX = transform.position.x;
     }

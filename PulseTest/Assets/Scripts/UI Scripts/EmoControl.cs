@@ -42,6 +42,7 @@ public class EmoControl : MonoBehaviour
         else if (rabbitHug)
         {
             hasEmo = true;
+            sr.enabled = true;
             sr.sprite = happy;
             emoChanged = true;
             Invoke("ChangeEmoBack", 1f);
