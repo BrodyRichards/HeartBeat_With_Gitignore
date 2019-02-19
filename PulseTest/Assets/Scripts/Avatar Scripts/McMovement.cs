@@ -39,7 +39,7 @@ public class McMovement : MonoBehaviour
 
     void Update()
     {
-
+        AnimationMoodCheck();
         float step = speed * Time.deltaTime;
         // check whether the radio guy has been activated yet 
         if (RadioControl.isMusic)
@@ -58,7 +58,7 @@ public class McMovement : MonoBehaviour
 
         FlipAssetDirection();
 
-        AnimationMoodCheck();
+        
         
 
     }
@@ -118,6 +118,16 @@ public class McMovement : MonoBehaviour
     private void AnimationMoodCheck()
     {
         anim.SetInteger("mood", mcCurrentMood);
+        if (mcCurrentMood == 0)
+        {
+            speed = 4;
+        }else if (mcCurrentMood == 1)
+        {
+            speed = 6;
+        }else if (mcCurrentMood == 2)
+        {
+            speed = 2;
+        }
     }
 }
     

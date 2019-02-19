@@ -86,24 +86,24 @@ public class EmoControl : MonoBehaviour
         switch (RadioControl.currentMood)
         {
             case 1:
-                //sr.enabled = true;
+                sr.enabled = true;
                 hasEmo = true;
                 sr.sprite = sad;
                 McMovement.mcCurrentMood = 2;
                 break;
             case 2:
-                //sr.enabled = true;
+                sr.enabled = true;
                 hasEmo = true;
                 sr.sprite = gross;
                 break;
             case 3:
-                //sr.enabled = true;
+                sr.enabled = true;
                 hasEmo = true;
                 sr.sprite = happy;
                 McMovement.mcCurrentMood = 1;
                 break;
             default:
-                //sr.enabled = false;
+                sr.enabled = false;
                 hasEmo = false;
                 sr.sprite = null;
                 McMovement.mcCurrentMood = 0;
