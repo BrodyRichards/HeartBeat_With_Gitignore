@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Runners : MonoBehaviour
 {
+    public Animator anim;
     Vector3 target;
     private float speed = 5f;
     private Vector3 scale;
@@ -28,6 +29,7 @@ public class Runners : MonoBehaviour
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         music = RadioControl.currentMood;
         check = music;
+        anim.SetBool("IsWalking", true);
     }
 
     // Update is called once per frame

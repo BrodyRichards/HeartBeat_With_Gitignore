@@ -1234,6 +1234,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &521601884 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3979756376367142934, guid: 5edbf62804e531e48bdc2ca51aa268f6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1767980379}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &521601892
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521601884}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 761aa007bb7402440bad4a844a131f61, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &616797539 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3508012940846479150, guid: 9119d567abe5dc64b90133ebaeffb6f8,
@@ -7770,6 +7795,11 @@ PrefabInstance:
       propertyPath: manager
       value: 
       objectReference: {fileID: 1453256351}
+    - target: {fileID: 7716898876403729812, guid: 13eda64546eca1444861c1b3d54e2d8c,
+        type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1964617810}
     - target: {fileID: 8389502171091223097, guid: 13eda64546eca1444861c1b3d54e2d8c,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -15242,6 +15272,12 @@ MonoBehaviour:
     type: 3}
   to: {fileID: 118138681}
   offset: -90
+--- !u!95 &1964617810 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8766129107041071141, guid: 13eda64546eca1444861c1b3d54e2d8c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1068679557}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2063888277
 GameObject:
   m_ObjectHideFlags: 0
@@ -16315,6 +16351,12 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5602467251099108035, guid: 83dc350b8f2563549972849501d702e8,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5b7a4ece1eaaa3f4ca8ae6eb5ba9f640,
+        type: 3}
     - target: {fileID: 5429563289573589688, guid: 83dc350b8f2563549972849501d702e8,
         type: 3}
       propertyPath: to

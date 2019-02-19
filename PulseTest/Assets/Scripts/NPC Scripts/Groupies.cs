@@ -6,6 +6,7 @@ using UnityEngine;
 public class Groupies : MonoBehaviour
 {
     public GameObject manager;
+    public Animator anim;
     private float speed = 5f;
     private Vector3 scale;
     private Vector3 scaleOpposite;
@@ -21,6 +22,7 @@ public class Groupies : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        anim.SetBool("IsWalking", true);
         master = GameObject.Find("GameController");
         scale = transform.localScale;
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);

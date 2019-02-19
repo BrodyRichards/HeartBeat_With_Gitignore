@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5429563289573589688}
   - component: {fileID: 6459303504167385979}
   - component: {fileID: 569707848746584127}
+  - component: {fileID: 6353729515705268352}
   m_Layer: 9
   m_Name: Loner
   m_TagString: Person
@@ -73,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 2092895947
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3d023266bf3fa6543ac8e202fb33d4e1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0870862d4d23f284fbff44dd5ed49a97, type: 3}
+  m_Color: {r: 0.7783019, g: 1, b: 0.9915544, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -117,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea4aba957c137a04d80b62be6c0bfbe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 6353729515705268352}
 --- !u!114 &5429563289573589688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,7 +166,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 7.2, y: 10.8}
+    oldSize: {x: 6.67, y: 10.55}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -173,3 +175,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.2683563, y: 9.572801}
   m_EdgeRadius: 0
+--- !u!95 &6353729515705268352
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8576220664124497193}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 005eddcdfda812c49b6fbf73bb0e40fb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

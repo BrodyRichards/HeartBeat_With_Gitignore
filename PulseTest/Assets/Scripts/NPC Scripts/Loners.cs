@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Loners : MonoBehaviour
 {
+    public Animator anim;
     Vector3 target;
     private float speed = 5f;
     private Vector3 scale;
@@ -27,6 +28,7 @@ public class Loners : MonoBehaviour
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         music = RadioControl.currentMood;
         check = music;
+        anim.SetBool("IsWalking", true);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
