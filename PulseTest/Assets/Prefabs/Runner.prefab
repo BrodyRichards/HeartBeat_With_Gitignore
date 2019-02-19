@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4077814569576629753}
   - component: {fileID: 7278215060187287606}
   - component: {fileID: 2080261282053730759}
-  - component: {fileID: 4696003788144805601}
+  - component: {fileID: 3777612879497992540}
   m_Layer: 9
   m_Name: Runner
   m_TagString: Person
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b6f43fb2b1a6c64ea4c7a8fce80585e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 4696003788144805601}
+  anim: {fileID: 3777612879497992540}
 --- !u!114 &4077814569576629753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,7 +175,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.2683563, y: 9.572801}
   m_EdgeRadius: 0
---- !u!95 &4696003788144805601
+--- !u!95 &3777612879497992540
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -185,7 +185,7 @@ Animator:
   m_GameObject: {fileID: 3979756376367142934}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 761aa007bb7402440bad4a844a131f61, type: 2}
+  m_Controller: {fileID: 22100000, guid: 005eddcdfda812c49b6fbf73bb0e40fb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

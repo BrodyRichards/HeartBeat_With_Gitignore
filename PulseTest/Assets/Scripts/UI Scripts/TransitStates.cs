@@ -16,13 +16,20 @@ public class TransitStates : MonoBehaviour
         
     }
 
-    
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
 
     public void StartGame()
     {
         loadingText.enabled = true;
         StartCoroutine(LoadAsyncScene(1));
     }
+
 
     IEnumerator LoadAsyncScene(int nextSceneIndex)
     {
