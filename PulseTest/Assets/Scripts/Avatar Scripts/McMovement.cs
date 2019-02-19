@@ -5,6 +5,7 @@ using UnityEngine;
 public class McMovement : MonoBehaviour
 {
     public Animator anim;
+    public static int mcCurrentMood = 0;
 
     private List<Vector2> mcWaypoints;
     private int checkArrivals;
@@ -48,16 +49,17 @@ public class McMovement : MonoBehaviour
                 anim.SetBool("isWalking", true);
                 GoToWaypoints(step);
             }
-            //else
-            //{
-            //    anim.SetBool("isWalking", false);
-            //}
-           
+            else
+            {
+                anim.SetBool("isWalking", false);
+            }
+
         }
 
         FlipAssetDirection();
 
-
+        AnimationMoodCheck();
+        
 
     }
 
@@ -112,8 +114,14 @@ public class McMovement : MonoBehaviour
 
 
     }
+
+    private void AnimationMoodCheck()
+    {
+        anim.SetInteger("mood", mcCurrentMood);
+    }
 }
     
+
 
 //// turn the mc around when hitting world bound, not really necessary anymore but have just in case 
     //private void BoundCheck()

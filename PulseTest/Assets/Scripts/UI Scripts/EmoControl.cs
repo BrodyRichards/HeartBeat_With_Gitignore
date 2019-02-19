@@ -29,7 +29,7 @@ public class EmoControl : MonoBehaviour
     void Update()
     {
        
-        ReactToMusic();
+        
         
         if (mcBallHit > 1)
         {
@@ -37,8 +37,10 @@ public class EmoControl : MonoBehaviour
             sr.enabled = true;
             sr.sprite = angry;
             emoChanged = true;
+            McMovement.mcCurrentMood = 2;
             Invoke("DestroyEmotion", 1f);
             Invoke("ChangeEmoBack", 1f);
+
         }
         else if (rabbitHug)
         {
@@ -46,9 +48,13 @@ public class EmoControl : MonoBehaviour
             hasEmo = true;
             sr.enabled = true;
             sr.sprite = happy;
-           
+            McMovement.mcCurrentMood = 1;
 
 
+        }
+        else
+        {
+            ReactToMusic();
         }
         
         
@@ -63,6 +69,7 @@ public class EmoControl : MonoBehaviour
     {
         hasEmo = false;
         sr.enabled = false;
+        McMovement.mcCurrentMood = 0;
         mcBallHit *= 0;
         
     }
@@ -82,6 +89,7 @@ public class EmoControl : MonoBehaviour
                 //sr.enabled = true;
                 hasEmo = true;
                 sr.sprite = sad;
+                McMovement.mcCurrentMood = 2;
                 break;
             case 2:
                 //sr.enabled = true;
@@ -92,11 +100,13 @@ public class EmoControl : MonoBehaviour
                 //sr.enabled = true;
                 hasEmo = true;
                 sr.sprite = happy;
+                McMovement.mcCurrentMood = 1;
                 break;
             default:
                 //sr.enabled = false;
                 hasEmo = false;
                 sr.sprite = null;
+                McMovement.mcCurrentMood = 0;
                 break;
         }
     }
