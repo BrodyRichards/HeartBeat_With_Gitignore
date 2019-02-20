@@ -39,6 +39,7 @@ public class NPCBallProjectile : MonoBehaviour
     {
         Destroy(gameObject);
         GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", true);
+        GameObject.Find("2").GetComponent<Animator>().SetBool("isThrowing", false);
 
     }
 
