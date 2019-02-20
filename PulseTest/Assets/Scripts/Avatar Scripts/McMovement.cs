@@ -5,11 +5,10 @@ using UnityEngine;
 public class McMovement : MonoBehaviour
 {
     public Animator anim;
+    public static int mcCurrentMood = 0;
 
-    private Vector2[] mcWaypoints;
-    private Vector2 musicGuyLo;
-    private Vector2 rabbitLo;
-    private Vector2 ballKidLo;
+    private List<Vector2> mcWaypoints;
+    private int checkArrivals;
     private Vector2 direction;
 
     private float step;
@@ -28,57 +27,59 @@ public class McMovement : MonoBehaviour
         isFlipped = false;
         anim.SetBool("isWalking", false);
         currentGoal = 0;
-        lastX = transform.position.x;
-        // get world x bound 
-        worldX = GameObject.Find("/Quad").transform.localScale.x / 2;
-        // get avatars position 
-        musicGuyLo = GameObject.Find("3").transform.position;
-        ballKidLo = GameObject.Find("2").transform.position;
-        rabbitLo = GameObject.Find("1").transform.position;
         // put into array with some random waypoints, highly customizable 
-        mcWaypoints = new Vector2[] {new Vector2(-44f, 2f), new Vector2(-50f, 2f), musicGuyLo,
-            new Vector2(-27, 2), new Vector2(-13f, -6f), rabbitLo, new Vector2(23f, -2f), new Vector2(37f, -6f), new Vector2(63f, -3f), new Vector2(-13f, -6f), new Vector2(-70f, -8f) };
-        
+        mcWaypoints = new List<Vector2> { new Vector2(-86f, 2f),
+            new Vector2(-50f, -15f), new Vector2(-10f, -15f), new Vector2(-50f, -15f), new Vector2(51f, -15f), new Vector2(23f, -2f), new Vector2(8f, -8f), new Vector2(58f, 6f), new Vector2(87f, 6f), new Vector2(58f, 6f), new Vector2(121f, -6f) };
+
         // the array storing whether a waypoint has been reached 
-        arrivals = new bool[mcWaypoints.Length];
-        for (var i=0; i < mcWaypoints.Length; ++i)
-        {
-            arrivals[i] = false;
-        }
+
+
+
     }
 
     void Update()
     {
-        
+        AnimationMoodCheck();
         float step = speed * Time.deltaTime;
         // check whether the radio guy has been activated yet 
         if (RadioControl.isMusic)
         {
-            anim.SetBool("isWalking", true);
-            GoToWaypoints(step);
+            if (!EmoControl.emoChanged)
+            {
+                anim.SetBool("isWalking", true);
+                GoToWaypoints(step);
+            }
+            else
+            {
+                anim.SetBool("isWalking", false);
+            }
+
         }
+
         FlipAssetDirection();
 
         
+        
 
     }
-    
-    
+
+
     // Move towards the assigned waypoint, if arrive, will return true 
-    private bool McGoesTo(Vector2 target, float step)
+    private void McGoesTo(Vector2 target, float step)
     {
-        
+
         transform.position = Vector2.MoveTowards(transform.position, target, step);
-        
+
 
         if (Vector2.Distance(transform.position, target) < 1.0f)
         {
             Debug.Log("arrive at" + target);
-            
-            return true;
+
+            mcWaypoints.RemoveAt(0);
+
         }
-        
-        return false;
+
+
     }
 
     // Flip asset when MC switch direction 
@@ -101,28 +102,45 @@ public class McMovement : MonoBehaviour
     // Go to the assigned waypoints that haven't been reached yet
     private void GoToWaypoints(float step)
     {
-        for (var i = 0; i < arrivals.Length; i++)
+        if (mcWaypoints.Count != 0)
         {
-            if (!arrivals[i])
-            {
-                arrivals[i] = McGoesTo(mcWaypoints[i], step);
-                
-                break;
-            }
-            else
-            {
-                continue;
-            }
+            McGoesTo(mcWaypoints[0], step);
         }
-    }
-    // turn the mc around when hitting world bound, not really necessary anymore but have just in case 
-    private void BoundCheck()
-    {
-        if ((transform.position.x > Playground.RightX && direction == Vector2.right) ||
-            (transform.position.x < Playground.LeftX && direction == Vector2.left))
+        else
         {
-            direction *= -1;
-            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            mcWaypoints = new List<Vector2> { new Vector2(-86f, 2f),
+            new Vector2(-50f, -15f), new Vector2(-10f, -15f), new Vector2(-50f, -15f), new Vector2(51f, -15f), new Vector2(23f, -2f), new Vector2(8f, -8f), new Vector2(58f, 6f), new Vector2(87f, 6f), new Vector2(58f, 6f), new Vector2(121f, -6f) };
+        }
+
+
+    }
+
+    private void AnimationMoodCheck()
+    {
+        anim.SetInteger("mood", mcCurrentMood);
+        if (mcCurrentMood == 0)
+        {
+            speed = 4;
+        }else if (mcCurrentMood == 1)
+        {
+            speed = 6;
+        }else if (mcCurrentMood == 2)
+        {
+            speed = 2;
         }
     }
 }
+    
+
+
+//// turn the mc around when hitting world bound, not really necessary anymore but have just in case 
+    //private void BoundCheck()
+    //{
+    //    if ((transform.position.x > Playground.RightX && direction == Vector2.right) ||
+    //        (transform.position.x < Playground.LeftX && direction == Vector2.left))
+    //    {
+    //        direction *= -1;
+    //        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+    //    }
+    //}
+

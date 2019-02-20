@@ -9,7 +9,7 @@ public class NpcInstantiator : MonoBehaviour
     public GameObject[] NPCs; //contains the 3 types of NPCs
     public GameObject[] groupies;
     public GameObject groupiePrefab;
-    private int groupCount = 8;
+    private int groupCount = 5;
     private int num;
 
     public GameObject sadFace;

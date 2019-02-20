@@ -67,7 +67,14 @@ public class PauseUI : MonoBehaviour
         Time.timeScale = 1f;
         IsPaused = false;
     }
-
+    public void BackToMenu()
+    {
+        StartCoroutine(LoadAsyncScene(0));
+        IsPaused = false;
+        Time.timeScale = 1f;
+        characterSwitcher.charChoice = 3;
+        RadioControl.isMusic = false;
+    }
     IEnumerator LoadAsyncScene(int nextSceneIndex)
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextSceneIndex, LoadSceneMode.Single);

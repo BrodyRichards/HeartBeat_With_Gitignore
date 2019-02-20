@@ -21,29 +21,21 @@ public class RabbitJump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DetectMovement();
+        //DetectMovement();
         jumpIntoArms();
     }
 
     private void DetectMovement()
     {
         currentPosX = transform.position.x;
-        if (currentPosX != lastPosX)
-        {
-            Debug.Log("rabbit is moving");
-            anim.SetBool("isMoving", true);
-        }
-        else
-        {
-            anim.SetBool("isMoving", false);
-        }
+        
 
         lastPosX = transform.position.x;
     }
 
     public void jumpIntoArms()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetKeyDown("space") || Input.GetMouseButtonDown(1))
         {
             if (beingCarried)
             {
@@ -62,7 +54,7 @@ public class RabbitJump : MonoBehaviour
                 Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
                 //Raycast hit register for mouse position
-                RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+                RaycastHit2D hit = Physics2D.CircleCast(transform.position, 4, Vector2.zero);
 
                 //Check if an avatar was clicked on
                 if (hit.collider != null && (hit.collider.gameObject.tag == "Person" || hit.collider.gameObject.tag == "MC"))
@@ -71,8 +63,8 @@ public class RabbitJump : MonoBehaviour
                     Debug.Log("I want to jump into " + hit.collider.gameObject.name + "'s arms");
                     float distance = Vector2.Distance(transform.position, hit.collider.gameObject.transform.position);
                     //Debug.Log(distance);
-                    if (distance < 2f)
-                    {
+                    //if (distance < 3f)
+                    //{
                         beingCarried = true;
                         anim.SetBool("isCarried", true);
                         transform.position = new Vector3(hit.collider.gameObject.transform.position.x + 0.1f, hit.collider.gameObject.transform.position.y, -1);
@@ -85,7 +77,7 @@ public class RabbitJump : MonoBehaviour
                         GetComponent<Movement>().enabled = false;
                         GetComponent<SortRender>().offset = 0;
                         Debug.Log("I'm being carried");
-                    }
+                    //}
                 }
             }
             

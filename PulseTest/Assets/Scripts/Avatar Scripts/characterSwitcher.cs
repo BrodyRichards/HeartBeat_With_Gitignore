@@ -32,7 +32,7 @@ public class characterSwitcher : MonoBehaviour
         return charChoice;
     }
 
-    //Function to handle character switching when 'E' is pressed
+    //Function to handle character switching 
     private void switchCharacter()
     {
         //Looking for 'Left Mouse Button' to be pressed
@@ -91,7 +91,14 @@ public class characterSwitcher : MonoBehaviour
     //Enables a game object's script
     private void Enable(GameObject B)
     {
-        B.GetComponent<Movement>().enabled = true;
+        if(charChoice == 1 && RabbitJump.beingCarried)
+        {
+
+        }
+        else
+        {
+            B.GetComponent<Movement>().enabled = true;
+        }
 
         switch (charChoice)
         {
@@ -130,17 +137,21 @@ public class characterSwitcher : MonoBehaviour
             case 1:
                 findGO(2).GetComponent<BallThrow>().enabled = false;
                 findGO(2).GetComponent<Animator>().SetBool("isThrowing", false);
+                findGO(3).GetComponent<Animator>().SetBool("isWalking", false);
                 isMusicGuyInCharge = false;
                 break;
             case 2:
                 findGO(1).GetComponent<RabbitJump>().enabled = false;
+                findGO(1).GetComponent<Animator>().SetBool("isWalking", false);
+                findGO(3).GetComponent<Animator>().SetBool("isWalking", false);
                 isMusicGuyInCharge = false;
                 break;
             case 3:
                 findGO(2).GetComponent<BallThrow>().enabled = false;
                 findGO(2).GetComponent<Animator>().SetBool("isThrowing", false);
                 findGO(1).GetComponent<RabbitJump>().enabled = false;
-                
+                findGO(1).GetComponent<Animator>().SetBool("isWalking", false);
+
                 break;
             default:
                 break;

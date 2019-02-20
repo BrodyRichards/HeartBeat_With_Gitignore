@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class NPCBallProjectile : MonoBehaviour
 {
-    public float speed;
-    public float lifetime;
+    public float speed = 12f;
+    public float lifetime = 1.5f;
     public LayerMask hittableObjects;
     //This is like its hitbox
-    public float distance;
+    public float distance = 0.25f;
 
     // Start is called before the first frame update
     void Start()
@@ -26,9 +26,10 @@ public class NPCBallProjectile : MonoBehaviour
             {
                 Debug.Log("Ouch! You hit " + hit.collider.gameObject.name);
                 hit.collider.gameObject.GetComponent<BallThrow>().thrownBall = false;
+                destroyBall();
             }
 
-            destroyBall();
+           
         }
 
         transform.Translate(Vector2.up * speed * Time.deltaTime);
@@ -37,6 +38,9 @@ public class NPCBallProjectile : MonoBehaviour
     private void destroyBall()
     {
         Destroy(gameObject);
+        GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", true);
+        GameObject.Find("2").GetComponent<Animator>().SetBool("isThrowing", false);
+
     }
 
     private void stationaryBall()

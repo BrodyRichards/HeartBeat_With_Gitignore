@@ -8,11 +8,13 @@ public class Movement : MonoBehaviour {
     private float speed = 20f;
     public static bool isRight = true;
     private Vector2 direction;
+
+    public Animator anim;
     
 
     void Start()
     {
-        
+        anim.SetBool("isWalking", false);
         
     }
 
@@ -25,12 +27,22 @@ public class Movement : MonoBehaviour {
     public void Move()
     {
         var v2 = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+        if (v2.x != 0 || v2.y != 0)
+        {
+            anim.SetBool("isWalking", true);
+        }
+        else
+        {
+            anim.SetBool("isWalking", false);
+        }
+        
         if ( (transform.position.x > Playground.RightX && v2.x > 0 ) ||
             (transform.position.x < Playground.LeftX && v2.x < 0) ||
             (transform.position.y > Playground.UpperY && v2.y > 0) ||
             (transform.position.y < Playground.LowerY && v2.y < 0))
         {
-            Debug.Log("hit the bound");
+            //Debug.Log("hit the bound");
         }
         else
         {
@@ -45,7 +57,20 @@ public class Movement : MonoBehaviour {
                 
             }
             
-            transform.Translate(speed * v2.normalized * Time.deltaTime);
+
+            if(direction != Vector2.zero && currSpeed < maxSpeed)
+            {
+                currSpeed += acceleration;
+            }
+
+            if(direction == Vector2.zero && currSpeed > 0)
+            {
+                currSpeed -= deceleration;
+            }
+            
+           
+            transform.Translate(currSpeed * v2.normalized * Time.deltaTime);
+
         }
 
 
@@ -55,8 +80,10 @@ public class Movement : MonoBehaviour {
     {
         direction = Vector2.zero;
 
-        if (Input.GetKey(KeyCode.W)){
+        if (Input.GetKey(KeyCode.W))
+        {
             direction = Vector2.up;
+            
         }
 
         if (Input.GetKey(KeyCode.A))
@@ -65,14 +92,18 @@ public class Movement : MonoBehaviour {
             
         }
 
-        if (Input.GetKey(KeyCode.S)){
+        if (Input.GetKey(KeyCode.S))
+        {
             direction = Vector2.down;
+            
         }
 
         if (Input.GetKey(KeyCode.D))
         {
             direction = Vector2.right;
-            
+
         }
+
+       
     }
 }

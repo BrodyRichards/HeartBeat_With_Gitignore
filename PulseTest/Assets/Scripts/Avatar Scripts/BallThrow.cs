@@ -7,6 +7,7 @@ public class BallThrow : MonoBehaviour
     public GameObject ball;
     public GameObject newBall;
     public float offset;
+    public float pickupDist;
     public Animator anim;
     public bool thrownBall = false;
     
@@ -17,6 +18,8 @@ public class BallThrow : MonoBehaviour
     void Start()
     {
         anim.SetBool("hasBall", true);
+        anim.SetBool("isThrowing", false);
+
         towardRight = true;
     }
 
@@ -24,9 +27,8 @@ public class BallThrow : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetMouseButtonDown(0) && !thrownBall)
+        if ((Input.GetMouseButtonDown(1) || Input.GetKeyDown("space")) && !thrownBall)
         {
-            thrownBall = true;
             //Vector for Raycast, takes mouse position
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -34,11 +36,11 @@ public class BallThrow : MonoBehaviour
 
             //Raycast hit register for mouse position
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-
+            
             //If a hit is registered, find which object was hit
             if (hit.collider == null || hit.collider.gameObject.tag != "Avatars")
             {
-
+                thrownBall = true;
                 // check the character direction 
                 if (mousePos.x < transform.position.x && transform.localScale.x > 0)
                 {
@@ -51,36 +53,38 @@ public class BallThrow : MonoBehaviour
                 }
 
                 anim.SetBool("isThrowing", true);
-                
+                anim.SetBool("isThrowing", true);
+
 
                 // postpone 0.6 seconds to finish the animation 
-                Invoke("PutOutBall", 0.6f);
+                StartCoroutine(PutOutBall(mousePos));
+                StartCoroutine(ResetAnimation());
 
-                
             }
         }
-        else
-        {
-            anim.SetBool("isThrowing", false);
-            
-        }
+        
+       
 
         //Check to see that a ball was thrown and that it is resting stationary on the ground
         if (Input.GetKey(KeyCode.Space) && thrownBall && GameObject.Find("newBall") != null)
         {
             PickupBall();
-            
         }
 
     }
 
-    void PutOutBall()
+    IEnumerator PutOutBall(Vector3 mousePos)
     {
-        Vector3 throwAngle = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        yield return new WaitForSeconds(0.6f);
+        //Vector3 throwAngle = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        Vector3 throwAngle = mousePos - transform.position;
         float rotZ = Mathf.Atan2(throwAngle.y, throwAngle.x) * Mathf.Rad2Deg;
         Quaternion q = Quaternion.Euler(0f, 0f, rotZ + offset);
         Instantiate(ball, transform.position, q);
         anim.SetBool("hasBall", false);
+        
+        //
+
     }
 
     void PickupBall()
@@ -88,7 +92,7 @@ public class BallThrow : MonoBehaviour
         newBall = GameObject.Find("newBall");
         float distance = Vector3.Distance(transform.position, newBall.transform.position);
         //Debug.Log(distance);
-        if(distance < 2f)
+        if(distance < pickupDist)
         {
             thrownBall = false;
             Destroy(newBall);
@@ -96,5 +100,10 @@ public class BallThrow : MonoBehaviour
         }
     }
 
+    IEnumerator ResetAnimation()
+    {
+        yield return new WaitForSeconds(0.25f);
+        anim.SetBool("isThrowing", false);
+    }
 
 }

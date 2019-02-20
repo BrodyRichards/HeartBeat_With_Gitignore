@@ -7,23 +7,29 @@ using UnityEngine.UI;
 
 public class TransitStates : MonoBehaviour
 {
+    public Text loadingText;
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("In start Menu");
+        loadingText.enabled = false;
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Escape))
         {
-            StartCoroutine(LoadAsyncScene(1));
-            
+            Application.Quit();
         }
-
     }
+
+    public void StartGame()
+    {
+        loadingText.enabled = true;
+        StartCoroutine(LoadAsyncScene(1));
+    }
+
 
     IEnumerator LoadAsyncScene(int nextSceneIndex)
     {

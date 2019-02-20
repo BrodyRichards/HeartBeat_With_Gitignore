@@ -6,8 +6,8 @@ public class Playground: MonoBehaviour
 {
     private float worldX;
     private float worldY;
-    public static float RightX = 100f;
-    public static float LeftX = -100f;
+    public static float RightX = 120f;
+    public static float LeftX = -120f;
     public static float LowerY = -25f;
     public static float UpperY = 10f;
     // Start is called before the first frame update
