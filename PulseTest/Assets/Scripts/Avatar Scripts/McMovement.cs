@@ -42,7 +42,9 @@ public class McMovement : MonoBehaviour
         AnimationMoodCheck();
         float step = speed * Time.deltaTime;
         // check whether the radio guy has been activated yet 
-        if (RadioControl.isMusic)
+        bool emoDist = checkDist(NpcInstantiator.musicKidPos, transform.position);
+
+        if (RadioControl.isMusic && emoDist)
         {
             if (!EmoControl.emoChanged)
             {
@@ -128,6 +130,14 @@ public class McMovement : MonoBehaviour
         {
             speed = 2;
         }
+    }
+
+    bool checkDist(Vector3 pos1, Vector2 pos2)
+    {
+        float dist = Vector3.Distance(pos1, pos2);
+        Debug.Log(dist);
+        if (dist <= 30.0f) { return true; }
+        return false;
     }
 }
     
