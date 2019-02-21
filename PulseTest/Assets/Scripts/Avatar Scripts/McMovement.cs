@@ -125,14 +125,16 @@ public class McMovement : MonoBehaviour
     private void AnimationMoodCheck()
     {
         anim.SetInteger("mood", mcCurrentMood);
-        if (mcCurrentMood == 0)
+        if (mcCurrentMood == 0) // no mood
         {
             speed = 4;
-        }else if (mcCurrentMood == 1)
+        }else if (mcCurrentMood == 1) // happy
         {
+            transform.localScale = new Vector2(0.8f, 0.8f);
             speed = 6;
-        }else if (mcCurrentMood == 2)
+        }else if (mcCurrentMood == 2) // sad 
         {
+            transform.localScale = new Vector2(1.1f, 1.1f);
             speed = 2;
         }
     }
