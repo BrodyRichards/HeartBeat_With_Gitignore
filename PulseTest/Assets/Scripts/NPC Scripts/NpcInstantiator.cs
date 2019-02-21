@@ -12,23 +12,26 @@ public class NpcInstantiator : MonoBehaviour
     private int groupCount = 5;
     private int num;
 
-    public GameObject sadFace;
+    public GameObject sadFace; //for reactions to avatars
     public GameObject madFace;
     public GameObject happyFace;
 
-    public int neighbourDistance = 100;
-    public float maxForce = 0.5f;
-    public float maxVelocity = 2.0f;
+    public GameObject ballKid;  //to get the position of these guys
+    public GameObject rabbit;
+    public GameObject musicKid;
+    public static Vector3 musicKidPos;
     public Vector3 target;
 
     private Vector3 center;
     public Vector3[] groupiePos;
+
     // Start is called before the first frame update
     void Start()
     {
         int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
         int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
         center = new Vector3(ranX, ranY, -1);
+        center = checkDist(center);
         groupiePos = new Vector3[groupCount];
         for (int i = 0; i < npcCount; i++) //create and instantiate the npcs (we can make it more complicated later)
         {
@@ -64,4 +67,26 @@ public class NpcInstantiator : MonoBehaviour
         pos.z = center.z;
         return pos;
     }
+
+    Vector3 checkDist(Vector3 pos)  //to make it so that the groupies don't circle on top of the avatars
+    {
+        float dist1 = Vector3.Distance(ballKid.transform.position, pos);
+        float dist2 = Vector3.Distance(rabbit.transform.position, pos);
+        float dist3 = Vector3.Distance(musicKid.transform.position, pos);
+        if (dist1 < 10.0f || dist2 < 10.0f || dist3 < 10.0f)
+        {
+            int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
+            int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
+            Vector3 pos2 = new Vector3(ranX, ranY, -1);
+            pos = checkDist(pos2);
+        }
+        return pos;
+    }
+
+    private void Update()
+    {
+        //Debug.Log(musicKid.transform.position);
+        musicKidPos = musicKid.transform.position;
+    }
+
 }

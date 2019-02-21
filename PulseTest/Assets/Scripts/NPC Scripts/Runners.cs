@@ -35,11 +35,12 @@ public class Runners : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool emoDist = checkDist(NpcInstantiator.musicKidPos, transform.position);
         directionCheck(target.x, transform.position.x);
         check = music;
         music = RadioControl.currentMood;
-        if (music != check) { checkMusic(); }
-        if (characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false)
+        if (music != check || (emoDist && RadioControl.isMusic)) { checkMusic(); }
+        if (characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false || emoDist == false)
         {
             holdBunny = false;
             int count = transform.childCount;
@@ -125,5 +126,12 @@ public class Runners : MonoBehaviour
         GameObject balloon = Instantiate(Emo, transform.localPosition + offset, transform.rotation);
         balloon.GetComponent<SpriteRenderer>().sortingLayerName = "Main";
         balloon.transform.parent = transform;
+    }
+
+    bool checkDist(Vector3 pos1, Vector3 pos2)  //for AOE of music kid
+    {
+        float dist = Vector3.Distance(pos1, pos2);
+        if (dist <= 30.0f) { return true; }
+        return false;
     }
 }

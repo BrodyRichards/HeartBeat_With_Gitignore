@@ -9195,9 +9195,9 @@ MonoBehaviour:
   madFace: {fileID: 3208327874510192596, guid: d501c81a0a8933547852a2fc5a157c5f, type: 3}
   happyFace: {fileID: 2411102427334925327, guid: 5cfd747efabad7b4b8e689953021f80c,
     type: 3}
-  neighbourDistance: 50
-  maxForce: 0.5
-  maxVelocity: 1
+  ballKid: {fileID: 118138679}
+  rabbit: {fileID: 616797539}
+  musicKid: {fileID: 1332290333}
   target: {x: 0, y: 0, z: 0}
   groupiePos: []
 --- !u!114 &1453256356
