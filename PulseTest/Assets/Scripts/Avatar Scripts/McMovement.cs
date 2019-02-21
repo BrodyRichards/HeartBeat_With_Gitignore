@@ -42,21 +42,26 @@ public class McMovement : MonoBehaviour
         AnimationMoodCheck();
         float step = speed * Time.deltaTime;
         // check whether the radio guy has been activated yet 
-        bool emoDist = checkDist(NpcInstantiator.musicKidPos, transform.position);
+        if (RadioControl.isMusic && !walkedIn)
+        {
+            if (checkDist(NpcInstantiator.musicKidPos, transform.position))
+            {
+                walkedIn = true;
+                anim.SetInteger("mood", mcCurrentMood);
+            }
+        }
 
-        if (RadioControl.isMusic && emoDist)
+        if (walkedIn)
         {
             if (!EmoControl.emoChanged)
             {
                 anim.SetBool("isWalking", true);
+                
                 GoToWaypoints(step);
             }
-            else
-            {
-                anim.SetBool("isWalking", false);
-            }
-
         }
+        
+
 
         FlipAssetDirection();
 
@@ -135,7 +140,7 @@ public class McMovement : MonoBehaviour
     bool checkDist(Vector3 pos1, Vector2 pos2)
     {
         float dist = Vector3.Distance(pos1, pos2);
-        Debug.Log(dist);
+        
         if (dist <= 30.0f) { return true; }
         return false;
     }

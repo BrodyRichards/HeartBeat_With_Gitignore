@@ -63,6 +63,7 @@ public class EmoControl : MonoBehaviour
         else
         {
             sr.enabled = false;
+            McMovement.mcCurrentMood = 0;
         }
     }
    
