@@ -19,6 +19,7 @@ public class NpcInstantiator : MonoBehaviour
     public GameObject ballKid;  //to get the position of these guys
     public GameObject rabbit;
     public GameObject musicKid;
+    public static Vector3 musicKidPos;
     public Vector3 target;
 
     private Vector3 center;
@@ -80,6 +81,12 @@ public class NpcInstantiator : MonoBehaviour
             pos = checkDist(pos2);
         }
         return pos;
+    }
+
+    private void Update()
+    {
+        //Debug.Log(musicKid.transform.position);
+        musicKidPos = musicKid.transform.position;
     }
 
 }
