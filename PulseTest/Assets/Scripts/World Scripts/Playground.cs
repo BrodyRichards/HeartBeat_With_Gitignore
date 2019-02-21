@@ -10,6 +10,7 @@ public class Playground: MonoBehaviour
     public static float LeftX = -120f;
     public static float LowerY = -25f;
     public static float UpperY = 10f;
+    public static float MusicAoe = 20f;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,5 +27,11 @@ public class Playground: MonoBehaviour
         
     }
 
-    
+    public static bool CheckDist(Vector3 pos1, Vector2 pos2, float aoe)
+    {
+        var dist = Vector3.Distance(pos1, pos2);
+        //Debug.Log(dist);
+        if (dist <= aoe) { return true; }
+        return false;
+    }
 }

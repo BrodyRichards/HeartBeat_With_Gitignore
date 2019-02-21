@@ -86,7 +86,11 @@ public class NpcInstantiator : MonoBehaviour
     private void Update()
     {
         //Debug.Log(musicKid.transform.position);
-        musicKidPos = musicKid.transform.position;
+        if (characterSwitcher.isMusicGuyInCharge)
+        {
+            musicKidPos = musicKid.transform.position;
+        }
+        
     }
 
 }

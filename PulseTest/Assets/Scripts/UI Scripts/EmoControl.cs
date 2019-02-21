@@ -33,7 +33,7 @@ public class EmoControl : MonoBehaviour
     void Update()
     {
 
-        emoDist = checkDist(NpcInstantiator.musicKidPos, transform.position);
+        emoDist = Playground.CheckDist(NpcInstantiator.musicKidPos, transform.position, Playground.MusicAoe);
 
         if (mcBallHit > 1)
         {
@@ -96,6 +96,7 @@ public class EmoControl : MonoBehaviour
                 sr.enabled = true;
                 hasEmo = true;
                 sr.sprite = gross;
+                McMovement.mcCurrentMood = 0;
                 break;
             case 3:
                 sr.enabled = true;
@@ -112,11 +113,11 @@ public class EmoControl : MonoBehaviour
         }
     }
 
-    bool checkDist(Vector3 pos1, Vector2 pos2)
-    {
-        float dist = Vector3.Distance(pos1, pos2);
-        Debug.Log(dist);
-        if (dist <= 30.0f) { return true; }
-        return false;
-    }
+    //bool checkDist(Vector3 pos1, Vector2 pos2)
+    //{
+    //    float dist = Vector3.Distance(pos1, pos2);
+    //    Debug.Log(dist);
+    //    if (dist <= 30.0f) { return true; }
+    //    return false;
+    //}
 }

@@ -24,7 +24,7 @@ public class McMovement : MonoBehaviour
     {
         // some initializations
         walkedIn = false;
-        isFlipped = false;
+        isFlipped = true;
         anim.SetBool("isWalking", false);
         currentGoal = 0;
         // put into array with some random waypoints, highly customizable 
@@ -39,31 +39,34 @@ public class McMovement : MonoBehaviour
 
     void Update()
     {
-        AnimationMoodCheck();
-        float step = speed * Time.deltaTime;
+
         // check whether the radio guy has been activated yet 
         if (RadioControl.isMusic && !walkedIn)
         {
-            if (checkDist(NpcInstantiator.musicKidPos, transform.position))
+            if (Playground.CheckDist(NpcInstantiator.musicKidPos, transform.position, Playground.MusicAoe))
             {
                 walkedIn = true;
+                anim.SetBool("isWalking", true);
                 anim.SetInteger("mood", mcCurrentMood);
+               
             }
         }
 
+        float step = speed * Time.deltaTime;
         if (walkedIn)
         {
+            
             if (!EmoControl.emoChanged)
             {
-                anim.SetBool("isWalking", true);
-                
+                FlipAssetDirection();
+                AnimationMoodCheck();
                 GoToWaypoints(step);
             }
         }
         
 
 
-        FlipAssetDirection();
+        
 
         
         
@@ -104,6 +107,7 @@ public class McMovement : MonoBehaviour
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
             isFlipped = false;
         }
+
         lastX = transform.position.x;
     }
     // Go to the assigned waypoints that haven't been reached yet
@@ -127,14 +131,24 @@ public class McMovement : MonoBehaviour
         anim.SetInteger("mood", mcCurrentMood);
         if (mcCurrentMood == 0) // no mood
         {
+            var scaling = !isFlipped ? new Vector2(1.0f, 1.0f) : new Vector2(-1.0f, 1.0f);
+            transform.localScale = scaling;
             speed = 4;
-        }else if (mcCurrentMood == 1) // happy
+
+        }
+        else if (mcCurrentMood == 1) // happy
         {
-            transform.localScale = new Vector2(0.8f, 0.8f);
+            var scaling = !isFlipped ? new Vector2(0.8f, 0.8f) : new Vector2(-0.8f, 0.8f);
+            transform.localScale = scaling;
+           
+
             speed = 6;
-        }else if (mcCurrentMood == 2) // sad 
+        }
+        else if (mcCurrentMood == 2) // sad 
         {
-            transform.localScale = new Vector2(1.1f, 1.1f);
+            var scaling = !isFlipped ? new Vector2(1.1f, 1.1f) : new Vector2(-1.1f, 1.1f);
+            transform.localScale = scaling;
+            
             speed = 2;
         }
     }
