@@ -138,9 +138,6 @@ public class McMovement : MonoBehaviour
         }
         else if (mcCurrentMood == 1) // happy
         {
-            var scaling = !isFlipped ? new Vector2(0.8f, 0.8f) : new Vector2(-0.8f, 0.8f);
-            transform.localScale = scaling;
-           
 
             speed = 6;
         }
