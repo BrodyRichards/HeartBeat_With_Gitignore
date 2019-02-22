@@ -70,11 +70,9 @@ public class RabbitChasers : MonoBehaviour
         if (rabbitDist)
         {
             transform.position = Vector3.MoveTowards(transform.position, NpcInstantiator.rabbitPos, speed * Time.deltaTime);
-            //Debug.Log("Chasing rabbit");
         }
-        else if (rabbitDist == false)
+        else
         {
-            //Debug.Log("Not chasing rabbit");
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             if (transform.position == target)
             {

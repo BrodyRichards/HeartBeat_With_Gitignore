@@ -17,6 +17,7 @@ public class NpcInstantiator : MonoBehaviour
     public GameObject happyFace;
 
     public GameObject ballKid;  //to get the position of these guys
+    public static Vector3 ballKidPos;
     public GameObject rabbit;
     public static Vector3 rabbitPos;
     public GameObject musicKid;
@@ -36,7 +37,7 @@ public class NpcInstantiator : MonoBehaviour
         groupiePos = new Vector3[groupCount];
         for (int i = 0; i < npcCount; i++) //create and instantiate the npcs (we can make it more complicated later)
         {
-            int choice = Random.Range(0, 3);
+            int choice = Random.Range(0, 4);
             ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
             ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
             Vector3 pos = new Vector3(ranX, ranY, -1);
@@ -87,6 +88,7 @@ public class NpcInstantiator : MonoBehaviour
     private void Update()
     {
         rabbitPos = rabbit.transform.position;
+        ballKidPos = ballKid.transform.position;
         if (characterSwitcher.isMusicGuyInCharge)
         {
             musicKidPos = musicKid.transform.position;
