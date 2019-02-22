@@ -131,7 +131,7 @@ public class Runners : MonoBehaviour
     bool checkDist(Vector3 pos1, Vector3 pos2)  //for AOE of music kid
     {
         float dist = Vector3.Distance(pos1, pos2);
-        if (dist <= 30.0f) { return true; }
+        if (dist <= 20.0f) { return true; }
         return false;
     }
 }

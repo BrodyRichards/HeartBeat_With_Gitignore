@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NpcInstantiator : MonoBehaviour
 {
-    private int npcCount = 8;
+    private int npcCount = 15;
     
     public GameObject[] NPCs; //contains the 3 types of NPCs
     public GameObject[] groupies;
@@ -17,7 +17,9 @@ public class NpcInstantiator : MonoBehaviour
     public GameObject happyFace;
 
     public GameObject ballKid;  //to get the position of these guys
+    public static Vector3 ballKidPos;
     public GameObject rabbit;
+    public static Vector3 rabbitPos;
     public GameObject musicKid;
     public static Vector3 musicKidPos;
     public Vector3 target;
@@ -35,7 +37,7 @@ public class NpcInstantiator : MonoBehaviour
         groupiePos = new Vector3[groupCount];
         for (int i = 0; i < npcCount; i++) //create and instantiate the npcs (we can make it more complicated later)
         {
-            int choice = Random.Range(0, 2);
+            int choice = Random.Range(0, 4);
             ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
             ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
             Vector3 pos = new Vector3(ranX, ranY, -1);
@@ -85,7 +87,8 @@ public class NpcInstantiator : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(musicKid.transform.position);
+        rabbitPos = rabbit.transform.position;
+        ballKidPos = ballKid.transform.position;
         if (characterSwitcher.isMusicGuyInCharge)
         {
             musicKidPos = musicKid.transform.position;
