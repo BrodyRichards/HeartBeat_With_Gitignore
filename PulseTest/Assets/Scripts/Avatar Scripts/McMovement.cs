@@ -24,7 +24,7 @@ public class McMovement : MonoBehaviour
     {
         // some initializations
         walkedIn = false;
-        isFlipped = false;
+        isFlipped = true;
         anim.SetBool("isWalking", false);
         currentGoal = 0;
         // put into array with some random waypoints, highly customizable 
@@ -39,24 +39,34 @@ public class McMovement : MonoBehaviour
 
     void Update()
     {
-        AnimationMoodCheck();
-        float step = speed * Time.deltaTime;
-        // check whether the radio guy has been activated yet 
-        if (RadioControl.isMusic)
-        {
-            if (!EmoControl.emoChanged)
-            {
-                anim.SetBool("isWalking", true);
-                GoToWaypoints(step);
-            }
-            else
-            {
-                anim.SetBool("isWalking", false);
-            }
 
+        // check whether the radio guy has been activated yet 
+        if (RadioControl.isMusic && !walkedIn)
+        {
+            if (Playground.CheckDist(NpcInstantiator.musicKidPos, transform.position, Playground.MusicAoe))
+            {
+                walkedIn = true;
+                anim.SetBool("isWalking", true);
+                anim.SetInteger("mood", mcCurrentMood);
+               
+            }
         }
 
-        FlipAssetDirection();
+        float step = speed * Time.deltaTime;
+        if (walkedIn)
+        {
+            
+            if (!EmoControl.emoChanged)
+            {
+                FlipAssetDirection();
+                AnimationMoodCheck();
+                GoToWaypoints(step);
+            }
+        }
+        
+
+
+        
 
         
         
@@ -97,6 +107,7 @@ public class McMovement : MonoBehaviour
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
             isFlipped = false;
         }
+
         lastX = transform.position.x;
     }
     // Go to the assigned waypoints that haven't been reached yet
@@ -118,16 +129,36 @@ public class McMovement : MonoBehaviour
     private void AnimationMoodCheck()
     {
         anim.SetInteger("mood", mcCurrentMood);
-        if (mcCurrentMood == 0)
+        if (mcCurrentMood == 0) // no mood
         {
+            var scaling = !isFlipped ? new Vector2(1.0f, 1.0f) : new Vector2(-1.0f, 1.0f);
+            transform.localScale = scaling;
             speed = 4;
-        }else if (mcCurrentMood == 1)
+
+        }
+        else if (mcCurrentMood == 1) // happy
         {
+            var scaling = !isFlipped ? new Vector2(0.8f, 0.8f) : new Vector2(-0.8f, 0.8f);
+            transform.localScale = scaling;
+           
+
             speed = 6;
-        }else if (mcCurrentMood == 2)
+        }
+        else if (mcCurrentMood == 2) // sad 
         {
+            var scaling = !isFlipped ? new Vector2(1.1f, 1.1f) : new Vector2(-1.1f, 1.1f);
+            transform.localScale = scaling;
+            
             speed = 2;
         }
+    }
+
+    bool checkDist(Vector3 pos1, Vector2 pos2)
+    {
+        float dist = Vector3.Distance(pos1, pos2);
+        
+        if (dist <= 30.0f) { return true; }
+        return false;
     }
 }
     

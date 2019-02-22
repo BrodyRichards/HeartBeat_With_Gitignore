@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EmoControl : MonoBehaviour
 {
+    //public GameObject musicKid;
+
     public Sprite happy;
     public Sprite sad;
     public Sprite gross;
@@ -14,9 +16,11 @@ public class EmoControl : MonoBehaviour
     public static int mcBallHit = 0;
     public static bool rabbitHug = false;
     private bool rabitJustHug = false;
+    private bool emoDist;
 
     public static bool hasEmo = false;
     public static bool emoChanged = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -28,9 +32,9 @@ public class EmoControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-        
-        
+
+        emoDist = Playground.CheckDist(NpcInstantiator.musicKidPos, transform.position, Playground.MusicAoe);
+
         if (mcBallHit > 1)
         {
             hasEmo = true;
@@ -52,17 +56,15 @@ public class EmoControl : MonoBehaviour
 
 
         }
-        else
+        else if (emoDist)
         {
             ReactToMusic();
         }
-        
-        
-           
-    
-        
-
-
+        else
+        {
+            sr.enabled = false;
+            McMovement.mcCurrentMood = 0;
+        }
     }
    
     public void DestroyEmotion()
@@ -82,7 +84,6 @@ public class EmoControl : MonoBehaviour
 
     public void ReactToMusic()
     {
-
         switch (RadioControl.currentMood)
         {
             case 1:
@@ -95,6 +96,7 @@ public class EmoControl : MonoBehaviour
                 sr.enabled = true;
                 hasEmo = true;
                 sr.sprite = gross;
+                McMovement.mcCurrentMood = 0;
                 break;
             case 3:
                 sr.enabled = true;
@@ -110,4 +112,12 @@ public class EmoControl : MonoBehaviour
                 break;
         }
     }
+
+    //bool checkDist(Vector3 pos1, Vector2 pos2)
+    //{
+    //    float dist = Vector3.Distance(pos1, pos2);
+    //    Debug.Log(dist);
+    //    if (dist <= 30.0f) { return true; }
+    //    return false;
+    //}
 }
