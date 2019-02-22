@@ -37,6 +37,7 @@ public class RabbitChasers : MonoBehaviour
     {
         bool emoDist = checkDist(NpcInstantiator.musicKidPos, transform.position);
         bool rabbitDist = checkDist(NpcInstantiator.rabbitPos, transform.position);
+        Debug.Log(NpcInstantiator.rabbitPos);
         directionCheck(target.x, transform.position.x);
         check = music;
         music = RadioControl.currentMood;
@@ -66,13 +67,23 @@ public class RabbitChasers : MonoBehaviour
                 }
             }
         }
-        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        if (transform.position == target)
+        if (rabbitDist)
         {
-            int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
-            int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
-            target = new Vector3(ranX, ranY, -1);
+            transform.position = Vector3.MoveTowards(transform.position, NpcInstantiator.rabbitPos, speed * Time.deltaTime);
+            //Debug.Log("Chasing rabbit");
         }
+        else if (rabbitDist == false)
+        {
+            //Debug.Log("Not chasing rabbit");
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            if (transform.position == target)
+            {
+                int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
+                int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
+                target = new Vector3(ranX, ranY, -1);
+            }
+        }
+        
     }
 
     void directionCheck(float target, float pos) //WHY DOES THIS GOTTA BE SO DAMN COMPLICATED MAN 
