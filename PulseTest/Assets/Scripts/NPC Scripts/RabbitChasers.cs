@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 //using UnityEngine.AI; may need this in the future??
 
-public class Loners : MonoBehaviour
+public class RabbitChasers : MonoBehaviour
 {
-    public Animator anim;
+    //public Animator anim;
     Vector3 target;
     private float speed = 5f;
     private Vector3 scale;
@@ -17,6 +17,7 @@ public class Loners : MonoBehaviour
     private int check;
 
     private bool holdBunny = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,30 +29,18 @@ public class Loners : MonoBehaviour
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         music = RadioControl.currentMood;
         check = music;
-        anim.SetBool("IsWalking", true);
+        //anim.SetBool("IsWalking", true);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.tag == "Person" || other.tag == "Avatars" || other.tag == "MC")
-        {
-            int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
-            int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
-            target = new Vector3(ranX, ranY, -1);
-        }
-
-    }
-
-    private void FixedUpdate()
+    // Update is called once per frame
+    void Update()
     {
         bool emoDist = checkDist(NpcInstantiator.musicKidPos, transform.position);
+        bool rabbitDist = checkDist(NpcInstantiator.rabbitPos, transform.position);
         directionCheck(target.x, transform.position.x);
         check = music;
-        music = RadioControl.currentMood;      
-        if (music != check || (emoDist && RadioControl.isMusic))
-        {
-            checkMusic();
-        }
+        music = RadioControl.currentMood;
+        if (music != check || (emoDist && RadioControl.isMusic)) { checkMusic(); }
         if (characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false || emoDist == false)
         {
             holdBunny = false;
@@ -78,6 +67,12 @@ public class Loners : MonoBehaviour
             }
         }
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        if (transform.position == target)
+        {
+            int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
+            int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
+            target = new Vector3(ranX, ranY, -1);
+        }
     }
 
     void directionCheck(float target, float pos) //WHY DOES THIS GOTTA BE SO DAMN COMPLICATED MAN 
@@ -104,17 +99,17 @@ public class Loners : MonoBehaviour
 
     private void checkMusic()
     {
-        if (RadioControl.currentMood == 1) //sad music
-        {
-            Emo = master.GetComponent<NpcInstantiator>().happyFace;
-        }
-        else if (RadioControl.currentMood == 2) //scary music
+        if (RadioControl.currentMood == 1)
         {
             Emo = master.GetComponent<NpcInstantiator>().sadFace;
         }
+        else if (RadioControl.currentMood == 2)
+        {
+            Emo = master.GetComponent<NpcInstantiator>().happyFace;
+        }
         else if (RadioControl.currentMood == 3)
         {
-            Emo = master.GetComponent<NpcInstantiator>().madFace; //happy music
+            Emo = master.GetComponent<NpcInstantiator>().madFace;
         }
         addEmo();
     }

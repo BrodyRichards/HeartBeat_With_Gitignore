@@ -18,6 +18,7 @@ public class NpcInstantiator : MonoBehaviour
 
     public GameObject ballKid;  //to get the position of these guys
     public GameObject rabbit;
+    public static Vector3 rabbitPos;
     public GameObject musicKid;
     public static Vector3 musicKidPos;
     public Vector3 target;
@@ -88,6 +89,7 @@ public class NpcInstantiator : MonoBehaviour
         //Debug.Log(musicKid.transform.position);
         if (characterSwitcher.isMusicGuyInCharge)
         {
+            rabbitPos = rabbit.transform.position;
             musicKidPos = musicKid.transform.position;
         }
         
