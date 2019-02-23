@@ -6,11 +6,13 @@ using UnityEngine;
 public class RabbitChasers : MonoBehaviour
 {
     //public Animator anim;
+    public Animator anim;
     Vector3 target;
     private float speed = 5f;
     private Vector3 scale;
     private Vector3 scaleOpposite;
-
+    private float currentPosX;
+    private float lastPosX;
     private GameObject master;
     GameObject Emo;
     private int music;
@@ -84,6 +86,8 @@ public class RabbitChasers : MonoBehaviour
                 target = new Vector3(ranX, ranY, -1);
             }
         }
+
+        DetectMovement();
         
     }
 
@@ -146,5 +150,20 @@ public class RabbitChasers : MonoBehaviour
         float dist = Vector3.Distance(pos1, pos2);
         if (dist <= 20.0f) { return true; }
         return false;
+    }
+
+    private void DetectMovement()
+    {
+        currentPosX = transform.position.x;
+        if (currentPosX != lastPosX)
+        {
+            anim.SetBool("IsWalking", true);
+        }
+        else
+        {
+            anim.SetBool("IsWalking", false);
+        }
+
+        lastPosX = transform.position.x;
     }
 }

@@ -7,7 +7,10 @@ public class BallPlayers : MonoBehaviour
 {
     //public Animator anim;
     private Rigidbody2D rb;
+    public Animator anim;
     Vector3 target;
+    private float currentPosX;
+    private float lastPosX;
     private float speed = 5f;
     private Vector3 scale;
     private Vector3 scaleOpposite;
@@ -86,6 +89,7 @@ public class BallPlayers : MonoBehaviour
                 target = new Vector3(ranX, ranY, -1);
             }
         }
+        DetectMovement();
 
     }
 
@@ -148,5 +152,20 @@ public class BallPlayers : MonoBehaviour
         float dist = Vector3.Distance(pos1, pos2);
         if (dist <= 20.0f) { return true; }
         return false;
+    }
+
+    private void DetectMovement()
+    {
+        currentPosX = transform.position.x;
+        if (currentPosX != lastPosX)
+        {
+            anim.SetBool("IsWalking", true);
+        }
+        else
+        {
+            anim.SetBool("IsWalking", false);
+        }
+
+        lastPosX = transform.position.x;
     }
 }
