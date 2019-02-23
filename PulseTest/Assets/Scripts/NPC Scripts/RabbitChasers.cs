@@ -37,7 +37,6 @@ public class RabbitChasers : MonoBehaviour
     {
         bool emoDist = checkDist(NpcInstantiator.musicKidPos, transform.position);
         bool rabbitDist = checkDist(NpcInstantiator.rabbitPos, transform.position);
-        Debug.Log(NpcInstantiator.rabbitPos);
         directionCheck(target.x, transform.position.x);
         check = music;
         music = RadioControl.currentMood;
@@ -69,7 +68,11 @@ public class RabbitChasers : MonoBehaviour
         }
         if (rabbitDist)
         {
-            transform.position = Vector3.MoveTowards(transform.position, NpcInstantiator.rabbitPos, speed * Time.deltaTime);
+            float dist = Vector3.Distance(NpcInstantiator.rabbitPos, transform.position);
+            if (dist > 5.0f)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, NpcInstantiator.rabbitPos, speed * Time.deltaTime);
+            }
         }
         else
         {

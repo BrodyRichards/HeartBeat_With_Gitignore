@@ -39,7 +39,6 @@ public class BallPlayers : MonoBehaviour
     {
         bool emoDist = checkDist(NpcInstantiator.musicKidPos, transform.position);
         bool ballDist = checkDist(NpcInstantiator.ballKidPos, transform.position);
-        Debug.Log(NpcInstantiator.rabbitPos);
         directionCheck(target.x, transform.position.x);
         check = music;
         music = RadioControl.currentMood;
