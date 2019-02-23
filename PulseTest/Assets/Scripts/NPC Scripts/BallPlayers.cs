@@ -34,7 +34,7 @@ public class BallPlayers : MonoBehaviour
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         music = RadioControl.currentMood;
         check = music;
-        //anim.SetBool("IsWalking", true);
+        anim.SetBool("IsWalking", true);
     }
 
     // Update is called once per frame
@@ -74,9 +74,11 @@ public class BallPlayers : MonoBehaviour
         if (ballDist)
         {
             float dist = Vector3.Distance(NpcInstantiator.ballKidPos, transform.position);
+            
             if (dist > 10.0f)
             {
-                transform.position = Vector3.MoveTowards(transform.position, NpcInstantiator.ballKidPos, speed * Time.deltaTime);
+                target = NpcInstantiator.ballKidPos;
+                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             }
         }
         else 

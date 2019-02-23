@@ -31,7 +31,7 @@ public class RabbitChasers : MonoBehaviour
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         music = RadioControl.currentMood;
         check = music;
-        //anim.SetBool("IsWalking", true);
+        anim.SetBool("IsWalking", true);
     }
 
     // Update is called once per frame
@@ -73,7 +73,8 @@ public class RabbitChasers : MonoBehaviour
             float dist = Vector3.Distance(NpcInstantiator.rabbitPos, transform.position);
             if (dist > 5.0f)
             {
-                transform.position = Vector3.MoveTowards(transform.position, NpcInstantiator.rabbitPos, speed * Time.deltaTime);
+                target = NpcInstantiator.rabbitPos;
+                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             }
         }
         else
