@@ -2487,10 +2487,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a17d2e94f9ab0442900969d264062ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  happy: {fileID: 21300000, guid: b95c7cf3b2ba89643b22686d5e6eb638, type: 3}
-  sad: {fileID: 21300000, guid: 97a80d076285e80449a6c8bcffaecf38, type: 3}
-  gross: {fileID: 21300000, guid: ad67a5ee3443c1c4baa5950afc14cc0b, type: 3}
-  angry: {fileID: 21300000, guid: 1bf2f58584bd45249b1dd238c12de95b, type: 3}
+  happy: {fileID: 21300000, guid: f1f52beab3255314bb7d19171cd600a0, type: 3}
+  sad: {fileID: 21300000, guid: 0118ce6c620cec848bacbb8088e77987, type: 3}
+  startle: {fileID: 21300000, guid: 673e8baa999e5474bb8d4ddeaba8d99e, type: 3}
+  angry: {fileID: 21300000, guid: e132baa666e4228428f01485bbc4b87f, type: 3}
 --- !u!212 &791843262
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9214,11 +9214,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ps: {fileID: 1840503299}
   sadSong: {fileID: 8300000, guid: 3bf54ba4cc375134bb7fa59469e36760, type: 3}
-  intenseSong: {fileID: 8300000, guid: de04e97c7c24ac34ab916c7b5905edc0, type: 3}
+  startleSong: {fileID: 8300000, guid: de04e97c7c24ac34ab916c7b5905edc0, type: 3}
   happySong: {fileID: 8300000, guid: 5bfc60d36f7c62e499bdc8d1971bcdb3, type: 3}
   happy: {fileID: 21300000, guid: 121fa4d01f2d1514ba6b093cfad84284, type: 3}
   sad: {fileID: 21300000, guid: 4c69a8179feef7b449d079d3c2ba758c, type: 3}
-  intense: {fileID: 21300000, guid: 68df201312a3d79469f641d7562a3e22, type: 3}
+  startled: {fileID: 21300000, guid: 68df201312a3d79469f641d7562a3e22, type: 3}
   idle: {fileID: 21300000, guid: bfdeeae930f193e4b9fd04dc0da2d54e, type: 3}
 --- !u!114 &1332290340
 MonoBehaviour:

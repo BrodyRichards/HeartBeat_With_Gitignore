@@ -8,7 +8,7 @@ public class EmoControl : MonoBehaviour
 
     public Sprite happy;
     public Sprite sad;
-    public Sprite gross;
+    public Sprite startle;
     public Sprite angry;
 
     private SpriteRenderer sr;
@@ -41,18 +41,18 @@ public class EmoControl : MonoBehaviour
             sr.enabled = true;
             sr.sprite = angry;
             emoChanged = true;
-            McMovement.mcCurrentMood = 2;
+            MentalState.mood = 4;
             Invoke("DestroyEmotion", 1f);
             Invoke("ChangeEmoBack", 1f);
 
         }
         else if (rabbitHug)
         {
-            rabitJustHug = true;
+            
             hasEmo = true;
             sr.enabled = true;
             sr.sprite = happy;
-            McMovement.mcCurrentMood = 1;
+            MentalState.mood = 1;
 
 
         }
@@ -63,15 +63,16 @@ public class EmoControl : MonoBehaviour
         else
         {
             sr.enabled = false;
-            McMovement.mcCurrentMood = 0;
+            MentalState.mood = 0;
         }
     }
    
     public void DestroyEmotion()
     {
-        hasEmo = false;
-        sr.enabled = false;
-        McMovement.mcCurrentMood = 0;
+        //hasEmo = false;
+        //sr.enabled = false;
+        
+        
         mcBallHit *= 0;
         
     }
@@ -89,26 +90,26 @@ public class EmoControl : MonoBehaviour
             case 1:
                 sr.enabled = true;
                 hasEmo = true;
-                sr.sprite = sad;
-                McMovement.mcCurrentMood = 2;
+                sr.sprite = happy;
+                MentalState.mood = 1;
                 break;
             case 2:
                 sr.enabled = true;
                 hasEmo = true;
-                sr.sprite = gross;
-                McMovement.mcCurrentMood = 0;
+                sr.sprite = sad;
+                MentalState.mood = 2;
                 break;
             case 3:
                 sr.enabled = true;
                 hasEmo = true;
-                sr.sprite = happy;
-                McMovement.mcCurrentMood = 1;
+                sr.sprite = startle;
+                MentalState.mood = 3;
                 break;
             default:
                 sr.enabled = false;
                 hasEmo = false;
                 sr.sprite = null;
-                McMovement.mcCurrentMood = 0;
+                MentalState.mood = 0;
                 break;
         }
     }
