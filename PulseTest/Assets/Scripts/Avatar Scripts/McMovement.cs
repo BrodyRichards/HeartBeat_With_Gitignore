@@ -46,7 +46,6 @@ public class McMovement : MonoBehaviour
             if (Playground.CheckDist(NpcInstantiator.musicKidPos, transform.position, Playground.MusicAoe))
             {
                 walkedIn = true;
-                anim.SetBool("isWalking", true);
                 anim.SetInteger("mood", mcCurrentMood);
                
             }
@@ -58,9 +57,14 @@ public class McMovement : MonoBehaviour
             
             if (!EmoControl.emoChanged)
             {
+                anim.SetBool("isWalking", true);
                 FlipAssetDirection();
                 AnimationMoodCheck();
                 GoToWaypoints(step);
+            }
+            else
+            {
+                anim.SetBool("isWalking", false);
             }
         }
         
