@@ -41,14 +41,17 @@ public class McMovement : MonoBehaviour
     {
 
         // check whether the radio guy has been activated yet 
-        if (RadioControl.isMusic && !walkedIn)
+        //if (RadioControl.isMusic && !walkedIn)
+        if (characterSwitcher.charChoice != -1 && !walkedIn)
         {
+            /*
             if (Playground.CheckDist(NpcInstantiator.musicKidPos, transform.position, Playground.MusicAoe))
             {
+            */
                 walkedIn = true;
-                anim.SetInteger("mood", MentalState.mood);
+              //  anim.SetInteger("mood", MentalState.mood);
                
-            }
+            //}
         }
 
         float step = speed * Time.deltaTime;
