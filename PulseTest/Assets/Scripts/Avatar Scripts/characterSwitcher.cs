@@ -8,7 +8,7 @@ public class characterSwitcher : MonoBehaviour
     //This enables you to see and set the field from inspector but 
     //it is hidden from other scripts and objects. 
     //charChoice represents which named object to move
-    public static int charChoice = 3;
+    public static int charChoice = -1;
     public static bool isMusicGuyInCharge;
     //public static bool isChar = false;
 
@@ -133,6 +133,7 @@ public class characterSwitcher : MonoBehaviour
             case 1:
                 findGO(2).GetComponent<BallThrow>().enabled = false;
                 findGO(2).GetComponent<Animator>().SetBool("isThrowing", false);
+                findGO(2).GetComponent<Animator>().SetBool("isWalking", false);
                 findGO(3).GetComponent<Animator>().SetBool("isWalking", false);
                 isMusicGuyInCharge = false;
                 break;
@@ -147,7 +148,7 @@ public class characterSwitcher : MonoBehaviour
                 findGO(2).GetComponent<Animator>().SetBool("isThrowing", false);
                 findGO(1).GetComponent<RabbitJump>().enabled = false;
                 findGO(1).GetComponent<Animator>().SetBool("isWalking", false);
-
+                findGO(2).GetComponent<Animator>().SetBool("isWalking", false);
                 break;
             default:
                 break;
