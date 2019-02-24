@@ -7,7 +7,7 @@ public class Movement : MonoBehaviour
 
     [SerializeField]
     private float maxSpeed = 20f;
-    private float currSpeed = 0f;
+    public float currSpeed = 0f;
     public float acceleration;
     public float deceleration;
     public static bool isRight = true;

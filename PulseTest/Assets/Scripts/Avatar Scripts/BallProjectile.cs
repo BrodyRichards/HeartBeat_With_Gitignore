@@ -9,6 +9,7 @@ public class BallProjectile : MonoBehaviour
     public LayerMask hittableObjects;
     //This is like its hitbox
     public float distance;
+    public bool meanBallThrown = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,26 +20,33 @@ public class BallProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, distance, hittableObjects);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, distance, hittableObjects);
         if (hit.collider != null && hit.collider.gameObject.name != "2")
         {
-            if (hit.collider.CompareTag("Person"))
+            if (hit.collider.CompareTag("Person") || hit.collider.CompareTag("MC"))
             {
-                Debug.Log("Ouch! You hit " + hit.collider.gameObject.name);
-                GameObject NPC = hit.collider.gameObject;
-                NPC.GetComponent<PlayCatch>().hitByBall();
-                GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", false);
-            }
-            else if (hit.collider.CompareTag("MC"))
-            {
-                GameObject MC = hit.collider.gameObject;
-                MC.GetComponent<PlayCatch>().hitByBall();
-                EmoControl.mcBallHit += 1;
-                GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", false);
+                if (hit.collider.CompareTag("MC") && meanBallThrown)
+                {
+                    //A mean ball was thrown
+                    //EmoControl.mcBallHit += 1;
+                    Debug.Log("You threw a mean ball!");
+                    //Update Mental State
+                    MentalState.sendMsg("Hit by ball", 4);
+                    //MC gets hit by ball and doens't play catch
+                    stationaryBall();
+                    //Reset meanBall bool
+                    meanBallThrown = false;
+                }else
+                {
+                    //This is stuff for normal nicely thrown balls
+                    Debug.Log("Ouch! You hit " + hit.collider.gameObject.name);
+                    GameObject NPC = hit.collider.gameObject;
+                    NPC.GetComponent<PlayCatch>().hitByBall();
+                    GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", false);
+                }
             }
 
             destroyBall();
-            
         }
 
         if( transform.position.x > Playground.RightX ||
@@ -49,11 +57,12 @@ public class BallProjectile : MonoBehaviour
             stationaryBall();
         }
 
-        transform.Translate(Vector2.up * speed * Time.deltaTime);
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
     }
 
     private void destroyBall()
     {
+        //Sound and special FX can go here
         Destroy(gameObject);
     }
 

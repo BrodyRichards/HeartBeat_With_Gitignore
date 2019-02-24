@@ -10,6 +10,7 @@ public class BallThrow : MonoBehaviour
     public float pickupDist;
     public Animator anim;
     public bool thrownBall = false;
+    private bool isMeanBall = false;
     
 
     private bool towardRight;
@@ -26,72 +27,74 @@ public class BallThrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if ((Input.GetMouseButtonDown(1) || Input.GetKeyDown("space")) && !thrownBall)
+        //Space bar for nice action and E for mean action
+        if (Input.GetKeyDown(KeyCode.Space) && !thrownBall)
         {
-            //Vector for Raycast, takes mouse position
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
-            //Raycast hit register for mouse position
-            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-            
-            //If a hit is registered, find which object was hit
-            if (hit.collider == null || hit.collider.gameObject.tag != "Avatars")
-            {
-                thrownBall = true;
-                // check the character direction 
-                if (mousePos.x < transform.position.x && transform.localScale.x > 0)
-                {
-                    transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-
-                }
-                else if (mousePos.x > transform.position.x && transform.localScale.x < 0)
-                {
-                    transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-                }
-
-                anim.SetBool("isThrowing", true);
-                anim.SetBool("isThrowing", true);
-
-
-                // postpone 0.6 seconds to finish the animation 
-                StartCoroutine(PutOutBall(mousePos));
-                StartCoroutine(ResetAnimation());
-
-            }
+            ThrowBall();
+        }else if (Input.GetKeyDown(KeyCode.E) && !thrownBall)
+        {
+            isMeanBall = true;
+            ThrowBall();
         }
-        
        
-
         //Check to see that a ball was thrown and that it is resting stationary on the ground
         if (Input.GetKey(KeyCode.Space) && thrownBall && GameObject.Find("newBall") != null)
         {
             PickupBall();
         }
-
     }
 
-    IEnumerator PutOutBall(Vector3 mousePos)
+    //Helper function to throw ball, reset animation, and stop motion while throwing
+    void ThrowBall()
+    {
+        thrownBall = true;
+        anim.SetBool("isThrowing", true);
+        anim.SetBool("isThrowing", true);
+
+        // postpone 0.6 seconds to finish the animation
+        //Stop movement while throwing
+        GameObject.Find("2").GetComponent<Movement>().enabled = false;
+        StartCoroutine(PutOutBall());
+        StartCoroutine(ResetAnimation());
+    }
+
+    //Function to instantiate ball when thrown
+    IEnumerator PutOutBall()
     {
         yield return new WaitForSeconds(0.6f);
-        //Vector3 throwAngle = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        Vector3 throwAngle = mousePos - transform.position;
-        float rotZ = Mathf.Atan2(throwAngle.y, throwAngle.x) * Mathf.Rad2Deg;
-        Quaternion q = Quaternion.Euler(0f, 0f, rotZ + offset);
-        Instantiate(ball, transform.position, q);
-        anim.SetBool("hasBall", false);
-        
-        //
+        //A temporary gameobject to store ball instantiation info
+        GameObject tempBall;
 
+        //Check if ball kid is facing left
+        if (transform.localScale.x < 0)
+        {
+            //If so, decompose quaternion into vector3 to modify angles
+            Vector3 tempRot = transform.rotation.eulerAngles;
+            //Create new vector with modified rotation
+            tempRot = new Vector3(tempRot.x, tempRot.y + 180, tempRot.z);
+            //Turn it back into a quaternion for instantiate() to use
+            Quaternion q = Quaternion.Euler(tempRot);
+            //Instantiate ball facing other direction
+            tempBall = Instantiate(ball, transform.position, q);
+        }
+        else
+        {
+            tempBall = Instantiate(ball, transform.position, transform.rotation);
+        }
+
+        //Update ballProjectile script with mean ball info
+        tempBall.GetComponent<BallProjectile>().meanBallThrown = isMeanBall;
+
+        anim.SetBool("hasBall", false);
+        //Re-enable movement once animation has finished
+        GameObject.Find("2").GetComponent<Movement>().enabled = true;
     }
 
     void PickupBall()
     {
         newBall = GameObject.Find("newBall");
         float distance = Vector3.Distance(transform.position, newBall.transform.position);
-        //Debug.Log(distance);
+
         if(distance < pickupDist)
         {
             thrownBall = false;
