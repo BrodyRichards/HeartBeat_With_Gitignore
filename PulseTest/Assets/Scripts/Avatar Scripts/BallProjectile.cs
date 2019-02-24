@@ -31,7 +31,7 @@ public class BallProjectile : MonoBehaviour
                     //EmoControl.mcBallHit += 1;
                     Debug.Log("You threw a mean ball!");
                     //Update Mental State
-                    MentalState.sendMsg("Hit by ball", 4);
+                    MentalState.sendMsg("Hit by ball");
                     //MC gets hit by ball and doens't play catch
                     stationaryBall();
                     //Reset meanBall bool
@@ -39,8 +39,12 @@ public class BallProjectile : MonoBehaviour
                 }else
                 {
                     //This is stuff for normal nicely thrown balls
-                    Debug.Log("Ouch! You hit " + hit.collider.gameObject.name);
+                    Debug.Log("You played catch with " + hit.collider.gameObject.name);
                     GameObject NPC = hit.collider.gameObject;
+                    if (NPC.name == "MC")
+                    {
+                        MentalState.sendMsg("Played catch");
+                    }
                     NPC.GetComponent<PlayCatch>().hitByBall();
                     GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", false);
                 }

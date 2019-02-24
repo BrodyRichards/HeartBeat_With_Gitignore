@@ -63,6 +63,7 @@ public class RabbitJump : MonoBehaviour
                     if (hit.collider.gameObject.name == "MC")
                     {
                         EmoControl.rabbitHug = true;
+                        MentalState.sendMsg("Held Rabbit");
                     }
                         
                     GetComponent<Movement>().enabled = false;
@@ -81,7 +82,7 @@ public class RabbitJump : MonoBehaviour
                 Debug.Log("I bit " + biteCheck.collider.gameObject.name + "!");
                 if (biteCheck.collider.gameObject.tag == "MC")
                 {
-                    MentalState.sendMsg("Bit by rabbit", 3);
+                    MentalState.sendMsg("Bit by rabbit");
                 }
             }
         }
