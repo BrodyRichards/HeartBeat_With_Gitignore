@@ -29,6 +29,8 @@ public class Loners : MonoBehaviour
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         music = RadioControl.currentMood;
         check = music;
+        anim = transform.gameObject.GetComponent<Animator>();
+        anim.runtimeAnimatorController = Resources.Load("NPC") as RuntimeAnimatorController;
         anim.SetBool("IsWalking", true);
     }
 

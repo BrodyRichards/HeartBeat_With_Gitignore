@@ -16,14 +16,17 @@ public class Groupies : MonoBehaviour
     GameObject Emo;
     private int music;
     private int check;
-
+    private SpriteRenderer sp;
     private bool holdBunny = false;
 
     public Vector3 target;
     // Start is called before the first frame update
     void Start()
     {
+        sp = GetComponent<SpriteRenderer>();
         anim.SetBool("IsWalking", true);
+
+        Playground.RandomizeNpcAssets(anim, sp);
         master = GameObject.Find("GameController");
         scale = transform.localScale;
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
@@ -147,6 +150,6 @@ public class Groupies : MonoBehaviour
         lastPosX = transform.position.x;
     }
 
-
+    
 
 }
