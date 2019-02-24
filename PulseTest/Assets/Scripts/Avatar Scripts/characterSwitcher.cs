@@ -8,7 +8,7 @@ public class characterSwitcher : MonoBehaviour
     //This enables you to see and set the field from inspector but 
     //it is hidden from other scripts and objects. 
     //charChoice represents which named object to move
-    [HideInInspector]public static int charChoice = 3;
+    public static int charChoice = -1;
     public static bool isMusicGuyInCharge;
 
     // Use this for initialization
@@ -23,7 +23,7 @@ public class characterSwitcher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Poll for mouse click
+        //Poll for input
         switchCharacter();
     }
 
