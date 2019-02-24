@@ -25,7 +25,6 @@ public class Groupies : MonoBehaviour
     {
         sp = GetComponent<SpriteRenderer>();
         anim.SetBool("IsWalking", true);
-
         Playground.RandomizeNpcAssets(anim, sp);
         master = GameObject.Find("GameController");
         scale = transform.localScale;
@@ -70,6 +69,8 @@ public class Groupies : MonoBehaviour
                 }
             }
         }
+        if (anim.GetBool("IsWalking") == true) { directionCheck(target.x, transform.position.x); }
+        else { directionCheck(NpcInstantiator.center.x, transform.position.x); }
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
         DetectMovement();
     }
