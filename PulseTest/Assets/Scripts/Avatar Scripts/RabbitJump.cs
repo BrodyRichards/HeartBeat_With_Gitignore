@@ -25,13 +25,7 @@ public class RabbitJump : MonoBehaviour
         jumpIntoArms();
     }
 
-    private void DetectMovement()
-    {
-        currentPosX = transform.position.x;
-        
-
-        lastPosX = transform.position.x;
-    }
+    
 
     public void jumpIntoArms()
     {

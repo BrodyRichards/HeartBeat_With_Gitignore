@@ -7,7 +7,10 @@ public class BallPlayers : MonoBehaviour
 {
     //public Animator anim;
     private Rigidbody2D rb;
+    public Animator anim;
     Vector3 target;
+    private float currentPosX;
+    private float lastPosX;
     private float speed = 5f;
     private Vector3 scale;
     private Vector3 scaleOpposite;
@@ -31,7 +34,7 @@ public class BallPlayers : MonoBehaviour
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         music = RadioControl.currentMood;
         check = music;
-        //anim.SetBool("IsWalking", true);
+        anim.SetBool("IsWalking", true);
     }
 
     // Update is called once per frame
@@ -39,7 +42,6 @@ public class BallPlayers : MonoBehaviour
     {
         bool emoDist = checkDist(NpcInstantiator.musicKidPos, transform.position);
         bool ballDist = checkDist(NpcInstantiator.ballKidPos, transform.position);
-        Debug.Log(NpcInstantiator.rabbitPos);
         directionCheck(target.x, transform.position.x);
         check = music;
         music = RadioControl.currentMood;
@@ -72,9 +74,11 @@ public class BallPlayers : MonoBehaviour
         if (ballDist)
         {
             float dist = Vector3.Distance(NpcInstantiator.ballKidPos, transform.position);
+            
             if (dist > 10.0f)
             {
-                transform.position = Vector3.MoveTowards(transform.position, NpcInstantiator.ballKidPos, speed * Time.deltaTime);
+                target = NpcInstantiator.ballKidPos;
+                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             }
         }
         else 
@@ -87,6 +91,7 @@ public class BallPlayers : MonoBehaviour
                 target = new Vector3(ranX, ranY, -1);
             }
         }
+        DetectMovement();
 
     }
 
@@ -149,5 +154,20 @@ public class BallPlayers : MonoBehaviour
         float dist = Vector3.Distance(pos1, pos2);
         if (dist <= 20.0f) { return true; }
         return false;
+    }
+
+    private void DetectMovement()
+    {
+        currentPosX = transform.position.x;
+        if (currentPosX != lastPosX)
+        {
+            anim.SetBool("IsWalking", true);
+        }
+        else
+        {
+            anim.SetBool("IsWalking", false);
+        }
+
+        lastPosX = transform.position.x;
     }
 }
