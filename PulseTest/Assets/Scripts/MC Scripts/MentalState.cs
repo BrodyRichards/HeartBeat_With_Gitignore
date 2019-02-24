@@ -21,4 +21,10 @@ public class MentalState : MonoBehaviour
     {
         
     }
+
+    public static void sendMsg(string msg, int effect)
+    {
+        mood += effect;
+        Debug.Log("Action taken: " + msg + "/Emotion Level: " + mood);
+    }
 }

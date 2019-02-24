@@ -35,34 +35,26 @@ public class characterSwitcher : MonoBehaviour
     //Function to handle character switching 
     private void switchCharacter()
     {
-        //Looking for 'Left Mouse Button' to be pressed
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            //Vector for Raycast, takes mouse position
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //Decompose to 2D vector
-            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
-            //Raycast hit register for mouse position
-            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-
-            //If a hit is registered, find which object was hit
-            if (hit.collider != null && hit.collider.gameObject.tag == "Avatars")
-            {
-                //Take the name of the object and convert to int for charChoice
-                string name = hit.collider.gameObject.name;
-                Debug.Log(name);
-                int.TryParse(name, out charChoice);
-            }
+            charChoice = 1;
+        }else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            charChoice = 2;
+        }else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            charChoice = 3;
+        }else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Debug.Log("Journal Activated");
+        }
 
             //Activate the object chosen and disable all the others
-            if (charChoice!= -1)
-            {
-                GameObject choice = findGO(charChoice);
-                Enable(choice);
-                disableOthers();
-            }
-            
+        if (charChoice != -1)
+        {
+            GameObject choice = findGO(charChoice);
+            Enable(choice);
+            disableOthers();
         }
     }
 
@@ -126,14 +118,6 @@ public class characterSwitcher : MonoBehaviour
 
         switch (charChoice)
         {
-            //case 0:
-            //    //Finding GameObject 1 which is the rabbit
-            //    findGO(1).GetComponent<RabbitJump>().enabled = false;
-            //    //Finding GameObject 2 which is the ball thrower
-            //    findGO(2).GetComponent<BallThrow>().enabled = false;
-            //    findGO(2).GetComponent<Animator>().SetBool("isThrowing", false);
-            //    isMusicGuyInCharge = false;
-            //    break;
             case 1:
                 findGO(2).GetComponent<BallThrow>().enabled = false;
                 findGO(2).GetComponent<Animator>().SetBool("isThrowing", false);

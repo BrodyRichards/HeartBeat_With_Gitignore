@@ -10,6 +10,7 @@ public class BallThrow : MonoBehaviour
     public float pickupDist;
     public Animator anim;
     public bool thrownBall = false;
+    private bool isMeanBall = false;
     
 
     private bool towardRight;
@@ -26,13 +27,14 @@ public class BallThrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if ((Input.GetMouseButtonDown(1) || Input.GetKeyDown("space")) && !thrownBall)
+        //Space bar for nice action and E for mean action
+        if (Input.GetKeyDown(KeyCode.Space) && !thrownBall)
         {
             ThrowBall();
-        }else if (Input.GetKeyDown("E") && !thrownBall)
+        }else if (Input.GetKeyDown(KeyCode.E) && !thrownBall)
         {
-
+            isMeanBall = true;
+            ThrowBall();
         }
        
         //Check to see that a ball was thrown and that it is resting stationary on the ground
@@ -40,12 +42,28 @@ public class BallThrow : MonoBehaviour
         {
             PickupBall();
         }
-
     }
 
+    //Helper function to throw ball, reset animation, and stop motion while throwing
+    void ThrowBall()
+    {
+        thrownBall = true;
+        anim.SetBool("isThrowing", true);
+        anim.SetBool("isThrowing", true);
+
+        // postpone 0.6 seconds to finish the animation
+        //Stop movement while throwing
+        GameObject.Find("2").GetComponent<Movement>().enabled = false;
+        StartCoroutine(PutOutBall());
+        StartCoroutine(ResetAnimation());
+    }
+
+    //Function to instantiate ball when thrown
     IEnumerator PutOutBall()
     {
         yield return new WaitForSeconds(0.6f);
+        //A temporary gameobject to store ball instantiation info
+        GameObject tempBall;
 
         //Check if ball kid is facing left
         if (transform.localScale.x < 0)
@@ -57,37 +75,26 @@ public class BallThrow : MonoBehaviour
             //Turn it back into a quaternion for instantiate() to use
             Quaternion q = Quaternion.Euler(tempRot);
             //Instantiate ball facing other direction
-            Instantiate(ball, transform.position, q);
+            tempBall = Instantiate(ball, transform.position, q);
         }
         else
         {
-            Instantiate(ball, transform.position, transform.rotation);
+            tempBall = Instantiate(ball, transform.position, transform.rotation);
         }
- 
+
+        //Update ballProjectile script with mean ball info
+        tempBall.GetComponent<BallProjectile>().meanBallThrown = isMeanBall;
+
         anim.SetBool("hasBall", false);
         //Re-enable movement once animation has finished
         GameObject.Find("2").GetComponent<Movement>().enabled = true;
-    }
-
-    void ThrowBall()
-    {
-        thrownBall = true;
-        anim.SetBool("isThrowing", true);
-        anim.SetBool("isThrowing", true);
-
-
-        // postpone 0.6 seconds to finish the animation
-        //Stop movement while throwing
-        GameObject.Find("2").GetComponent<Movement>().enabled = false;
-        StartCoroutine(PutOutBall());
-        StartCoroutine(ResetAnimation());
     }
 
     void PickupBall()
     {
         newBall = GameObject.Find("newBall");
         float distance = Vector3.Distance(transform.position, newBall.transform.position);
-        //Debug.Log(distance);
+
         if(distance < pickupDist)
         {
             thrownBall = false;
