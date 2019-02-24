@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class IconControl : MonoBehaviour
 {
     public static bool journalActivated = false;
-
+    public GameObject journal;
     [SerializeField]
     private Image rabbitIcon;
     [SerializeField]
@@ -20,6 +20,8 @@ public class IconControl : MonoBehaviour
     void Start()
     {
         icons = new List<Image>{ rabbitIcon, ballIcon, musicIcon};
+        journal.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -42,10 +44,12 @@ public class IconControl : MonoBehaviour
         if (journalActivated)
         {
             ChangeAlpha(journalIcon, 1.0f);
+            journal.SetActive(true);
         }
         else
         {
             ChangeAlpha(journalIcon, 0.5f);
+            journal.SetActive(false);
         }
     }
 

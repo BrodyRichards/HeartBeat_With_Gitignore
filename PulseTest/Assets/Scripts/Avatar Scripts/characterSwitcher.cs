@@ -52,13 +52,15 @@ public class characterSwitcher : MonoBehaviour
             if (IconControl.journalActivated)
             {
                 IconControl.journalActivated = false;
+                Debug.Log("Journal Deactivated");
             }
             else
             {
                 IconControl.journalActivated = true;
+                Debug.Log("Journal Activated");
             }
             
-            Debug.Log("Journal Activated");
+           
         }
 
             //Activate the object chosen and disable all the others
