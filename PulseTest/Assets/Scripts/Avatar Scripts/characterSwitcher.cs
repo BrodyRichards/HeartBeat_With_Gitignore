@@ -10,6 +10,7 @@ public class characterSwitcher : MonoBehaviour
     //charChoice represents which named object to move
     public static int charChoice = 3;
     public static bool isMusicGuyInCharge;
+    //public static bool isChar = false;
 
     // Use this for initialization
     void Start()
@@ -41,10 +42,12 @@ public class characterSwitcher : MonoBehaviour
         }else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             charChoice = 2;
-        }else if (Input.GetKeyDown(KeyCode.RightArrow))
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             charChoice = 3;
-        }else if (Input.GetKeyDown(KeyCode.UpArrow))
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             Debug.Log("Journal Activated");
         }

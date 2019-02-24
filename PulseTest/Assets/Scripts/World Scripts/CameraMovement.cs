@@ -9,7 +9,6 @@ public class CameraMovement : MonoBehaviour
     public GameObject avatar1;
     public GameObject avatar2;
     public GameObject avatar3;
-    public GameObject avatar4;
     private GameObject[] avatars;
     private GameObject avatar;
 
@@ -30,12 +29,12 @@ public class CameraMovement : MonoBehaviour
 
     void Start()
     {
-        avatars = new GameObject[4];
-        avatars[0] = avatar1; avatars[1] = avatar2; avatars[2] = avatar3; avatars[3] = avatar4;
+        avatars = new GameObject[3];
+        avatars[0] = avatar1; avatars[1] = avatar2; avatars[2] = avatar3;
         cam = GetComponent<Camera>();
         cam.clearFlags = CameraClearFlags.SolidColor;
         offset = new Vector3(0, 0, -10);
-        transform.position = GameObject.Find("MC").transform.position + offset;                    //camera jumps to character position
+        transform.position = mainChar.transform.position + offset;                    //camera jumps to character position
         time = Time.fixedUnscaledTime;
         timer = time;
     }
@@ -43,43 +42,47 @@ public class CameraMovement : MonoBehaviour
     void LateUpdate()
     {
         time = Time.fixedUnscaledTime;
-        avatar = avatars[characterSwitcher.charChoice];
-        mcCheck = lookMC;
-        lookMC = EmoControl.hasEmo ? 1 : 0;
-        if (Vector3.Distance(transform.position, avatar.transform.position) > 5f && lookMC == 0) //when character switches
+        if (characterSwitcher.charChoice != -1)
         {
-            target = avatar.transform.position + offset;
-            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        }
-        else
-        {
-            if (mcCheck != lookMC) 
+            avatar = avatars[characterSwitcher.charChoice - 1];
+            mcCheck = lookMC;
+            lookMC = EmoControl.hasEmo ? 1 : 0;
+            if ((Vector3.Distance(transform.position, avatar.transform.position) > 5f && lookMC == 0)) //when character switches
             {
-                timer = time + 3.0f;
-                reachMC = false;
-            }
-            if (timer >= time)
-            {
-                target = mainChar.transform.position + offset;
+                target = avatar.transform.position + offset;
+                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             }
             else
             {
-                if (transform.position == target)
+                if (mcCheck != lookMC)
                 {
-                    reachMC = true;
+                    timer = time + 3.0f;
+                    reachMC = false;
                 }
-                if (reachMC == false)
+                if (timer >= time)
                 {
-                    timer += 3.0f;
+                    target = mainChar.transform.position + offset;
                 }
                 else
                 {
-                    target = avatar.transform.position + offset;
+                    if (transform.position == target)
+                    {
+                        reachMC = true;
+                    }
+                    if (reachMC == false)
+                    {
+                        timer += 3.0f;
+                    }
+                    else
+                    {
+                        target = avatar.transform.position + offset;
+                    }
                 }
-            }
 
-            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            }
         }
+        
     }
     
 }

@@ -16,14 +16,16 @@ public class Groupies : MonoBehaviour
     GameObject Emo;
     private int music;
     private int check;
-
+    private SpriteRenderer sp;
     private bool holdBunny = false;
 
     public Vector3 target;
     // Start is called before the first frame update
     void Start()
     {
+        sp = GetComponent<SpriteRenderer>();
         anim.SetBool("IsWalking", true);
+        Playground.RandomizeNpcAssets(anim, sp);
         master = GameObject.Find("GameController");
         scale = transform.localScale;
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
@@ -67,6 +69,8 @@ public class Groupies : MonoBehaviour
                 }
             }
         }
+        if (anim.GetBool("IsWalking") == true) { directionCheck(target.x, transform.position.x); }
+        else { directionCheck(NpcInstantiator.center.x, transform.position.x); }
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
         DetectMovement();
     }
@@ -121,7 +125,7 @@ public class Groupies : MonoBehaviour
         }
         Vector3 offset = new Vector3(0, 4.5f, 0);
         GameObject balloon = Instantiate(Emo, transform.localPosition + offset, transform.rotation);
-        balloon.GetComponent<SpriteRenderer>().sortingLayerName = "Main";
+        balloon.GetComponent<SpriteRenderer>().sortingLayerName = "Front Props";
         balloon.transform.parent = transform;
     }
     
@@ -147,6 +151,6 @@ public class Groupies : MonoBehaviour
         lastPosX = transform.position.x;
     }
 
-
+    
 
 }

@@ -127,7 +127,7 @@ public class Runners : MonoBehaviour
         }
         Vector3 offset = new Vector3(0, 4.5f, 0);
         GameObject balloon = Instantiate(Emo, transform.localPosition + offset, transform.rotation);
-        balloon.GetComponent<SpriteRenderer>().sortingLayerName = "Main";
+        balloon.GetComponent<SpriteRenderer>().sortingLayerName = "Front Props";
         balloon.transform.parent = transform;
     }
 

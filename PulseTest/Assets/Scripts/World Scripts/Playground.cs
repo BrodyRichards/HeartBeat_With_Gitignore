@@ -11,6 +11,8 @@ public class Playground: MonoBehaviour
     public static float LowerY = -25f;
     public static float UpperY = 10f;
     public static float MusicAoe = 20f;
+
+    public static string[] NpcTypes = { "NPC", "Frank", "Bobby", "Ryan", "Suzy" };
     // Start is called before the first frame update
     void Start()
     {
@@ -33,5 +35,15 @@ public class Playground: MonoBehaviour
         //Debug.Log(dist);
         if (dist <= aoe) { return true; }
         return false;
+    }
+
+    public static void RandomizeNpcAssets(Animator ani, SpriteRenderer sr)
+    {
+        string selected = NpcTypes[Random.Range(0, 4)];
+        ani.runtimeAnimatorController = Resources.Load(selected) as RuntimeAnimatorController;
+        if (selected.Equals("NPC"))
+        {
+            sr.flipX = true;
+        }
     }
 }

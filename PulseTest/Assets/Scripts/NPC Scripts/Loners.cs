@@ -29,6 +29,8 @@ public class Loners : MonoBehaviour
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         music = RadioControl.currentMood;
         check = music;
+        anim = transform.gameObject.GetComponent<Animator>();
+        anim.runtimeAnimatorController = Resources.Load("NPC") as RuntimeAnimatorController;
         anim.SetBool("IsWalking", true);
     }
 
@@ -133,7 +135,7 @@ public class Loners : MonoBehaviour
         }
         Vector3 offset = new Vector3(0, 4.5f, 0);
         GameObject balloon = Instantiate(Emo, transform.localPosition + offset, transform.rotation);
-        balloon.GetComponent<SpriteRenderer>().sortingLayerName = "Main";
+        balloon.GetComponent<SpriteRenderer>().sortingLayerName = "Front Props";
         balloon.transform.parent = transform;
     }
 

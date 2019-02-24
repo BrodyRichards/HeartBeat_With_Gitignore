@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class NpcInstantiator : MonoBehaviour
 {
-    private int npcCount = 10;
+    private int npcCount = 1;
     
     public GameObject[] NPCs; //contains the 3 types of NPCs
     public GameObject[] groupies;
     public GameObject groupiePrefab;
-    private int groupCount = 5;
+    private int groupCount = 3;
     private int num;
 
     public GameObject sadFace; //for reactions to avatars
@@ -24,7 +24,7 @@ public class NpcInstantiator : MonoBehaviour
     public static Vector3 musicKidPos;
     public Vector3 target;
 
-    private Vector3 center;
+    public static Vector3 center;
     public Vector3[] groupiePos;
 
     // Start is called before the first frame update
