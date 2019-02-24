@@ -16,7 +16,7 @@ public class Runners : MonoBehaviour
     GameObject Emo;
     private int music;
     private int check;
-
+    private SpriteRenderer sr;
     private bool holdBunny = false;
 
     // Start is called before the first frame update
@@ -31,6 +31,8 @@ public class Runners : MonoBehaviour
         music = RadioControl.currentMood;
         check = music;
         anim.SetBool("IsWalking", true);
+        sr = GetComponent<SpriteRenderer>();
+        Playground.RandomizeNpcAssets(anim, sr);
     }
 
     // Update is called once per frame

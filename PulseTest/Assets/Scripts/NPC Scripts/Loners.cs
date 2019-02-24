@@ -16,6 +16,7 @@ public class Loners : MonoBehaviour
     GameObject Emo;
     private int music;
     private int check;
+    SpriteRenderer sr;
 
     private bool holdBunny = false;
     // Start is called before the first frame update
@@ -29,8 +30,8 @@ public class Loners : MonoBehaviour
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         music = RadioControl.currentMood;
         check = music;
-        anim = transform.gameObject.GetComponent<Animator>();
-        anim.runtimeAnimatorController = Resources.Load("NPC") as RuntimeAnimatorController;
+        sr = GetComponent<SpriteRenderer>();
+        Playground.RandomizeNpcAssets(anim, sr);
         anim.SetBool("IsWalking", true);
     }
 
