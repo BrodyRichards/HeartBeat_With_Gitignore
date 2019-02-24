@@ -5,6 +5,8 @@ using UnityEngine;
 public class MentalState : MonoBehaviour
 {
     public static int mood = 0;
+    private static Dictionary<string, int> moodLog = new Dictionary<string, int>();
+
     // 0 = neutral 
     // 1 = happy
     // 2 = sad 
@@ -22,9 +24,12 @@ public class MentalState : MonoBehaviour
         
     }
 
-    public static void sendMsg(string msg, int effect)
+    public static void sendMsg(string msg)
     {
-        mood += effect;
-        Debug.Log("Action taken: " + msg + "/Emotion Level: " + mood);
+        int currCount;
+
+        moodLog.TryGetValue(msg, out currCount);
+        moodLog[msg] = currCount + 1;
+        Debug.Log("Action taken: " + msg + "/Emotion Level: " + moodLog[msg]);
     }
 }
