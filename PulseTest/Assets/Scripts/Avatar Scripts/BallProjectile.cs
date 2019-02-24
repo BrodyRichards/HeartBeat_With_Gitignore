@@ -9,6 +9,7 @@ public class BallProjectile : MonoBehaviour
     public LayerMask hittableObjects;
     //This is like its hitbox
     public float distance;
+    public bool meanBallThrown = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +20,7 @@ public class BallProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, distance, hittableObjects);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, distance, hittableObjects);
         if (hit.collider != null && hit.collider.gameObject.name != "2")
         {
             if (hit.collider.CompareTag("Person"))
@@ -49,7 +50,7 @@ public class BallProjectile : MonoBehaviour
             stationaryBall();
         }
 
-        transform.Translate(Vector2.up * speed * Time.deltaTime);
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
     }
 
     private void destroyBall()
