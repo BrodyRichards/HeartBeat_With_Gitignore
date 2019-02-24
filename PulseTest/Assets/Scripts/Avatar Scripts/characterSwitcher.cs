@@ -46,6 +46,15 @@ public class characterSwitcher : MonoBehaviour
             charChoice = 3;
         }else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
+            if (IconControl.journalActivated)
+            {
+                IconControl.journalActivated = false;
+            }
+            else
+            {
+                IconControl.journalActivated = true;
+            }
+            
             Debug.Log("Journal Activated");
         }
 
