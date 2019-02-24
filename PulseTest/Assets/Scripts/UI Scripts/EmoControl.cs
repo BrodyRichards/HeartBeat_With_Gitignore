@@ -5,6 +5,7 @@ using UnityEngine;
 public class EmoControl : MonoBehaviour
 {
     //public GameObject musicKid;
+    public static bool CRunning = false;
 
     public Sprite happy;
     public Sprite sad;
@@ -92,18 +93,33 @@ public class EmoControl : MonoBehaviour
                 hasEmo = true;
                 sr.sprite = happy;
                 MentalState.mood = 1;
+                if (!CRunning)
+                {
+                    CRunning = true;
+                    StartCoroutine(IncrementMoodLog("Happy Song", 1));
+                }
                 break;
             case 2:
                 sr.enabled = true;
                 hasEmo = true;
                 sr.sprite = sad;
                 MentalState.mood = 2;
+                if (!CRunning)
+                {
+                    CRunning = true;
+                    StartCoroutine(IncrementMoodLog("Sad Song", 2));
+                }
                 break;
             case 3:
                 sr.enabled = true;
                 hasEmo = true;
                 sr.sprite = startle;
                 MentalState.mood = 3;
+                if (!CRunning)
+                {
+                    CRunning = true;
+                    StartCoroutine(IncrementMoodLog("Startled Song", 3));
+                }
                 break;
             default:
                 sr.enabled = false;
@@ -112,6 +128,16 @@ public class EmoControl : MonoBehaviour
                 MentalState.mood = 0;
                 break;
         }
+    }
+
+    IEnumerator IncrementMoodLog(string msg, int mood)
+    {
+        while(RadioControl.currentMood == mood)
+        {
+            yield return new WaitForSeconds(3f);
+            MentalState.sendMsg(msg);
+        }
+        yield break;
     }
 
     //bool checkDist(Vector3 pos1, Vector2 pos2)

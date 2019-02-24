@@ -28,11 +28,10 @@ public class BallProjectile : MonoBehaviour
                 if (hit.collider.CompareTag("MC") && meanBallThrown)
                 {
                     //A mean ball was thrown
-                    //EmoControl.mcBallHit += 1;
                     Debug.Log("You threw a mean ball!");
                     //Update Mental State
                     MentalState.sendMsg("Hit by ball");
-                    //MC gets hit by ball and doens't play catch
+                    //MC gets hit by ball and doesn't play catch
                     stationaryBall();
                     //Reset meanBall bool
                     meanBallThrown = false;
