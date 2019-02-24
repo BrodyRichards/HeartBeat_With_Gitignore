@@ -6,13 +6,11 @@ using UnityEngine;
 public class RabbitChasers : MonoBehaviour
 {
     //public Animator anim;
-    public Animator anim;
     Vector3 target;
     private float speed = 5f;
     private Vector3 scale;
     private Vector3 scaleOpposite;
-    private float currentPosX;
-    private float lastPosX;
+
     private GameObject master;
     GameObject Emo;
     private int music;
@@ -31,7 +29,7 @@ public class RabbitChasers : MonoBehaviour
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         music = RadioControl.currentMood;
         check = music;
-        anim.SetBool("IsWalking", true);
+        //anim.SetBool("IsWalking", true);
     }
 
     // Update is called once per frame
@@ -39,6 +37,7 @@ public class RabbitChasers : MonoBehaviour
     {
         bool emoDist = checkDist(NpcInstantiator.musicKidPos, transform.position);
         bool rabbitDist = checkDist(NpcInstantiator.rabbitPos, transform.position);
+        Debug.Log(NpcInstantiator.rabbitPos);
         directionCheck(target.x, transform.position.x);
         check = music;
         music = RadioControl.currentMood;
@@ -70,12 +69,7 @@ public class RabbitChasers : MonoBehaviour
         }
         if (rabbitDist)
         {
-            float dist = Vector3.Distance(NpcInstantiator.rabbitPos, transform.position);
-            if (dist > 5.0f)
-            {
-                target = NpcInstantiator.rabbitPos;
-                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-            }
+            transform.position = Vector3.MoveTowards(transform.position, NpcInstantiator.rabbitPos, speed * Time.deltaTime);
         }
         else
         {
@@ -87,8 +81,6 @@ public class RabbitChasers : MonoBehaviour
                 target = new Vector3(ranX, ranY, -1);
             }
         }
-
-        DetectMovement();
         
     }
 
@@ -151,20 +143,5 @@ public class RabbitChasers : MonoBehaviour
         float dist = Vector3.Distance(pos1, pos2);
         if (dist <= 20.0f) { return true; }
         return false;
-    }
-
-    private void DetectMovement()
-    {
-        currentPosX = transform.position.x;
-        if (currentPosX != lastPosX)
-        {
-            anim.SetBool("IsWalking", true);
-        }
-        else
-        {
-            anim.SetBool("IsWalking", false);
-        }
-
-        lastPosX = transform.position.x;
     }
 }

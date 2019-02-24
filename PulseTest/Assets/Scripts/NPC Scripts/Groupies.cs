@@ -10,8 +10,7 @@ public class Groupies : MonoBehaviour
     private float speed = 5f;
     private Vector3 scale;
     private Vector3 scaleOpposite;
-    private float currentPosX;
-    private float lastPosX;
+
     private GameObject master;
     GameObject Emo;
     private int music;
@@ -68,7 +67,6 @@ public class Groupies : MonoBehaviour
             }
         }
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        DetectMovement();
     }
 
     void directionCheck(float target, float pos) 
@@ -131,22 +129,7 @@ public class Groupies : MonoBehaviour
         if (dist <= 20.0f) { return true; }
         return false;
     }
-
-    private void DetectMovement()
-    {
-        currentPosX = transform.position.x;
-        if (currentPosX != lastPosX)
-        {
-            anim.SetBool("IsWalking", true);
-        }
-        else
-        {
-            anim.SetBool("IsWalking", false);
-        }
-
-        lastPosX = transform.position.x;
-    }
-
+    
 
 
 }

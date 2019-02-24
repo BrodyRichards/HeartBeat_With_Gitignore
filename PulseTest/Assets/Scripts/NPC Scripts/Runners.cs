@@ -10,8 +10,7 @@ public class Runners : MonoBehaviour
     private float speed = 5f;
     private Vector3 scale;
     private Vector3 scaleOpposite;
-    private float currentPosX;
-    private float lastPosX;
+
     private GameObject master;
     GameObject Emo;
     private int music;
@@ -73,8 +72,6 @@ public class Runners : MonoBehaviour
             int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
             target = new Vector3(ranX, ranY, -1);    
         }
-
-        DetectMovement();
     }
 
     void directionCheck(float target, float pos) //WHY DOES THIS GOTTA BE SO DAMN COMPLICATED MAN 
@@ -136,20 +133,5 @@ public class Runners : MonoBehaviour
         float dist = Vector3.Distance(pos1, pos2);
         if (dist <= 20.0f) { return true; }
         return false;
-    }
-
-    private void DetectMovement()
-    {
-        currentPosX = transform.position.x;
-        if (currentPosX != lastPosX)
-        {
-            anim.SetBool("IsWalking", true);
-        }
-        else
-        {
-            anim.SetBool("IsWalking", false);
-        }
-
-        lastPosX = transform.position.x;
     }
 }

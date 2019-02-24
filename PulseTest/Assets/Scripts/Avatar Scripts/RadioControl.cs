@@ -10,9 +10,9 @@ public class RadioControl : MonoBehaviour
     public ParticleSystem ps;
     private bool isBG;
     private SpriteRenderer sr;
-    private enum Mood { idle, happy, sad, startled};
+    private enum Mood { idle, sad, intense, happy};
     [SerializeField] private AudioClip sadSong;
-    [SerializeField] private AudioClip startleSong;
+    [SerializeField] private AudioClip intenseSong;
     [SerializeField] private AudioClip happySong;
 
     private AudioSource audioSource;
@@ -20,7 +20,7 @@ public class RadioControl : MonoBehaviour
 
     public Sprite happy;
     public Sprite sad;
-    public Sprite startled;
+    public Sprite intense;
     public Sprite idle;
 
     Sprite[] sprites;
@@ -28,8 +28,8 @@ public class RadioControl : MonoBehaviour
     Color[] particleColors;
     private void Start()
     {
-        sprites = new Sprite[] { idle, happy, sad, startled };
-        audioClips = new AudioClip[] { happySong, sadSong, startleSong };
+        sprites = new Sprite[] { idle, sad, intense, happy };
+        audioClips = new AudioClip[] { sadSong, intenseSong, happySong };
         particleColors = new Color[] { Color.cyan, Color.magenta, Color.white };
         currentMood = (int)Mood.idle;
 

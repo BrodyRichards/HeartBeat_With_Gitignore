@@ -53,6 +53,7 @@ public class CameraMovement : MonoBehaviour
         }
         else
         {
+            
             if (mcCheck != lookMC) 
             {
                 timer = time + 3.0f;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class McMovement : MonoBehaviour
 {
     public Animator anim;
-    //public static int mcCurrentMood = 0;
+    public static int mcCurrentMood = 0;
 
     private List<Vector2> mcWaypoints;
     private int checkArrivals;
@@ -24,7 +24,7 @@ public class McMovement : MonoBehaviour
     {
         // some initializations
         walkedIn = false;
-        isFlipped = false;
+        isFlipped = true;
         anim.SetBool("isWalking", false);
         currentGoal = 0;
         // put into array with some random waypoints, highly customizable 
@@ -46,7 +46,8 @@ public class McMovement : MonoBehaviour
             if (Playground.CheckDist(NpcInstantiator.musicKidPos, transform.position, Playground.MusicAoe))
             {
                 walkedIn = true;
-                anim.SetInteger("mood", MentalState.mood);
+                anim.SetBool("isWalking", true);
+                anim.SetInteger("mood", mcCurrentMood);
                
             }
         }
@@ -57,16 +58,19 @@ public class McMovement : MonoBehaviour
             
             if (!EmoControl.emoChanged)
             {
-                anim.SetBool("isWalking", true);
                 FlipAssetDirection();
                 AnimationMoodCheck();
                 GoToWaypoints(step);
             }
-            else
-            {
-                anim.SetBool("isWalking", false);
-            }
         }
+        
+
+
+        
+
+        
+        
+
     }
 
 
@@ -124,41 +128,35 @@ public class McMovement : MonoBehaviour
 
     private void AnimationMoodCheck()
     {
-        anim.SetInteger("mood", MentalState.mood);
-        if (MentalState.mood == 0) // no mood
+        anim.SetInteger("mood", mcCurrentMood);
+        if (mcCurrentMood == 0) // no mood
         {
-            //var scaling = !isFlipped ? new Vector2(1.0f, 1.0f) : new Vector2(-1.0f, 1.0f);
-            //transform.localScale = scaling;
+            var scaling = !isFlipped ? new Vector2(1.0f, 1.0f) : new Vector2(-1.0f, 1.0f);
+            transform.localScale = scaling;
             speed = 4;
 
         }
-        else if (MentalState.mood == 1) // happy
+        else if (mcCurrentMood == 1) // happy
         {
 
             speed = 6;
         }
-        else if (MentalState.mood == 2) // sad 
+        else if (mcCurrentMood == 2) // sad 
         {
-            var scaling = isFlipped ? new Vector2(-1.1f, 1.1f) : new Vector2(1.1f, 1.1f);
+            var scaling = !isFlipped ? new Vector2(1.1f, 1.1f) : new Vector2(-1.1f, 1.1f);
             transform.localScale = scaling;
             
             speed = 2;
         }
-        else if (MentalState.mood == 3) // startled
-        {
-            speed = 7;
-        }
-        else if (MentalState.mood == 4) // angry 
-        {
-            // do nothing here
-        }
-        else
-        {
-            Debug.Log("mood overfloww");
-        }
     }
 
-   
+    bool checkDist(Vector3 pos1, Vector2 pos2)
+    {
+        float dist = Vector3.Distance(pos1, pos2);
+        
+        if (dist <= 30.0f) { return true; }
+        return false;
+    }
 }
     
 
