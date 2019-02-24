@@ -1400,10 +1400,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 1453256351}
-  avatar1: {fileID: 0}
-  avatar2: {fileID: 616797539}
-  avatar3: {fileID: 118138679}
-  avatar4: {fileID: 1332290333}
+  avatar1: {fileID: 616797539}
+  avatar2: {fileID: 118138679}
+  avatar3: {fileID: 1332290333}
   mainChar: {fileID: 1333830097}
 --- !u!20 &519420031
 Camera:

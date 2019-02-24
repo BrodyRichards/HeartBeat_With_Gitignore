@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class NpcInstantiator : MonoBehaviour
 {
-    private int npcCount = 1;
+    //private int npcCount = 1;
+
+    private int runnerCount = 3;    //0
+    private int lonerCount = 3;     //1
+    private int rcCount = 3;        //2
+    private int bpCount = 3;        //3
     
     public GameObject[] NPCs; //contains the 3 types of NPCs
     public GameObject[] groupies;
     public GameObject groupiePrefab;
-    private int groupCount = 5;
+    private int groupCount = 3;
     private int num;
 
     public GameObject sadFace; //for reactions to avatars
@@ -24,7 +29,7 @@ public class NpcInstantiator : MonoBehaviour
     public static Vector3 musicKidPos;
     public Vector3 target;
 
-    private Vector3 center;
+    public static Vector3 center;
     public Vector3[] groupiePos;
 
     // Start is called before the first frame update
@@ -35,9 +40,14 @@ public class NpcInstantiator : MonoBehaviour
         center = new Vector3(ranX, ranY, -1);
         center = checkDist(center);
         groupiePos = new Vector3[groupCount];
+        createNPCs(0, runnerCount, ranX, ranY);
+        createNPCs(1, lonerCount, ranX, ranY);
+        createNPCs(2, rcCount, ranX, ranY);
+        createNPCs(3, bpCount, ranX, ranY);
+        /*
         for (int i = 0; i < npcCount; i++) //create and instantiate the npcs (we can make it more complicated later)
         {
-            int choice = Random.Range(0, 4);
+            //int choice = Random.Range(0, 4);
             ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
             ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
             Vector3 pos = new Vector3(ranX, ranY, -1);
@@ -45,6 +55,8 @@ public class NpcInstantiator : MonoBehaviour
             Instantiate(NPCs[choice], pos, rot);
             NPCs[choice].GetComponent<SpriteRenderer>().sortingLayerName = "Main";
         }
+        */
+
         groupies = new GameObject[groupCount];
         for (int i = 0; i < groupCount; i++)
         {
@@ -83,6 +95,16 @@ public class NpcInstantiator : MonoBehaviour
             pos = checkDist(pos2);
         }
         return pos;
+    }
+
+    private void createNPCs(int choice, int count, int ranX, int ranY)
+    {
+        ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
+        ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
+        Vector3 pos = new Vector3(ranX, ranY, -1);
+        Quaternion rot = new Quaternion(0, 0, 0, 0);
+        Instantiate(NPCs[choice], pos, rot);
+        NPCs[choice].GetComponent<SpriteRenderer>().sortingLayerName = "Main";
     }
 
     private void Update()

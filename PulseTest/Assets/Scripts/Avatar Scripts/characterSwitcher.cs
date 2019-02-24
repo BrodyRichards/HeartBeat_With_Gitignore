@@ -8,8 +8,9 @@ public class characterSwitcher : MonoBehaviour
     //This enables you to see and set the field from inspector but 
     //it is hidden from other scripts and objects. 
     //charChoice represents which named object to move
-    [HideInInspector]public static int charChoice = 3;
+    public static int charChoice = -1;
     public static bool isMusicGuyInCharge;
+    //public static bool isChar = false;
 
     // Use this for initialization
     void Start()
@@ -23,7 +24,7 @@ public class characterSwitcher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Poll for mouse click
+        //Poll for input
         switchCharacter();
     }
 
@@ -41,10 +42,12 @@ public class characterSwitcher : MonoBehaviour
         }else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             charChoice = 2;
-        }else if (Input.GetKeyDown(KeyCode.RightArrow))
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             charChoice = 3;
-        }else if (Input.GetKeyDown(KeyCode.UpArrow))
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             if (IconControl.journalActivated)
             {
