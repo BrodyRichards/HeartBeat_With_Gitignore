@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NpcInstantiator : MonoBehaviour
 {
-    private int npcCount = 10;
+    private int npcCount = 1;
     
     public GameObject[] NPCs; //contains the 3 types of NPCs
     public GameObject[] groupies;
