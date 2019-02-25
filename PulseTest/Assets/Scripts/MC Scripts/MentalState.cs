@@ -5,7 +5,7 @@ using UnityEngine;
 public class MentalState : MonoBehaviour
 {
     public static int mood = 0;
-    private static Dictionary<string, int> moodLog = new Dictionary<string, int>();
+    public static Dictionary<string, int> moodLog;
     // Played catch, Hit by ball, Held Rabbit, Bit by rabbit, Happy Song, Sad Song, Startled Song
 
     // 0 = neutral 
@@ -22,14 +22,24 @@ public class MentalState : MonoBehaviour
             { "Held Rabbit", 0 },
             { "Bit by rabbit", 0 },
             { "Happy Song", 0 },
+            { "Sad Song", 0 },
             { "Startled Song", 0 }
 
         };
+
+        //var dic = new Dictionary<string, int>
+        //{
+        //    {"dog", 100 }
+        //};
+
+        //Debug.Log(dic["dog"]);
+        Debug.Log(moodLog["Played catch"]);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(moodLog["Played catch"]);
         
     }
 
