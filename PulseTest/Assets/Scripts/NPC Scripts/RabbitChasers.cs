@@ -55,6 +55,7 @@ public class RabbitChasers : MonoBehaviour
                 }
             }
         }
+        
         if (RabbitJump.beingCarried)
         {
             int count = transform.childCount;
@@ -68,11 +69,16 @@ public class RabbitChasers : MonoBehaviour
                 }
             }
         }
+        
         if (rabbitDist)
         {
+            if (RabbitJump.beingCarried == false)
+            {
+                Emo = master.GetComponent<NpcInstantiator>().surpriseFace;
+                addEmo();
+            }
             float dist = Vector3.Distance(NpcInstantiator.rabbitPos, transform.position);
-            Emo = master.GetComponent<NpcInstantiator>().surpriseFace;
-            addEmo();
+            
             if (dist > 5.0f)
             {
                 target = NpcInstantiator.rabbitPos;
