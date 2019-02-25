@@ -32,6 +32,7 @@ public class RabbitJump : MonoBehaviour
         {
             if (beingCarried)
             {
+                CancelInvoke("RabbitHappiness");
                 transform.parent = null;
                 GetComponent<Movement>().enabled = true;
                 beingCarried = false;
@@ -53,7 +54,7 @@ public class RabbitJump : MonoBehaviour
                 if (hit.collider != null && (hit.collider.gameObject.tag == "Person" || hit.collider.gameObject.tag == "MC"))
                 {
                     //Check distance from object
-                    Debug.Log("I want to jump into " + hit.collider.gameObject.name + "'s arms");
+                    //Debug.Log("I want to jump into " + hit.collider.gameObject.name + "'s arms");
                     float distance = Vector2.Distance(transform.position, hit.collider.gameObject.transform.position);
                     
                     beingCarried = true;
@@ -63,12 +64,12 @@ public class RabbitJump : MonoBehaviour
                     if (hit.collider.gameObject.name == "MC")
                     {
                         EmoControl.rabbitHug = true;
-                        MentalState.sendMsg("Held Rabbit");
+                        InvokeRepeating("RabbitHappiness", 0f, 3f);
                     }
                         
                     GetComponent<Movement>().enabled = false;
                     GetComponent<SortRender>().offset = 0;
-                    Debug.Log("I'm being carried");
+                    //Debug.Log("I'm being carried");
                 }
             } 
         }else if (Input.GetKeyDown(KeyCode.E))
@@ -86,5 +87,10 @@ public class RabbitJump : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void RabbitHappiness()
+    {
+        MentalState.sendMsg("Held Rabbit");
     }
 }

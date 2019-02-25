@@ -63,6 +63,7 @@ public class EmoControl : MonoBehaviour
         }
         else
         {
+            CRunning = false;
             sr.enabled = false;
             MentalState.mood = 0;
         }
@@ -93,6 +94,7 @@ public class EmoControl : MonoBehaviour
                 hasEmo = true;
                 sr.sprite = happy;
                 MentalState.mood = 1;
+                //CRunning is false when returns to the switch
                 if (!CRunning)
                 {
                     CRunning = true;
@@ -132,7 +134,8 @@ public class EmoControl : MonoBehaviour
 
     IEnumerator IncrementMoodLog(string msg, int mood)
     {
-        while(RadioControl.currentMood == mood)
+        Debug.Log("emoDist" + emoDist);
+        while(RadioControl.currentMood == mood && emoDist)
         {
             yield return new WaitForSeconds(3f);
             MentalState.sendMsg(msg);

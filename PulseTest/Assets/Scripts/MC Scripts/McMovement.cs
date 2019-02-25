@@ -157,7 +157,7 @@ public class McMovement : MonoBehaviour
         }
         else
         {
-            Debug.Log("mood overfloww");
+            //Debug.Log("mood overfloww");
         }
     }
 
