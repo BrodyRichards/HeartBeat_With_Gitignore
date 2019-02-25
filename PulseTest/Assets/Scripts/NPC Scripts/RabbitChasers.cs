@@ -71,6 +71,8 @@ public class RabbitChasers : MonoBehaviour
         if (rabbitDist)
         {
             float dist = Vector3.Distance(NpcInstantiator.rabbitPos, transform.position);
+            Emo = master.GetComponent<NpcInstantiator>().surpriseFace;
+            addEmo();
             if (dist > 5.0f)
             {
                 target = NpcInstantiator.rabbitPos;

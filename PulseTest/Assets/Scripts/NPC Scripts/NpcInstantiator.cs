@@ -20,6 +20,7 @@ public class NpcInstantiator : MonoBehaviour
     public GameObject sadFace; //for reactions to avatars
     public GameObject madFace;
     public GameObject happyFace;
+    public GameObject surpriseFace;
 
     public GameObject ballKid;  //to get the position of these guys
     public static Vector3 ballKidPos;
@@ -44,18 +45,6 @@ public class NpcInstantiator : MonoBehaviour
         createNPCs(1, lonerCount, ranX, ranY);
         createNPCs(2, rcCount, ranX, ranY);
         createNPCs(3, bpCount, ranX, ranY);
-        /*
-        for (int i = 0; i < npcCount; i++) //create and instantiate the npcs (we can make it more complicated later)
-        {
-            //int choice = Random.Range(0, 4);
-            ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
-            ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
-            Vector3 pos = new Vector3(ranX, ranY, -1);
-            Quaternion rot = new Quaternion(0, 0, 0, 0);
-            Instantiate(NPCs[choice], pos, rot);
-            NPCs[choice].GetComponent<SpriteRenderer>().sortingLayerName = "Main";
-        }
-        */
 
         groupies = new GameObject[groupCount];
         for (int i = 0; i < groupCount; i++)

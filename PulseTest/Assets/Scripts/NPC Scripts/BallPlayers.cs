@@ -85,7 +85,11 @@ public class BallPlayers : MonoBehaviour
         if (ballDist)
         {
             float dist = Vector3.Distance(NpcInstantiator.ballKidPos, transform.position);
-            
+            if (timer <= time)
+            {
+                Emo = master.GetComponent<NpcInstantiator>().surpriseFace;
+                addEmo();
+            }
             if (dist > 10.0f)
             {
                 target = NpcInstantiator.ballKidPos;
@@ -119,6 +123,14 @@ public class BallPlayers : MonoBehaviour
     {
         if (nameChange)
         {
+            int count = transform.childCount;
+            for (int i = 0; i < count; i++)
+            {
+                if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
+                {
+                    GameObject.Destroy(transform.GetChild(i).gameObject);
+                }
+            }
             timer = time + 2.0f;
             Emo = master.GetComponent<NpcInstantiator>().happyFace;
             addEmo();
