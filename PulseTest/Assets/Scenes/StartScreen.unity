@@ -700,8 +700,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "~INSTRUCTIONS~\n\nWASD to move\r\nLeft Click to switch characters\r\nRight
-    Click/SPACE to interact \r\nESC to invoke pause menu "
+  m_Text: "~INSTRUCTIONS~\n\nWASD to move\r\nArrow Keys to switch characters/pull
+    up journal\r\nE or SPACE to interact \r\nESC to invoke pause menu "
 --- !u!222 &907446756
 CanvasRenderer:
   m_ObjectHideFlags: 0

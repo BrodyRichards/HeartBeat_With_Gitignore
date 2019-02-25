@@ -22,6 +22,10 @@ public class BallPlayers : MonoBehaviour
 
     private bool holdBunny = false;
 
+    private bool nameChange = false;
+    float time;
+    float timer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,11 +39,15 @@ public class BallPlayers : MonoBehaviour
         music = RadioControl.currentMood;
         check = music;
         anim.SetBool("IsWalking", true);
+
+        time = Time.fixedUnscaledTime;
+        timer = time;
     }
 
     // Update is called once per frame
     void Update()
     {
+        time = Time.fixedUnscaledTime;
         bool emoDist = checkDist(NpcInstantiator.musicKidPos, transform.position);
         bool ballDist = checkDist(NpcInstantiator.ballKidPos, transform.position);
         directionCheck(target.x, transform.position.x);
@@ -48,13 +56,16 @@ public class BallPlayers : MonoBehaviour
         if (music != check || (emoDist && RadioControl.isMusic)) { checkMusic(); }
         if (characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false || emoDist == false)
         {
-            holdBunny = false;
-            int count = transform.childCount;
-            for (int i = 0; i < count; i++)
+            if (nameChange == false)
             {
-                if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
+                holdBunny = false;
+                int count = transform.childCount;
+                for (int i = 0; i < count; i++)
                 {
-                    GameObject.Destroy(transform.GetChild(i).gameObject);
+                    if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
+                    {
+                        GameObject.Destroy(transform.GetChild(i).gameObject);
+                    }
                 }
             }
         }
@@ -92,7 +103,26 @@ public class BallPlayers : MonoBehaviour
             }
         }
         DetectMovement();
+        if (BallProjectile.NpcName == this.gameObject.name)
+        {
+            BallProjectile.NpcName = "";
+            nameChange = true;
+            playBall();    
+        }
+        if (timer <= time)
+        {
+            nameChange = false;
+        }
+    }
 
+    public void playBall()
+    {
+        if (nameChange)
+        {
+            timer = time + 2.0f;
+            Emo = master.GetComponent<NpcInstantiator>().happyFace;
+            addEmo();
+        }
     }
 
     void directionCheck(float target, float pos) //WHY DOES THIS GOTTA BE SO DAMN COMPLICATED MAN 
