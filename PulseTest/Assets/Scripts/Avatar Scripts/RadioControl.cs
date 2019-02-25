@@ -73,11 +73,12 @@ public class RadioControl : MonoBehaviour
 
     private void ChangeMusic()
     {
-        if (Input.GetKeyDown(KeyCode.Space)|| Input.GetMouseButtonDown(1))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            
 
             currentMood = currentMood % 3 + 1;
+
+            EmoControl.CRunning = false;
 
             audioSource.clip = audioClips[(currentMood - 1) % 3];
 
@@ -91,6 +92,7 @@ public class RadioControl : MonoBehaviour
 
         }
     }
+
     private void ResetThisGuy()
     {
         currentMood = (int)Mood.idle;
