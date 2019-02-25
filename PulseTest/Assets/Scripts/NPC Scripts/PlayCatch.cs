@@ -29,7 +29,6 @@ public class PlayCatch : MonoBehaviour
         float angleZ = Mathf.Atan2(dirVector.y, dirVector.x) * Mathf.Rad2Deg;
         Quaternion q = Quaternion.Euler(0f, 0f, angleZ + offset);
         //Quaternion q = Quaternion.LookRotation(to.position - transform.position);
-
         return q;
     }
 

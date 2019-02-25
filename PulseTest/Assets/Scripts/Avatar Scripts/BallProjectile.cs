@@ -10,11 +10,16 @@ public class BallProjectile : MonoBehaviour
     //This is like its hitbox
     public float distance;
     public bool meanBallThrown = false;
+    //public static bool playBallPlayer = false;
+
+    public static string NpcName = "";
+    
 
     // Start is called before the first frame update
     void Start()
     {
         Invoke("stationaryBall", lifetime);
+        
     }
 
     // Update is called once per frame
@@ -40,6 +45,7 @@ public class BallProjectile : MonoBehaviour
                     //This is stuff for normal nicely thrown balls
                     Debug.Log("You played catch with " + hit.collider.gameObject.name);
                     GameObject NPC = hit.collider.gameObject;
+                    NpcName = NPC.name;
                     if (NPC.name == "MC")
                     {
                         MentalState.sendMsg("Played catch");
@@ -48,7 +54,7 @@ public class BallProjectile : MonoBehaviour
                     GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", false);
                 }
             }
-
+            
             destroyBall();
         }
 
@@ -59,7 +65,6 @@ public class BallProjectile : MonoBehaviour
         {
             stationaryBall();
         }
-
         transform.Translate(Vector2.right * speed * Time.deltaTime);
     }
 
