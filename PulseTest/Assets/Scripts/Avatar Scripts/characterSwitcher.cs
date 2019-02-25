@@ -51,11 +51,13 @@ public class characterSwitcher : MonoBehaviour
         {
             if (IconControl.journalActivated)
             {
+                Time.timeScale = 1.0f;
                 IconControl.journalActivated = false;
                 Debug.Log("Journal Deactivated");
             }
             else
             {
+                Time.timeScale = 0.0f;
                 IconControl.journalActivated = true;
                 Debug.Log("Journal Activated");
             }
