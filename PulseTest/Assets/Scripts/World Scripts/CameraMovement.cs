@@ -24,6 +24,11 @@ public class CameraMovement : MonoBehaviour
     private Camera cam;
     private Vector3 target;
 
+    public GameObject leftBound;
+    float left;
+    public GameObject rightBound;
+    float right;
+
     float time;
     float timer;
 
@@ -34,7 +39,9 @@ public class CameraMovement : MonoBehaviour
         cam = GetComponent<Camera>();
         cam.clearFlags = CameraClearFlags.SolidColor;
         offset = new Vector3(0, 0, -10);
-        transform.position = mainChar.transform.position + offset;                    //camera jumps to character position
+        //transform.position = mainChar.transform.position + offset;                    //camera jumps to character position
+        target = mainChar.transform.position + offset;
+        transform.position = target;
         time = Time.fixedUnscaledTime;
         timer = time;
     }
@@ -82,7 +89,50 @@ public class CameraMovement : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             }
         }
+        checkBounds(target);
         
     }
-    
+
+    void checkBounds(Vector3 pos)
+    {
+        float leftDist = Vector3.Distance(pos, leftBound.transform.position);
+        Debug.Log("left: " + leftDist);
+        Debug.Log("Camera pos: " + transform.position);
+        float rightDist = Vector3.Distance(pos, rightBound.transform.position);
+        
+        
+        if (leftDist <= 45.0f)
+        {
+            if (leftDist >= 25.0f || characterSwitcher.charChoice == -1)
+            {
+                left = leftDist;
+                newPos(pos, leftDist);
+            }
+            else
+            {
+                newPos(pos, left);
+            }
+        }
+        if (rightDist <= 45.0f)
+        {
+            if (leftDist >= 25.0f || characterSwitcher.charChoice == -1)
+            {
+                right = rightDist;
+                newPos(pos, -1 * rightDist);
+            }
+            else
+            {
+                newPos(pos, -1 * right);
+            }
+        }
+    }
+
+    void newPos(Vector3 pos, float f)
+    {
+        Vector3 displace = new Vector3(f, 0, 0);
+        //transform.position = pos + displace;
+        transform.position = Vector3.MoveTowards(transform.position, pos + displace, speed * Time.deltaTime);
+    }
 }
+    
+
