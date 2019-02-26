@@ -17,6 +17,7 @@ public class MentalState : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Dictionary storing weights for each effect
         effectWeights = new Dictionary<string, int>
         {
             { "Played catch", 3},
@@ -28,6 +29,7 @@ public class MentalState : MonoBehaviour
             { "Startled Song", -1}
         };
 
+        //Dictionary storing number of interactions
         moodLog = new Dictionary<string, int>
         {
             { "Played catch", 0},

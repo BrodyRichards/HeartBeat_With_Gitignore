@@ -55,7 +55,6 @@ public class EmoControl : MonoBehaviour
             sr.sprite = happy;
             MentalState.mood = 1;
 
-
         }
         else if (emoDist)
         {

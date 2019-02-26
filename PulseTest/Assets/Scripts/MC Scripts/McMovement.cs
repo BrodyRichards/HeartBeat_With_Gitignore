@@ -20,6 +20,8 @@ public class McMovement : MonoBehaviour
     private int currentGoal;
     private float lastX;
     private bool isFlipped;
+
+    public float followDist;
     void Start()
     {
         // some initializations
@@ -33,7 +35,7 @@ public class McMovement : MonoBehaviour
 
         // the array storing whether a waypoint has been reached 
 
-
+        followDist = 20.0f;
 
     }
 
@@ -63,7 +65,14 @@ public class McMovement : MonoBehaviour
                 anim.SetBool("isWalking", true);
                 FlipAssetDirection();
                 AnimationMoodCheck();
-                GoToWaypoints(step);
+                if (CheckDist(transform.position, NpcInstantiator.ballKidPos))
+                {
+                    McGoesToAvatar(NpcInstantiator.ballKidPos, step);
+                }
+                else
+                {
+                    GoToWaypoints(step);
+                }
             }
             else
             {
@@ -72,6 +81,17 @@ public class McMovement : MonoBehaviour
         }
     }
 
+    private void McGoesToAvatar(Vector2 target, float step)
+    {
+        if (Vector2.Distance(transform.position, target) < 10.0f)
+        {
+            Debug.Log("arrive at" + target);
+        }
+        else
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target, step);
+        }
+    }
 
     // Move towards the assigned waypoint, if arrive, will return true 
     private void McGoesTo(Vector2 target, float step)
@@ -98,8 +118,6 @@ public class McMovement : MonoBehaviour
         {
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
             isFlipped = true;
-
-
         }
         else if (lastX < transform.position.x && isFlipped)
         {
@@ -133,11 +151,9 @@ public class McMovement : MonoBehaviour
             //var scaling = !isFlipped ? new Vector2(1.0f, 1.0f) : new Vector2(-1.0f, 1.0f);
             //transform.localScale = scaling;
             speed = 4;
-
         }
         else if (MentalState.mood == 1) // happy
         {
-
             speed = 6;
         }
         else if (MentalState.mood == 2) // sad 
@@ -161,7 +177,12 @@ public class McMovement : MonoBehaviour
         }
     }
 
-   
+    private bool CheckDist(Vector3 pos1, Vector3 pos2)
+    {
+        float dist = Vector3.Distance(pos1, pos2);
+        if (dist <= followDist) { return true; }
+        return false;
+    }
 }
     
 

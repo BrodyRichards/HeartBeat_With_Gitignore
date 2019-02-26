@@ -23,10 +23,10 @@ public class RabbitJump : MonoBehaviour
     void Update()
     {
         //DetectMovement();
-        jumpIntoArms();
+        JumpIntoArms();
     }
 
-    public void jumpIntoArms()
+    public void JumpIntoArms()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -42,11 +42,6 @@ public class RabbitJump : MonoBehaviour
             }
             else
             {
-                //Vector for Raycast, takes mouse position
-                //Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                //Decompose to 2D vector
-                //Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
                 //Raycast hit register for mouse position
                 RaycastHit2D hit = Physics2D.CircleCast(transform.position, actionDist, Vector2.zero);
 
