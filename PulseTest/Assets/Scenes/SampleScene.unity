@@ -9726,6 +9726,7 @@ MonoBehaviour:
   rabbit: {fileID: 616797539}
   musicKid: {fileID: 1332290333}
   target: {x: 0, y: 0, z: 0}
+  rightBound: {fileID: 1509511539}
   groupiePos: []
 --- !u!114 &1453256356
 MonoBehaviour:
