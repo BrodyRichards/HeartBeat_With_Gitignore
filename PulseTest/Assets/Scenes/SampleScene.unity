@@ -112,6 +112,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &1458995 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 933340312, guid: 3eb72fb30cbc15349abaad80b114a556,
+    type: 3}
+  m_PrefabInstance: {fileID: 8432465858589808403}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1944474
 GameObject:
   m_ObjectHideFlags: 0
@@ -9514,6 +9526,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92eba126593c7314ea48f94295ece9b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1493366100 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1343472211, guid: 3eb72fb30cbc15349abaad80b114a556,
+    type: 3}
+  m_PrefabInstance: {fileID: 8432465858589808403}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1499104521
 GameObject:
   m_ObjectHideFlags: 0
@@ -10028,6 +10052,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1668899171 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 470879509, guid: 3eb72fb30cbc15349abaad80b114a556,
+    type: 3}
+  m_PrefabInstance: {fileID: 8432465858589808403}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1668899177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668899171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 451596f41bd6b404980c0ca4fabff65b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resume: {fileID: 1493366100}
+  reset: {fileID: 1458995}
+  exit: {fileID: 1754402135}
+  buttons: []
 --- !u!1 &1698638092
 GameObject:
   m_ObjectHideFlags: 0
@@ -10322,6 +10368,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: 0
   destroy: 0
+--- !u!114 &1754402135 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 74976280, guid: 3eb72fb30cbc15349abaad80b114a556,
+    type: 3}
+  m_PrefabInstance: {fileID: 8432465858589808403}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1767980379
 PrefabInstance:
   m_ObjectHideFlags: 0

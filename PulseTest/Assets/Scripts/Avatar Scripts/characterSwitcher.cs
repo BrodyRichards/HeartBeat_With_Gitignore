@@ -36,42 +36,49 @@ public class characterSwitcher : MonoBehaviour
     //Function to handle character switching 
     private void switchCharacter()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (!PauseUI.IsPaused)
         {
-            charChoice = 1;
-        }else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            charChoice = 2;
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            charChoice = 3;
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            if (IconControl.journalActivated)
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                Time.timeScale = 1.0f;
-                IconControl.journalActivated = false;
-                Debug.Log("Journal Deactivated");
+                charChoice = 1;
             }
-            else
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                Time.timeScale = 0.0f;
-                IconControl.journalActivated = true;
-                Debug.Log("Journal Activated");
+                charChoice = 2;
             }
-            
-           
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                charChoice = 3;
+            }
+            else if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                if (IconControl.journalActivated)
+                {
+                    Time.timeScale = 1.0f;
+                    IconControl.journalActivated = false;
+                    Debug.Log("Journal Deactivated");
+                }
+                else
+                {
+                    Time.timeScale = 0.0f;
+                    IconControl.journalActivated = true;
+                    Debug.Log("Journal Activated");
+                }
+
+
+            }
+
+            if (charChoice != -1)
+            {
+                GameObject choice = findGO(charChoice);
+                Enable(choice);
+                disableOthers();
+            }
         }
+        
 
             //Activate the object chosen and disable all the others
-        if (charChoice != -1)
-        {
-            GameObject choice = findGO(charChoice);
-            Enable(choice);
-            disableOthers();
-        }
+        
     }
 
     //This function loops through all the other ones not chosen 
