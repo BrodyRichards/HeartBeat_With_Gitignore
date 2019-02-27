@@ -19,6 +19,7 @@ public class Loners : MonoBehaviour
     SpriteRenderer sr;
 
     private bool holdBunny = false;
+    private bool schoolBell = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,41 +49,58 @@ public class Loners : MonoBehaviour
 
     private void FixedUpdate()
     {
-        bool emoDist = checkDist(NpcInstantiator.musicKidPos, transform.position);
-        directionCheck(target.x, transform.position.x);
-        check = music;
-        music = RadioControl.currentMood;      
-        if (music != check || (emoDist && RadioControl.isMusic))
+        if (schoolBell == false)
         {
-            checkMusic();
-        }
-        if (characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false || emoDist == false)
-        {
-            holdBunny = false;
-            int count = transform.childCount;
-            for (int i = 0; i < count; i++)
+            bool emoDist = checkDist(NpcInstantiator.musicKidPos, transform.position);
+            directionCheck(target.x, transform.position.x);
+            check = music;
+            music = RadioControl.currentMood;
+            if (music != check || (emoDist && RadioControl.isMusic))
             {
-                if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
+                checkMusic();
+            }
+            if (characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false || emoDist == false)
+            {
+                holdBunny = false;
+                int count = transform.childCount;
+                for (int i = 0; i < count; i++)
                 {
-                    GameObject.Destroy(transform.GetChild(i).gameObject);
+                    if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
+                    {
+                        GameObject.Destroy(transform.GetChild(i).gameObject);
+                    }
                 }
             }
-        }
-        if (RabbitJump.beingCarried)
-        {
-            int count = transform.childCount;
-            for (int i = 0; i < count; i++)
+            if (RabbitJump.beingCarried)
             {
-                if (transform.GetChild(i).gameObject.tag == "Avatars" && holdBunny == false)
+                int count = transform.childCount;
+                for (int i = 0; i < count; i++)
                 {
-                    holdBunny = true;
-                    Emo = master.GetComponent<NpcInstantiator>().happyFace;
-                    addEmo();
+                    if (transform.GetChild(i).gameObject.tag == "Avatars" && holdBunny == false)
+                    {
+                        holdBunny = true;
+                        Emo = master.GetComponent<NpcInstantiator>().happyFace;
+                        addEmo();
+                    }
                 }
             }
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            DetectMovement();
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                schoolBell = true;
+            }
         }
-        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        DetectMovement();
+        else
+        {
+            target = master.GetComponent<NpcInstantiator>().rightBound.transform.position;
+            directionCheck(target.x, transform.position.x);
+            runOff();
+            if (transform.position == target)
+            {
+                Destroy(gameObject);
+            }
+        }
         
     }
 
@@ -160,5 +178,10 @@ public class Loners : MonoBehaviour
         }
 
         lastPosX = transform.position.x;
+    }
+
+    private void runOff()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
     }
 }

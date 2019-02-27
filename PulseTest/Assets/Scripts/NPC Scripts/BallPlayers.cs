@@ -21,7 +21,7 @@ public class BallPlayers : MonoBehaviour
     private int check;
 
     private bool holdBunny = false;
-
+    private bool schoolBell = false;
     private bool nameChange = false;
     float time;
     float timer;
@@ -47,76 +47,94 @@ public class BallPlayers : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time = Time.fixedUnscaledTime;
-        bool emoDist = checkDist(NpcInstantiator.musicKidPos, transform.position);
-        bool ballDist = checkDist(NpcInstantiator.ballKidPos, transform.position);
-        directionCheck(target.x, transform.position.x);
-        check = music;
-        music = RadioControl.currentMood;
-        if (music != check || (emoDist && RadioControl.isMusic)) { checkMusic(); }
-        if (characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false || emoDist == false)
+        if (schoolBell == false)
         {
-            if (nameChange == false)
+            time = Time.fixedUnscaledTime;
+            bool emoDist = checkDist(NpcInstantiator.musicKidPos, transform.position);
+            bool ballDist = checkDist(NpcInstantiator.ballKidPos, transform.position);
+            directionCheck(target.x, transform.position.x);
+            check = music;
+            music = RadioControl.currentMood;
+            if (music != check || (emoDist && RadioControl.isMusic)) { checkMusic(); }
+            if (characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false || emoDist == false)
             {
-                holdBunny = false;
-                int count = transform.childCount;
-                for (int i = 0; i < count; i++)
+                if (nameChange == false)
                 {
-                    if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
+                    holdBunny = false;
+                    int count = transform.childCount;
+                    for (int i = 0; i < count; i++)
                     {
-                        GameObject.Destroy(transform.GetChild(i).gameObject);
+                        if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
+                        {
+                            GameObject.Destroy(transform.GetChild(i).gameObject);
+                        }
                     }
                 }
             }
-        }
-        if (RabbitJump.beingCarried)
-        {
-            int count = transform.childCount;
-            for (int i = 0; i < count; i++)
+            if (RabbitJump.beingCarried)
             {
-                if (transform.GetChild(i).gameObject.tag == "Avatars" && holdBunny == false)
+                int count = transform.childCount;
+                for (int i = 0; i < count; i++)
                 {
-                    holdBunny = true;
-                    Emo = master.GetComponent<NpcInstantiator>().happyFace;
-                    addEmo();
+                    if (transform.GetChild(i).gameObject.tag == "Avatars" && holdBunny == false)
+                    {
+                        holdBunny = true;
+                        Emo = master.GetComponent<NpcInstantiator>().happyFace;
+                        addEmo();
+                    }
                 }
             }
-        }
-        if (ballDist)
-        {
-            float dist = Vector3.Distance(NpcInstantiator.ballKidPos, transform.position);
+            if (ballDist)
+            {
+                float dist = Vector3.Distance(NpcInstantiator.ballKidPos, transform.position);
+                if (timer <= time)
+                {
+                    Emo = master.GetComponent<NpcInstantiator>().surpriseFace;
+                    addEmo();
+                }
+                if (dist > 10.0f)
+                {
+                    target = NpcInstantiator.ballKidPos;
+                    transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+                }
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+                if (transform.position == target)
+                {
+                    int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
+                    int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
+                    target = new Vector3(ranX, ranY, -1);
+                }
+            }
+            DetectMovement();
+            if (BallProjectile.NpcName == this.gameObject.name)
+            {
+                BallProjectile.NpcName = "";
+                nameChange = true;
+                playBall();
+            }
             if (timer <= time)
             {
-                Emo = master.GetComponent<NpcInstantiator>().surpriseFace;
-                addEmo();
+                nameChange = false;
             }
-            if (dist > 10.0f)
+            if (Input.GetKeyDown(KeyCode.P))
             {
-                target = NpcInstantiator.ballKidPos;
-                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+                schoolBell = true;
             }
         }
-        else 
+        else
         {
-            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            target = master.GetComponent<NpcInstantiator>().rightBound.transform.position;
+            directionCheck(target.x, transform.position.x);
+            runOff();
             if (transform.position == target)
             {
-                int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
-                int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
-                target = new Vector3(ranX, ranY, -1);
+                Destroy(gameObject);
             }
         }
-        DetectMovement();
-        if (BallProjectile.NpcName == this.gameObject.name)
-        {
-            BallProjectile.NpcName = "";
-            nameChange = true;
-            playBall();    
-        }
-        if (timer <= time)
-        {
-            nameChange = false;
-        }
+        
     }
 
     public void playBall()
@@ -211,5 +229,10 @@ public class BallPlayers : MonoBehaviour
         }
 
         lastPosX = transform.position.x;
+    }
+
+    private void runOff()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
     }
 }

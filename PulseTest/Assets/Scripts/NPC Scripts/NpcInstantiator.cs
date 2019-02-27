@@ -30,6 +30,8 @@ public class NpcInstantiator : MonoBehaviour
     public static Vector3 musicKidPos;
     public Vector3 target;
 
+    public GameObject rightBound;
+
     public static Vector3 center;
     public Vector3[] groupiePos;
 
@@ -106,5 +108,6 @@ public class NpcInstantiator : MonoBehaviour
         }
         
     }
+
 
 }

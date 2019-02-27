@@ -18,6 +18,7 @@ public class Groupies : MonoBehaviour
     private int check;
     private SpriteRenderer sp;
     private bool holdBunny = false;
+    private bool schoolBell = false;
 
     public Vector3 target;
     // Start is called before the first frame update
@@ -36,43 +37,61 @@ public class Groupies : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool emoDist = checkDist(NpcInstantiator.musicKidPos, transform.position);
-        directionCheck(target.x, transform.position.x);
-        check = music;
-        music = RadioControl.currentMood;
-        if (music != check || (emoDist && RadioControl.isMusic))
+        if (schoolBell == false)
         {
-            checkMusic();
-        }
-        if ((characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false) || emoDist == false)
-        {
-            holdBunny = false;
-            int count = transform.childCount;
-            for (int i = 0; i < count; i++)
+            bool emoDist = checkDist(NpcInstantiator.musicKidPos, transform.position);
+            directionCheck(target.x, transform.position.x);
+            check = music;
+            music = RadioControl.currentMood;
+            if (music != check || (emoDist && RadioControl.isMusic))
             {
-                if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
+                checkMusic();
+            }
+            if ((characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false) || emoDist == false)
+            {
+                holdBunny = false;
+                int count = transform.childCount;
+                for (int i = 0; i < count; i++)
                 {
-                    GameObject.Destroy(transform.GetChild(i).gameObject);
+                    if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
+                    {
+                        GameObject.Destroy(transform.GetChild(i).gameObject);
+                    }
                 }
             }
-        }
-        if (RabbitJump.beingCarried)
-        {
-            int count = transform.childCount;
-            for (int i = 0; i < count; i++)
+            if (RabbitJump.beingCarried)
             {
-                if (transform.GetChild(i).gameObject.tag == "Avatars" && holdBunny == false)
+                int count = transform.childCount;
+                for (int i = 0; i < count; i++)
                 {
-                    holdBunny = true;
-                    Emo = master.GetComponent<NpcInstantiator>().happyFace;
-                    addEmo();
+                    if (transform.GetChild(i).gameObject.tag == "Avatars" && holdBunny == false)
+                    {
+                        holdBunny = true;
+                        Emo = master.GetComponent<NpcInstantiator>().happyFace;
+                        addEmo();
+                    }
                 }
             }
+            if (anim.GetBool("IsWalking") == true) { directionCheck(target.x, transform.position.x); }
+            else { directionCheck(NpcInstantiator.center.x, transform.position.x); }
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            DetectMovement();
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                schoolBell = true;
+            }
         }
-        if (anim.GetBool("IsWalking") == true) { directionCheck(target.x, transform.position.x); }
-        else { directionCheck(NpcInstantiator.center.x, transform.position.x); }
-        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        DetectMovement();
+        else
+        {
+            target = master.GetComponent<NpcInstantiator>().rightBound.transform.position;
+            directionCheck(target.x, transform.position.x);
+            runOff();
+            if (transform.position == target)
+            {
+                Destroy(gameObject);
+            }
+        }
+        
     }
 
     void directionCheck(float target, float pos) 
@@ -149,6 +168,11 @@ public class Groupies : MonoBehaviour
         }
 
         lastPosX = transform.position.x;
+    }
+
+    private void runOff()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
     }
 
     
