@@ -96,8 +96,8 @@ public class CameraMovement : MonoBehaviour
     void checkBounds(Vector3 pos)
     {
         float leftDist = Vector3.Distance(pos, leftBound.transform.position);
-        Debug.Log("left: " + leftDist);
-        Debug.Log("Camera pos: " + transform.position);
+        //Debug.Log("left: " + leftDist);
+        //Debug.Log("Camera pos: " + transform.position);
         float rightDist = Vector3.Distance(pos, rightBound.transform.position);
         
         
