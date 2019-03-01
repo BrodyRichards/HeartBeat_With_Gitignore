@@ -87,11 +87,13 @@ public class BallPlayers : MonoBehaviour
             if (ballDist)
             {
                 float dist = Vector3.Distance(NpcInstantiator.ballKidPos, transform.position);
+                /*
                 if (timer <= time)
                 {
                     Emo = master.GetComponent<NpcInstantiator>().surpriseFace;
                     addEmo();
                 }
+                */
                 if (dist > 10.0f)
                 {
                     target = NpcInstantiator.ballKidPos;
@@ -109,16 +111,19 @@ public class BallPlayers : MonoBehaviour
                 }
             }
             DetectMovement();
+            
             if (BallProjectile.NpcName == this.gameObject.name)
             {
                 BallProjectile.NpcName = "";
                 nameChange = true;
                 playBall();
             }
+            
             if (timer <= time)
             {
                 nameChange = false;
             }
+            
             if (Input.GetKeyDown(KeyCode.P))
             {
                 schoolBell = true;

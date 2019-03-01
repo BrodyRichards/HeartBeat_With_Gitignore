@@ -75,11 +75,13 @@ public class RabbitChasers : MonoBehaviour
 
             if (rabbitDist)
             {
+                /*
                 if (RabbitJump.beingCarried == false)
                 {
                     Emo = master.GetComponent<NpcInstantiator>().surpriseFace;
                     addEmo();
                 }
+                */
                 float dist = Vector3.Distance(NpcInstantiator.rabbitPos, transform.position);
 
                 if (dist > 5.0f)
