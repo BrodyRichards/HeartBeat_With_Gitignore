@@ -9,7 +9,7 @@ public class BallProjectile : MonoBehaviour
     public LayerMask hittableObjects;
     //This is like its hitbox
     public float distance;
-    public bool meanBallThrown = false;
+    public static bool meanBallThrown = false;
     //public static bool playBallPlayer = false;
 
     public static string NpcName = "";
@@ -33,7 +33,7 @@ public class BallProjectile : MonoBehaviour
                 if (hit.collider.CompareTag("MC") && meanBallThrown)
                 {
                     //A mean ball was thrown
-                    Debug.Log("You threw a mean ball!");
+                    //Debug.Log("You threw a mean ball!");
                     //Update Mental State
                     MentalState.sendMsg("Hit by ball");
                     //MC gets hit by ball and doesn't play catch
@@ -43,7 +43,7 @@ public class BallProjectile : MonoBehaviour
                 }else
                 {
                     //This is stuff for normal nicely thrown balls
-                    Debug.Log("You played catch with " + hit.collider.gameObject.name);
+                    //Debug.Log("You played catch with " + hit.collider.gameObject.name);
                     GameObject NPC = hit.collider.gameObject;
                     NpcName = NPC.name;
                     if (NPC.name == "MC")
