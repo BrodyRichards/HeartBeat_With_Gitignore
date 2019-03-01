@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Groupies : MonoBehaviour
 {
-    public GameObject manager;
     public Animator anim;
     private float speed = 5f;
     private Vector3 scale;
