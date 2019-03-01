@@ -22,6 +22,9 @@ public class PauseUI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+          
+            
+            
             if (IsPaused)
             {
                 Resume();
@@ -53,6 +56,7 @@ public class PauseUI : MonoBehaviour
         StartCoroutine(LoadAsyncScene(thisSceneIndex));
         IsPaused = false;
         Time.timeScale = 1f;
+        IconControl.journalActivated = false;
         characterSwitcher.charChoice = -1;
         RadioControl.isMusic = false;
     }

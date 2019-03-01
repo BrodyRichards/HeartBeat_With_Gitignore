@@ -52,8 +52,10 @@ public class JournalTween : MonoBehaviour
     void Update()
     {
        
-            
+        // update the occurences of events
         EventTracking();
+
+        // check if the number has reached threshold
         CheckTheAlpha();
 
         
@@ -68,15 +70,11 @@ public class JournalTween : MonoBehaviour
         music.Num = MentalState.moodLog["Happy Song"] + MentalState.moodLog["Sad Song"] + MentalState.moodLog["Startled Song"];
     }
 
-    //private void FadeAlpha(Image from, float alphaVal)
-    //{
-    //    Color col = from.color;
-    //    col.a = alphaVal;
-    //    from.color = col;
-    //}
+
 
     private void DoTheAlphaShit(Accomplish accom, int index)
     {
+        // gradually increase alpha of the corresponding stamp to max 
         accom.images[index].enabled = true;
         accom.alpha[index] += tweenSpeed;
         Color col = accom.images[index].color;
@@ -88,6 +86,8 @@ public class JournalTween : MonoBehaviour
 
     private void CheckTheAlpha()
     {
+        // check for all the accomplishments, if their occurence has reach the threshold
+        // and if the alpha is not max yet 
         foreach (var com in accomplishments)
         {
 
@@ -106,4 +106,12 @@ public class JournalTween : MonoBehaviour
 
         }
     }
+
+    //Backup function 
+    //private void FadeAlpha(Image from, float alphaVal)
+    //{
+    //    Color col = from.color;
+    //    col.a = alphaVal;
+    //    from.color = col;
+    //}
 }
