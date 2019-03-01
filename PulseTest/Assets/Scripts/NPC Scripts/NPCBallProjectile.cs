@@ -24,7 +24,7 @@ public class NPCBallProjectile : MonoBehaviour
         {
             if (hit.collider.gameObject.name == "2")
             {
-                Debug.Log("Ouch! You hit " + hit.collider.gameObject.name);
+                //Debug.Log("Ouch! You hit " + hit.collider.gameObject.name);
                 hit.collider.gameObject.GetComponent<BallThrow>().thrownBall = false;
                 destroyBall();
             }
