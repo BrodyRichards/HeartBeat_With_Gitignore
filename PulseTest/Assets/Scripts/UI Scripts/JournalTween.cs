@@ -21,24 +21,34 @@ public class JournalTween : MonoBehaviour
     private int rabbitEvents;
     private int ballEvents;
     private int musicEvents;
-    private float alphaLv1;
-    private float alphaLv2;
-    private float alphaLv3;
 
-    private int lv2threshold = 3;
-    private int lv3threshold = 10;
+    private float alphaLv1Ball = 0f;
+    private float alphaLv2Ball = 0f;
+    private float alphaLv3Ball = 0f;
 
-    private bool achievedLv1Ball = false;
-    private bool achievedLv2Ball = false;
-    private bool achievedLv3Ball = false;
+    private float alphaLv1Music = 0f;
+    private float alphaLv2Music = 0f;
+    private float alphaLv3Music = 0f;
 
-    private bool achievedLv1Rabbit = false;
-    private bool achievedLv2Rabbit = false;
-    private bool achievedLv3Rabbit = false;
+    private float alphaLv1Rabbit = 0f;
+    private float alphaLv2Rabbit = 0f;
+    private float alphaLv3Rabbit = 0f;
 
-    private bool achievedLv1Music = false;
-    private bool achievedLv2Music = false;
-    private bool achievedLv3Music = false;
+    private bool once = false;
+    private bool once2 = false;
+    private bool once3 = false;
+
+    private int achievedLv1Ball = 0;
+    private int achievedLv2Ball = 2;
+    private int achievedLv3Ball = 4;
+
+    private int achievedLv1Rabbit = 0;
+    private int achievedLv2Rabbit = 1;
+    private int achievedLv3Rabbit = 3;
+
+    private int achievedLv1Music = 0;
+    private int achievedLv2Music = 1;
+    private int achievedLv3Music = 2;
 
     private bool calledOnce;
 
@@ -53,9 +63,7 @@ public class JournalTween : MonoBehaviour
         }
 
 
-        alphaLv1 = 0f;
-        alphaLv2 = 0f;
-        alphaLv3 = 0f;
+        
 
         
 
@@ -68,6 +76,21 @@ public class JournalTween : MonoBehaviour
        
             
         EventTracking();
+
+        // for event in events:
+        //    if ( val > eventLv1 && !eventLv1Completed){
+        //        tweenAlpha1;
+        //        if event.alpha1 == 1.0 eventLv1Completed = true;
+        //    }
+        //    if ( val > eventLv2 && !eventLv2Completed){
+        //        tweenAlpha2;
+        //        if event.alpha2 == 1.0 eventLv2Completed = true;
+        //    }
+        //    if ( val > eventLv3 && !eventLv3Completed){
+        //        tweenAlpha3;
+        //        if event.alpha3 == 1.0 eventLv3Completed = true;
+        //    }
+        // 
         
 
         
@@ -78,77 +101,89 @@ public class JournalTween : MonoBehaviour
     private void EventTracking()
     {
         ballEvents = MentalState.moodLog["Played catch"] + MentalState.moodLog["Hit by ball"];
-        if (ballEvents > 0) { achievedLv1Ball = true; };
-        if (ballEvents > lv2threshold) { achievedLv2Ball = true; };
-        if (ballEvents > lv3threshold) { achievedLv3Ball = true; };
-        ChangeImg(ballEvents, ballStamp, ballLv2, ballLv3, achievedLv1Ball, achievedLv2Ball, achievedLv3Ball);
+        
+        ChangeImg(ballEvents, ballStamp, ballLv2, ballLv3, achievedLv1Ball, achievedLv2Ball, achievedLv3Ball,
+            alphaLv1Ball, alphaLv2Ball, alphaLv3Ball);
 
         rabbitEvents = MentalState.moodLog["Held Rabbit"] + MentalState.moodLog["Bit by rabbit"];
 
-        if (rabbitEvents > 0) { achievedLv1Rabbit = true; };
-        if (rabbitEvents > lv2threshold) { achievedLv2Rabbit = true; };
-        if (rabbitEvents > lv3threshold) { achievedLv3Rabbit = true; };
-        ChangeImg(rabbitEvents, rabbitStamp, rabbitLv2, rabbitLv3, achievedLv1Rabbit, achievedLv2Rabbit, achievedLv3Rabbit);
+        
+        ChangeImg(rabbitEvents, rabbitStamp, rabbitLv2, rabbitLv3, achievedLv1Rabbit, achievedLv2Rabbit, achievedLv3Rabbit,
+            alphaLv1Rabbit, alphaLv2Rabbit, alphaLv3Rabbit);
 
         musicEvents = MentalState.moodLog["Happy Song"] + MentalState.moodLog["Sad Song"];
-        if (musicEvents > 0) { achievedLv1Music = true; };
-        if (musicEvents > lv2threshold) { achievedLv2Music = true; };
-        if (musicEvents > lv3threshold) { achievedLv3Music = true; };
-        ChangeImg(musicEvents, musicStamp, musicLv2, musicLv3, achievedLv1Music, achievedLv2Music, achievedLv3Music);
+      
+        ChangeImg(musicEvents, musicStamp, musicLv2, musicLv3, achievedLv1Music, achievedLv2Music, achievedLv3Music,
+            alphaLv1Music, alphaLv2Music, alphaLv3Music);
     }
 
-    private void ChangeImg(int val, Image from, Image toLv2, Image toLv3, bool one, bool two, bool three)
+    private void ChangeImg(int val, Image from, Image toLv2, Image toLv3, int one, int two, int three,
+        float alpha1, float alpha2, float alpha3)
     {
-        if (val > lv3threshold)
+        
+        if (val > three)
         {
             from.enabled = true;
             toLv3.enabled = true;
-            FadeAlpha(toLv3, 0.1f);
-
-            TweenAlpha(toLv3, 3);
+            if (!once3)
+            {
+                FadeAlpha(toLv3, 0.1f);
+                once3 = true;
+            }
+            TweenAlpha(toLv3, alpha3);
         }
-        if (val > lv2threshold) // val in 0 - 3 
+        if (val > two) // val in 0 - 3 
         {
             from.enabled = true;
             toLv2.enabled = true;
-            FadeAlpha(toLv2, 0.1f);
+            if (!once2)
+            {
+                FadeAlpha(toLv2, 0.1f);
+                once2 = true;
+            }
+            
 
-            TweenAlpha(toLv2, 2);
+            TweenAlpha(toLv2, alpha2);
         }
 
-        if (val > 0)
+        if (val > one)
         {
             from.enabled = true;
-            FadeAlpha(from, 0.1f);
-            TweenAlpha(from, 1);
+            if (!once)
+            {
+                FadeAlpha(from, 0.1f);
+                once = true;
+            }
+                
+            TweenAlpha(from, alpha1);
         }
     }
 
-    private void TweenAlpha(Image to, int level)
+    private void TweenAlpha(Image to, float a)
     {
        
 
         Color temp2 = to.color;
         
-        if (level == 1)
-        {
-            alphaLv1 += 0.008f;
+        //if (level == 1)
+        //{
+            a += 0.008f;
             //Debug.Log("bound" + bound);
             //Debug.Log(alpha);
             //Debug.Log("temp2.a" + temp2.a);
-            temp2.a += alphaLv1;
+            temp2.a += a;
             
-        }else if (level == 2)
-        {
-            alphaLv2 += 0.006f;
-            temp2.a += alphaLv2;
+        //}else if (level == 2)
+        //{
+        //    alphaLv2 += 0.006f;
+        //    temp2.a += alphaLv2;
             
-        }else if (level == 3)
-        {
-            alphaLv3 += 0.005f;
-            temp2.a += alphaLv3;
+        //}else if (level == 3)
+        //{
+        //    alphaLv3 += 0.005f;
+        //    temp2.a += alphaLv3;
             
-        }
+        //}
 
         to.color = temp2;
         
