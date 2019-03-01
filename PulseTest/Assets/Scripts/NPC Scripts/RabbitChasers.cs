@@ -71,6 +71,13 @@ public class RabbitChasers : MonoBehaviour
                         addEmo();
                     }
                 }
+                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+                if (transform.position == target)
+                {
+                    int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
+                    int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
+                    target = new Vector3(ranX, ranY, -1);
+                }
             }
 
             if (rabbitDist)
@@ -116,8 +123,6 @@ public class RabbitChasers : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        
-        
     }
 
     void directionCheck(float target, float pos) //WHY DOES THIS GOTTA BE SO DAMN COMPLICATED MAN 
