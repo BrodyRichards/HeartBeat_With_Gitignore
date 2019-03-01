@@ -10,7 +10,6 @@ public class JournalTween : MonoBehaviour
     private Image ballStamp;
     [SerializeField]
     private Image musicStamp;
-
     public Image musicLv2;
     public Image musicLv3;
     public Image ballLv2;
@@ -18,56 +17,35 @@ public class JournalTween : MonoBehaviour
     public Image rabbitLv2;
     public Image rabbitLv3;
 
-    private int rabbitEvents;
-    private int ballEvents;
-    private int musicEvents;
+    private Accomplish rabbit;
+    private Accomplish ball;
+    private Accomplish music;
+    private List<Accomplish> accomplishments;
 
-    private float alphaLv1Ball = 0f;
-    private float alphaLv2Ball = 0f;
-    private float alphaLv3Ball = 0f;
+    private readonly float tweenSpeed = 0.008f;
+    private readonly float completedAlpha = 0.99f;
 
-    private float alphaLv1Music = 0f;
-    private float alphaLv2Music = 0f;
-    private float alphaLv3Music = 0f;
-
-    private float alphaLv1Rabbit = 0f;
-    private float alphaLv2Rabbit = 0f;
-    private float alphaLv3Rabbit = 0f;
-
-    private bool once = false;
-    private bool once2 = false;
-    private bool once3 = false;
-
-    private int achievedLv1Ball = 0;
-    private int achievedLv2Ball = 2;
-    private int achievedLv3Ball = 4;
-
-    private int achievedLv1Rabbit = 0;
-    private int achievedLv2Rabbit = 1;
-    private int achievedLv3Rabbit = 3;
-
-    private int achievedLv1Music = 0;
-    private int achievedLv2Music = 1;
-    private int achievedLv3Music = 2;
-
-    private bool calledOnce;
+    private readonly int[] rabbitThreshold = new int[] { 0, 1, 2 };
+    private readonly int[] ballThreshold = new int[] { 0, 1, 2 };
+    private readonly int[] musicThreshold = new int[] { 0, 1, 2 };
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        // disabled all the images so they don't show up at first 
         Image[] images = new Image[] { rabbitStamp, ballStamp, musicStamp, musicLv2, musicLv3, ballLv2, ballLv3, rabbitLv2, rabbitLv3 };
         foreach (var image in images)
         {
             image.enabled = false;
         }
 
+        // instantiate class objects for the three avatars stamps 
+        rabbit = new Accomplish(rabbitThreshold, rabbitStamp, rabbitLv2, rabbitLv3);
+        ball = new Accomplish(ballThreshold, ballStamp, ballLv2, ballLv3);
+        music = new Accomplish(musicThreshold, musicStamp, musicLv2, musicLv3);
 
-        
+        accomplishments = new List<Accomplish> { rabbit, ball, music };
 
-        
-
-        
     }
 
     // Update is called once per frame
@@ -76,125 +54,56 @@ public class JournalTween : MonoBehaviour
        
             
         EventTracking();
-
-        // for event in events:
-        //    if ( val > eventLv1 && !eventLv1Completed){
-        //        tweenAlpha1;
-        //        if event.alpha1 == 1.0 eventLv1Completed = true;
-        //    }
-        //    if ( val > eventLv2 && !eventLv2Completed){
-        //        tweenAlpha2;
-        //        if event.alpha2 == 1.0 eventLv2Completed = true;
-        //    }
-        //    if ( val > eventLv3 && !eventLv3Completed){
-        //        tweenAlpha3;
-        //        if event.alpha3 == 1.0 eventLv3Completed = true;
-        //    }
-        // 
-        
+        CheckTheAlpha();
 
         
-       
     }
 
 
     private void EventTracking()
     {
-        ballEvents = MentalState.moodLog["Played catch"] + MentalState.moodLog["Hit by ball"];
         
-        ChangeImg(ballEvents, ballStamp, ballLv2, ballLv3, achievedLv1Ball, achievedLv2Ball, achievedLv3Ball,
-            alphaLv1Ball, alphaLv2Ball, alphaLv3Ball);
-
-        rabbitEvents = MentalState.moodLog["Held Rabbit"] + MentalState.moodLog["Bit by rabbit"];
-
-        
-        ChangeImg(rabbitEvents, rabbitStamp, rabbitLv2, rabbitLv3, achievedLv1Rabbit, achievedLv2Rabbit, achievedLv3Rabbit,
-            alphaLv1Rabbit, alphaLv2Rabbit, alphaLv3Rabbit);
-
-        musicEvents = MentalState.moodLog["Happy Song"] + MentalState.moodLog["Sad Song"];
-      
-        ChangeImg(musicEvents, musicStamp, musicLv2, musicLv3, achievedLv1Music, achievedLv2Music, achievedLv3Music,
-            alphaLv1Music, alphaLv2Music, alphaLv3Music);
+        ball.Num = MentalState.moodLog["Played catch"] + MentalState.moodLog["Hit by ball"];
+        rabbit.Num = MentalState.moodLog["Held Rabbit"] + MentalState.moodLog["Bit by rabbit"];
+        music.Num = MentalState.moodLog["Happy Song"] + MentalState.moodLog["Sad Song"] + MentalState.moodLog["Startled Song"];
     }
 
-    private void ChangeImg(int val, Image from, Image toLv2, Image toLv3, int one, int two, int three,
-        float alpha1, float alpha2, float alpha3)
+    //private void FadeAlpha(Image from, float alphaVal)
+    //{
+    //    Color col = from.color;
+    //    col.a = alphaVal;
+    //    from.color = col;
+    //}
+
+    private void DoTheAlphaShit(Accomplish accom, int index)
     {
-        
-        if (val > three)
-        {
-            from.enabled = true;
-            toLv3.enabled = true;
-            if (!once3)
-            {
-                FadeAlpha(toLv3, 0.1f);
-                once3 = true;
-            }
-            TweenAlpha(toLv3, alpha3);
-        }
-        if (val > two) // val in 0 - 3 
-        {
-            from.enabled = true;
-            toLv2.enabled = true;
-            if (!once2)
-            {
-                FadeAlpha(toLv2, 0.1f);
-                once2 = true;
-            }
-            
+        accom.images[index].enabled = true;
+        accom.alpha[index] += tweenSpeed;
+        Color col = accom.images[index].color;
+        col.a = accom.alpha[index];
+        accom.images[index].color = col;
 
-            TweenAlpha(toLv2, alpha2);
-        }
-
-        if (val > one)
-        {
-            from.enabled = true;
-            if (!once)
-            {
-                FadeAlpha(from, 0.1f);
-                once = true;
-            }
-                
-            TweenAlpha(from, alpha1);
-        }
+        if (accom.alpha[index] > completedAlpha) { accom.finished[index] = true; }
     }
 
-    private void TweenAlpha(Image to, float a)
+    private void CheckTheAlpha()
     {
-       
+        foreach (var com in accomplishments)
+        {
 
-        Color temp2 = to.color;
-        
-        //if (level == 1)
-        //{
-            a += 0.008f;
-            //Debug.Log("bound" + bound);
-            //Debug.Log(alpha);
-            //Debug.Log("temp2.a" + temp2.a);
-            temp2.a += a;
-            
-        //}else if (level == 2)
-        //{
-        //    alphaLv2 += 0.006f;
-        //    temp2.a += alphaLv2;
-            
-        //}else if (level == 3)
-        //{
-        //    alphaLv3 += 0.005f;
-        //    temp2.a += alphaLv3;
-            
-        //}
+            if (com.Num > com.threshold[0] && !com.finished[0])
+            {
+                DoTheAlphaShit(com, 0);
+            }
+            else if (com.Num > com.threshold[1] && !com.finished[1])
+            {
+                DoTheAlphaShit(com, 1);
+            }
+            else if (com.Num > com.threshold[2] && !com.finished[2])
+            {
+                DoTheAlphaShit(com, 2);
+            }
 
-        to.color = temp2;
-        
-        
-       
-    }
-
-    private void FadeAlpha(Image from, float alphaVal)
-    {
-        Color col = from.color;
-        col.a = alphaVal;
-        from.color = col;
+        }
     }
 }
