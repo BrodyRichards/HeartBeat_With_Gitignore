@@ -31,6 +31,12 @@ public class RabbitJump : MonoBehaviour
 
     public void JumpIntoArms()
     {
+        //Swap a flag
+        if(bittenMC)
+        {
+            bittenMC = !bittenMC;
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //If already being carried, put the rabbit down

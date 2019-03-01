@@ -23,7 +23,6 @@ public class McMovement : MonoBehaviour
 
     public float followDist;
     public bool CRunning = false;
-    public bool stimulus = false;
 
     void Start()
     {
@@ -69,19 +68,35 @@ public class McMovement : MonoBehaviour
 
                 if (RabbitJump.bittenMC)
                 {
-                    //McRunsFromAvatar(NpcInstantiator.rabbitPos, step);
+                    Debug.Log("Got here too");
+                    if (!CRunning)
+                    {
+                        Debug.Log("I'm here");
+                        CRunning = true;
+                        StartCoroutine(McRunsFromAvatar(NpcInstantiator.rabbitPos, step));
+                    }
                 }
                 else if (BallProjectile.meanBallThrown)
                 {
-                    //McRunsFromAvatar(NpcInstantiator.ballKidPos, step);
+                    if (!CRunning)
+                    {
+                        CRunning = true;
+                        StartCoroutine(McRunsFromAvatar(NpcInstantiator.ballKidPos, step));
+                    }
                 }
                 else if (CheckDist(transform.position, NpcInstantiator.ballKidPos))
                 {
-                    McGoesToAvatar(NpcInstantiator.ballKidPos, step);
+                    if (!CRunning)
+                    {
+                        McGoesToAvatar(NpcInstantiator.ballKidPos, step);
+                    }
                 }
                 else
                 {
-                    GoToWaypoints(step);
+                    if (!CRunning)
+                    {
+                        GoToWaypoints(step);
+                    }
                 }
             }
             else
@@ -91,15 +106,20 @@ public class McMovement : MonoBehaviour
         }
     }
 
-    private void McRunsFromAvatar(Vector2 target, float step)
+    IEnumerator McRunsFromAvatar(Vector2 target, float step)
     {
         float timeElapsed = 0f;
 
-        while(timeElapsed < 3f)
+        while(timeElapsed < 4f)
         {
             transform.position = Vector2.MoveTowards(transform.position, target, (-1) * step);
             timeElapsed += Time.deltaTime;
+
+            yield return null;
         }
+
+        CRunning = false;
+        yield break;
     }
 
     private void McGoesToAvatar(Vector2 target, float step)
