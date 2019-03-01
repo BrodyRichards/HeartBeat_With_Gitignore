@@ -20,7 +20,7 @@ public class PauseUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(Control.pullPauseMenu))
         {
           
             
@@ -76,7 +76,7 @@ public class PauseUI : MonoBehaviour
         StartCoroutine(LoadAsyncScene(0));
         IsPaused = false;
         Time.timeScale = 1f;
-        characterSwitcher.charChoice = 3;
+        characterSwitcher.charChoice = -1;
         RadioControl.isMusic = false;
     }
     IEnumerator LoadAsyncScene(int nextSceneIndex)

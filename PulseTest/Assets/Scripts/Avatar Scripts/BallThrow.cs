@@ -28,17 +28,17 @@ public class BallThrow : MonoBehaviour
     void Update()
     {
         //Space bar for nice action and E for mean action
-        if (Input.GetKeyDown(KeyCode.Space) && !thrownBall)
+        if (Input.GetKeyDown(Control.positiveAction) && !thrownBall)
         {
             ThrowBall();
-        }else if (Input.GetKeyDown(KeyCode.E) && !thrownBall)
+        }else if (Input.GetKeyDown(Control.negativeAction) && !thrownBall)
         {
             isMeanBall = true;
             ThrowBall();
         }
        
         //Check to see that a ball was thrown and that it is resting stationary on the ground
-        if (Input.GetKey(KeyCode.Space) && thrownBall && GameObject.Find("newBall") != null)
+        if (Input.GetKey(Control.positiveAction) && thrownBall && GameObject.Find("newBall") != null)
         {
             PickupBall();
         }

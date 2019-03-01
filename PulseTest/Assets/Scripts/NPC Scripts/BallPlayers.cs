@@ -119,7 +119,7 @@ public class BallPlayers : MonoBehaviour
             {
                 nameChange = false;
             }
-            if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(Control.evacuate))
             {
                 schoolBell = true;
             }

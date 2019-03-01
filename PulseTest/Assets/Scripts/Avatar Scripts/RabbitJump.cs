@@ -28,7 +28,7 @@ public class RabbitJump : MonoBehaviour
 
     public void jumpIntoArms()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(Control.positiveAction))
         {
             if (beingCarried)
             {
@@ -71,7 +71,7 @@ public class RabbitJump : MonoBehaviour
                     Debug.Log("I'm being carried");
                 }
             } 
-        }else if (Input.GetKeyDown(KeyCode.E))
+        }else if (Input.GetKeyDown(Control.negativeAction))
         { 
             //Rabbit bite code!
             //Send out circle cast to see who's around to munch on

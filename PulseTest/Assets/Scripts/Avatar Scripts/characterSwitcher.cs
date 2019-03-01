@@ -38,19 +38,19 @@ public class characterSwitcher : MonoBehaviour
     {
         if (!PauseUI.IsPaused)
         {
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(Control.toRabbit))
             {
                 charChoice = 1;
             }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            else if (Input.GetKeyDown(Control.toBallKid))
             {
                 charChoice = 2;
             }
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            else if (Input.GetKeyDown(Control.toMusicKid))
             {
                 charChoice = 3;
             }
-            else if (Input.GetKeyDown(KeyCode.UpArrow))
+            else if (Input.GetKeyDown(Control.pullJournal))
             {
                 if (IconControl.journalActivated)
                 {

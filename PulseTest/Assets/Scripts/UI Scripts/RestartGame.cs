@@ -16,20 +16,7 @@ public class RestartGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            //Reload current Scene 
-            StartCoroutine(LoadAsyncScene(thisSceneIndex)); 
-        }
-        else if (Input.GetKey(KeyCode.B))
-        {
-            //Go back to the previous scene 
-            if (thisSceneIndex != 0)
-            {
-                StartCoroutine(LoadAsyncScene(thisSceneIndex - 1));
-            }
-           
-        }
+       
 
 
     }

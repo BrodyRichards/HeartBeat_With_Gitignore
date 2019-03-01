@@ -80,7 +80,7 @@ public class Runners : MonoBehaviour
             }
 
             DetectMovement();
-            if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(Control.evacuate))
             {
                 schoolBell = true;
             }
