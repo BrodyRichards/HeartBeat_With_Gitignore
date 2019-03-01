@@ -22,6 +22,9 @@ public class McMovement : MonoBehaviour
     private bool isFlipped;
 
     public float followDist;
+    public bool CRunning = false;
+    public bool stimulus = false;
+
     void Start()
     {
         // some initializations
@@ -36,12 +39,10 @@ public class McMovement : MonoBehaviour
         // the array storing whether a waypoint has been reached 
 
         followDist = 20.0f;
-
     }
 
     void Update()
     {
-
         // check whether the radio guy has been activated yet 
         //if (RadioControl.isMusic && !walkedIn)
         if (characterSwitcher.charChoice != -1 && !walkedIn)
@@ -65,7 +66,16 @@ public class McMovement : MonoBehaviour
                 anim.SetBool("isWalking", true);
                 FlipAssetDirection();
                 AnimationMoodCheck();
-                if (CheckDist(transform.position, NpcInstantiator.ballKidPos))
+
+                if (RabbitJump.bittenMC)
+                {
+                    //McRunsFromAvatar(NpcInstantiator.rabbitPos, step);
+                }
+                else if (BallProjectile.meanBallThrown)
+                {
+                    //McRunsFromAvatar(NpcInstantiator.ballKidPos, step);
+                }
+                else if (CheckDist(transform.position, NpcInstantiator.ballKidPos))
                 {
                     McGoesToAvatar(NpcInstantiator.ballKidPos, step);
                 }
@@ -81,15 +91,46 @@ public class McMovement : MonoBehaviour
         }
     }
 
+    private void McRunsFromAvatar(Vector2 target, float step)
+    {
+        float timeElapsed = 0f;
+
+        while(timeElapsed < 3f)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target, (-1) * step);
+            timeElapsed += Time.deltaTime;
+        }
+    }
+
     private void McGoesToAvatar(Vector2 target, float step)
     {
+        //float timeElapsed = 0f;
+
         if (Vector2.Distance(transform.position, target) < 10.0f)
         {
-            Debug.Log("arrive at" + target);
+            //Debug.Log("arrive at" + target);
+            /*if(timeElapsed > 3f)
+            {
+                timeElapsed += Time.deltaTime;
+            }*/
         }
         else
         {
             transform.position = Vector2.MoveTowards(transform.position, target, step);
+        }
+    }
+
+    // Go to the assigned waypoints that haven't been reached yet
+    private void GoToWaypoints(float step)
+    {
+        if (mcWaypoints.Count != 0)
+        {
+            McGoesTo(mcWaypoints[0], step);
+        }
+        else
+        {
+            mcWaypoints = new List<Vector2> { new Vector2(-86f, 2f),
+            new Vector2(-50f, -15f), new Vector2(-10f, -15f), new Vector2(-50f, -15f), new Vector2(51f, -15f), new Vector2(23f, -2f), new Vector2(8f, -8f), new Vector2(58f, 6f), new Vector2(87f, 6f), new Vector2(58f, 6f), new Vector2(121f, -6f) };
         }
     }
 
@@ -126,21 +167,6 @@ public class McMovement : MonoBehaviour
         }
 
         lastX = transform.position.x;
-    }
-    // Go to the assigned waypoints that haven't been reached yet
-    private void GoToWaypoints(float step)
-    {
-        if (mcWaypoints.Count != 0)
-        {
-            McGoesTo(mcWaypoints[0], step);
-        }
-        else
-        {
-            mcWaypoints = new List<Vector2> { new Vector2(-86f, 2f),
-            new Vector2(-50f, -15f), new Vector2(-10f, -15f), new Vector2(-50f, -15f), new Vector2(51f, -15f), new Vector2(23f, -2f), new Vector2(8f, -8f), new Vector2(58f, 6f), new Vector2(87f, 6f), new Vector2(58f, 6f), new Vector2(121f, -6f) };
-        }
-
-
     }
 
     private void AnimationMoodCheck()

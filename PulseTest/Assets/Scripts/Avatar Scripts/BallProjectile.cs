@@ -9,7 +9,7 @@ public class BallProjectile : MonoBehaviour
     public LayerMask hittableObjects;
     //This is like its hitbox
     public float distance;
-    public bool meanBallThrown = false;
+    public static bool meanBallThrown = false;
     //public static bool playBallPlayer = false;
 
     public static string NpcName = "";

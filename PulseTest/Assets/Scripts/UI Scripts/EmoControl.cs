@@ -81,7 +81,6 @@ public class EmoControl : MonoBehaviour
     public void ChangeEmoBack()
     {
         emoChanged = false;
-        
     }
 
     public void ReactToMusic()
@@ -93,7 +92,7 @@ public class EmoControl : MonoBehaviour
                 hasEmo = true;
                 sr.sprite = happy;
                 MentalState.mood = 1;
-                //CRunning is false when returns to the switch
+
                 if (!CRunning)
                 {
                     CRunning = true;
