@@ -146,8 +146,36 @@ public class Groupies : MonoBehaviour
         balloon.GetComponent<SpriteRenderer>().sortingLayerName = "Front Props";
         balloon.transform.parent = transform;
     }
+
+    /* Might not need this?
+    private void deleteEmo(int type)
+    {
+        if (type == 1)                                                      //general emo deletion
+        {
+            int count = transform.childCount;
+            for (int i = 0; i < count; i++)
+            {
+                if (transform.GetChild(i).gameObject.tag != "Avatars")
+                {
+                    GameObject.Destroy(transform.GetChild(i).gameObject);
+                }
+            }
+        }
+        else
+        {
+            int count = transform.childCount;
+            for (int i = 0; i < count; i++)
+            {
+                if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
+                {
+                    GameObject.Destroy(transform.GetChild(i).gameObject);
+                }
+            }
+        }
+    }
+    */
     
-    bool checkDist(Vector3 pos1, Vector3 pos2)  //for AOE of music kid
+    bool checkDist(Vector3 pos1, Vector3 pos2)  //for AOE
     {
         float dist = Vector3.Distance(pos1, pos2);
         if (dist <= 20.0f) { return true; }
