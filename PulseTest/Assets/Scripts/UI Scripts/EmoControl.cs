@@ -21,6 +21,7 @@ public class EmoControl : MonoBehaviour
 
     public static bool hasEmo = false;
     public static bool emoChanged = false;
+    public static bool isAffectedByMusic = false;
 
 
     // Start is called before the first frame update
@@ -89,26 +90,34 @@ public class EmoControl : MonoBehaviour
         switch (RadioControl.currentMood)
         {
             case 1:
-                sr.enabled = true;
-                hasEmo = true;
-                sr.sprite = happy;
-                MentalState.mood = 1;
-                if (!CRunning)
+                if (isAffectedByMusic)
                 {
-                    CRunning = true;
-                    StartCoroutine(IncrementMoodLog("Happy Song", 1));
+                    sr.enabled = true;
+                    hasEmo = true;
+                    sr.sprite = happy;
+                    MentalState.mood = 1;
+                    if (!CRunning)
+                    {
+                        CRunning = true;
+                        StartCoroutine(IncrementMoodLog("Happy Song", 1));
+                    }
+                    
                 }
                 break;
             case 2:
-                sr.enabled = true;
-                hasEmo = true;
-                sr.sprite = sad;
-                MentalState.mood = 2;
-                if (!CRunning)
+                if (isAffectedByMusic)
                 {
-                    CRunning = true;
-                    StartCoroutine(IncrementMoodLog("Sad Song", 2));
+                    sr.enabled = true;
+                    hasEmo = true;
+                    sr.sprite = sad;
+                    MentalState.mood = 2;
+                    if (!CRunning)
+                    {
+                        CRunning = true;
+                        StartCoroutine(IncrementMoodLog("Sad Song", 2));
+                    }
                 }
+                
                 break;
             case 3:
                 sr.enabled = true;

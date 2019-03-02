@@ -9105,7 +9105,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ps: {fileID: 1840503299}
   sadSong: {fileID: 8300000, guid: 3bf54ba4cc375134bb7fa59469e36760, type: 3}
-  startleSong: {fileID: 8300000, guid: de04e97c7c24ac34ab916c7b5905edc0, type: 3}
   happySong: {fileID: 8300000, guid: 5bfc60d36f7c62e499bdc8d1971bcdb3, type: 3}
   happy: {fileID: 21300000, guid: 121fa4d01f2d1514ba6b093cfad84284, type: 3}
   sad: {fileID: 21300000, guid: 4c69a8179feef7b449d079d3c2ba758c, type: 3}
@@ -9314,7 +9313,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1453256353}
-  - component: {fileID: 1453256354}
   - component: {fileID: 1453256352}
   - component: {fileID: 1453256355}
   - component: {fileID: 1453256356}
@@ -9354,18 +9352,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1453256354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1453256351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37b7828185acc6049a76c7c29c3eaabd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1453256355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17566,10 +17552,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1343472211, guid: 3eb72fb30cbc15349abaad80b114a556, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 470879513, guid: 3eb72fb30cbc15349abaad80b114a556, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -17653,6 +17635,10 @@ PrefabInstance:
     - target: {fileID: 470879513, guid: 3eb72fb30cbc15349abaad80b114a556, type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343472211, guid: 3eb72fb30cbc15349abaad80b114a556, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8432465858589808407, guid: 3eb72fb30cbc15349abaad80b114a556,
         type: 3}

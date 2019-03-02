@@ -10,10 +10,10 @@ public class RadioControl : MonoBehaviour
     public ParticleSystem ps;
     private bool isBG;
     private SpriteRenderer sr;
-    private enum Mood { idle, happy, sad, startled};
+    private enum Mood { idle, happy, sad};
     [SerializeField] private AudioClip sadSong;
-    [SerializeField] private AudioClip startleSong;
     [SerializeField] private AudioClip happySong;
+   
 
     private AudioSource audioSource;
     private AudioSource backgroundMusic;
@@ -23,14 +23,16 @@ public class RadioControl : MonoBehaviour
     public Sprite startled;
     public Sprite idle;
 
+    public float actionDist;
+
     Sprite[] sprites;
     AudioClip[] audioClips;
     Color[] particleColors;
     private void Start()
     {
-        sprites = new Sprite[] { idle, happy, sad, startled };
-        audioClips = new AudioClip[] { happySong, sadSong, startleSong };
-        particleColors = new Color[] { Color.cyan, Color.magenta, Color.white };
+        sprites = new Sprite[] { idle, happy, sad};
+        audioClips = new AudioClip[] { happySong, sadSong };
+        particleColors = new Color[] { Color.cyan, Color.white };
         currentMood = (int)Mood.idle;
 
         sr = GetComponent<SpriteRenderer>();
@@ -39,6 +41,7 @@ public class RadioControl : MonoBehaviour
 
         isBG = true;
         ps.Stop();
+        actionDist = 4f;
 
     }
 
@@ -73,16 +76,20 @@ public class RadioControl : MonoBehaviour
 
     private void ChangeMusic()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(Control.positiveAction))
         {
-
-            currentMood = currentMood % 3 + 1;
+            RaycastHit2D hit = Physics2D.CircleCast(transform.position, actionDist, Vector2.zero);
+            if (hit.collider != null && hit.collider.gameObject.tag == "MC")
+            {
+                EmoControl.isAffectedByMusic = true;
+            }
+            currentMood = (int)Mood.happy;
 
             EmoControl.CRunning = false;
 
-            audioSource.clip = audioClips[(currentMood - 1) % 3];
+            audioSource.clip = audioClips[0];
 
-            sr.sprite = sprites[currentMood];
+            sr.sprite = sprites[0];
 
             audioSource.Play();
 
@@ -90,6 +97,27 @@ public class RadioControl : MonoBehaviour
                 
             isMusic = true;
 
+        }
+        else if (Input.GetKey(Control.negativeAction))
+        {
+            RaycastHit2D hit = Physics2D.CircleCast(transform.position, actionDist, Vector2.zero);
+            if (hit.collider != null && hit.collider.gameObject.tag == "MC")
+            {
+                EmoControl.isAffectedByMusic = true;
+            }
+            currentMood = (int)Mood.sad;
+
+            audioSource.clip = audioClips[1];
+
+            sr.sprite = sprites[1];
+
+            EmoControl.CRunning = false;
+
+            audioSource.Play();
+
+            EmitParticles();
+
+            isMusic = true;
         }
     }
 
