@@ -138,6 +138,12 @@ public class characterSwitcher : MonoBehaviour
     private void Disable(GameObject B)
     {
         B.GetComponent<Movement>().enabled = false;
+        if (charChoice == -1)
+        {
+            findGO(1).GetComponent<RabbitJump>().enabled = false;
+            findGO(2).GetComponent<BallThrow>().enabled = false;
+            isMusicGuyInCharge = false;
+         }
 
         switch (charChoice)
         {
