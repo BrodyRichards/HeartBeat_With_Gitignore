@@ -13,6 +13,9 @@ public class AlarmClock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(ControllerColliderHi))
+        if (Input.GetKeyDown(Control.positiveAction))
+        {
+
+        }
     }
 }
