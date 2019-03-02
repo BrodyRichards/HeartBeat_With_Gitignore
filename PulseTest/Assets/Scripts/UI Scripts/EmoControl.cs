@@ -37,6 +37,8 @@ public class EmoControl : MonoBehaviour
 
         emoDist = Playground.CheckDist(NpcInstantiator.musicKidPos, transform.position, Playground.MusicAoe);
 
+        
+
         if (mcBallHit > 1)
         {
             hasEmo = true;
@@ -57,8 +59,7 @@ public class EmoControl : MonoBehaviour
             MentalState.mood = 1;
 
 
-        }
-        else if (emoDist)
+        }else if (RadioControl.isMusic)
         {
             ReactToMusic();
         }
@@ -90,46 +91,39 @@ public class EmoControl : MonoBehaviour
         switch (RadioControl.currentMood)
         {
             case 1:
-                if (isAffectedByMusic)
+                
+                sr.enabled = true;
+                hasEmo = true;
+                sr.sprite = happy;
+                MentalState.mood = 1;
+                if (!CRunning)
                 {
-                    sr.enabled = true;
-                    hasEmo = true;
-                    sr.sprite = happy;
-                    MentalState.mood = 1;
-                    if (!CRunning)
-                    {
-                        CRunning = true;
-                        StartCoroutine(IncrementMoodLog("Happy Song", 1));
-                    }
-                    
-                }
-                break;
-            case 2:
-                if (isAffectedByMusic)
-                {
-                    sr.enabled = true;
-                    hasEmo = true;
-                    sr.sprite = sad;
-                    MentalState.mood = 2;
-                    if (!CRunning)
-                    {
-                        CRunning = true;
-                        StartCoroutine(IncrementMoodLog("Sad Song", 2));
-                    }
+                    StartCoroutine(IncrementMoodLog("Happy Song", 1));
+                    CRunning = true;
                 }
                 
                 break;
-            case 3:
+            case 2:
+                
                 sr.enabled = true;
                 hasEmo = true;
-                sr.sprite = startle;
-                MentalState.mood = 3;
+                sr.sprite = sad;
                 if (!CRunning)
                 {
+                    StartCoroutine(IncrementMoodLog("Sad Song", 2));
                     CRunning = true;
-                    StartCoroutine(IncrementMoodLog("Startled Song", 3));
                 }
+                MentalState.mood = 2;
                 break;
+            
+            //case 3:
+            //    sr.enabled = true;
+            //    hasEmo = true;
+            //    sr.sprite = startle;
+            //    MentalState.mood = 3;
+                
+            //    StartCoroutine(IncrementMoodLog("Startled Song", 3));
+            //    break;
             default:
                 sr.enabled = false;
                 hasEmo = false;

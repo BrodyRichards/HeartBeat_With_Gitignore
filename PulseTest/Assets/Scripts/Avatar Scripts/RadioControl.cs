@@ -48,19 +48,28 @@ public class RadioControl : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+
         
-       
+        UIControl();
         if (characterSwitcher.isMusicGuyInCharge)
         {
-            
 
-            ChangeMusic();
+            RaycastHit2D hit = Physics2D.CircleCast(transform.position, actionDist, Vector2.zero);
+            if (hit.collider != null && hit.collider.gameObject.tag == "MC")
+            {
+                ChangeMusic();
+            }
+            else
+            {
+                ResetThisGuy();
+            }
+
+
 
             TurnBgOff();
-            
-            UIControl();
 
-            
+
+
         }
         else
         {
@@ -76,16 +85,10 @@ public class RadioControl : MonoBehaviour
 
     private void ChangeMusic()
     {
-        if (Input.GetKey(Control.positiveAction))
+        if (Input.GetKeyDown(Control.positiveAction))
         {
-            RaycastHit2D hit = Physics2D.CircleCast(transform.position, actionDist, Vector2.zero);
-            if (hit.collider != null && hit.collider.gameObject.tag == "MC")
-            {
-                EmoControl.isAffectedByMusic = true;
-            }
+           
             currentMood = (int)Mood.happy;
-
-            EmoControl.CRunning = false;
 
             audioSource.clip = audioClips[0];
 
@@ -94,24 +97,20 @@ public class RadioControl : MonoBehaviour
             audioSource.Play();
 
             EmitParticles();
-                
+
             isMusic = true;
 
+
+            
+
         }
-        else if (Input.GetKey(Control.negativeAction))
+        else if (Input.GetKeyDown(Control.negativeAction))
         {
-            RaycastHit2D hit = Physics2D.CircleCast(transform.position, actionDist, Vector2.zero);
-            if (hit.collider != null && hit.collider.gameObject.tag == "MC")
-            {
-                EmoControl.isAffectedByMusic = true;
-            }
             currentMood = (int)Mood.sad;
 
             audioSource.clip = audioClips[1];
 
             sr.sprite = sprites[1];
-
-            EmoControl.CRunning = false;
 
             audioSource.Play();
 
@@ -119,6 +118,8 @@ public class RadioControl : MonoBehaviour
 
             isMusic = true;
         }
+
+        
     }
 
     private void ResetThisGuy()
@@ -127,12 +128,13 @@ public class RadioControl : MonoBehaviour
         sr.sprite = sprites[currentMood];
         audioSource.clip = null;
         audioSource.Pause();
+        EmoControl.CRunning = false;
     }
 
     private void EmitParticles()
     {
 
-        ps.startColor = particleColors[currentMood - 1];
+        ps.startColor = currentMood == 1? particleColors[0] : particleColors[1];
         ps.Play();
     }
 
