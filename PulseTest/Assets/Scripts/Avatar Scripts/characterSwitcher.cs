@@ -143,7 +143,7 @@ public class characterSwitcher : MonoBehaviour
             findGO(1).GetComponent<RabbitJump>().enabled = false;
             findGO(2).GetComponent<BallThrow>().enabled = false;
             isMusicGuyInCharge = false;
-         }
+        }
 
         switch (charChoice)
         {

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BallProjectile : MonoBehaviour
 {
+    public Transform targetLoc;
+    public float firingAngle = 45.0f;
+    public float gravity = 9.8f;
+
     public float speed;
     public float lifetime;
     public LayerMask hittableObjects;
@@ -65,7 +69,9 @@ public class BallProjectile : MonoBehaviour
         {
             stationaryBall();
         }
-        transform.Translate(Vector2.right * speed * Time.deltaTime);
+
+        //transform.Translate(Vector2.right * speed * Time.deltaTime);
+        StartCoroutine(SimulateProjectile());
     }
 
     private void destroyBall()
@@ -80,6 +86,32 @@ public class BallProjectile : MonoBehaviour
         Destroy(gameObject);
         GameObject newBall = Instantiate(gameObject, transform.position, Quaternion.identity);
         newBall.name = "newBall";
+    }
+
+    //Taken from: https://forum.unity.com/threads/throw-an-object-along-a-parabola.158855/
+    IEnumerator SimulateProjectile()
+    {
+        float targetDist = Vector3.Distance(transform.position, targetLoc.position);
+        float projectile_Velocity = targetDist / (Mathf.Sin(2 * firingAngle * Mathf.Deg2Rad) / gravity);
+
+        // Extract the X  Y componenent of the velocity
+        float Vx = Mathf.Sqrt(projectile_Velocity) * Mathf.Cos(firingAngle * Mathf.Deg2Rad);
+        float Vy = Mathf.Sqrt(projectile_Velocity) * Mathf.Sin(firingAngle * Mathf.Deg2Rad);
+
+        float flightDuration = targetDist / Vx;
+
+        transform.rotation = Quaternion.LookRotation(targetLoc.position - transform.position);
+
+        float elapse_time = 0;
+
+        while (elapse_time < flightDuration)
+        {
+            transform.Translate(0, (Vy - (gravity * elapse_time)) * Time.deltaTime, Vx * Time.deltaTime);
+
+            elapse_time += Time.deltaTime;
+
+            yield return null;
+        }
     }
 
     private void getBallAnim()
