@@ -20,6 +20,7 @@ public class Groupies : MonoBehaviour
     private bool schoolBell = false;
 
     public Vector3 target;
+
     // Start is called before the first frame update
     void Start()
     {
