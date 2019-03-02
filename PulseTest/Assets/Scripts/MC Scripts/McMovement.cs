@@ -7,7 +7,8 @@ public class McMovement : MonoBehaviour
     public Animator anim;
     //public static int mcCurrentMood = 0;
 
-    private List<Vector2> mcWaypoints;
+    public List<Vector2> mcWaypoints;
+    public List<Vector2> refPoints;
     private int checkArrivals;
     private Vector2 direction;
 
@@ -23,6 +24,7 @@ public class McMovement : MonoBehaviour
 
     public float followDist;
     public bool CRunning = false;
+    public bool endScene;
 
     void Start()
     {
@@ -32,10 +34,12 @@ public class McMovement : MonoBehaviour
         anim.SetBool("isWalking", false);
         currentGoal = 0;
         // put into array with some random waypoints, highly customizable 
-        mcWaypoints = new List<Vector2> { new Vector2(-86f, 2f),
-            new Vector2(-50f, -15f), new Vector2(-10f, -15f), new Vector2(-50f, -15f), new Vector2(51f, -15f), new Vector2(23f, -2f), new Vector2(8f, -8f), new Vector2(58f, 6f), new Vector2(87f, 6f), new Vector2(58f, 6f), new Vector2(121f, -6f) };
+        //mcWaypoints = new List<Vector2> { new Vector2(-86f, 2f),
+        //    new Vector2(-50f, -15f), new Vector2(-10f, -15f), new Vector2(-50f, -15f), new Vector2(51f, -15f), new Vector2(23f, -2f), new Vector2(8f, -8f), new Vector2(58f, 6f), new Vector2(87f, 6f), new Vector2(58f, 6f), new Vector2(121f, -6f) };
 
         // the array storing whether a waypoint has been reached 
+
+        refPoints = new List<Vector2>(mcWaypoints);
 
         followDist = 20.0f;
     }
@@ -57,9 +61,8 @@ public class McMovement : MonoBehaviour
         }
 
         float step = speed * Time.deltaTime;
-        if (walkedIn)
+        if (walkedIn || endScene)
         {
-            
             if (!EmoControl.emoChanged)
             {
                 anim.SetBool("isWalking", true);
@@ -68,10 +71,8 @@ public class McMovement : MonoBehaviour
 
                 if (RabbitJump.bittenMC)
                 {
-                    Debug.Log("Got here too");
                     if (!CRunning)
                     {
-                        Debug.Log("I'm here");
                         CRunning = true;
                         StartCoroutine(McRunsFromAvatar(NpcInstantiator.rabbitPos, step));
                     }
@@ -84,7 +85,7 @@ public class McMovement : MonoBehaviour
                         StartCoroutine(McRunsFromAvatar(NpcInstantiator.ballKidPos, step));
                     }
                 }
-                else if (CheckDist(transform.position, NpcInstantiator.ballKidPos))
+                else if (CheckDist(transform.position, NpcInstantiator.ballKidPos) && !endScene)
                 {
                     if (!CRunning)
                     {
@@ -149,8 +150,7 @@ public class McMovement : MonoBehaviour
         }
         else
         {
-            mcWaypoints = new List<Vector2> { new Vector2(-86f, 2f),
-            new Vector2(-50f, -15f), new Vector2(-10f, -15f), new Vector2(-50f, -15f), new Vector2(51f, -15f), new Vector2(23f, -2f), new Vector2(8f, -8f), new Vector2(58f, 6f), new Vector2(87f, 6f), new Vector2(58f, 6f), new Vector2(121f, -6f) };
+            mcWaypoints = new List<Vector2>(refPoints);
         }
     }
 
