@@ -21,6 +21,7 @@ public class EmoControl : MonoBehaviour
 
     public static bool hasEmo = false;
     public static bool emoChanged = false;
+    public static bool isAffectedByMusic = false;
 
 
     // Start is called before the first frame update
@@ -35,6 +36,8 @@ public class EmoControl : MonoBehaviour
     {
 
         emoDist = Playground.CheckDist(NpcInstantiator.musicKidPos, transform.position, Playground.MusicAoe);
+
+        
 
         if (mcBallHit > 1)
         {
@@ -55,8 +58,8 @@ public class EmoControl : MonoBehaviour
             sr.sprite = happy;
             MentalState.mood = 1;
 
-        }
-        else if (emoDist)
+        }else if (RadioControl.isMusic)
+
         {
             ReactToMusic();
         }
@@ -88,6 +91,7 @@ public class EmoControl : MonoBehaviour
         switch (RadioControl.currentMood)
         {
             case 1:
+                
                 sr.enabled = true;
                 hasEmo = true;
                 sr.sprite = happy;
@@ -95,32 +99,32 @@ public class EmoControl : MonoBehaviour
 
                 if (!CRunning)
                 {
-                    CRunning = true;
                     StartCoroutine(IncrementMoodLog("Happy Song", 1));
+                    CRunning = true;
                 }
+                
                 break;
             case 2:
+                
                 sr.enabled = true;
                 hasEmo = true;
                 sr.sprite = sad;
-                MentalState.mood = 2;
                 if (!CRunning)
                 {
-                    CRunning = true;
                     StartCoroutine(IncrementMoodLog("Sad Song", 2));
-                }
-                break;
-            case 3:
-                sr.enabled = true;
-                hasEmo = true;
-                sr.sprite = startle;
-                MentalState.mood = 3;
-                if (!CRunning)
-                {
                     CRunning = true;
-                    StartCoroutine(IncrementMoodLog("Startled Song", 3));
                 }
+                MentalState.mood = 2;
                 break;
+            
+            //case 3:
+            //    sr.enabled = true;
+            //    hasEmo = true;
+            //    sr.sprite = startle;
+            //    MentalState.mood = 3;
+                
+            //    StartCoroutine(IncrementMoodLog("Startled Song", 3));
+            //    break;
             default:
                 sr.enabled = false;
                 hasEmo = false;

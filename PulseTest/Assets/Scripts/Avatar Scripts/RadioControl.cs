@@ -7,13 +7,15 @@ public class RadioControl : MonoBehaviour
     // Start is called before the first frame update
     public static int currentMood = 0;
     public static bool isMusic = false;
+    public static string musicListener = "";
+
     public ParticleSystem ps;
     private bool isBG;
     private SpriteRenderer sr;
-    private enum Mood { idle, happy, sad, startled};
+    private enum Mood { idle, happy, sad};
     [SerializeField] private AudioClip sadSong;
-    [SerializeField] private AudioClip startleSong;
     [SerializeField] private AudioClip happySong;
+   
 
     private AudioSource audioSource;
     private AudioSource backgroundMusic;
@@ -23,14 +25,18 @@ public class RadioControl : MonoBehaviour
     public Sprite startled;
     public Sprite idle;
 
+    public float actionDist;
+
     Sprite[] sprites;
     AudioClip[] audioClips;
     Color[] particleColors;
+
+
     private void Start()
     {
-        sprites = new Sprite[] { idle, happy, sad, startled };
-        audioClips = new AudioClip[] { happySong, sadSong, startleSong };
-        particleColors = new Color[] { Color.cyan, Color.magenta, Color.white };
+        sprites = new Sprite[] { idle, happy, sad};
+        audioClips = new AudioClip[] { happySong, sadSong };
+        particleColors = new Color[] { Color.cyan, Color.white };
         currentMood = (int)Mood.idle;
 
         sr = GetComponent<SpriteRenderer>();
@@ -39,25 +45,49 @@ public class RadioControl : MonoBehaviour
 
         isBG = true;
         ps.Stop();
+        actionDist = 4f;
 
     }
 
     // Update is called once per frame
     private void Update()
     {
+
         
-       
+        UIControl();
         if (characterSwitcher.isMusicGuyInCharge)
         {
-            
 
-            ChangeMusic();
+            RaycastHit2D hit = Physics2D.CircleCast(transform.position, actionDist, Vector2.zero);
+            if (hit.collider != null && hit.collider.gameObject.tag == "MC")
+            {
+                ChangeMusic();
+            }
+            else if ( hit.collider != null && hit.collider.gameObject.tag == "Person")
+            {
+                if (Input.GetKey(Control.positiveAction))
+                {
+                    musicListener = hit.collider.transform.name;
+                    currentMood = (int)Mood.happy;
+                }else if (Input.GetKey(Control.negativeAction))
+                {
+                    musicListener = hit.collider.transform.name;
+                    currentMood = (int)Mood.sad;
+                }
+                
+            }
+            else
+            {
+                ResetThisGuy();
+                
+            }
+
+
 
             TurnBgOff();
-            
-            UIControl();
 
-            
+
+
         }
         else
         {
@@ -73,24 +103,41 @@ public class RadioControl : MonoBehaviour
 
     private void ChangeMusic()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(Control.positiveAction))
         {
+           
+            currentMood = (int)Mood.happy;
 
-            currentMood = currentMood % 3 + 1;
+            audioSource.clip = audioClips[0];
 
-            EmoControl.CRunning = false;
-
-            audioSource.clip = audioClips[(currentMood - 1) % 3];
-
-            sr.sprite = sprites[currentMood];
+            sr.sprite = sprites[0];
 
             audioSource.Play();
 
             EmitParticles();
-                
+
             isMusic = true;
 
+
+            
+
         }
+        else if (Input.GetKey(Control.negativeAction))
+        {
+            currentMood = (int)Mood.sad;
+
+            audioSource.clip = audioClips[1];
+
+            sr.sprite = sprites[1];
+
+            audioSource.Play();
+
+            EmitParticles();
+
+            isMusic = true;
+        }
+
+        
     }
 
     private void ResetThisGuy()
@@ -99,12 +146,13 @@ public class RadioControl : MonoBehaviour
         sr.sprite = sprites[currentMood];
         audioSource.clip = null;
         audioSource.Pause();
+        EmoControl.CRunning = false;
     }
 
     private void EmitParticles()
     {
 
-        ps.startColor = particleColors[currentMood - 1];
+        ps.startColor = currentMood == 1? particleColors[0] : particleColors[1];
         ps.Play();
     }
 

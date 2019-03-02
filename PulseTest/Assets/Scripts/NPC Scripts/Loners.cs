@@ -86,7 +86,7 @@ public class Loners : MonoBehaviour
             }
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             DetectMovement();
-            if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(Control.evacuate))
             {
                 schoolBell = true;
             }

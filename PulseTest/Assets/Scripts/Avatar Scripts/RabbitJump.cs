@@ -31,13 +31,16 @@ public class RabbitJump : MonoBehaviour
 
     public void JumpIntoArms()
     {
+
+
         //Swap a flag
         if(bittenMC)
         {
             bittenMC = !bittenMC;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        
+        if (Input.GetKeyDown(Control.positiveAction))
         {
             //If already being carried, put the rabbit down
             if (beingCarried)
@@ -72,8 +75,10 @@ public class RabbitJump : MonoBehaviour
                     }
                 }
             } 
-        }else if (Input.GetKeyDown(KeyCode.E))
-        {
+
+        }else if (Input.GetKeyDown(Control.negativeAction))
+        { 
+
             //Rabbit bite code!
             //Send out circle cast to see who's around to munch on
             //RaycastHit2D biteCheck = Physics2D.CircleCast(transform.position, actionDist, Vector2.zero);

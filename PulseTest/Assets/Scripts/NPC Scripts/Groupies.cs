@@ -76,7 +76,7 @@ public class Groupies : MonoBehaviour
             else { directionCheck(NpcInstantiator.center.x, transform.position.x); }
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             DetectMovement();
-            if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(Control.evacuate))
             {
                 schoolBell = true;
             }
