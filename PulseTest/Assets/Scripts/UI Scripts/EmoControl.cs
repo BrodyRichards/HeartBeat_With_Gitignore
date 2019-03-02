@@ -58,13 +58,14 @@ public class EmoControl : MonoBehaviour
             sr.sprite = happy;
             MentalState.mood = 1;
 
-
         }else if (RadioControl.isMusic)
+
         {
             ReactToMusic();
         }
         else
         {
+            CRunning = false;
             sr.enabled = false;
             MentalState.mood = 0;
         }
@@ -83,7 +84,6 @@ public class EmoControl : MonoBehaviour
     public void ChangeEmoBack()
     {
         emoChanged = false;
-        
     }
 
     public void ReactToMusic()
@@ -96,6 +96,7 @@ public class EmoControl : MonoBehaviour
                 hasEmo = true;
                 sr.sprite = happy;
                 MentalState.mood = 1;
+
                 if (!CRunning)
                 {
                     StartCoroutine(IncrementMoodLog("Happy Song", 1));
@@ -135,7 +136,8 @@ public class EmoControl : MonoBehaviour
 
     IEnumerator IncrementMoodLog(string msg, int mood)
     {
-        while(RadioControl.currentMood == mood)
+        Debug.Log("emoDist" + emoDist);
+        while(RadioControl.currentMood == mood && emoDist)
         {
             yield return new WaitForSeconds(3f);
             MentalState.sendMsg(msg);

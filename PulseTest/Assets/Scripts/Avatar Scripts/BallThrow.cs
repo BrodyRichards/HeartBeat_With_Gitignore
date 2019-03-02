@@ -10,7 +10,7 @@ public class BallThrow : MonoBehaviour
     public float pickupDist;
     public Animator anim;
     public bool thrownBall = false;
-    private bool isMeanBall = false;
+    public bool isMeanBall = false;
     
 
     private bool towardRight;
@@ -83,7 +83,7 @@ public class BallThrow : MonoBehaviour
         }
 
         //Update ballProjectile script with mean ball info
-        tempBall.GetComponent<BallProjectile>().meanBallThrown = isMeanBall;
+        BallProjectile.meanBallThrown = isMeanBall;
 
         anim.SetBool("hasBall", false);
         //Re-enable movement once animation has finished
@@ -98,6 +98,7 @@ public class BallThrow : MonoBehaviour
         if(distance < pickupDist)
         {
             thrownBall = false;
+            isMeanBall = false;
             Destroy(newBall);
             anim.SetBool("hasBall", true);
         }
