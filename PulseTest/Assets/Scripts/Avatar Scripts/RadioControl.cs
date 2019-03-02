@@ -7,6 +7,8 @@ public class RadioControl : MonoBehaviour
     // Start is called before the first frame update
     public static int currentMood = 0;
     public static bool isMusic = false;
+    public static string musicListener = "";
+
     public ParticleSystem ps;
     private bool isBG;
     private SpriteRenderer sr;
@@ -28,6 +30,8 @@ public class RadioControl : MonoBehaviour
     Sprite[] sprites;
     AudioClip[] audioClips;
     Color[] particleColors;
+
+
     private void Start()
     {
         sprites = new Sprite[] { idle, happy, sad};
@@ -59,9 +63,14 @@ public class RadioControl : MonoBehaviour
             {
                 ChangeMusic();
             }
+            else if ( hit.collider != null && hit.collider.gameObject.tag == "Person")
+            {
+                musicListener = hit.collider.transform.name;
+            }
             else
             {
                 ResetThisGuy();
+                hit.collider.transform.name = "";
             }
 
 
@@ -85,7 +94,7 @@ public class RadioControl : MonoBehaviour
 
     private void ChangeMusic()
     {
-        if (Input.GetKeyDown(Control.positiveAction))
+        if (Input.GetKey(Control.positiveAction))
         {
            
             currentMood = (int)Mood.happy;
@@ -104,7 +113,7 @@ public class RadioControl : MonoBehaviour
             
 
         }
-        else if (Input.GetKeyDown(Control.negativeAction))
+        else if (Input.GetKey(Control.negativeAction))
         {
             currentMood = (int)Mood.sad;
 

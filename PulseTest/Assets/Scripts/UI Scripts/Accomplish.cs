@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Accomplish : MonoBehaviour
+public class Accomplish : ScriptableObject
 {
     // Start is called before the first frame update
     public float[] alpha;
