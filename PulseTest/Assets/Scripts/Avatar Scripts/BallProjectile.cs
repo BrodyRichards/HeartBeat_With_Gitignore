@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BallProjectile : MonoBehaviour
 {
-    public Transform targetLoc;
-    public float firingAngle = 45.0f;
-    public float gravity = 9.8f;
+    public Vector3 targetLoc;
+    public Vector3 startPos;
+    public float arcHeight = 10;
 
     public float speed;
     public float lifetime;
@@ -23,7 +23,8 @@ public class BallProjectile : MonoBehaviour
     void Start()
     {
         Invoke("stationaryBall", lifetime);
-        
+        targetLoc = GameObject.Find("target").transform.position;
+        startPos = transform.position;
     }
 
     // Update is called once per frame
@@ -70,8 +71,19 @@ public class BallProjectile : MonoBehaviour
             stationaryBall();
         }
 
+        float x0 = startPos.x;
+        float x1 = targetLoc.x;
+        float dist = x1 - x0;
+        float nextX = Mathf.MoveTowards(transform.position.x, x1, speed * Time.deltaTime);
+        float baseY = Mathf.Lerp(startPos.y, targetLoc.y, (nextX - x0) / dist);
+        float arc = arcHeight * (nextX - x0) * (nextX - x1) / (-0.25f * dist * dist);
+        Vector3 nextPos = new Vector3(nextX, baseY + arc, transform.position.z);
+
+        // Rotate to face the next position, and then move there
+        transform.rotation = LookAt2D(nextPos - transform.position);
+        transform.position = nextPos;
         //transform.Translate(Vector2.right * speed * Time.deltaTime);
-        StartCoroutine(SimulateProjectile());
+        //StartCoroutine(SimulateProjectile());
     }
 
     private void destroyBall()
@@ -88,8 +100,13 @@ public class BallProjectile : MonoBehaviour
         newBall.name = "newBall";
     }
 
+    static Quaternion LookAt2D(Vector2 forward)
+    {
+        return Quaternion.Euler(0, 0, Mathf.Atan2(forward.y, forward.x) * Mathf.Rad2Deg);
+    }
+
     //Taken from: https://forum.unity.com/threads/throw-an-object-along-a-parabola.158855/
-    IEnumerator SimulateProjectile()
+    /*IEnumerator SimulateProjectile()
     {
         float targetDist = Vector3.Distance(transform.position, targetLoc.position);
         float projectile_Velocity = targetDist / (Mathf.Sin(2 * firingAngle * Mathf.Deg2Rad) / gravity);
@@ -100,7 +117,7 @@ public class BallProjectile : MonoBehaviour
 
         float flightDuration = targetDist / Vx;
 
-        transform.rotation = Quaternion.LookRotation(targetLoc.position - transform.position);
+        //transform.rotation = Quaternion.LookRotation(targetLoc.position - transform.position);
 
         float elapse_time = 0;
 
@@ -112,7 +129,7 @@ public class BallProjectile : MonoBehaviour
 
             yield return null;
         }
-    }
+    }*/
 
     private void getBallAnim()
     {
