@@ -65,12 +65,21 @@ public class RadioControl : MonoBehaviour
             }
             else if ( hit.collider != null && hit.collider.gameObject.tag == "Person")
             {
-                musicListener = hit.collider.transform.name;
+                if (Input.GetKey(Control.positiveAction))
+                {
+                    musicListener = hit.collider.transform.name;
+                    currentMood = (int)Mood.happy;
+                }else if (Input.GetKey(Control.negativeAction))
+                {
+                    musicListener = hit.collider.transform.name;
+                    currentMood = (int)Mood.sad;
+                }
+                
             }
             else
             {
                 ResetThisGuy();
-                hit.collider.transform.name = "";
+                
             }
 
 
