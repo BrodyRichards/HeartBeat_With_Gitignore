@@ -19,4 +19,26 @@ public class NPCs : MonoBehaviour
         master = GameObject.Find("GameController");
 
     }
+
+    protected virtual void directionCheck(float target, float pos)
+    {
+        if (target >= 0)
+        {
+            if (pos >= 0)
+            {
+                if (target >= pos) { transform.localScale = scale; }
+                else if (target <= pos) { transform.localScale = scaleOpposite; }
+            }
+            else if (pos <= 0) { transform.localScale = scale; }
+        }
+        else if (target <= 0)
+        {
+            if (pos >= 0) { transform.localScale = scaleOpposite; }
+            else if (pos <= 0)
+            {
+                if (target >= pos) { transform.localScale = scale; }
+                else if (target < pos) { transform.localScale = scaleOpposite; }
+            }
+        }
+    }
 }
