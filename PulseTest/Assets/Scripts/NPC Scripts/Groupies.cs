@@ -122,7 +122,7 @@ public class Groupies : MonoBehaviour
         {
             Emo = master.GetComponent<NpcInstantiator>().sadFace;
         }
-        else if (RadioControl.currentMood == 2)
+        else if (RadioControl.currentMood == 0)
         {
             Emo = master.GetComponent<NpcInstantiator>().madFace;
         }
@@ -143,9 +143,9 @@ public class Groupies : MonoBehaviour
             }
         }
         Vector3 offset = new Vector3(0, 4.5f, 0);
-        GameObject balloon = Instantiate(Emo, transform.localPosition + offset, transform.rotation);
-        balloon.GetComponent<SpriteRenderer>().sortingLayerName = "Front Props";
-        balloon.transform.parent = transform;
+        //GameObject balloon = Instantiate(Emo, transform.localPosition + offset, transform.rotation);
+        //balloon.GetComponent<SpriteRenderer>().sortingLayerName = "Front Props";
+        //balloon.transform.parent = transform;
     }
     
     bool checkDist(Vector3 pos1, Vector3 pos2)  //for AOE of music kid
