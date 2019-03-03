@@ -21,26 +21,25 @@ public class NPCs : MonoBehaviour
     private float lastPosX;
     */
     public Animator anim;
-    private float speed = 5f;
-    private Vector3 scale;
-    private Vector3 scaleOpposite;
+    protected float speed = 5f;
+    protected Vector3 scale;
+    protected Vector3 scaleOpposite;
     private float currentPosX;
     private float lastPosX;
-    private GameObject master;
-    GameObject Emo;
+    protected GameObject master;
+    protected GameObject Emo;
     private int music;
     private int check;
-    private SpriteRenderer sp;
-    private bool holdBunny = false;
-    private bool schoolBell = false;
-
+    private SpriteRenderer sr;
+    protected bool holdBunny = false;
+    protected bool schoolBell = false;
     public Vector3 target;
 
-    private void Start()
+    protected virtual void Start()
     {
-        sp = GetComponent<SpriteRenderer>();
+        sr = GetComponent<SpriteRenderer>();
         anim.SetBool("IsWalking", true);
-        Playground.RandomizeNpcAssets(anim, sp);
+        Playground.RandomizeNpcAssets(anim, sr);
         master = GameObject.Find("GameController");
         scale = transform.localScale;
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
@@ -48,45 +47,12 @@ public class NPCs : MonoBehaviour
         check = music;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (schoolBell == false)
         {
-            bool emoDist = checkDist(NpcInstantiator.musicKidPos, transform.position);
             directionCheck(target.x, transform.position.x);
-            check = music;
-            music = RadioControl.currentMood;
-            if (music != check || (emoDist && RadioControl.isMusic))
-            {
-                checkMusic();
-            }
-            if ((characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false) || emoDist == false)
-            {
-                holdBunny = false;
-                int count = transform.childCount;
-                for (int i = 0; i < count; i++)
-                {
-                    if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
-                    {
-                        GameObject.Destroy(transform.GetChild(i).gameObject);
-                    }
-                }
-            }
-            if (RabbitJump.beingCarried)
-            {
-                int count = transform.childCount;
-                for (int i = 0; i < count; i++)
-                {
-                    if (transform.GetChild(i).gameObject.tag == "Avatars" && holdBunny == false)
-                    {
-                        holdBunny = true;
-                        Emo = master.GetComponent<NpcInstantiator>().happyFace;
-                        addEmo();
-                    }
-                }
-            }
-            if (anim.GetBool("IsWalking") == true) { directionCheck(target.x, transform.position.x); }
-            else { directionCheck(NpcInstantiator.center.x, transform.position.x); }
+            avatarChecks();
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             DetectMovement();
             if (Input.GetKeyDown(KeyCode.P))
@@ -105,12 +71,54 @@ public class NPCs : MonoBehaviour
             }
         }
     }
-    /*
-    public NPCs()
+
+    protected virtual void avatarChecks()
     {
-        master = GameObject.Find("GameController");
+        bool emoDist = checkDist(NpcInstantiator.musicKidPos, transform.position);
+        check = music;
+        music = RadioControl.currentMood;
+        if (music != check || (emoDist && RadioControl.isMusic))
+        {
+            checkMusic();
+        }
+        checkBools(emoDist);
+        checkRabbitCarry();
+        
     }
-    */
+
+    protected virtual void checkBools(bool emoDist)
+    {
+        if ((characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false) || emoDist == false)
+        {
+            holdBunny = false;
+            int count = transform.childCount;
+            for (int i = 0; i < count; i++)
+            {
+                if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
+                {
+                    GameObject.Destroy(transform.GetChild(i).gameObject);
+                }
+            }
+        }
+    }
+
+    protected virtual void checkRabbitCarry()
+    {
+        if (RabbitJump.beingCarried)
+        {
+            int count = transform.childCount;
+            for (int i = 0; i < count; i++)
+            {
+                if (transform.GetChild(i).gameObject.tag == "Avatars" && holdBunny == false)
+                {
+                    holdBunny = true;
+                    Emo = master.GetComponent<NpcInstantiator>().happyFace;
+                    addEmo();
+                }
+            }
+        }
+    }
+
     protected virtual void checkMusic()
     {
         if (RadioControl.currentMood == 1)
@@ -128,24 +136,24 @@ public class NPCs : MonoBehaviour
         addEmo();
     }
 
-    protected virtual void directionCheck(float target, float pos)
+    protected virtual void directionCheck(float target1, float pos)
     {
-        if (target >= 0)
+        if (target1 >= 0)
         {
             if (pos >= 0)
             {
-                if (target >= pos) { transform.localScale = scale; }
-                else if (target <= pos) { transform.localScale = scaleOpposite; }
+                if (target1 >= pos) { transform.localScale = scale; }
+                else if (target1 <= pos) { transform.localScale = scaleOpposite; }
             }
             else if (pos <= 0) { transform.localScale = scale; }
         }
-        else if (target <= 0)
+        else if (target1 <= 0)
         {
             if (pos >= 0) { transform.localScale = scaleOpposite; }
             else if (pos <= 0)
             {
-                if (target >= pos) { transform.localScale = scale; }
-                else if (target < pos) { transform.localScale = scaleOpposite; }
+                if (target1 >= pos) { transform.localScale = scale; }
+                else if (target1 < pos) { transform.localScale = scaleOpposite; }
             }
         }
     }
