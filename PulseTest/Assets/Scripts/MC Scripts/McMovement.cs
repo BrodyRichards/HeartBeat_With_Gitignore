@@ -77,7 +77,7 @@ public class McMovement : MonoBehaviour
                         StartCoroutine(McRunsFromAvatar(NpcInstantiator.rabbitPos, step));
                     }
                 }
-                else if (BallProjectile.meanBallThrown)
+                else if (CheckDist(transform.position, NpcInstantiator.ballKidPos) && BallProjectile.meanBallThrown)
                 {
                     if (!CRunning)
                     {

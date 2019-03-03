@@ -99,6 +99,7 @@ public class BallThrow : MonoBehaviour
         {
             thrownBall = false;
             isMeanBall = false;
+            BallProjectile.meanBallThrown = false;
             Destroy(newBall);
             anim.SetBool("hasBall", true);
         }
