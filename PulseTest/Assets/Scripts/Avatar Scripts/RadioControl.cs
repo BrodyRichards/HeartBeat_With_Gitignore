@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ public class RadioControl : MonoBehaviour
 
     private bool isBG;
 
+    public LayerMask Carriers;
     public ParticleSystem ps;
    
     private SpriteRenderer sr;
@@ -53,87 +55,81 @@ public class RadioControl : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-
-        
         UIControl();
         if (characterSwitcher.isMusicGuyInCharge)
         {
-
-            AllTheStuff();
-
-
+            DetectAction();
+            DetectMusic();
         }
         else
         {
             ps.Stop();
-
             TurnBgOn();
-            
             ResetThisGuy();
-           
         }
-        
     }
 
-    
-
-    private void AllTheStuff()
+    private void DetectAction()
     {
-
-        
-        if (Input.GetKeyDown(Control.positiveAction) && currentMood!=0)
+        if (Input.GetKeyDown(Control.positiveAction) && currentMood != 0)
         {
-            
             PlaySong(0);
             TurnBgOff();
-
-            
         }
-        else if (Input.GetKeyDown(Control.negativeAction) && currentMood!=1)
+        else if (Input.GetKeyDown(Control.negativeAction) && currentMood != 1)
         {
-            
             PlaySong(1);
             TurnBgOff();
-            
         }
-        else if (Input.GetKeyDown(Control.negativeAction) && currentMood == 1)
+        else if ((Input.GetKeyDown(Control.negativeAction) && currentMood == 1) || (Input.GetKeyDown(Control.positiveAction) && currentMood == 0))
         {
             ResetThisGuy();
             TurnBgOn();
         }
-        else if (Input.GetKeyDown(Control.positiveAction) && currentMood == 0)
-        {
-            ResetThisGuy();
-            TurnBgOn();
-        }
+    }
 
+    private void DetectMusic()
+    {
         if (isMusic)
         {
-            RaycastHit2D hit = Physics2D.CircleCast(transform.position, actionDist, Vector2.zero);
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, actionDist, Carriers);
 
-            if (hit.collider != null && hit.collider.gameObject.tag == "MC" && !mcIsAffected)
+            //Check if array is empty or if there was anything collided with
+            // Codes from Justin's Rabbit script 
+            if (colliders.Length != 0)
             {
-                mcIsAffected = true;
-                Invoke("McNotAffected", 3f);
-
-            } else if ( hit.collider != null && hit.collider.gameObject.tag == "Person" && !mcIsAffected && !npcIsAffected)
-            {
-                npcIsAffected = true;
-                musicListener = hit.collider.gameObject.name;
-                Debug.Log(musicListener);
-                Invoke("NpcNotAffected", 3f);
+                Array.Reverse(colliders);
+                foreach (Collider2D coll in colliders)
+                {
+                    if (coll.gameObject.tag == "MC" && !mcIsAffected)
+                    {
+                        mcIsAffected = true;
+                        // 3 seconds later call this function and reset MC 
+                        Invoke("McNotAffected", 3f);
+                    }
+                    else if (coll.gameObject.tag == "Person" && !mcIsAffected && !npcIsAffected)
+                    {
+                        npcIsAffected = true;
+                        musicListener = coll.gameObject.name;
+                        //Debug.Log(musicListener);
+                        // 3 seconds later reset npc
+                        Invoke("NpcNotAffected", 3f);
+                        break;
+                    }
+                }
             }
         }
         else
         {
+            // reset 
             mcIsAffected = false;
             npcIsAffected = false;
             musicListener = "";
-            
+
         }
 
     }
-
+    // play songs, change sprites and particles according to the mood 0=happy 1=sad 
     private void PlaySong(int index)
     {
         currentMood = index==0? (int)Mood.happy: (int)Mood.sad;
@@ -164,7 +160,6 @@ public class RadioControl : MonoBehaviour
         sr.sprite = sprites[currentMood];
         audioSource.clip = null;
         audioSource.Pause();
-        //EmoControl.CRunning = false;
         isMusic = false;
     }
     private void TurnBgOff()
@@ -200,6 +195,9 @@ public class RadioControl : MonoBehaviour
 
     private void McNotAffected()
     {
+        // doesne't send message from emoControl anymore 
+        var msg = currentMood == 0 ? "Happy Song" : "Sad Song";
+        MentalState.sendMsg(msg);
         mcIsAffected = false;
     }
 

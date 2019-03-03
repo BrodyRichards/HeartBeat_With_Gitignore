@@ -35,7 +35,7 @@ public class EmoControl : MonoBehaviour
     void Update()
     {
 
-        emoDist = Playground.CheckDist(NpcInstantiator.musicKidPos, transform.position, Playground.MusicAoe);
+        //emoDist = Playground.CheckDist(NpcInstantiator.musicKidPos, transform.position, Playground.MusicAoe);
 
         
 
@@ -62,11 +62,9 @@ public class EmoControl : MonoBehaviour
         else if (RadioControl.mcIsAffected)
         {
             ReactToMusic();
-            
         }
         else
         {
-            CRunning = false;
             sr.enabled = false;
             MentalState.mood = 0;
         }
@@ -126,11 +124,5 @@ public class EmoControl : MonoBehaviour
         yield break;
     }
 
-    //bool checkDist(Vector3 pos1, Vector2 pos2)
-    //{
-    //    float dist = Vector3.Distance(pos1, pos2);
-    //    Debug.Log(dist);
-    //    if (dist <= 30.0f) { return true; }
-    //    return false;
-    //}
+    
 }

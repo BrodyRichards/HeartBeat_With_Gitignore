@@ -96,6 +96,14 @@ public class Runners : MonoBehaviour
             }
         }
         
+        if (RadioControl.npcIsAffected)
+        {
+            if (this.gameObject.name == RadioControl.musicListener)
+            {
+                //Debug.Log("hellooooo" + this.gameObject.name);
+                // Emo should pop up accordingly 
+            }
+        }
     }
 
     void directionCheck(float target, float pos) //WHY DOES THIS GOTTA BE SO DAMN COMPLICATED MAN 
