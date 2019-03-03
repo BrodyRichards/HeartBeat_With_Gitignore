@@ -93,8 +93,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c432e2e2c1d2e644096cab48cd0181ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 18
-  lifetime: 1.5
+  targetLoc: {x: 0, y: 0, z: 0}
+  startPos: {x: 0, y: 0, z: 0}
+  arcHeight: 2
+  speed: 15
+  meanSpeed: 0
+  lifetime: 1
   hittableObjects:
     serializedVersion: 2
     m_Bits: 512
