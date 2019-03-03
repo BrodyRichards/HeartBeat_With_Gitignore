@@ -606,7 +606,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u2190  \u2193  \u2192  \u2191"
+  m_Text: 1   2    3  tab
 --- !u!222 &207404974
 CanvasRenderer:
   m_ObjectHideFlags: 0
