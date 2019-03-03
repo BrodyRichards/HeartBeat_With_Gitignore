@@ -69,11 +69,10 @@ public class RabbitChasers : NPCs
     {
         if (rabbitDist)
         {
-            target = NpcInstantiator.rabbitPos;
             float dist = Vector3.Distance(NpcInstantiator.rabbitPos, transform.position);
             if (dist > 5.0f)
             {
-                //target = NpcInstantiator.rabbitPos;
+                target = NpcInstantiator.rabbitPos;
                 transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             }
         }
