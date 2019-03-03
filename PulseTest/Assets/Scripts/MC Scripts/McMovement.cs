@@ -54,7 +54,7 @@ public class McMovement : MonoBehaviour
             if (Playground.CheckDist(NpcInstantiator.musicKidPos, transform.position, Playground.MusicAoe))
             {
             */
-                walkedIn = true;
+                walkedIn = true; 
               //  anim.SetInteger("mood", MentalState.mood);
                
             //}

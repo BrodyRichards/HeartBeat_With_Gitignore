@@ -6,23 +6,24 @@ public class RadioControl : MonoBehaviour
 {
     // Start is called before the first frame update
     public static int currentMood = 0;
-    public static bool isMusic = false;
     public static string musicListener = "";
+    public static bool mcIsAffected = false;
+    public static bool npcIsAffected = false;
+    public static bool isMusic = false;
+
+    private bool isBG;
 
     public ParticleSystem ps;
-    private bool isBG;
+   
     private SpriteRenderer sr;
     private enum Mood { idle, happy, sad};
     [SerializeField] private AudioClip sadSong;
     [SerializeField] private AudioClip happySong;
-   
-
     private AudioSource audioSource;
     private AudioSource backgroundMusic;
 
     public Sprite happy;
     public Sprite sad;
-    public Sprite startled;
     public Sprite idle;
 
     public float actionDist;
@@ -36,7 +37,7 @@ public class RadioControl : MonoBehaviour
     {
         sprites = new Sprite[] { idle, happy, sad};
         audioClips = new AudioClip[] { happySong, sadSong };
-        particleColors = new Color[] { Color.cyan, Color.white };
+        particleColors = new Color[] { Color.white, Color.cyan };
         currentMood = (int)Mood.idle;
 
         sr = GetComponent<SpriteRenderer>();
@@ -58,34 +59,7 @@ public class RadioControl : MonoBehaviour
         if (characterSwitcher.isMusicGuyInCharge)
         {
 
-            RaycastHit2D hit = Physics2D.CircleCast(transform.position, actionDist, Vector2.zero);
-            if (hit.collider != null && hit.collider.gameObject.tag == "MC")
-            {
-                ChangeMusic();
-            }
-            else if ( hit.collider != null && hit.collider.gameObject.tag == "Person")
-            {
-                if (Input.GetKey(Control.positiveAction))
-                {
-                    musicListener = hit.collider.transform.name;
-                    currentMood = (int)Mood.happy;
-                }else if (Input.GetKey(Control.negativeAction))
-                {
-                    musicListener = hit.collider.transform.name;
-                    currentMood = (int)Mood.sad;
-                }
-                
-            }
-            else
-            {
-                ResetThisGuy();
-                
-            }
-
-
-
-            TurnBgOff();
-
+            AllTheStuff();
 
 
         }
@@ -103,41 +77,81 @@ public class RadioControl : MonoBehaviour
 
     private void ChangeMusic()
     {
-        if (Input.GetKey(Control.positiveAction))
-        {
-           
-            currentMood = (int)Mood.happy;
-
-            audioSource.clip = audioClips[0];
-
-            sr.sprite = sprites[0];
-
-            audioSource.Play();
-
-            EmitParticles();
-
-            isMusic = true;
-
-
-            
-
-        }
-        else if (Input.GetKey(Control.negativeAction))
-        {
-            currentMood = (int)Mood.sad;
-
-            audioSource.clip = audioClips[1];
-
-            sr.sprite = sprites[1];
-
-            audioSource.Play();
-
-            EmitParticles();
-
-            isMusic = true;
-        }
+        
 
         
+    }
+
+    private void AllTheStuff()
+    {
+        if (Input.GetKey(Control.positiveAction))
+        {
+            if (!isMusic)
+            {
+                PlaySong(0);
+            }
+            else
+            {
+                ResetThisGuy();
+            }
+        }else if (Input.GetKey(Control.negativeAction))
+        {
+            if (!isMusic)
+            {
+                PlaySong(1);
+            }
+            else
+            {
+                ResetThisGuy();
+            }
+        }
+
+        if (isMusic)
+        {
+            RaycastHit2D hit = Physics2D.CircleCast(transform.position, actionDist, Vector2.zero);
+
+            if (hit.collider != null && hit.collider.gameObject.tag == "MC" && !mcIsAffected)
+            {
+                mcIsAffected = true;
+                Invoke("McNotAffected", 3f);
+            }else if ( hit.collider != null && hit.collider.gameObject.tag == "Person" && !mcIsAffected && !npcIsAffected)
+            {
+                npcIsAffected = true;
+                musicListener = hit.collider.gameObject.name;
+                Debug.Log(musicListener);
+            }
+        }
+        else
+        {
+            mcIsAffected = false;
+            npcIsAffected = false;
+            musicListener = "";
+            
+        }
+
+    }
+
+    private void PlaySong(int index)
+    {
+        currentMood = index==0? (int)Mood.happy: (int)Mood.sad;
+
+        audioSource.clip = audioClips[index];
+
+        sr.sprite = sprites[index];
+
+        audioSource.Play();
+
+        EmitParticles(index);
+
+        isMusic = true;
+    }
+   
+
+    private void EmitParticles(int index)
+    {
+
+        ps.startColor = particleColors[index];
+        ps.Play();
     }
 
     private void ResetThisGuy()
@@ -147,15 +161,8 @@ public class RadioControl : MonoBehaviour
         audioSource.clip = null;
         audioSource.Pause();
         EmoControl.CRunning = false;
+        isMusic = false;
     }
-
-    private void EmitParticles()
-    {
-
-        ps.startColor = currentMood == 1? particleColors[0] : particleColors[1];
-        ps.Play();
-    }
-
     private void TurnBgOff()
     {
         if (isBG && currentMood != (int)Mood.idle)
@@ -185,5 +192,10 @@ public class RadioControl : MonoBehaviour
         {
             audioSource.UnPause();
         }
+    }
+
+    private void McNotAffected()
+    {
+        mcIsAffected = false;
     }
 }

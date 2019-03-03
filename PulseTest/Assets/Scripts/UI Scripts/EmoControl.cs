@@ -58,8 +58,8 @@ public class EmoControl : MonoBehaviour
             sr.sprite = happy;
             MentalState.mood = 1;
 
-        }else if (RadioControl.isMusic)
-
+        }
+        else if (RadioControl.mcIsAffected)
         {
             ReactToMusic();
         }
@@ -97,11 +97,10 @@ public class EmoControl : MonoBehaviour
                 sr.sprite = happy;
                 MentalState.mood = 1;
 
-                if (!CRunning)
-                {
-                    StartCoroutine(IncrementMoodLog("Happy Song", 1));
-                    CRunning = true;
-                }
+                
+                StartCoroutine(IncrementMoodLog("Happy Song", 1));
+                CRunning = true;
+                
                 
                 break;
             case 2:
@@ -109,11 +108,10 @@ public class EmoControl : MonoBehaviour
                 sr.enabled = true;
                 hasEmo = true;
                 sr.sprite = sad;
-                if (!CRunning)
-                {
-                    StartCoroutine(IncrementMoodLog("Sad Song", 2));
-                    CRunning = true;
-                }
+                
+                StartCoroutine(IncrementMoodLog("Sad Song", 2));
+                CRunning = true;
+              
                 MentalState.mood = 2;
                 break;
             
