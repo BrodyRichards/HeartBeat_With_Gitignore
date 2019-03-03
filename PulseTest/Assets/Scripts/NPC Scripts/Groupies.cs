@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 //using UnityEngine.AI; may need this in the future??
 
-public class Groupies : MonoBehaviour
+public class Groupies : NPCs
 {
+    /*
     public Animator anim;
     private float speed = 5f;
     private Vector3 scale;
@@ -174,7 +175,7 @@ public class Groupies : MonoBehaviour
             }
         }
     }
-    */
+    
     
     bool checkDist(Vector3 pos1, Vector3 pos2)  //for AOE
     {
@@ -203,6 +204,6 @@ public class Groupies : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
     }
 
-    
+    */
 
 }
