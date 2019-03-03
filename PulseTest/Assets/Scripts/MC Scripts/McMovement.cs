@@ -25,6 +25,7 @@ public class McMovement : MonoBehaviour
     public float followDist;
     public bool CRunning = false;
     public bool endScene;
+    public bool tutorialScene;
 
     void Start()
     {
@@ -61,7 +62,7 @@ public class McMovement : MonoBehaviour
         }
 
         float step = speed * Time.deltaTime;
-        if (walkedIn || endScene)
+        if (walkedIn || endScene || tutorialScene)
         {
             if (!EmoControl.emoChanged)
             {
