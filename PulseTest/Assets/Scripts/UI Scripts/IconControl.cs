@@ -32,12 +32,12 @@ public class IconControl : MonoBehaviour
             if ( icons.IndexOf(img) + 1 == characterSwitcher.charChoice)
             {
                 ChangeAlpha(img, 1.0f);
-                Rescale(img, 80f);
+                Rescale(img, 50f);
             }
             else
             {
-                ChangeAlpha(img, 0.5f);
-                Rescale(img, 50f);
+                ChangeAlpha(img, 1.0f);
+                Rescale(img, 40f);
             }
         }
 
@@ -48,7 +48,7 @@ public class IconControl : MonoBehaviour
         }
         else
         {
-            ChangeAlpha(journalIcon, 0.5f);
+            ChangeAlpha(journalIcon, 1.5f);
             journal.SetActive(false);
         }
     }
@@ -62,6 +62,6 @@ public class IconControl : MonoBehaviour
 
     void Rescale(Image im, float pixel)
     {
-        im.rectTransform.sizeDelta = new Vector2(pixel, pixel);
+        im.rectTransform.sizeDelta = new Vector2(pixel, pixel*2f);
     }
 }

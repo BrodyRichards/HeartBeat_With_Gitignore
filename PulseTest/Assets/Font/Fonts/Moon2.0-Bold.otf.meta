@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: c833724b6f13ecf45964c55783719542
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Moon 2.0
+  fontNames:
+  - Moon 2.0
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 164247251a95ca341be9a07fd647b46f, type: 3}
+  - {fileID: 12800000, guid: a54282679c3e57f4c97fd5960ef23d05, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
