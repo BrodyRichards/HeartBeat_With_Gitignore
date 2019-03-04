@@ -3,74 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 //using UnityEngine.AI; may need this in the future??
 
-public class Runners : MonoBehaviour
+public class Runners : NPCs
 {
-    public Animator anim;
-    Vector3 target;
-    private float speed = 5f;
-    private Vector3 scale;
-    private Vector3 scaleOpposite;
-    private float currentPosX;
-    private float lastPosX;
-    private GameObject master;
-    GameObject Emo;
-    private int music;
-    private int check;
-    private SpriteRenderer sr;
-    private bool holdBunny = false;
-    private bool schoolBell = false;
-
-    // Start is called before the first frame update
-    void Start()
+    
+    protected override void Start()
     {
-        master = GameObject.Find("GameController");
+        base.Start();
         int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
         int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
         target = new Vector3(ranX, ranY, -1);
-        scale = transform.localScale;
-        scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        music = RadioControl.currentMood;
-        check = music;
-        anim.SetBool("IsWalking", true);
-        sr = GetComponent<SpriteRenderer>();
-        Playground.RandomizeNpcAssets(anim, sr);
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         if (schoolBell == false)
         {
-            bool emoDist = checkDist(NpcInstantiator.musicKidPos, transform.position);
             directionCheck(target.x, transform.position.x);
-            check = music;
-            music = RadioControl.currentMood;
-            if (music != check || (emoDist && RadioControl.isMusic)) { checkMusic(); }
-            if (characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false || emoDist == false)
-            {
-                holdBunny = false;
-                int count = transform.childCount;
-                for (int i = 0; i < count; i++)
-                {
-                    if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
-                    {
-                        GameObject.Destroy(transform.GetChild(i).gameObject);
-                    }
-                }
-            }
-            if (RabbitJump.beingCarried)
-            {
-                int count = transform.childCount;
-                for (int i = 0; i < count; i++)
-                {
-                    if (transform.GetChild(i).gameObject.tag == "Avatars" && holdBunny == false)
-                    {
-                        holdBunny = true;
-                        Emo = master.GetComponent<NpcInstantiator>().happyFace;
-                        addEmo();
-                    }
-                }
-            }
+            avatarChecks();
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             if (transform.position == target)
             {
@@ -78,7 +27,6 @@ public class Runners : MonoBehaviour
                 int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
                 target = new Vector3(ranX, ranY, -1);
             }
-
             DetectMovement();
             if (Input.GetKeyDown(Control.evacuate))
             {
@@ -105,30 +53,8 @@ public class Runners : MonoBehaviour
             }
         }
     }
-
-    void directionCheck(float target, float pos) //WHY DOES THIS GOTTA BE SO DAMN COMPLICATED MAN 
-    {
-        if (target >= 0) 
-        {
-            if (pos >= 0)
-            {
-                if (target >= pos) { transform.localScale = scale; }
-                else if (target <= pos) { transform.localScale = scaleOpposite; }
-            }
-            else if (pos <= 0) { transform.localScale = scale; }
-        }
-        else if (target <= 0)
-        {
-            if (pos >= 0) { transform.localScale = scaleOpposite; }   
-            else if (pos <= 0)
-            {
-                if (target >= pos) { transform.localScale = scale; }
-                else if (target < pos) { transform.localScale = scaleOpposite; }
-            }
-        }
-    }
-
-    private void checkMusic()
+    
+    protected override void checkMusic()
     {
         if (RadioControl.currentMood == 1)
         {
@@ -144,46 +70,5 @@ public class Runners : MonoBehaviour
         }
         addEmo();
     }
-    private void addEmo()
-    {
-        int count = transform.childCount;
-        for (int i = 0; i < count; i++)
-        {
-            if (transform.GetChild(i).gameObject.tag != "Avatars")
-            {
-                GameObject.Destroy(transform.GetChild(i).gameObject);
-            }
-        }
-        Vector3 offset = new Vector3(0, 4.5f, 0);
-        //GameObject balloon = Instantiate(Emo, transform.localPosition + offset, transform.rotation);
-        //balloon.GetComponent<SpriteRenderer>().sortingLayerName = "Front Props";
-        //balloon.transform.parent = transform;
-    }
 
-    bool checkDist(Vector3 pos1, Vector3 pos2)  //for AOE of music kid
-    {
-        float dist = Vector3.Distance(pos1, pos2);
-        if (dist <= 20.0f) { return true; }
-        return false;
-    }
-
-    private void DetectMovement()
-    {
-        currentPosX = transform.position.x;
-        if (currentPosX != lastPosX)
-        {
-            anim.SetBool("IsWalking", true);
-        }
-        else
-        {
-            anim.SetBool("IsWalking", false);
-        }
-
-        lastPosX = transform.position.x;
-    }
-
-    private void runOff()
-    {
-        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-    }
 }

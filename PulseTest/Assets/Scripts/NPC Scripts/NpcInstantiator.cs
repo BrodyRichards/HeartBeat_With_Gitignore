@@ -56,7 +56,6 @@ public class NpcInstantiator : MonoBehaviour
             Vector3 pos = new Vector3(ranX, ranY, -1);
             groupies[i] = Instantiate(groupiePrefab, pos, Quaternion.identity) as GameObject;
             groupies[i].GetComponent<SpriteRenderer>().sortingLayerName = "Main";
-            groupies[i].GetComponent<Groupies>().manager = this.gameObject;
             groupies[i].GetComponent<Groupies>().target = RandomCircle(center, 3f, groupCount, i);
 
         }
