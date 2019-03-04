@@ -11,11 +11,12 @@ public class McMovement : MonoBehaviour
     public List<Vector2> refPoints;
     private int checkArrivals;
     private Vector2 direction;
-
+    private enum Mood { happy, sad, idle };
     private float step;
     public float speed;
     private double worldX;
 
+    private int moodBound = 10;
     private bool[] arrivals;
     private bool walkedIn;
     private int currentGoal;
@@ -198,25 +199,31 @@ public class McMovement : MonoBehaviour
 
     private void AnimationMoodCheck()
     {
-        anim.SetInteger("mood", MentalState.mood);
-        if (MentalState.mood < 5 && MentalState.mood > -5) // no mood
+        var moo = MentalState.tallyEmotion();
+        
+        
+        if (moo < moodBound && moo > -moodBound) // no mood
         {
+            //Debug.Log("currentMood is calm" + MentalState.mood);
             //var scaling = !isFlipped ? new Vector2(1.0f, 1.0f) : new Vector2(-1.0f, 1.0f);
             //transform.localScale = scaling;
             speed = 4;
+            anim.SetInteger("mood", (int)Mood.idle );
         }
-        else if (MentalState.mood > 5) // happy
+        else if (moo > moodBound) // happy
         {
+            anim.SetInteger("mood", (int)Mood.happy);
             speed = 6;
         }
-        else if (MentalState.mood < -5) // sad 
+        else if (moo < -moodBound) // sad 
         {
             var scaling = isFlipped ? new Vector2(-1.1f, 1.1f) : new Vector2(1.1f, 1.1f);
             transform.localScale = scaling;
             
             speed = 2;
+            anim.SetInteger("mood", (int)Mood.sad);
         }
-        else if (MentalState.mood == 40) // angry 
+        else if (moo == 40) // angry 
         {
             // do nothing here
         }

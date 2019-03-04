@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MentalState : MonoBehaviour
 {
-    public static int mood = 0;
+    //public static int mood;
 
     public static Dictionary<string, int> moodLog;
     public static Dictionary<string, int> effectWeights;
@@ -25,7 +25,7 @@ public class MentalState : MonoBehaviour
             { "Played catch", 3},
             { "Hit by ball", -3},
             { "Held Rabbit", 1 },
-            { "Bit by rabbit", 2},
+            { "Bit by rabbit", -2},
             { "Happy Song", 1},
             { "Sad Song", -1},
             { "Startled Song", -1}
@@ -62,9 +62,9 @@ public class MentalState : MonoBehaviour
         tallyEmotion();
     }
 
-    public static void tallyEmotion()
+    public static int tallyEmotion()
     {
-        
+        var mood = 0;
 
         foreach (KeyValuePair<string, int> moodEntry in moodLog)
         {
@@ -72,18 +72,12 @@ public class MentalState : MonoBehaviour
             
         }
         Debug.Log("Total Mood: " + mood);
+        return mood;
     }
 
     public void PacifyMood()
     {
-        if (mood > 0)
-        {
-            mood-=1;
-        }
-        else if (mood < 0)
-        {
-            mood+=1;
-        }
-        Debug.Log("MC mood pacified " + mood);
+        
+        //Debug.Log("MC mood pacified " + mood);
     }
 }

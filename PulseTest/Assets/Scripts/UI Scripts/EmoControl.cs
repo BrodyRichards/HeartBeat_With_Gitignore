@@ -45,7 +45,6 @@ public class EmoControl : MonoBehaviour
             sr.enabled = true;
             sr.sprite = angry;
             emoChanged = true;
-            MentalState.mood = 4;
             Invoke("DestroyEmotion", 1f);
             Invoke("ChangeEmoBack", 1f);
 
@@ -56,8 +55,6 @@ public class EmoControl : MonoBehaviour
             hasEmo = true;
             sr.enabled = true;
             sr.sprite = happy;
-            MentalState.mood = 1;
-
         }
         else if (RadioControl.mcIsAffected)
         {
@@ -66,7 +63,6 @@ public class EmoControl : MonoBehaviour
         else
         {
             sr.enabled = false;
-            MentalState.mood = 0;
         }
     }
    
@@ -94,7 +90,6 @@ public class EmoControl : MonoBehaviour
                 sr.enabled = true;
                 hasEmo = true;
                 sr.sprite = happy;
-                MentalState.mood = 1;
                 CRunning = true;
                 break;
             case 1:
@@ -102,13 +97,12 @@ public class EmoControl : MonoBehaviour
                 hasEmo = true;
                 sr.sprite = sad;
                 CRunning = true;
-                MentalState.mood = 2;
                 break;
             default:
                 sr.enabled = false;
                 hasEmo = false;
                 sr.sprite = null;
-                MentalState.mood = 0;
+                
                 break;
         }
     }
