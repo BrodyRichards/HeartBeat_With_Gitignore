@@ -47,7 +47,8 @@ public class BallProjectile : MonoBehaviour
                     stationaryBall();
                     //Reset meanBall bool
                     meanBallThrown = false;
-                }else
+                }
+                else
                 {
                     //This is stuff for normal nicely thrown balls
                     //Debug.Log("You played catch with " + hit.collider.gameObject.name);
@@ -56,6 +57,7 @@ public class BallProjectile : MonoBehaviour
                     if (NPC.name == "MC")
                     {
                         MentalState.sendMsg("Played catch");
+                        McMovement.playedCatch = true;
                     }
                     NPC.GetComponent<PlayCatch>().hitByBall();
                     GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", false);
@@ -80,19 +82,24 @@ public class BallProjectile : MonoBehaviour
         }
         else
         {
-            float x0 = startPos.x;
-            float x1 = targetLoc.x;
-            float dist = x1 - x0;
-            float nextX = Mathf.MoveTowards(transform.position.x, x1, speed * Time.deltaTime);
-            float baseY = Mathf.Lerp(startPos.y, targetLoc.y, (nextX - x0) / dist);
-            float arc = arcHeight * (nextX - x0) * (nextX - x1) / (-0.25f * dist * dist);
-            Vector3 nextPos = new Vector3(nextX, baseY + arc, transform.position.z);
-
-            // Rotate to face the next position, and then move there
-            transform.rotation = LookAt2D(nextPos - transform.position);
-            transform.position = nextPos;
+            SimulateProjectile();
         }
 
+    }
+
+    private void SimulateProjectile()
+    {
+        float x0 = startPos.x;
+        float x1 = targetLoc.x;
+        float dist = x1 - x0;
+        float nextX = Mathf.MoveTowards(transform.position.x, x1, speed * Time.deltaTime);
+        float baseY = Mathf.Lerp(startPos.y, targetLoc.y, (nextX - x0) / dist);
+        float arc = arcHeight * (nextX - x0) * (nextX - x1) / (-0.25f * dist * dist);
+        Vector3 nextPos = new Vector3(nextX, baseY + arc, transform.position.z);
+
+        // Rotate to face the next position, and then move there
+        transform.rotation = LookAt2D(nextPos - transform.position);
+        transform.position = nextPos;
     }
 
     private void destroyBall()
