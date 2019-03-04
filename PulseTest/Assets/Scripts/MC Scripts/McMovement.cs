@@ -66,7 +66,7 @@ public class McMovement : MonoBehaviour
         {
             if (!EmoControl.emoChanged)
             {
-                anim.SetBool("isWalking", true);
+                
                 FlipAssetDirection();
                 AnimationMoodCheck();
 
@@ -98,6 +98,8 @@ public class McMovement : MonoBehaviour
                     if (!CRunning)
                     {
                         GoToWaypoints(step);
+                        anim.SetBool("wantToPlay", false);
+                        anim.SetBool("isWalking", true);
                     }
                 }
             }
@@ -111,8 +113,8 @@ public class McMovement : MonoBehaviour
     IEnumerator McRunsFromAvatar(Vector2 target, float step)
     {
         float timeElapsed = 0f;
-
-        while(timeElapsed < 4f)
+        anim.SetBool("isWalking", true);
+        while (timeElapsed < 4f)
         {
             transform.position = Vector2.MoveTowards(transform.position, target, (-1) * step);
             timeElapsed += Time.deltaTime;
@@ -130,6 +132,10 @@ public class McMovement : MonoBehaviour
 
         if (Vector2.Distance(transform.position, target) < 10.0f)
         {
+            
+            anim.SetBool("wantToPlay", true);
+            anim.SetBool("isWalking", false);
+
             //Debug.Log("arrive at" + target);
             /*if(timeElapsed > 3f)
             {
@@ -193,28 +199,24 @@ public class McMovement : MonoBehaviour
     private void AnimationMoodCheck()
     {
         anim.SetInteger("mood", MentalState.mood);
-        if (MentalState.mood == 0) // no mood
+        if (MentalState.mood < 5 && MentalState.mood > -5) // no mood
         {
             //var scaling = !isFlipped ? new Vector2(1.0f, 1.0f) : new Vector2(-1.0f, 1.0f);
             //transform.localScale = scaling;
             speed = 4;
         }
-        else if (MentalState.mood == 1) // happy
+        else if (MentalState.mood > 5) // happy
         {
             speed = 6;
         }
-        else if (MentalState.mood == 2) // sad 
+        else if (MentalState.mood < -5) // sad 
         {
             var scaling = isFlipped ? new Vector2(-1.1f, 1.1f) : new Vector2(1.1f, 1.1f);
             transform.localScale = scaling;
             
             speed = 2;
         }
-        else if (MentalState.mood == 3) // startled
-        {
-            speed = 7;
-        }
-        else if (MentalState.mood == 4) // angry 
+        else if (MentalState.mood == 40) // angry 
         {
             // do nothing here
         }

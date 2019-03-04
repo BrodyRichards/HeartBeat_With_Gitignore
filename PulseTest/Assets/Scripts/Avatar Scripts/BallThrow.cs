@@ -49,7 +49,7 @@ public class BallThrow : MonoBehaviour
     {
         thrownBall = true;
         anim.SetBool("isThrowing", true);
-        anim.SetBool("isThrowing", true);
+        
 
         // postpone 0.6 seconds to finish the animation
         //Stop movement while throwing

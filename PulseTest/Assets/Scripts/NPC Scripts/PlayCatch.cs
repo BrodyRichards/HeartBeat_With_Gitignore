@@ -45,5 +45,10 @@ public class PlayCatch : MonoBehaviour
         NPCBallProjectile bp = npcBall.AddComponent<NPCBallProjectile>();
         //Set variables for projectile script
         bp.hittableObjects |= (1 << LayerMask.NameToLayer("Avatar"));
+        if (transform.gameObject.name == "MC")
+        {
+            GameObject.Find("MC").GetComponent<Animator>().SetTrigger("playCatch");
+        }
+        
     }
 }

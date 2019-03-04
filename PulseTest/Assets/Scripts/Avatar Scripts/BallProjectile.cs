@@ -47,7 +47,8 @@ public class BallProjectile : MonoBehaviour
                     stationaryBall();
                     //Reset meanBall bool
                     meanBallThrown = false;
-                }else
+                }
+                else
                 {
                     //This is stuff for normal nicely thrown balls
                     //Debug.Log("You played catch with " + hit.collider.gameObject.name);
@@ -56,6 +57,7 @@ public class BallProjectile : MonoBehaviour
                     if (NPC.name == "MC")
                     {
                         MentalState.sendMsg("Played catch");
+                        
                     }
                     NPC.GetComponent<PlayCatch>().hitByBall();
                     GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", false);

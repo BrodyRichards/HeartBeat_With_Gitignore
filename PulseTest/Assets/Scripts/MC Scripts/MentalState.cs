@@ -5,18 +5,20 @@ using UnityEngine;
 public class MentalState : MonoBehaviour
 {
     public static int mood = 0;
+
     public static Dictionary<string, int> moodLog;
     public static Dictionary<string, int> effectWeights;
+
+    public static int moodBound = 10;
     // Played catch, Hit by ball, Held Rabbit, Bit by rabbit, Happy Song, Sad Song, Startled Song
 
-    // 0 = neutral 
-    // 1 = happy
-    // 2 = sad 
-    // 3 = startled
-    // 4 = angry 
+    // -5 ~ 5 = neutral 
+    // 5 up = happy
+    // -5 down = sad 
     // Start is called before the first frame update
     void Start()
     {
+
         //Dictionary storing weights for each effect
         effectWeights = new Dictionary<string, int>
         {
@@ -40,6 +42,8 @@ public class MentalState : MonoBehaviour
             { "Sad Song", 0 },
             { "Startled Song", 0 }
         };
+        // call the mood equilibrium every 10 seconds
+        InvokeRepeating("PacifyMood", 10f, 10f);
     }
 
     // Update is called once per frame
@@ -60,10 +64,26 @@ public class MentalState : MonoBehaviour
 
     public static void tallyEmotion()
     {
-        foreach(KeyValuePair<string, int> moodEntry in moodLog)
+        
+
+        foreach (KeyValuePair<string, int> moodEntry in moodLog)
         {
             mood += moodEntry.Value * effectWeights[moodEntry.Key];
+            
         }
         Debug.Log("Total Mood: " + mood);
+    }
+
+    public void PacifyMood()
+    {
+        if (mood > 0)
+        {
+            mood-=1;
+        }
+        else if (mood < 0)
+        {
+            mood+=1;
+        }
+        Debug.Log("MC mood pacified " + mood);
     }
 }
