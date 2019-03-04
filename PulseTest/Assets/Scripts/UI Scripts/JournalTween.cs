@@ -40,9 +40,9 @@ public class JournalTween : MonoBehaviour
         }
 
         // instantiate class objects for the three avatars stamps 
-        rabbit = new Accomplish(rabbitThreshold, rabbitStamp, rabbitLv2, rabbitLv3);
-        ball = new Accomplish(ballThreshold, ballStamp, ballLv2, ballLv3);
-        music = new Accomplish(musicThreshold, musicStamp, musicLv2, musicLv3);
+        rabbit = Accomplish.CreateInstance(rabbitThreshold, rabbitStamp, rabbitLv2, rabbitLv3);
+        ball = Accomplish.CreateInstance(ballThreshold, ballStamp, ballLv2, ballLv3);
+        music = Accomplish.CreateInstance(musicThreshold, musicStamp, musicLv2, musicLv3);
 
         accomplishments = new List<Accomplish> { rabbit, ball, music };
 
