@@ -95,7 +95,6 @@ public class McMovement : MonoBehaviour
                     if (!CRunning)
                     {
                         McGoesToAvatar(NpcInstantiator.ballKidPos, step);
-                        Debug.Log("Here");
                     }
                 }
                 else
@@ -117,9 +116,9 @@ public class McMovement : MonoBehaviour
 
     IEnumerator McRunsFromAvatar(Vector2 target, float step)
     {
-        float timeElapsed = 0f;
+        float timePassed = 0f;
         anim.SetBool("isWalking", true);
-        while (timeElapsed < 4f)
+        while (timePassed < 4f)
         {
             if (transform.position.x > Playground.RightX ||
                 transform.position.x < Playground.LeftX ||
@@ -127,12 +126,12 @@ public class McMovement : MonoBehaviour
                 transform.position.y < Playground.LowerY)
             {
                 //Trying to exit bound
-                timeElapsed += Time.deltaTime;
+                timePassed += Time.deltaTime;
             }
             else
             {
                 transform.position = Vector2.MoveTowards(transform.position, target, (-1) * step);
-                timeElapsed += Time.deltaTime;
+                timePassed += Time.deltaTime;
 
                 yield return null;
             }
@@ -146,13 +145,11 @@ public class McMovement : MonoBehaviour
     {
         //When standing still, if not played catch then walk away after 5 secs
         //Otherwise, increment time when not playing catch until 5 secs
-        if (Vector2.Distance(transform.position, target) < 10.0f)
+        if (Vector2.Distance(transform.position, target) < 10.0f && timeElapsed < 7f)
         {
             
             anim.SetBool("wantToPlay", true);
             anim.SetBool("isWalking", false);
-
-            //Debug.Log("arrive at" + target);
            
             if (playedCatch)
             {
@@ -164,9 +161,7 @@ public class McMovement : MonoBehaviour
                 timeElapsed += Time.deltaTime;
                 //Debug.Log(timeElapsed);
             }
-        }
-
-        if(timeElapsed < 5f)
+        }else if(timeElapsed < 7f)
         {
             transform.position = Vector2.MoveTowards(transform.position, target, step);
         }
