@@ -32,12 +32,12 @@ public class IconControl : MonoBehaviour
             if ( icons.IndexOf(img) + 1 == characterSwitcher.charChoice)
             {
                 ChangeAlpha(img, 1.0f);
-                Rescale(img, 50f);
+                Rescale(img, 40f);
             }
             else
             {
                 ChangeAlpha(img, 1.0f);
-                Rescale(img, 40f);
+                Rescale(img, 30f);
             }
         }
 
