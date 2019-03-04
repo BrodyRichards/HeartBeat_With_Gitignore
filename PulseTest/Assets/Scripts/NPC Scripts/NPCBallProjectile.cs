@@ -34,10 +34,13 @@ public class NPCBallProjectile : MonoBehaviour
                 hit.collider.gameObject.GetComponent<BallThrow>().thrownBall = false;
                 destroyBall();
             }
-
-           
         }
 
+        SimulateProjectile();
+    }
+
+    private void SimulateProjectile()
+    {
         float x0 = startPos.x;
         float x1 = targetLoc.x;
         float dist = x1 - x0;
@@ -49,8 +52,6 @@ public class NPCBallProjectile : MonoBehaviour
         // Rotate to face the next position, and then move there
         transform.rotation = LookAt2D(nextPos - transform.position);
         transform.position = nextPos;
-
-        //transform.Translate(Vector2.up * speed * Time.deltaTime);
     }
 
     private void destroyBall()
@@ -58,7 +59,6 @@ public class NPCBallProjectile : MonoBehaviour
         Destroy(gameObject);
         GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", true);
         GameObject.Find("2").GetComponent<Animator>().SetBool("isThrowing", false);
-
     }
 
     private void stationaryBall()

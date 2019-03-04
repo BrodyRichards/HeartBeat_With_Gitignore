@@ -24,7 +24,10 @@ public class McMovement : MonoBehaviour
     private bool isFlipped;
 
     public float followDist;
+    public float timeElapsed = 0f;
     public bool CRunning = false;
+    public static bool playedCatch = false;
+    public bool stillInterested = true;
     public bool endScene;
     public bool tutorialScene;
 
@@ -87,11 +90,12 @@ public class McMovement : MonoBehaviour
                         StartCoroutine(McRunsFromAvatar(NpcInstantiator.ballKidPos, step));
                     }
                 }
-                else if (CheckDist(transform.position, NpcInstantiator.ballKidPos) && !endScene)
+                else if (CheckDist(transform.position, NpcInstantiator.ballKidPos) && !endScene && stillInterested)
                 {
                     if (!CRunning)
                     {
                         McGoesToAvatar(NpcInstantiator.ballKidPos, step);
+                        Debug.Log("Here");
                     }
                 }
                 else
@@ -117,10 +121,21 @@ public class McMovement : MonoBehaviour
         anim.SetBool("isWalking", true);
         while (timeElapsed < 4f)
         {
-            transform.position = Vector2.MoveTowards(transform.position, target, (-1) * step);
-            timeElapsed += Time.deltaTime;
+            if (transform.position.x > Playground.RightX ||
+                transform.position.x < Playground.LeftX ||
+                transform.position.y > Playground.UpperY ||
+                transform.position.y < Playground.LowerY)
+            {
+                //Trying to exit bound
+                timeElapsed += Time.deltaTime;
+            }
+            else
+            {
+                transform.position = Vector2.MoveTowards(transform.position, target, (-1) * step);
+                timeElapsed += Time.deltaTime;
 
-            yield return null;
+                yield return null;
+            }
         }
 
         CRunning = false;
@@ -129,8 +144,8 @@ public class McMovement : MonoBehaviour
 
     private void McGoesToAvatar(Vector2 target, float step)
     {
-        //float timeElapsed = 0f;
-
+        //When standing still, if not played catch then walk away after 5 secs
+        //Otherwise, increment time when not playing catch until 5 secs
         if (Vector2.Distance(transform.position, target) < 10.0f)
         {
             
@@ -138,14 +153,29 @@ public class McMovement : MonoBehaviour
             anim.SetBool("isWalking", false);
 
             //Debug.Log("arrive at" + target);
-            /*if(timeElapsed > 3f)
+           
+            if (playedCatch)
+            {
+                timeElapsed = 0;
+                playedCatch = false;
+            }
+            else
             {
                 timeElapsed += Time.deltaTime;
-            }*/
+                //Debug.Log(timeElapsed);
+            }
+        }
+
+        if(timeElapsed < 5f)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target, step);
         }
         else
         {
-            transform.position = Vector2.MoveTowards(transform.position, target, step);
+            stillInterested = false;
+            //Still need to figure out when to set playedCatch to false
+            //and need to break out of if condition
+            //Walk away
         }
     }
 
@@ -172,12 +202,10 @@ public class McMovement : MonoBehaviour
         if (Vector2.Distance(transform.position, target) < 1.0f)
         {
             Debug.Log("arrive at" + target);
-
+            stillInterested = true;
             mcWaypoints.RemoveAt(0);
 
         }
-
-
     }
 
     // Flip asset when MC switch direction 
