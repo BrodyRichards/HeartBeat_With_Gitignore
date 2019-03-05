@@ -38,7 +38,7 @@ public class BallProjectile : MonoBehaviour
             if (hit.collider.CompareTag("Person") || hit.collider.CompareTag("MC"))
             {
                 
-                Debug.Log("Name: " + NpcName);
+                //Debug.Log("Name: " + NpcName);
                 //if (hit.collider.CompareTag("MC") && meanBallThrown)
                 if (meanBallThrown)
                 {
