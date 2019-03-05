@@ -39,7 +39,7 @@ public class RadioControl : MonoBehaviour
     {
         sprites = new Sprite[] { happy, sad, idle};
         audioClips = new AudioClip[] { happySong, sadSong };
-        particleColors = new Color[] { Color.white, Color.cyan };
+        particleColors = new Color[] { Color.yellow, Color.blue };
         currentMood = (int) Mood.idle;
 
         sr = GetComponent<SpriteRenderer>();
@@ -103,6 +103,9 @@ public class RadioControl : MonoBehaviour
                 {
                     if (coll.gameObject.tag == "MC" && !mcIsAffected)
                     {
+                        //var ang = RoatateParticles(transform.position, GameObject.Find("MC"));
+                        //ps.startRotation = ang;
+                        //ps.Play();
                         mcIsAffected = true;
                         // 3 seconds later call this function and reset MC 
                         Invoke("McNotAffected", 3f);
@@ -161,6 +164,7 @@ public class RadioControl : MonoBehaviour
         audioSource.clip = null;
         audioSource.Pause();
         isMusic = false;
+        ps.Stop();
     }
     private void TurnBgOff()
     {
@@ -204,5 +208,16 @@ public class RadioControl : MonoBehaviour
     private void NpcNotAffected()
     {
         npcIsAffected = false;
+    }
+
+    private float RoatateParticles(Vector3 myself, GameObject other)
+    {
+        var dir = other.transform.position - myself;
+        dir = other.transform.InverseTransformDirection(dir);
+        var angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
+        Debug.Log(" particle is rotating!! " + angle);
+        return angle;
+        
+        
     }
 }
