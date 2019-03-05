@@ -9,6 +9,7 @@ public class Groupies : NPCs
     {
         if (schoolBell == false)
         {
+            time = Time.fixedUnscaledTime;
             directionCheck(target.x, transform.position.x);
             avatarChecks();
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);

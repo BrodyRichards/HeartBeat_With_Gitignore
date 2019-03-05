@@ -40,21 +40,29 @@ public class BallProjectile : MonoBehaviour
         {
             if (hit.collider.CompareTag("Person") || hit.collider.CompareTag("MC"))
             {
+
+                
+                //Debug.Log("Name: " + NpcName);
+                //if (hit.collider.CompareTag("MC") && meanBallThrown)
+
                 if (meanBallThrown)
                 {
                     //A mean ball was thrown
                     //Debug.Log("You threw a mean ball!");
                     //Update Mental State
+                    NpcName = hit.collider.gameObject.name;
                     MentalState.sendMsg("Hit by ball");
                     //MC gets hit by ball and doesn't play catch
                     stationaryBall();
                     //Reset meanBall bool
-                    meanBallThrown = false;
+
+                    //meanBallThrown = false;
                 }
                 else
                 {
                     //This is stuff for normal nicely thrown balls
                     //Debug.Log("You played catch with " + hit.collider.gameObject.name);
+                    meanBallThrown = false;
                     GameObject NPC = hit.collider.gameObject;
                     NpcName = NPC.name;
                     if (NPC.name == "MC")
@@ -68,7 +76,6 @@ public class BallProjectile : MonoBehaviour
                     GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", false);
                 }
             }
-            
             destroyBall();
         }
 

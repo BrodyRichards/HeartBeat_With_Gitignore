@@ -71,7 +71,9 @@ public class MentalState : MonoBehaviour
             mood += moodEntry.Value * effectWeights[moodEntry.Key];
             
         }
+
         // Debug.Log("Total Mood: " + mood);
+
         return mood;
     }
 

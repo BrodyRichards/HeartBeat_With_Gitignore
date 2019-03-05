@@ -11,14 +11,13 @@ public class RabbitChasers : NPCs
         int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
         int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
         target = new Vector3(ranX, ranY, -1);
-        //scale = transform.localScale;
-        //scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
 
     protected override void Update()
     {
         if (schoolBell == false)
         {
+            time = Time.fixedUnscaledTime;
             bool rabbitDist = checkDist(NpcInstantiator.rabbitPos, transform.position);
             directionCheck(target.x, transform.position.x);
             avatarChecks();
@@ -77,10 +76,16 @@ public class RabbitChasers : NPCs
                 transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             }
         }
-        Vector3 offset = new Vector3(0, 4.5f, 0);
-        //GameObject balloon = Instantiate(Emo, transform.localPosition + offset, transform.rotation);
-        //balloon.GetComponent<SpriteRenderer>().sortingLayerName = "Front Props";
-        //balloon.transform.parent = transform;
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            if (transform.position == target)
+            {
+                int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
+                int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
+                target = new Vector3(ranX, ranY, -1);
+            }
+        }
     }
 
    

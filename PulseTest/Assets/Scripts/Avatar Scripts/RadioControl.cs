@@ -40,7 +40,9 @@ public class RadioControl : MonoBehaviour
     public Sprite sadNote2;
     public Sprite sadNote3;
 
-    public float actionDist;
+
+    public static float actionDist;
+
 
     Sprite[] sprites;
     Sprite[] happyNoteSprites;

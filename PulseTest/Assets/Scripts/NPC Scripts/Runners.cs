@@ -18,6 +18,7 @@ public class Runners : NPCs
     {
         if (schoolBell == false)
         {
+            time = Time.fixedUnscaledTime;
             directionCheck(target.x, transform.position.x);
             avatarChecks();
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
@@ -44,14 +45,7 @@ public class Runners : NPCs
             }
         }
         
-        if (RadioControl.npcIsAffected)
-        {
-            if (this.gameObject.name == RadioControl.musicListener)
-            {
-                //Debug.Log("hellooooo" + this.gameObject.name);
-                // Emo should pop up accordingly 
-            }
-        }
+        
     }
     
     protected override void checkMusic()
@@ -63,10 +57,6 @@ public class Runners : NPCs
         else if (RadioControl.currentMood == 0)
         {
             Emo = master.GetComponent<NpcInstantiator>().happyFace;
-        }
-        else if (RadioControl.currentMood == 3)
-        {
-            Emo = master.GetComponent<NpcInstantiator>().madFace;
         }
         addEmo();
     }

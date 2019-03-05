@@ -4,36 +4,31 @@ using UnityEngine;
 
 public class NPCs : MonoBehaviour
 {
-    //wahhh I need to research how to do variables and shit for inheritance shit later
-    /*
-    public GameObject master;
-    public Animator anim;
-    protected float speed;
-    protected Vector3 scale;
-    protected Vector3 scaleOpposite;
-    protected GameObject Emo;
-    protected int music;
-    protected int check;
-    private SpriteRenderer sp;
-    protected bool schoolBell;
-    private Vector3 target;
-    private float currentPosX;
-    private float lastPosX;
-    */
     public Animator anim;
     protected float speed = 5f;
+
     protected Vector3 scale;
     protected Vector3 scaleOpposite;
+
     private float currentPosX;
     private float lastPosX;
+
     protected GameObject master;
     protected GameObject Emo;
+
     private int music;
     private int check;
+
     private SpriteRenderer sr;
+
     protected bool holdBunny = false;
     protected bool schoolBell = false;
+    protected bool nameChange = false;
+
     public Vector3 target;
+
+    protected float time;
+    protected float timer;
 
     protected virtual void Start()
     {
@@ -45,15 +40,17 @@ public class NPCs : MonoBehaviour
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         music = RadioControl.currentMood;
         check = music;
+        time = Time.fixedUnscaledTime;
+        timer = time;
     }
 
     protected virtual void Update()
     {
         if (schoolBell == false)
         {
+            time = Time.fixedUnscaledTime;
             directionCheck(target.x, transform.position.x);
             avatarChecks();
-            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             DetectMovement();
             if (Input.GetKeyDown(KeyCode.P))
             {
@@ -77,9 +74,21 @@ public class NPCs : MonoBehaviour
         bool emoDist = checkDist(NpcInstantiator.musicKidPos, transform.position);
         check = music;
         music = RadioControl.currentMood;
-        if (music != check || (emoDist && RadioControl.isMusic))
+        //if (music != check || (emoDist && RadioControl.isMusic))
+        if (this.gameObject.name == RadioControl.musicListener)
         {
             checkMusic();
+        }
+        if (this.gameObject.name == BallProjectile.NpcName && BallProjectile.meanBallThrown)
+        {
+            Emo = master.GetComponent<NpcInstantiator>().madFace;
+            addEmo();
+        }
+        if (BallProjectile.NpcName == this.gameObject.name)
+        {
+            BallProjectile.NpcName = "";
+            nameChange = true;
+            playBall();
         }
         checkBools(emoDist);
         checkRabbitCarry();
@@ -88,17 +97,25 @@ public class NPCs : MonoBehaviour
 
     protected virtual void checkBools(bool emoDist)
     {
-        if ((characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false) || emoDist == false)
+        //if ((characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false) || emoDist == false)
+        if ((RadioControl.musicListener != this.gameObject.name && RabbitJump.beingCarried == false) || emoDist == false)
         {
-            holdBunny = false;
-            int count = transform.childCount;
-            for (int i = 0; i < count; i++)
+            if (nameChange == false)
             {
-                if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
+                holdBunny = false;
+                int count = transform.childCount;
+                for (int i = 0; i < count; i++)
                 {
-                    GameObject.Destroy(transform.GetChild(i).gameObject);
+                    if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
+                    {
+                        GameObject.Destroy(transform.GetChild(i).gameObject);
+                    }
                 }
             }
+        }
+        if (timer <= time)
+        {
+            nameChange = false;
         }
     }
 
@@ -121,15 +138,11 @@ public class NPCs : MonoBehaviour
 
     protected virtual void checkMusic()
     {
-        if (RadioControl.currentMood == 1)
+        if (RadioControl.currentMood == 1)                      //sad song
         {
             Emo = master.GetComponent<NpcInstantiator>().sadFace;
         }
-        else if (RadioControl.currentMood == 2)
-        {
-            Emo = master.GetComponent<NpcInstantiator>().madFace;
-        }
-        else if (RadioControl.currentMood == 3)
+        else if (RadioControl.currentMood == 0)                 //happy song
         {
             Emo = master.GetComponent<NpcInstantiator>().happyFace;
         }
@@ -169,15 +182,16 @@ public class NPCs : MonoBehaviour
             }
         }
         Vector3 offset = new Vector3(0, 4.5f, 0);
-        //GameObject balloon = Instantiate(Emo, transform.localPosition + offset, transform.rotation);
-        //balloon.GetComponent<SpriteRenderer>().sortingLayerName = "Front Props";
-        //balloon.transform.parent = transform;
+        GameObject balloon = Instantiate(Emo, transform.localPosition + offset, transform.rotation);
+        balloon.GetComponent<SpriteRenderer>().sortingLayerName = "Front Props";
+        balloon.transform.parent = transform;
     }
 
     protected virtual bool checkDist(Vector3 pos1, Vector3 pos2)  //for AOE
     {
         float dist = Vector3.Distance(pos1, pos2);
-        if (dist <= 20.0f) { return true; }
+        if (dist <= RadioControl.actionDist && characterSwitcher.isMusicGuyInCharge) { return true; }
+        else if (dist <= 20.0f) { return true; }
         return false;
     }
 
@@ -194,6 +208,30 @@ public class NPCs : MonoBehaviour
         }
 
         lastPosX = transform.position.x;
+    }
+
+    protected virtual void playBall()
+    {
+        if (nameChange)
+        {
+            Debug.Log("nameChange true");
+            int count = transform.childCount;
+            for (int i = 0; i < count; i++)
+            {
+                if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
+                {
+                    GameObject.Destroy(transform.GetChild(i).gameObject);
+                }
+            }
+            if (BallProjectile.meanBallThrown)
+            {
+                Debug.Log("ouch");
+                timer = time + 2.0f;
+                Emo = master.GetComponent<NpcInstantiator>().madFace;
+                addEmo();
+                BallProjectile.meanBallThrown = false;
+            }
+        }
     }
 
     protected virtual void runOff()

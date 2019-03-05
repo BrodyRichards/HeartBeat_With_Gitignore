@@ -16,6 +16,7 @@ public class Loners : NPCs
     {
         if (schoolBell == false)
         {
+            time = Time.fixedUnscaledTime;
             directionCheck(target.x, transform.position.x);
             avatarChecks();
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
@@ -54,13 +55,9 @@ public class Loners : NPCs
         {
             Emo = master.GetComponent<NpcInstantiator>().happyFace;
         }
-        else if (RadioControl.currentMood == 2) //scary music
+        else if (RadioControl.currentMood == 0) //scary music
         {
             Emo = master.GetComponent<NpcInstantiator>().sadFace;
-        }
-        else if (RadioControl.currentMood == 3)
-        {
-            Emo = master.GetComponent<NpcInstantiator>().madFace; //happy music
         }
         addEmo();
     }
