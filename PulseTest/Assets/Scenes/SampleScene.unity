@@ -8886,9 +8886,19 @@ MonoBehaviour:
   ps: {fileID: 1840503299}
   sadSong: {fileID: 8300000, guid: 3bf54ba4cc375134bb7fa59469e36760, type: 3}
   happySong: {fileID: 8300000, guid: 5bfc60d36f7c62e499bdc8d1971bcdb3, type: 3}
+  happyMusicNote: {fileID: 126157479690459792, guid: c287773a6bc18d247900dc114e1945fb,
+    type: 3}
+  sadMusicNote: {fileID: 126157479690459792, guid: 8c1cabd185a40f94992ec284250e6422,
+    type: 3}
   happy: {fileID: 21300000, guid: 121fa4d01f2d1514ba6b093cfad84284, type: 3}
   sad: {fileID: 21300000, guid: 4c69a8179feef7b449d079d3c2ba758c, type: 3}
   idle: {fileID: 21300000, guid: bfdeeae930f193e4b9fd04dc0da2d54e, type: 3}
+  happyNote1: {fileID: 21300000, guid: 116e7c2ddae083547b2199d27cc3d0fe, type: 3}
+  happyNote2: {fileID: 21300000, guid: 4b4ea8780d71519459e1a917cf99bc22, type: 3}
+  happyNote3: {fileID: 21300000, guid: c158cd704acd0cd4796332c8bb45be04, type: 3}
+  sadNote1: {fileID: 21300000, guid: 83d979842124c7d49bfa917aed70b8ae, type: 3}
+  sadNote2: {fileID: 21300000, guid: 7d822487eeb463e44b091a1b0fefc002, type: 3}
+  sadNote3: {fileID: 21300000, guid: 11da7545a22166b4ab9971368ac782c1, type: 3}
   actionDist: 0
 --- !u!114 &1332290340
 MonoBehaviour:
@@ -10226,7 +10236,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840503296}
-  m_LocalRotation: {x: -0.6134238, y: 0.35172606, z: -0.35172606, w: 0.6134238}
+  m_LocalRotation: {x: -0.61342496, y: 0.35172406, z: -0.35172436, w: 0.61342484}
   m_LocalPosition: {x: -0.2, y: 4, z: 2.1763403}
   m_LocalScale: {x: 1.4285713, y: 1, z: 1.4285719}
   m_Children: []
@@ -10309,11 +10319,11 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
-  autoRandomSeed: 1
+  autoRandomSeed: 0
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
@@ -10485,7 +10495,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
+      maxColor: {r: 0, g: 1, b: 0.9130335, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -10705,7 +10715,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationX:
       serializedVersion: 2
-      minMaxState: 1
+      minMaxState: 0
       scalar: 3.1415927
       minScalar: 0
       maxCurve:
@@ -10758,7 +10768,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationY:
       serializedVersion: 2
-      minMaxState: 1
+      minMaxState: 0
       scalar: 3.1415927
       minScalar: 0
       maxCurve:
@@ -10811,7 +10821,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotation:
       serializedVersion: 2
-      minMaxState: 1
+      minMaxState: 0
       scalar: 3.1415927
       minScalar: 0
       maxCurve:

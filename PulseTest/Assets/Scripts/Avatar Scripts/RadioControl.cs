@@ -12,6 +12,7 @@ public class RadioControl : MonoBehaviour
     public static bool npcIsAffected = false;
     public static bool isMusic = false;
 
+    private bool musicNoteCreated = false;
     private bool isBG;
 
     public LayerMask Carriers;
@@ -21,6 +22,9 @@ public class RadioControl : MonoBehaviour
     private enum Mood { happy, sad, idle};
     [SerializeField] private AudioClip sadSong;
     [SerializeField] private AudioClip happySong;
+    [SerializeField] private GameObject happyMusicNote;
+    [SerializeField] private GameObject sadMusicNote;
+    private GameObject musicNoteObj;
     private AudioSource audioSource;
     private AudioSource backgroundMusic;
 
@@ -28,9 +32,19 @@ public class RadioControl : MonoBehaviour
     public Sprite sad;
     public Sprite idle;
 
+    public Sprite happyNote1;
+    public Sprite happyNote2;
+    public Sprite happyNote3;
+
+    public Sprite sadNote1;
+    public Sprite sadNote2;
+    public Sprite sadNote3;
+
     public float actionDist;
 
     Sprite[] sprites;
+    Sprite[] happyNoteSprites;
+    Sprite[] sadNoteSprites;
     AudioClip[] audioClips;
     Color[] particleColors;
 
@@ -38,8 +52,10 @@ public class RadioControl : MonoBehaviour
     private void Start()
     {
         sprites = new Sprite[] { happy, sad, idle};
+        happyNoteSprites = new Sprite[] { happyNote1, happyNote2, happyNote3 };
+        sadNoteSprites = new Sprite[] { sadNote1, sadNote2, sadNote3 };
         audioClips = new AudioClip[] { happySong, sadSong };
-        particleColors = new Color[] { Color.yellow, Color.blue };
+        particleColors = new Color[] { Color.yellow, Color.cyan };
         currentMood = (int) Mood.idle;
 
         sr = GetComponent<SpriteRenderer>();
@@ -103,9 +119,11 @@ public class RadioControl : MonoBehaviour
                 {
                     if (coll.gameObject.tag == "MC" && !mcIsAffected)
                     {
-                        //var ang = RoatateParticles(transform.position, GameObject.Find("MC"));
-                        //ps.startRotation = ang;
-                        //ps.Play();
+                        if (!musicNoteCreated)
+                        {
+                            CreateMusicNote();
+                        }
+                        
                         mcIsAffected = true;
                         // 3 seconds later call this function and reset MC 
                         Invoke("McNotAffected", 3f);
@@ -131,6 +149,16 @@ public class RadioControl : MonoBehaviour
 
         }
 
+        if (musicNoteCreated)
+        {
+            musicNoteObj.transform.position = Vector3.MoveTowards(musicNoteObj.transform.position, GameObject.Find("MC").transform.position, 10f * Time.deltaTime);
+            if (musicNoteObj.transform.position == GameObject.Find("MC").transform.position)
+            {
+                Destroy(musicNoteObj);
+                musicNoteCreated = false;
+            }
+        }
+
     }
     // play songs, change sprites and particles according to the mood 0=happy 1=sad 
     private void PlaySong(int index)
@@ -143,7 +171,7 @@ public class RadioControl : MonoBehaviour
 
         audioSource.Play();
 
-        EmitParticles(index);
+        //EmitParticles(index);
 
         isMusic = true;
 
@@ -164,7 +192,7 @@ public class RadioControl : MonoBehaviour
         audioSource.clip = null;
         audioSource.Pause();
         isMusic = false;
-        ps.Stop();
+        //ps.Stop();
     }
     private void TurnBgOff()
     {
@@ -219,5 +247,30 @@ public class RadioControl : MonoBehaviour
         return angle;
         
         
+    }
+
+    private void CreateMusicNote()
+    {
+        if (currentMood == (int) Mood.happy)
+        {
+            musicNoteObj = InstantiateNoteObj(happyNoteSprites);
+        }
+        else if (currentMood == (int) Mood.sad)
+        {
+            musicNoteObj = InstantiateNoteObj(sadNoteSprites);
+        }
+        
+        musicNoteCreated = true;
+        
+        
+    }
+
+    private GameObject InstantiateNoteObj(Sprite[] spriteArray)
+    {
+        GameObject go = Instantiate(happyMusicNote, transform.position, Quaternion.identity) as GameObject;
+        SpriteRenderer srsr = go.GetComponent<SpriteRenderer>();
+        var index = UnityEngine.Random.Range(0, 3);
+        srsr.sprite = spriteArray[index];
+        return go;
     }
 }
