@@ -33,7 +33,10 @@ public class NPCs : MonoBehaviour
     private SpriteRenderer sr;
     protected bool holdBunny = false;
     protected bool schoolBell = false;
+    protected bool nameChange = false;
     public Vector3 target;
+    protected float time;
+    protected float timer;
 
     protected virtual void Start()
     {
@@ -45,16 +48,30 @@ public class NPCs : MonoBehaviour
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         music = RadioControl.currentMood;
         check = music;
+        time = Time.fixedUnscaledTime;
+        timer = time;
     }
 
     protected virtual void Update()
     {
         if (schoolBell == false)
         {
+            time = Time.fixedUnscaledTime;
             directionCheck(target.x, transform.position.x);
             avatarChecks();
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             DetectMovement();
+            if (BallProjectile.NpcName == this.gameObject.name)
+            {
+                Debug.Log("Thats me");
+                BallProjectile.NpcName = "";
+                nameChange = true;
+                playBall();
+            }
+            if (timer <= time)
+            {
+                nameChange = false;
+            }
             if (RadioControl.npcIsAffected)
             {
                 /*
@@ -93,6 +110,12 @@ public class NPCs : MonoBehaviour
         {
             checkMusic();
         }
+        if (this.gameObject.name == BallProjectile.NpcName && BallProjectile.meanBallThrown)
+        {
+            //Debug.Log("Ouch!");
+            Emo = master.GetComponent<NpcInstantiator>().madFace;
+            addEmo();
+        }
         checkBools(emoDist);
         checkRabbitCarry();
         
@@ -103,6 +126,7 @@ public class NPCs : MonoBehaviour
         //if ((characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false) || emoDist == false)
         if ((RadioControl.musicListener != this.gameObject.name && RabbitJump.beingCarried == false) || emoDist == false)
         {
+            /*
             holdBunny = false;
             int count = transform.childCount;
             for (int i = 0; i < count; i++)
@@ -110,6 +134,19 @@ public class NPCs : MonoBehaviour
                 if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
                 {
                     GameObject.Destroy(transform.GetChild(i).gameObject);
+                }
+            }
+            */
+            if (nameChange == false)
+            {
+                holdBunny = false;
+                int count = transform.childCount;
+                for (int i = 0; i < count; i++)
+                {
+                    if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
+                    {
+                        GameObject.Destroy(transform.GetChild(i).gameObject);
+                    }
                 }
             }
         }
@@ -192,7 +229,8 @@ public class NPCs : MonoBehaviour
     protected virtual bool checkDist(Vector3 pos1, Vector3 pos2)  //for AOE
     {
         float dist = Vector3.Distance(pos1, pos2);
-        if (dist <= RadioControl.actionDist) { return true; }
+        if (dist <= RadioControl.actionDist && characterSwitcher.isMusicGuyInCharge) { return true; }
+        else if (dist <= 20.0f) { return true; }
         return false;
     }
 
@@ -209,6 +247,30 @@ public class NPCs : MonoBehaviour
         }
 
         lastPosX = transform.position.x;
+    }
+
+    protected virtual void playBall()
+    {
+        if (nameChange)
+        {
+            Debug.Log("nameChange true");
+            int count = transform.childCount;
+            for (int i = 0; i < count; i++)
+            {
+                if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
+                {
+                    GameObject.Destroy(transform.GetChild(i).gameObject);
+                }
+            }
+            if (BallProjectile.meanBallThrown)
+            {
+                Debug.Log("ouch");
+                timer = time + 2.0f;
+                Emo = master.GetComponent<NpcInstantiator>().madFace;
+                addEmo();
+                BallProjectile.meanBallThrown = false;
+            }
+        }
     }
 
     protected virtual void runOff()

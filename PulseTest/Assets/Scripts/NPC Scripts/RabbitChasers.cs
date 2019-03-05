@@ -19,11 +19,23 @@ public class RabbitChasers : NPCs
     {
         if (schoolBell == false)
         {
+            time = Time.fixedUnscaledTime;
             bool rabbitDist = checkDist(NpcInstantiator.rabbitPos, transform.position);
             directionCheck(target.x, transform.position.x);
             avatarChecks();
             checkRabbit(rabbitDist);
             DetectMovement();
+            if (BallProjectile.NpcName == this.gameObject.name)
+            {
+                Debug.Log("Thats me");
+                BallProjectile.NpcName = "";
+                nameChange = true;
+                playBall();
+            }
+            if (timer <= time)
+            {
+                nameChange = false;
+            }
             if (Input.GetKeyDown(Control.evacuate))
             {
                 schoolBell = true;
@@ -77,7 +89,17 @@ public class RabbitChasers : NPCs
                 transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             }
         }
-        Vector3 offset = new Vector3(0, 4.5f, 0);
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            if (transform.position == target)
+            {
+                int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
+                int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
+                target = new Vector3(ranX, ranY, -1);
+            }
+        }
+        //Vector3 offset = new Vector3(0, 4.5f, 0);
         //GameObject balloon = Instantiate(Emo, transform.localPosition + offset, transform.rotation);
         //balloon.GetComponent<SpriteRenderer>().sortingLayerName = "Front Props";
         //balloon.transform.parent = transform;

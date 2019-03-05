@@ -6,9 +6,9 @@ using UnityEngine;
 public class BallPlayers : NPCs
 {
     private Rigidbody2D rb;
-    private bool nameChange = false;
-    float time;
-    float timer;
+    //private bool nameChange = false;
+    //float time;
+    //float timer;
 
     protected override void Start()
     {
@@ -17,8 +17,8 @@ public class BallPlayers : NPCs
         int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
         int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
         target = new Vector3(ranX, ranY, -1);
-        time = Time.fixedUnscaledTime;
-        timer = time;
+        //time = Time.fixedUnscaledTime;
+        //timer = time;
     }
 
     // Update is called once per frame
@@ -43,7 +43,6 @@ public class BallPlayers : NPCs
             } 
             DetectMovement();
             if (Input.GetKeyDown(Control.evacuate))
-
             {
                 schoolBell = true;
             }
@@ -62,7 +61,8 @@ public class BallPlayers : NPCs
 
     protected override void checkBools(bool emoDist)
     {
-        if (characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false || emoDist == false)
+        //if (characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false || emoDist == false)
+        if ((RadioControl.musicListener != this.gameObject.name && RabbitJump.beingCarried == false) || emoDist == false)
         {
             if (nameChange == false)
             {
@@ -79,7 +79,7 @@ public class BallPlayers : NPCs
         }
     }
 
-    private void playBall()
+    protected override void playBall()
     {
         if (nameChange)
         {
@@ -91,9 +91,22 @@ public class BallPlayers : NPCs
                     GameObject.Destroy(transform.GetChild(i).gameObject);
                 }
             }
-            timer = time + 2.0f;
-            Emo = master.GetComponent<NpcInstantiator>().happyFace;
-            addEmo();
+            if (BallProjectile.meanBallThrown)
+            {
+                //Debug.Log(BallProjectile.meanBallThrown);
+                timer = time + 2.0f;
+                Emo = master.GetComponent<NpcInstantiator>().madFace;
+                addEmo();
+                BallProjectile.meanBallThrown = false;
+            }
+            else
+            {
+                //Debug.Log(BallProjectile.meanBallThrown);
+                timer = time + 2.0f;
+                Emo = master.GetComponent<NpcInstantiator>().happyFace;
+                addEmo();
+            }
+            
         }
     }
 
@@ -109,7 +122,17 @@ public class BallPlayers : NPCs
                 transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             }
         }
-        Vector3 offset = new Vector3(0, 4.5f, 0);
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            if (transform.position == target)
+            {
+                int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
+                int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
+                target = new Vector3(ranX, ranY, -1);
+            }
+        }
+        //Vector3 offset = new Vector3(0, 4.5f, 0);
         //GameObject balloon = Instantiate(Emo, transform.localPosition + offset, transform.rotation);
         //balloon.GetComponent<SpriteRenderer>().sortingLayerName = "Front Props";
         //balloon.transform.parent = transform;
