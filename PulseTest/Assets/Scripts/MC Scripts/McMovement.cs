@@ -145,25 +145,28 @@ public class McMovement : MonoBehaviour
     {
         //When standing still, if not played catch then walk away after 5 secs
         //Otherwise, increment time when not playing catch until 5 secs
-        if (Vector2.Distance(transform.position, target) < 10.0f && timeElapsed < 7f)
+        if(timeElapsed < 7f)
         {
-            
-            anim.SetBool("wantToPlay", true);
-            anim.SetBool("isWalking", false);
-           
-            if (playedCatch)
+            if (Vector2.Distance(transform.position, target) < 10.0f)
             {
-                timeElapsed = 0;
-                playedCatch = false;
+                anim.SetBool("wantToPlay", true);
+                anim.SetBool("isWalking", false);
+
+                if (playedCatch)
+                {
+                    timeElapsed = 0;
+                    playedCatch = false;
+                }
+                else
+                {
+                    timeElapsed += Time.deltaTime;
+                    //Debug.Log(timeElapsed);
+                }
             }
             else
             {
-                timeElapsed += Time.deltaTime;
-                //Debug.Log(timeElapsed);
+                transform.position = Vector2.MoveTowards(transform.position, target, step);
             }
-        }else if(timeElapsed < 7f)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, target, step);
         }
         else
         {
@@ -198,6 +201,7 @@ public class McMovement : MonoBehaviour
         {
             Debug.Log("arrive at" + target);
             stillInterested = true;
+            timeElapsed = 0f;
             mcWaypoints.RemoveAt(0);
 
         }
