@@ -125,13 +125,17 @@ public class RadioControl : MonoBehaviour
                         {
                             CreateMusicNote();
                         }
-                        
+                        musicListener = coll.gameObject.name;
                         mcIsAffected = true;
                         // 3 seconds later call this function and reset MC 
                         Invoke("McNotAffected", 3f);
                     }
                     else if (coll.gameObject.tag == "Person" && !mcIsAffected && !npcIsAffected)
                     {
+                        if (!musicNoteCreated)
+                        {
+                            CreateMusicNote();
+                        }
                         npcIsAffected = true;
                         musicListener = coll.gameObject.name;
                         //Debug.Log(musicListener);
@@ -153,19 +157,15 @@ public class RadioControl : MonoBehaviour
 
         if (musicNoteCreated)
         {
-            musicNoteObj.transform.position = Vector3.MoveTowards(musicNoteObj.transform.position, GameObject.Find("MC").transform.position, 10f * Time.deltaTime);
-            if (musicNoteObj.transform.position == GameObject.Find("MC").transform.position)
-            {
-                Destroy(musicNoteObj);
-                musicNoteCreated = false;
-            }
+            SendMusicToTarget(GameObject.Find(musicListener));
         }
+        
 
     }
     // play songs, change sprites and particles according to the mood 0=happy 1=sad 
     private void PlaySong(int index)
     {
-        currentMood = index==0? (int)Mood.happy: (int)Mood.sad;
+        currentMood = (index==0) ? (int)Mood.happy: (int)Mood.sad;
 
         audioSource.clip = audioClips[index];
 
@@ -240,16 +240,27 @@ public class RadioControl : MonoBehaviour
         npcIsAffected = false;
     }
 
-    private float RoatateParticles(Vector3 myself, GameObject other)
+    private void SendMusicToTarget(GameObject target)
     {
-        var dir = other.transform.position - myself;
-        dir = other.transform.InverseTransformDirection(dir);
-        var angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
-        Debug.Log(" particle is rotating!! " + angle);
-        return angle;
-        
+        musicNoteObj.transform.position = Vector3.MoveTowards(musicNoteObj.transform.position, target.transform.position, 10f * Time.deltaTime);
+        if (musicNoteObj.transform.position == target.transform.position)
+        {
+            Destroy(musicNoteObj);
+            musicNoteCreated = false;
+        }
         
     }
+
+    //private float RoatateParticles(Vector3 myself, GameObject other)
+    //{
+    //    var dir = other.transform.position - myself;
+    //    dir = other.transform.InverseTransformDirection(dir);
+    //    var angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
+    //    Debug.Log(" particle is rotating!! " + angle);
+    //    return angle;
+        
+        
+    //}
 
     private void CreateMusicNote()
     {

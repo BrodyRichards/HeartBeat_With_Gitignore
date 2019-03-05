@@ -22,12 +22,12 @@ public class JournalTween : MonoBehaviour
     private Accomplish music;
     private List<Accomplish> accomplishments;
 
-    private readonly float tweenSpeed = 0.008f;
+    private readonly float tweenSpeed = 0.02f;
     private readonly float completedAlpha = 0.99f;
 
-    private readonly int[] rabbitThreshold = new int[] { 0, 1, 2 };
-    private readonly int[] ballThreshold = new int[] { 0, 1, 2 };
-    private readonly int[] musicThreshold = new int[] { 0, 1, 2 };
+    private readonly int[] rabbitThreshold = new int[] { 0, 1, 3 };
+    private readonly int[] ballThreshold = new int[] { 0, 2, 4 };
+    private readonly int[] musicThreshold = new int[] { 0, 4, 10 };
 
     // Start is called before the first frame update
     void Start()
@@ -67,7 +67,7 @@ public class JournalTween : MonoBehaviour
         
         ball.Num = MentalState.moodLog["Played catch"] + MentalState.moodLog["Hit by ball"];
         rabbit.Num = MentalState.moodLog["Held Rabbit"] + MentalState.moodLog["Bit by rabbit"];
-        music.Num = MentalState.moodLog["Happy Song"] + MentalState.moodLog["Sad Song"] + MentalState.moodLog["Startled Song"];
+        music.Num = MentalState.moodLog["Happy Song"] + MentalState.moodLog["Sad Song"];
     }
 
 
