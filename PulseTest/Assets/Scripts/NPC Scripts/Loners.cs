@@ -21,17 +21,6 @@ public class Loners : NPCs
             avatarChecks();
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             DetectMovement();
-            if (BallProjectile.NpcName == this.gameObject.name)
-            {
-                Debug.Log("Thats me");
-                BallProjectile.NpcName = "";
-                nameChange = true;
-                playBall();
-            }
-            if (timer <= time)
-            {
-                nameChange = false;
-            }
             if (Input.GetKeyDown(Control.evacuate))
             {
                 schoolBell = true;
@@ -70,12 +59,6 @@ public class Loners : NPCs
         {
             Emo = master.GetComponent<NpcInstantiator>().sadFace;
         }
-        /*
-        else if (RadioControl.currentMood == 3)
-        {
-            Emo = master.GetComponent<NpcInstantiator>().madFace; //happy music
-        }
-        */
         addEmo();
     }
 }

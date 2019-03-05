@@ -29,17 +29,6 @@ public class Runners : NPCs
                 target = new Vector3(ranX, ranY, -1);
             }
             DetectMovement();
-            if (BallProjectile.NpcName == this.gameObject.name)
-            {
-                Debug.Log("Thats me");
-                BallProjectile.NpcName = "";
-                nameChange = true;
-                playBall();
-            }
-            if (timer <= time)
-            {
-                nameChange = false;
-            }
             if (Input.GetKeyDown(Control.evacuate))
             {
                 schoolBell = true;
@@ -69,12 +58,6 @@ public class Runners : NPCs
         {
             Emo = master.GetComponent<NpcInstantiator>().happyFace;
         }
-        /*
-        else if (RadioControl.currentMood == 3)
-        {
-            Emo = master.GetComponent<NpcInstantiator>().madFace;
-        }
-        */
         addEmo();
     }
 

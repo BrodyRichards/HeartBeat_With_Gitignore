@@ -11,8 +11,6 @@ public class RabbitChasers : NPCs
         int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
         int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
         target = new Vector3(ranX, ranY, -1);
-        //scale = transform.localScale;
-        //scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
 
     protected override void Update()
@@ -25,17 +23,6 @@ public class RabbitChasers : NPCs
             avatarChecks();
             checkRabbit(rabbitDist);
             DetectMovement();
-            if (BallProjectile.NpcName == this.gameObject.name)
-            {
-                Debug.Log("Thats me");
-                BallProjectile.NpcName = "";
-                nameChange = true;
-                playBall();
-            }
-            if (timer <= time)
-            {
-                nameChange = false;
-            }
             if (Input.GetKeyDown(Control.evacuate))
             {
                 schoolBell = true;
@@ -99,10 +86,6 @@ public class RabbitChasers : NPCs
                 target = new Vector3(ranX, ranY, -1);
             }
         }
-        //Vector3 offset = new Vector3(0, 4.5f, 0);
-        //GameObject balloon = Instantiate(Emo, transform.localPosition + offset, transform.rotation);
-        //balloon.GetComponent<SpriteRenderer>().sortingLayerName = "Front Props";
-        //balloon.transform.parent = transform;
     }
 
    

@@ -16,17 +16,6 @@ public class Groupies : NPCs
             if (anim.GetBool("IsWalking") == true) { directionCheck(target.x, transform.position.x); }
             else { directionCheck(NpcInstantiator.center.x, transform.position.x); }
             DetectMovement();
-            if (BallProjectile.NpcName == this.gameObject.name)
-            {
-                Debug.Log("Thats me");
-                BallProjectile.NpcName = "";
-                nameChange = true;
-                playBall();
-            }
-            if (timer <= time)
-            {
-                nameChange = false;
-            }
             if (Input.GetKeyDown(Control.evacuate))
             {
                 schoolBell = true;

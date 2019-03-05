@@ -4,37 +4,29 @@ using UnityEngine;
 
 public class NPCs : MonoBehaviour
 {
-    //wahhh I need to research how to do variables and shit for inheritance shit later
-    /*
-    public GameObject master;
-    public Animator anim;
-    protected float speed;
-    protected Vector3 scale;
-    protected Vector3 scaleOpposite;
-    protected GameObject Emo;
-    protected int music;
-    protected int check;
-    private SpriteRenderer sp;
-    protected bool schoolBell;
-    private Vector3 target;
-    private float currentPosX;
-    private float lastPosX;
-    */
     public Animator anim;
     protected float speed = 5f;
+
     protected Vector3 scale;
     protected Vector3 scaleOpposite;
+
     private float currentPosX;
     private float lastPosX;
+
     protected GameObject master;
     protected GameObject Emo;
+
     private int music;
     private int check;
+
     private SpriteRenderer sr;
+
     protected bool holdBunny = false;
     protected bool schoolBell = false;
     protected bool nameChange = false;
+
     public Vector3 target;
+
     protected float time;
     protected float timer;
 
@@ -59,30 +51,7 @@ public class NPCs : MonoBehaviour
             time = Time.fixedUnscaledTime;
             directionCheck(target.x, transform.position.x);
             avatarChecks();
-            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             DetectMovement();
-            if (BallProjectile.NpcName == this.gameObject.name)
-            {
-                Debug.Log("Thats me");
-                BallProjectile.NpcName = "";
-                nameChange = true;
-                playBall();
-            }
-            if (timer <= time)
-            {
-                nameChange = false;
-            }
-            if (RadioControl.npcIsAffected)
-            {
-                /*
-                if (this.gameObject.name == RadioControl.musicListener)
-                {
-                    //Debug.Log("hellooooo" + this.gameObject.name);
-                    // Emo should pop up accordingly 
-                    checkMusic();
-                }
-                */
-            }
             if (Input.GetKeyDown(KeyCode.P))
             {
                 schoolBell = true;
@@ -112,9 +81,14 @@ public class NPCs : MonoBehaviour
         }
         if (this.gameObject.name == BallProjectile.NpcName && BallProjectile.meanBallThrown)
         {
-            //Debug.Log("Ouch!");
             Emo = master.GetComponent<NpcInstantiator>().madFace;
             addEmo();
+        }
+        if (BallProjectile.NpcName == this.gameObject.name)
+        {
+            BallProjectile.NpcName = "";
+            nameChange = true;
+            playBall();
         }
         checkBools(emoDist);
         checkRabbitCarry();
@@ -126,17 +100,6 @@ public class NPCs : MonoBehaviour
         //if ((characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false) || emoDist == false)
         if ((RadioControl.musicListener != this.gameObject.name && RabbitJump.beingCarried == false) || emoDist == false)
         {
-            /*
-            holdBunny = false;
-            int count = transform.childCount;
-            for (int i = 0; i < count; i++)
-            {
-                if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
-                {
-                    GameObject.Destroy(transform.GetChild(i).gameObject);
-                }
-            }
-            */
             if (nameChange == false)
             {
                 holdBunny = false;
@@ -149,6 +112,10 @@ public class NPCs : MonoBehaviour
                     }
                 }
             }
+        }
+        if (timer <= time)
+        {
+            nameChange = false;
         }
     }
 
@@ -179,12 +146,6 @@ public class NPCs : MonoBehaviour
         {
             Emo = master.GetComponent<NpcInstantiator>().happyFace;
         }
-        /*
-        else if (RadioControl.currentMood == 3)
-        {
-            Emo = master.GetComponent<NpcInstantiator>().happyFace;
-        }
-        */
         addEmo();
     }
 
