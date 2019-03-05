@@ -8,6 +8,8 @@ public class BallProjectile : MonoBehaviour
     public Vector3 startPos;
     public float arcHeight = 2;
 
+    public float delayTime;
+
     public float speed;
     public float meanSpeed;
     public float lifetime;
@@ -27,6 +29,7 @@ public class BallProjectile : MonoBehaviour
         targetLoc = GameObject.Find("target").transform.position;
         startPos = transform.position;
         meanSpeed = speed;
+        delayTime = 1.0f;
     }
 
     // Update is called once per frame
@@ -37,7 +40,7 @@ public class BallProjectile : MonoBehaviour
         {
             if (hit.collider.CompareTag("Person") || hit.collider.CompareTag("MC"))
             {
-                if (hit.collider.CompareTag("MC") && meanBallThrown)
+                if (meanBallThrown)
                 {
                     //A mean ball was thrown
                     //Debug.Log("You threw a mean ball!");
@@ -59,7 +62,9 @@ public class BallProjectile : MonoBehaviour
                         MentalState.sendMsg("Played catch");
                         McMovement.playedCatch = true;
                     }
-                    NPC.GetComponent<PlayCatch>().hitByBall();
+                    //NPC.GetComponent<PlayCatch>().hitByBall();
+                    PlayCatch delayCatch = NPC.GetComponent<PlayCatch>();
+                    delayCatch.Invoke("hitByBall", delayTime);
                     GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", false);
                 }
             }
