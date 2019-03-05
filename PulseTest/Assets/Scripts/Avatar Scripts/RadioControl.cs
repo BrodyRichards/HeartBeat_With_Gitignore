@@ -28,7 +28,7 @@ public class RadioControl : MonoBehaviour
     public Sprite sad;
     public Sprite idle;
 
-    public float actionDist;
+    public static float actionDist;
 
     Sprite[] sprites;
     AudioClip[] audioClips;

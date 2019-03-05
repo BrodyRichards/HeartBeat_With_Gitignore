@@ -44,14 +44,7 @@ public class Runners : NPCs
             }
         }
         
-        if (RadioControl.npcIsAffected)
-        {
-            if (this.gameObject.name == RadioControl.musicListener)
-            {
-                //Debug.Log("hellooooo" + this.gameObject.name);
-                // Emo should pop up accordingly 
-            }
-        }
+        
     }
     
     protected override void checkMusic()
@@ -64,10 +57,12 @@ public class Runners : NPCs
         {
             Emo = master.GetComponent<NpcInstantiator>().happyFace;
         }
+        /*
         else if (RadioControl.currentMood == 3)
         {
             Emo = master.GetComponent<NpcInstantiator>().madFace;
         }
+        */
         addEmo();
     }
 

@@ -37,12 +37,10 @@ public class BallPlayers : NPCs
                 nameChange = true;
                 playBall();
             }
-
             if (timer <= time)
             {
                 nameChange = false;
-            }
-            
+            } 
             DetectMovement();
             if (Input.GetKeyDown(Control.evacuate))
 

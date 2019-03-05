@@ -55,6 +55,17 @@ public class NPCs : MonoBehaviour
             avatarChecks();
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             DetectMovement();
+            if (RadioControl.npcIsAffected)
+            {
+                /*
+                if (this.gameObject.name == RadioControl.musicListener)
+                {
+                    //Debug.Log("hellooooo" + this.gameObject.name);
+                    // Emo should pop up accordingly 
+                    checkMusic();
+                }
+                */
+            }
             if (Input.GetKeyDown(KeyCode.P))
             {
                 schoolBell = true;
@@ -77,7 +88,8 @@ public class NPCs : MonoBehaviour
         bool emoDist = checkDist(NpcInstantiator.musicKidPos, transform.position);
         check = music;
         music = RadioControl.currentMood;
-        if (music != check || (emoDist && RadioControl.isMusic))
+        //if (music != check || (emoDist && RadioControl.isMusic))
+        if (this.gameObject.name == RadioControl.musicListener)
         {
             checkMusic();
         }
@@ -88,7 +100,8 @@ public class NPCs : MonoBehaviour
 
     protected virtual void checkBools(bool emoDist)
     {
-        if ((characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false) || emoDist == false)
+        //if ((characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false) || emoDist == false)
+        if ((RadioControl.musicListener != this.gameObject.name && RabbitJump.beingCarried == false) || emoDist == false)
         {
             holdBunny = false;
             int count = transform.childCount;
@@ -121,18 +134,20 @@ public class NPCs : MonoBehaviour
 
     protected virtual void checkMusic()
     {
-        if (RadioControl.currentMood == 1)
+        if (RadioControl.currentMood == 1)                      //sad song
         {
             Emo = master.GetComponent<NpcInstantiator>().sadFace;
         }
-        else if (RadioControl.currentMood == 2)
+        else if (RadioControl.currentMood == 0)                 //happy song
         {
-            Emo = master.GetComponent<NpcInstantiator>().madFace;
+            Emo = master.GetComponent<NpcInstantiator>().happyFace;
         }
+        /*
         else if (RadioControl.currentMood == 3)
         {
             Emo = master.GetComponent<NpcInstantiator>().happyFace;
         }
+        */
         addEmo();
     }
 
@@ -169,15 +184,15 @@ public class NPCs : MonoBehaviour
             }
         }
         Vector3 offset = new Vector3(0, 4.5f, 0);
-        //GameObject balloon = Instantiate(Emo, transform.localPosition + offset, transform.rotation);
-        //balloon.GetComponent<SpriteRenderer>().sortingLayerName = "Front Props";
-        //balloon.transform.parent = transform;
+        GameObject balloon = Instantiate(Emo, transform.localPosition + offset, transform.rotation);
+        balloon.GetComponent<SpriteRenderer>().sortingLayerName = "Front Props";
+        balloon.transform.parent = transform;
     }
 
     protected virtual bool checkDist(Vector3 pos1, Vector3 pos2)  //for AOE
     {
         float dist = Vector3.Distance(pos1, pos2);
-        if (dist <= 20.0f) { return true; }
+        if (dist <= RadioControl.actionDist) { return true; }
         return false;
     }
 
