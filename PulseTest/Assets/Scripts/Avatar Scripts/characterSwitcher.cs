@@ -30,11 +30,6 @@ public class characterSwitcher : MonoBehaviour
         switchCharacter();
     }
 
-    public int getChar()
-    {
-        return charChoice;
-    }
-
     //Function to handle character switching 
     private void switchCharacter()
     {
@@ -43,14 +38,17 @@ public class characterSwitcher : MonoBehaviour
             if (Input.GetKeyDown(Control.toRabbit))
             {
                 charChoice = 1;
+                PerformSwitch();
             }
             else if (Input.GetKeyDown(Control.toBallKid))
             {
                 charChoice = 2;
+                PerformSwitch();
             }
             else if (Input.GetKeyDown(Control.toMusicKid))
             {
                 charChoice = 3;
+                PerformSwitch();
             }
             else if (Input.GetKeyDown(Control.pullJournal))
             {
@@ -66,21 +64,11 @@ public class characterSwitcher : MonoBehaviour
                     IconControl.journalActivated = true;
                     Debug.Log("Journal Activated");
                 }
-
-
             }
 
-            if (charChoice != -1)
-            {
-                GameObject choice = findGO(charChoice);
-                Enable(choice);
-                disableOthers();
-            }
-
-            if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(Control.evacuate))
             {
                 charChoice = 1000;
-                Debug.Log("Should be walking");
                 GameObject.Find("MC").GetComponent<Movement>().enabled = true;
                 GameObject.Find("MC").GetComponent<McMovement>().enabled = false;
                 disableOthers();
@@ -104,6 +92,13 @@ public class characterSwitcher : MonoBehaviour
                 Disable(B);
             }
         }
+    }
+
+    private void PerformSwitch()
+    {
+        GameObject choice = findGO(charChoice);
+        Enable(choice);
+        disableOthers();
     }
 
     //Helper function for finding game objects
@@ -181,5 +176,10 @@ public class characterSwitcher : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public int getChar()
+    {
+        return charChoice;
     }
 }
