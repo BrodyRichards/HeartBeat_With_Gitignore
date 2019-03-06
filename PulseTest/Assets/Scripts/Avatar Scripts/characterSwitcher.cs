@@ -19,6 +19,8 @@ public class characterSwitcher : MonoBehaviour
         disableOthers();
         GameObject.Find("3").GetComponent<Movement>().enabled = false;
         isMusicGuyInCharge = false;
+        GameObject.Find("MC").GetComponent<Movement>().enabled = false;
+
     }
 
     // Update is called once per frame
@@ -26,11 +28,6 @@ public class characterSwitcher : MonoBehaviour
     {
         //Poll for input
         switchCharacter();
-    }
-
-    public int getChar()
-    {
-        return charChoice;
     }
 
     //Function to handle character switching 
@@ -41,14 +38,17 @@ public class characterSwitcher : MonoBehaviour
             if (Input.GetKeyDown(Control.toRabbit))
             {
                 charChoice = 1;
+                PerformSwitch();
             }
             else if (Input.GetKeyDown(Control.toBallKid))
             {
                 charChoice = 2;
+                PerformSwitch();
             }
             else if (Input.GetKeyDown(Control.toMusicKid))
             {
                 charChoice = 3;
+                PerformSwitch();
             }
             else if (Input.GetKeyDown(Control.pullJournal))
             {
@@ -64,14 +64,13 @@ public class characterSwitcher : MonoBehaviour
                     IconControl.journalActivated = true;
                     Debug.Log("Journal Activated");
                 }
-
-
             }
 
-            if (charChoice != -1)
+            if (Input.GetKeyDown(Control.evacuate))
             {
-                GameObject choice = findGO(charChoice);
-                Enable(choice);
+                charChoice = 1000;
+                GameObject.Find("MC").GetComponent<Movement>().enabled = true;
+                GameObject.Find("MC").GetComponent<McMovement>().enabled = false;
                 disableOthers();
             }
         }
@@ -93,6 +92,13 @@ public class characterSwitcher : MonoBehaviour
                 Disable(B);
             }
         }
+    }
+
+    private void PerformSwitch()
+    {
+        GameObject choice = findGO(charChoice);
+        Enable(choice);
+        disableOthers();
     }
 
     //Helper function for finding game objects
@@ -170,5 +176,10 @@ public class characterSwitcher : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public int getChar()
+    {
+        return charChoice;
     }
 }

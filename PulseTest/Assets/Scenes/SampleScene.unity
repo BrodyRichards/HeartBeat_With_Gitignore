@@ -8954,6 +8954,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: 10
   destroy: 0
+--- !u!95 &1333830100 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7476491800978798940, guid: dd3fe1050f0365448a1aca5ddba2b87d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7476491799796029582}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1333830101 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7476491800978798938, guid: dd3fe1050f0365448a1aca5ddba2b87d,
@@ -9002,6 +9008,23 @@ MonoBehaviour:
     type: 3}
   to: {fileID: 950103261764361770, guid: 161ec8754d04ffb4485fb6c99cd22544, type: 3}
   offset: -90
+--- !u!114 &1333830106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333830097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 982030dc2e71529489526956964bc59d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 15
+  currSpeed: 0
+  acceleration: 0.8
+  deceleration: 2
+  anim: {fileID: 1333830100}
 --- !u!1 &1440757409
 GameObject:
   m_ObjectHideFlags: 0

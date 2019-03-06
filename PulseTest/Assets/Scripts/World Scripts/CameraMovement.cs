@@ -49,7 +49,7 @@ public class CameraMovement : MonoBehaviour
     void LateUpdate()
     {
         time = Time.fixedUnscaledTime;
-        if (characterSwitcher.charChoice != -1)
+        if (characterSwitcher.charChoice != -1 && characterSwitcher.charChoice != 1000)
         {
             avatar = avatars[characterSwitcher.charChoice - 1];
             mcCheck = lookMC;
@@ -89,6 +89,11 @@ public class CameraMovement : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             }
         }
+        else if (characterSwitcher.charChoice == 1000)
+        {
+            target = mainChar.transform.position + offset;
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        }
         checkBounds(target);
         
     }
@@ -96,11 +101,7 @@ public class CameraMovement : MonoBehaviour
     void checkBounds(Vector3 pos)
     {
         float leftDist = Vector3.Distance(pos, leftBound.transform.position);
-        //Debug.Log("left: " + leftDist);
-        //Debug.Log("Camera pos: " + transform.position);
         float rightDist = Vector3.Distance(pos, rightBound.transform.position);
-        
-        
         if (leftDist <= 45.0f)
         {
             if (leftDist >= 25.0f || characterSwitcher.charChoice == -1)

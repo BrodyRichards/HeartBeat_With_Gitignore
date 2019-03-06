@@ -22,9 +22,8 @@ public class NPCs : MonoBehaviour
     private SpriteRenderer sr;
 
     protected bool holdBunny = false;
-    protected bool schoolBell = false;
     protected bool nameChange = false;
-
+    public static bool schoolBell = false;
     public Vector3 target;
 
     protected float time;

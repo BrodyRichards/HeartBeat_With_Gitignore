@@ -12,6 +12,4 @@ public class Control : MonoBehaviour
     public static KeyCode toMusicKid = KeyCode.Alpha3;
     public static KeyCode pullPauseMenu = KeyCode.Escape;
     public static KeyCode evacuate = KeyCode.P;
-
-
 }

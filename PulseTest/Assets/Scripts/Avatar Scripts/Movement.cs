@@ -19,7 +19,6 @@ public class Movement : MonoBehaviour
     void Start()
     {
         anim.SetBool("isWalking", false);
-
     }
 
     // Update is called once per frame
