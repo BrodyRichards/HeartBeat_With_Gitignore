@@ -9,6 +9,8 @@ public class CinematicBars : MonoBehaviour
     private float changeSizeAmount;
     private float targetSize;
     private bool isActive;
+    private float TimeWait=2.5f;
+    private float timer = 0f;
     
 
     private void Awake(){
@@ -18,7 +20,7 @@ public class CinematicBars : MonoBehaviour
         topBar = gameObject.GetComponent<RectTransform>();
         topBar.anchorMin = new Vector2(0,1);
         topBar.anchorMax = new Vector2(1,1);
-        topBar.sizeDelta = new Vector2(0,0);
+        topBar.sizeDelta = new Vector2(0,100);
 
         gameObject = new GameObject("bottomBar", typeof(Image));
         gameObject.transform.SetParent(transform, false);
@@ -26,10 +28,18 @@ public class CinematicBars : MonoBehaviour
         bottomBar = gameObject.GetComponent<RectTransform>();
         bottomBar.anchorMin = new Vector2(0,0);
         bottomBar.anchorMax = new Vector2(1,0);
-        bottomBar.sizeDelta = new Vector2(0,0);
+        bottomBar.sizeDelta = new Vector2(0,100);
 
     }
+    
     private void Update(){
+        
+        if(timer < TimeWait){
+            timer+= Time.deltaTime;
+            Debug.Log(timer);
+        }else if(timer>TimeWait){
+            Hide(.3f);
+        }
         if(Input.GetKeyDown(KeyCode.P)){Show(100,.3f);}
         if(isActive){
             Vector2 sizeDelta = topBar.sizeDelta;
