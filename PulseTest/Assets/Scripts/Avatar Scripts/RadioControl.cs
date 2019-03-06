@@ -128,7 +128,7 @@ public class RadioControl : MonoBehaviour
                         musicListener = coll.gameObject.name;
                         mcIsAffected = true;
                         // 3 seconds later call this function and reset MC 
-                        Invoke("McNotAffected", 3f);
+                        Invoke("McNotAffected", 1f);
                     }
                     else if (coll.gameObject.tag == "Person" && !mcIsAffected && !npcIsAffected)
                     {
