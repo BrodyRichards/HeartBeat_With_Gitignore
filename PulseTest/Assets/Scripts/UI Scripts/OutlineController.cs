@@ -5,10 +5,17 @@ using UnityEngine;
 
 public class OutlineController : MonoBehaviour
 {
+
     private GameObject ballkid; //2
     private GameObject radioguy; // 3
     private GameObject randomkid; //0
     private GameObject rabbit; //1
+
+
+    public static Color glowColor = Color.yellow;
+    public static int outlineWidth = 5;
+    public static float alphaThreshold = 0.01f;
+    public static float glowBrightness = 3f;
 
     GameObject[] go;
     // Start is called before the first frame update

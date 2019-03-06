@@ -8899,8 +8899,6 @@ MonoBehaviour:
   sadNote1: {fileID: 21300000, guid: 83d979842124c7d49bfa917aed70b8ae, type: 3}
   sadNote2: {fileID: 21300000, guid: 7d822487eeb463e44b091a1b0fefc002, type: 3}
   sadNote3: {fileID: 21300000, guid: 11da7545a22166b4ab9971368ac782c1, type: 3}
-  actionDist: 0
-
 --- !u!114 &1332290340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8962,24 +8960,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7476491799796029582}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1333830102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1333830097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  glowColor: {r: 1, g: 1, b: 1, a: 0}
-  glowBrightness: 5
-  outlineWidth: 1
-  alphaThreshold: 0.08
-  drawOutside: 1
-  enableInstancing: 0
 --- !u!61 &1333830103
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16364,6 +16344,21 @@ PrefabInstance:
       propertyPath: glowColor.g
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 950103261764361773, guid: 161ec8754d04ffb4485fb6c99cd22544,
+        type: 3}
+      propertyPath: alphaThreshold
+      value: 0.496
+      objectReference: {fileID: 0}
+    - target: {fileID: 950103261764361773, guid: 161ec8754d04ffb4485fb6c99cd22544,
+        type: 3}
+      propertyPath: outlineWidth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 950103261764361773, guid: 161ec8754d04ffb4485fb6c99cd22544,
+        type: 3}
+      propertyPath: glowBrightness
+      value: 5.29
+      objectReference: {fileID: 0}
     - target: {fileID: 950103261764361771, guid: 161ec8754d04ffb4485fb6c99cd22544,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -16554,6 +16549,31 @@ PrefabInstance:
         type: 3}
       propertyPath: Carriers.m_Bits
       value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 3508012940846479141, guid: 9119d567abe5dc64b90133ebaeffb6f8,
+        type: 3}
+      propertyPath: glowColor.a
+      value: 0.4117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3508012940846479141, guid: 9119d567abe5dc64b90133ebaeffb6f8,
+        type: 3}
+      propertyPath: glowBrightness
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3508012940846479141, guid: 9119d567abe5dc64b90133ebaeffb6f8,
+        type: 3}
+      propertyPath: outlineWidth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3508012940846479141, guid: 9119d567abe5dc64b90133ebaeffb6f8,
+        type: 3}
+      propertyPath: alphaThreshold
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3508012940846479141, guid: 9119d567abe5dc64b90133ebaeffb6f8,
+        type: 3}
+      propertyPath: drawOutside
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9119d567abe5dc64b90133ebaeffb6f8, type: 3}
@@ -17171,7 +17191,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 7476491800978798941, guid: dd3fe1050f0365448a1aca5ddba2b87d,
         type: 3}
       propertyPath: m_FlipX

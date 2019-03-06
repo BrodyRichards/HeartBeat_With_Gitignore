@@ -81,9 +81,16 @@ public class RadioControl : MonoBehaviour
         }
         else
         {
+            
             ps.Stop();
             TurnBgOn();
             ResetThisGuy();
+            if (musicNoteCreated)
+            {
+                Destroy(musicNoteObj);
+                musicNoteCreated = false;
+
+            }
         }
     }
 
