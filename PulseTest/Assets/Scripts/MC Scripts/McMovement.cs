@@ -118,6 +118,7 @@ public class McMovement : MonoBehaviour
     {
         float timePassed = 0f;
         anim.SetBool("isWalking", true);
+        anim.SetBool("wantToPlay", false);
         while (timePassed < 4f)
         {
             if (transform.position.x > Playground.RightX ||
@@ -165,6 +166,8 @@ public class McMovement : MonoBehaviour
             }
             else
             {
+                anim.SetBool("wantToPlay", false);
+                anim.SetBool("isWalking", true);
                 transform.position = Vector2.MoveTowards(transform.position, target, step);
             }
         }
