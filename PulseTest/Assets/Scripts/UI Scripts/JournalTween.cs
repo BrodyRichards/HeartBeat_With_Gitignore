@@ -16,6 +16,7 @@ public class JournalTween : MonoBehaviour
     public Image ballLv3;
     public Image rabbitLv2;
     public Image rabbitLv3;
+    public GameObject theBell;
 
     private Accomplish rabbit;
     private Accomplish ball;
@@ -25,9 +26,9 @@ public class JournalTween : MonoBehaviour
     private readonly float tweenSpeed = 0.02f;
     private readonly float completedAlpha = 0.99f;
 
-    private readonly int[] rabbitThreshold = new int[] { 0, 1, 3 };
-    private readonly int[] ballThreshold = new int[] { 0, 2, 4 };
-    private readonly int[] musicThreshold = new int[] { 0, 4, 10 };
+    private readonly int[] rabbitThreshold = new int[] { 0, 1, 2 };
+    private readonly int[] ballThreshold = new int[] { 0, 1, 2 };
+    private readonly int[] musicThreshold = new int[] { 0, 1, 2 };
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +59,12 @@ public class JournalTween : MonoBehaviour
         // check if the number has reached threshold
         CheckTheAlpha();
 
+        if (FinishedAllStatus())
+        {
+            theBell.SetActive(true);
+            Destroy(this);
+            
+        }
         
     }
 
@@ -104,7 +111,32 @@ public class JournalTween : MonoBehaviour
                 DoTheAlphaShit(com, 2);
             }
 
+            
         }
+        
+
+
+    }
+
+    private bool FinishedAllStatus()
+    {
+        var tempCount = 0;
+        foreach (var com in accomplishments)
+        {
+
+            if (com.finished[0] && com.finished[1] && com.finished[2])
+            {
+                tempCount += 1;
+            }
+        }
+
+        if (tempCount == 3)
+        {
+            Debug.Log("journal is completed");
+            return true;
+        }
+
+        return false;
     }
 
     //Backup function 

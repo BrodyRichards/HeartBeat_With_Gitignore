@@ -8197,6 +8197,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: 0
   destroy: 0
+--- !u!1 &1184231432 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3925664930726770210, guid: 2456ca80e769b724c91e4760fa606929,
+    type: 3}
+  m_PrefabInstance: {fileID: 4732075092609362642}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1201356621
 GameObject:
   m_ObjectHideFlags: 0
@@ -16610,7 +16616,7 @@ PrefabInstance:
     - target: {fileID: 4732075093193868254, guid: 2456ca80e769b724c91e4760fa606929,
         type: 3}
       propertyPath: m_Name
-      value: Canvas
+      value: MainScreenUI
       objectReference: {fileID: 0}
     - target: {fileID: 4732075093193868255, guid: 2456ca80e769b724c91e4760fa606929,
         type: 3}
@@ -16957,6 +16963,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 935340355870498815, guid: 2456ca80e769b724c91e4760fa606929,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847052409831900419, guid: 2456ca80e769b724c91e4760fa606929,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2456ca80e769b724c91e4760fa606929, type: 3}
 --- !u!1001 &4736211969614876213
@@ -17186,6 +17202,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6208981579412373496, guid: f12d30c8618f91241b12febc6db42372,
+        type: 3}
+      propertyPath: theBell
+      value: 
+      objectReference: {fileID: 1184231432}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f12d30c8618f91241b12febc6db42372, type: 3}
 --- !u!1001 &7476491799796029582
