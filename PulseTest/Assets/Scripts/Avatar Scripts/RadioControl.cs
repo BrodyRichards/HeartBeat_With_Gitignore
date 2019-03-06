@@ -82,14 +82,13 @@ public class RadioControl : MonoBehaviour
         else
         {
             
-            ps.Stop();
+            // ps.Stop();
             TurnBgOn();
             ResetThisGuy();
-            if (musicNoteCreated)
+            if (musicNoteCreated && musicNoteObj!= null)
             {
                 Destroy(musicNoteObj);
                 musicNoteCreated = false;
-
             }
         }
     }
@@ -162,7 +161,7 @@ public class RadioControl : MonoBehaviour
 
         }
 
-        if (musicNoteCreated)
+        if (musicNoteCreated && musicNoteObj!=null)
         {
             SendMusicToTarget(GameObject.Find(musicListener));
         }
