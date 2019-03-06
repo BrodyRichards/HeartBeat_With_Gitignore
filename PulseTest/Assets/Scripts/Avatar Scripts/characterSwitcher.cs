@@ -19,6 +19,8 @@ public class characterSwitcher : MonoBehaviour
         disableOthers();
         GameObject.Find("3").GetComponent<Movement>().enabled = false;
         isMusicGuyInCharge = false;
+        GameObject.Find("MC").GetComponent<Movement>().enabled = false;
+
     }
 
     // Update is called once per frame
@@ -72,6 +74,15 @@ public class characterSwitcher : MonoBehaviour
             {
                 GameObject choice = findGO(charChoice);
                 Enable(choice);
+                disableOthers();
+            }
+
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                charChoice = 1000;
+                Debug.Log("Should be walking");
+                GameObject.Find("MC").GetComponent<Movement>().enabled = true;
+                GameObject.Find("MC").GetComponent<McMovement>().enabled = false;
                 disableOthers();
             }
         }

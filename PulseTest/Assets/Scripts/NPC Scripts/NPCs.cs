@@ -32,7 +32,7 @@ public class NPCs : MonoBehaviour
     private int check;
     private SpriteRenderer sr;
     protected bool holdBunny = false;
-    protected bool schoolBell = false;
+    public static bool schoolBell = false;
     public Vector3 target;
 
     protected virtual void Start()
