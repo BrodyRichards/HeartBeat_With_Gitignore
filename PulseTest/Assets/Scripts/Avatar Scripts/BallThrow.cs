@@ -10,7 +10,7 @@ public class BallThrow : MonoBehaviour
     public float pickupDist;
     public Animator anim;
     public bool thrownBall = false;
-    public bool isMeanBall = false;
+    public static bool isMeanBall = false;
     
 
     private bool towardRight;
