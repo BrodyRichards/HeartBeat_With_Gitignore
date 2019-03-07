@@ -9,6 +9,7 @@ TagManager:
   - MC
   - Ball
   - Snow
+  - MusicNote
   layers:
   - Default
   - TransparentFX

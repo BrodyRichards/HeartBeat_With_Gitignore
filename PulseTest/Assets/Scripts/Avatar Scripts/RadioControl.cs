@@ -15,6 +15,9 @@ public class RadioControl : MonoBehaviour
     private bool musicNoteCreated = false;
     private bool isBG;
 
+    private readonly float mcAffectedInterval = 4f;
+    private readonly float musicCreatedInterval = 0.2f;
+
     public LayerMask Carriers;
     public ParticleSystem ps;
    
@@ -85,11 +88,6 @@ public class RadioControl : MonoBehaviour
             // ps.Stop();
             TurnBgOn();
             ResetThisGuy();
-            if (musicNoteCreated && musicNoteObj!= null)
-            {
-                Destroy(musicNoteObj);
-                musicNoteCreated = false;
-            }
         }
     }
 
@@ -125,23 +123,24 @@ public class RadioControl : MonoBehaviour
                 Array.Reverse(colliders);
                 foreach (Collider2D coll in colliders)
                 {
+                    if (!musicNoteCreated)
+                    {
+                        CreateMusicNote();
+                        Invoke("ResetMusicNote", musicCreatedInterval);
+                    }
+                    
                     if (coll.gameObject.tag == "MC" && !mcIsAffected)
                     {
-                        if (!musicNoteCreated)
-                        {
-                            CreateMusicNote();
-                        }
+                        
+                       
                         musicListener = coll.gameObject.name;
                         mcIsAffected = true;
                         // 3 seconds later call this function and reset MC 
-                        Invoke("McNotAffected", 1f);
+                        Invoke("McNotAffected", mcAffectedInterval);
                     }
                     else if (coll.gameObject.tag == "Person" && !mcIsAffected && !npcIsAffected)
                     {
-                        if (!musicNoteCreated)
-                        {
-                            CreateMusicNote();
-                        }
+                        
                         npcIsAffected = true;
                         musicListener = coll.gameObject.name;
                         //Debug.Log(musicListener);
@@ -158,10 +157,12 @@ public class RadioControl : MonoBehaviour
             mcIsAffected = false;
             npcIsAffected = false;
             musicListener = "";
+            
+            
 
         }
 
-        if (musicNoteCreated && musicNoteObj!=null)
+        if (musicListener!="")
         {
             SendMusicToTarget(GameObject.Find(musicListener));
         }
@@ -200,6 +201,8 @@ public class RadioControl : MonoBehaviour
         audioSource.clip = null;
         audioSource.Pause();
         isMusic = false;
+        DestroyRemainingNote();
+
         //ps.Stop();
     }
     private void TurnBgOff()
@@ -248,12 +251,17 @@ public class RadioControl : MonoBehaviour
 
     private void SendMusicToTarget(GameObject target)
     {
-        musicNoteObj.transform.position = Vector3.MoveTowards(musicNoteObj.transform.position, target.transform.position, 10f * Time.deltaTime);
-        if (musicNoteObj.transform.position == target.transform.position)
+        var tempList = GameObject.FindGameObjectsWithTag("MusicNote");
+        foreach (var temp in tempList)
         {
-            Destroy(musicNoteObj);
-            musicNoteCreated = false;
+            temp.transform.position = Vector3.MoveTowards(temp.transform.position, target.transform.position, 10f * Time.deltaTime);
+            if (temp.transform.position == target.transform.position)
+            {
+                Destroy(temp);
+                
+            }
         }
+       
         
     }
 
@@ -272,16 +280,21 @@ public class RadioControl : MonoBehaviour
     {
         if (currentMood == (int) Mood.happy)
         {
-            musicNoteObj = InstantiateNoteObj(happyNoteSprites);
+            InstantiateNoteObj(happyNoteSprites);
         }
         else if (currentMood == (int) Mood.sad)
         {
-            musicNoteObj = InstantiateNoteObj(sadNoteSprites);
+            InstantiateNoteObj(sadNoteSprites);
         }
         
         musicNoteCreated = true;
         
         
+    }
+
+    private void ResetMusicNote()
+    {
+        musicNoteCreated = false;
     }
 
     private GameObject InstantiateNoteObj(Sprite[] spriteArray)
@@ -291,5 +304,12 @@ public class RadioControl : MonoBehaviour
         var index = UnityEngine.Random.Range(0, 3);
         srsr.sprite = spriteArray[index];
         return go;
+    }
+
+    private void DestroyRemainingNote()
+    {
+        var temp = GameObject.FindGameObjectsWithTag("MusicNote");
+        foreach (var t in temp) { Destroy(t); }
+        //musicNoteCreated = false;
     }
 }
