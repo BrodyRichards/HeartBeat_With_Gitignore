@@ -71,7 +71,9 @@ public class characterSwitcher : MonoBehaviour
                 charChoice = 1000;
                 GameObject.Find("MC").GetComponent<Movement>().enabled = true;
                 GameObject.Find("MC").GetComponent<McMovement>().enabled = false;
-                disableOthers();
+                Movement.timeToLeave = true;
+                EnableAll();
+                this.enabled = false;
             }
         }
         
@@ -175,6 +177,16 @@ public class characterSwitcher : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+
+    public void EnableAll()
+    {
+        for (int i = 1; i < 4; i++)
+        {
+            Debug.Log("Enabling: " + i);
+            GameObject C = findGO(i);
+            Enable(C);
         }
     }
 
