@@ -16,11 +16,16 @@ public class IconControl : MonoBehaviour
     [SerializeField]
     private Image journalIcon;
     private List<Image> icons;
+    private Color red = new Color(1f, 0.5f, 0.5f);
+    private Color green = new Color(0.4f, 1f, 1f);
+
+    
     // Start is called before the first frame update
     void Start()
     {
         icons = new List<Image>{ rabbitIcon, ballIcon, musicIcon};
         journal.SetActive(false);
+        
 
     }
 
@@ -31,33 +36,45 @@ public class IconControl : MonoBehaviour
         {
             if ( icons.IndexOf(img) + 1 == characterSwitcher.charChoice)
             {
-                ChangeAlpha(img, 1.0f);
+                
                 Rescale(img, 40f);
+
+                if (Input.GetKey(Control.positiveAction))
+                {
+                    ChangeColor(img, green);
+                }
+                else if (Input.GetKey(Control.negativeAction))
+                {
+                    ChangeColor(img, red);
+                }
+                else
+                {
+                    ChangeColor(img, Color.white);
+                }
             }
             else
             {
-                ChangeAlpha(img, 1.0f);
+                
                 Rescale(img, 30f);
             }
         }
 
         if (journalActivated)
         {
-            ChangeAlpha(journalIcon, 1.0f);
+            
             journal.SetActive(true);
         }
         else
         {
-            ChangeAlpha(journalIcon, 1.5f);
+            
             journal.SetActive(false);
         }
     }
 
-    void ChangeAlpha(Image im, float alpha)
+    void ChangeColor(Image im, Color col)
     {
-        var colour = im.color;
-        colour.a = alpha;
-        im.color = colour;
+        
+        im.color = col;
     }
 
     void Rescale(Image im, float pixel)
