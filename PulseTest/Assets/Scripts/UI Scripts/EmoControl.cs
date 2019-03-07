@@ -90,12 +90,14 @@ public class EmoControl : MonoBehaviour
                 sr.enabled = true;
                 hasEmo = true;
                 sr.sprite = happy;
+                gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
                 CRunning = true;
                 break;
             case 1:
                 sr.enabled = true;
                 hasEmo = true;
                 sr.sprite = sad;
+                gameObject.transform.localScale = new Vector2(2.1f, 2.1f);
                 CRunning = true;
                 break;
             default:

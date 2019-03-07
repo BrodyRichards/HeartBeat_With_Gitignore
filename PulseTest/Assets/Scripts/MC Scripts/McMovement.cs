@@ -229,10 +229,9 @@ public class McMovement : MonoBehaviour
 
     private void AnimationMoodCheck()
     {
-        var moo = MentalState.tallyEmotion();
         
         
-        if (moo < moodBound && moo > -moodBound) // no mood
+        if (MentalState.WithinRange(MentalState.currentState, 4, -4)) // no mood
         {
             //Debug.Log("currentMood is calm" + MentalState.mood);
             //var scaling = !isFlipped ? new Vector2(1.0f, 1.0f) : new Vector2(-1.0f, 1.0f);
@@ -240,22 +239,18 @@ public class McMovement : MonoBehaviour
             speed = 4;
             anim.SetInteger("mood", (int)Mood.idle );
         }
-        else if (moo > moodBound) // happy
+        else if (MentalState.WithinRange(MentalState.currentState, 11, 3)) // happy
         {
             anim.SetInteger("mood", (int)Mood.happy);
             speed = 6;
         }
-        else if (moo < -moodBound) // sad 
+        else if (MentalState.WithinRange(MentalState.currentState, -3, -11)) // sad 
         {
             var scaling = isFlipped ? new Vector2(-1.1f, 1.1f) : new Vector2(1.1f, 1.1f);
             transform.localScale = scaling;
             
             speed = 2;
             anim.SetInteger("mood", (int)Mood.sad);
-        }
-        else if (moo == 40) // angry 
-        {
-            // do nothing here
         }
         else
         {
