@@ -38,7 +38,7 @@ public class BallThrow : MonoBehaviour
         }
        
         //Check to see that a ball was thrown and that it is resting stationary on the ground
-        if (Input.GetKey(Control.positiveAction) && thrownBall && GameObject.Find("newBall") != null)
+        if ((Input.GetKey(Control.positiveAction) || Input.GetKey(Control.negativeAction)) && thrownBall && GameObject.Find("newBall") != null)
         {
             PickupBall();
         }

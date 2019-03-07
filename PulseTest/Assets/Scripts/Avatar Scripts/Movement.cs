@@ -11,7 +11,11 @@ public class Movement : MonoBehaviour
     public float acceleration;
     public float deceleration;
     public static bool isRight = true;
+    public static bool timeToLeave = false;
     private Vector2 direction;
+    public Vector3 target;
+    public Vector3 scale;
+    public Vector3 scaleOpposite;
 
     public Animator anim;
 
@@ -19,13 +23,23 @@ public class Movement : MonoBehaviour
     void Start()
     {
         anim.SetBool("isWalking", false);
+        target = GameObject.Find("GameController").GetComponent<NpcInstantiator>().rightBound.transform.position;
+        scale = transform.localScale;
+        scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
 
     // Update is called once per frame
     void Update()
     {
-        getInput();
-        Move();
+        if (!timeToLeave || this.gameObject.name == "MC")
+        {
+            getInput();
+            Move();
+        }
+        else
+        {
+            AvatarsExit();
+        }
     }
 
     public void Move()
@@ -46,19 +60,17 @@ public class Movement : MonoBehaviour
             (transform.position.y > Playground.UpperY && v2.y > 0) ||
             (transform.position.y < Playground.LowerY && v2.y < 0))
         {
-            //Debug.Log("hit the bound");
+            //Hit the bound
         }
         else
         {
             if (direction == Vector2.right && transform.localScale.x < 0)
             {
                 transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-
             }
             else if (direction == Vector2.left && transform.localScale.x > 0)
             {
                 transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-
             }
 
             if (direction != Vector2.zero && currSpeed < maxSpeed)
@@ -105,7 +117,24 @@ public class Movement : MonoBehaviour
             direction = Vector2.right;
 
         }
+    }
 
+    public void AvatarsExit()
+    {
+        anim.SetBool("isWalking", true);
 
+        transform.localScale = scale;
+
+        if (currSpeed < maxSpeed)
+        {
+            currSpeed += acceleration;
+        }
+
+        transform.position = Vector3.MoveTowards(transform.position, target, currSpeed * Time.deltaTime);
+
+        if (transform.position == target)
+        {
+            //Destroy(gameObject);
+        }
     }
 }
