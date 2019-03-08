@@ -48,28 +48,71 @@ public class MentalState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     public static void sendMsg(string msg)
     {
         int currCount;
-
         moodLog.TryGetValue(msg, out currCount);
         moodLog[msg] = currCount + 1;
-        IconControl.journalTweening = true;
-        
-        
-
-        if (WithinRange(currentState, moodUpperBound, moodLowerBound))
-        {
-            currentState += effectWeights[msg];
-            currentState = Mathf.Clamp(currentState, moodLowerBound + 1 , moodUpperBound - 1);
-        }
-
-
+        EventTracking();
+        CheckForTween();
+        UpdateCurrentMood(msg);
         Debug.Log("Action taken: " + msg + "/Emotion Level: " + moodLog[msg] + "/Current Mood" + currentState);
     }
+
+    public static void CheckForTween()
+    {
+        bool doTweening = false;
+        foreach (var comm in JournalTween.accomplishments)
+        {
+            doTweening = doTweening || ActivateTweening(comm);
+        }
+        
+        // check if doing the tween is needed 
+        IconControl.journalTweening = doTweening;
+
+    }
+
+    public static bool ActivateTweening(Accomplish com)
+    {
+        //Debug.LogError("com.Num :" + com.Num + "com.threshold :" + com.threshold[0] + "com.finished :" + com.finished[0]);
+        if (com.Num > com.threshold[0] && !com.finished[0])
+        {
+            return true;
+        }
+        else if (com.Num > com.threshold[1] && !com.finished[1])
+        {
+            return true;
+        }
+        else if (com.Num > com.threshold[2] && !com.finished[2])
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public static void EventTracking()
+    {
+
+        JournalTween.ball.Num = moodLog["Played catch"] + moodLog["Hit by ball"];
+        JournalTween.rabbit.Num = moodLog["Held Rabbit"] + moodLog["Bit by rabbit"];
+        JournalTween.music.Num = moodLog["Happy Song"] + moodLog["Sad Song"];
+    }
+
+    public static void UpdateCurrentMood(string m)
+    {
+        if (WithinRange(currentState, moodUpperBound, moodLowerBound))
+        {
+            currentState += effectWeights[m];
+            currentState = Mathf.Clamp(currentState, moodLowerBound + 1, moodUpperBound - 1);
+        }
+    }
+    
 
     public static int tallyEmotion()
     {
@@ -78,10 +121,8 @@ public class MentalState : MonoBehaviour
         foreach (KeyValuePair<string, int> moodEntry in moodLog)
         {
             mood += moodEntry.Value * effectWeights[moodEntry.Key];
-            
-        }
 
-        // Debug.Log("Total Mood: " + mood);
+        }
 
         return mood;
     }
@@ -100,9 +141,12 @@ public class MentalState : MonoBehaviour
         {
             currentState += 1;
         }
-        
+
         Debug.Log("MC mood pacified " + currentState);
     }
+
+    //-------------------------------
+    //Helper functions
     /// <summary>
     /// whether the val is smaller than upper (exclusively) and bigger than the lower (exclusively)
     /// </summary>
@@ -110,11 +154,9 @@ public class MentalState : MonoBehaviour
     /// <param name="upper"></param>
     /// <param name="lower"></param>
     /// <returns>true of false</returns>
-    public static bool WithinRange( int val, int upper, int lower)
+    public static bool WithinRange(int val, int upper, int lower)
     {
         return (val < upper && val > lower) ? true : false;
 
     }
-
-    
 }

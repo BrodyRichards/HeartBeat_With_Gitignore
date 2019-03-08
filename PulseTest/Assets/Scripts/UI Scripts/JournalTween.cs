@@ -18,10 +18,10 @@ public class JournalTween : MonoBehaviour
     public Image rabbitLv3;
     public GameObject theBell;
 
-    private Accomplish rabbit;
-    private Accomplish ball;
-    private Accomplish music;
-    private List<Accomplish> accomplishments;
+    public static Accomplish rabbit;
+    public static Accomplish ball;
+    public static Accomplish music;
+    public static List<Accomplish> accomplishments;
 
     private readonly float tweenSpeed = 0.02f;
     private readonly float completedAlpha = 0.99f;
@@ -46,6 +46,7 @@ public class JournalTween : MonoBehaviour
         music = Accomplish.CreateInstance(musicThreshold, musicStamp, musicLv2, musicLv3);
 
         accomplishments = new List<Accomplish> { rabbit, ball, music };
+        gameObject.SetActive(false);
 
     }
 
@@ -54,7 +55,7 @@ public class JournalTween : MonoBehaviour
     {
         IconControl.journalTweening = false;
         // update the occurences of events
-        EventTracking();
+        
 
         // check if the number has reached threshold
         CheckTheAlpha();
@@ -62,23 +63,16 @@ public class JournalTween : MonoBehaviour
         if (FinishedAllStatus())
         {
             theBell.SetActive(true);
+            rabbit = null;
+            ball = null;
+            music = null;
+            accomplishments = null;
             Destroy(this);
+            
             
         }
         
     }
-
-
-    private void EventTracking()
-    {
-        
-        ball.Num = MentalState.moodLog["Played catch"] + MentalState.moodLog["Hit by ball"];
-        rabbit.Num = MentalState.moodLog["Held Rabbit"] + MentalState.moodLog["Bit by rabbit"];
-        music.Num = MentalState.moodLog["Happy Song"] + MentalState.moodLog["Sad Song"];
-    }
-
-
-
     private void DoTheAlphaShit(Accomplish accom, int index)
     {
         // gradually increase alpha of the corresponding stamp to max 
@@ -110,12 +104,7 @@ public class JournalTween : MonoBehaviour
             {
                 DoTheAlphaShit(com, 2);
             }
-
-            
         }
-        
-
-
     }
 
     private bool FinishedAllStatus()

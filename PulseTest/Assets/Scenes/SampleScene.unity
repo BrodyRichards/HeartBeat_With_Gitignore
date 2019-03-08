@@ -17124,7 +17124,7 @@ PrefabInstance:
     - target: {fileID: 6208981579412373503, guid: f12d30c8618f91241b12febc6db42372,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6208981579412373499, guid: f12d30c8618f91241b12febc6db42372,
         type: 3}
@@ -17241,6 +17241,11 @@ PrefabInstance:
       propertyPath: theBell
       value: 
       objectReference: {fileID: 1184231432}
+    - target: {fileID: 6208981579412373496, guid: f12d30c8618f91241b12febc6db42372,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f12d30c8618f91241b12febc6db42372, type: 3}
 --- !u!1001 &7476491799796029582
