@@ -124,6 +124,11 @@ public class BallProjectile : MonoBehaviour
     private void stationaryBall()
     {
         //Sound and special FX can go here
+        if (meanBallThrown)
+        {
+            McMovement.gotHit = true;
+        }
+
         Destroy(gameObject);
         GameObject newBall = Instantiate(gameObject, transform.position, Quaternion.identity);
         newBall.name = "newBall";

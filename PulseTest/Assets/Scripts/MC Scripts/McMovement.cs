@@ -27,6 +27,7 @@ public class McMovement : MonoBehaviour
     public float timeElapsed = 0f;
     public bool CRunning = false;
     public static bool playedCatch = false;
+    public static bool gotHit = false;
     public bool stillInterested = true;
     public bool endScene;
     public bool tutorialScene;
@@ -59,9 +60,9 @@ public class McMovement : MonoBehaviour
             if (Playground.CheckDist(NpcInstantiator.musicKidPos, transform.position, Playground.MusicAoe))
             {
             */
-                walkedIn = true; 
-              //  anim.SetInteger("mood", MentalState.mood);
-               
+            walkedIn = true;
+            //  anim.SetInteger("mood", MentalState.mood);
+
             //}
         }
 
@@ -70,7 +71,7 @@ public class McMovement : MonoBehaviour
         {
             if (!EmoControl.emoChanged)
             {
-                
+
                 FlipAssetDirection();
                 AnimationMoodCheck();
 
@@ -82,7 +83,7 @@ public class McMovement : MonoBehaviour
                         StartCoroutine(McRunsFromAvatar(NpcInstantiator.rabbitPos, step));
                     }
                 }
-                else if (CheckDist(transform.position, NpcInstantiator.ballKidPos) && BallProjectile.meanBallThrown)
+                else if (CheckDist(transform.position, NpcInstantiator.ballKidPos) && BallProjectile.meanBallThrown && gotHit)
                 {
                     if (!CRunning)
                     {
@@ -117,6 +118,12 @@ public class McMovement : MonoBehaviour
     IEnumerator McRunsFromAvatar(Vector2 target, float step)
     {
         float timePassed = 0f;
+
+        if (gotHit)
+        {
+            gotHit = !gotHit;
+        }
+
         anim.SetBool("isWalking", true);
         anim.SetBool("wantToPlay", false);
         while (timePassed < 4f)
