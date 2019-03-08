@@ -4,22 +4,19 @@ using UnityEngine;
 
 public class Playground: MonoBehaviour
 {
-    private float worldX;
-    private float worldY;
-    public static float RightX = 120f;
-    public static float LeftX = -120f;
-    public static float LowerY = -25f;
-    public static float UpperY = 10f;
-    public static float MusicAoe = 20f;
+    public readonly static float RightX = 120f;
+    public readonly static float LeftX = -120f;
+    public readonly static float LowerY = -25f;
+    public readonly static float UpperY = 10f;
 
-    public static int trLv2 = 3;
-    public static int trLv3 = 5;
-    public static int tbLv2 = 3;
-    public static int tbLv3 = 5;
-    public static int tmLv2 = 4;
-    public static int tmLv3 = 10;
+    public readonly static int trLv2 = 3;
+    public readonly static int trLv3 = 5;
+    public readonly static int tbLv2 = 3;
+    public readonly static int tbLv3 = 5;
+    public readonly static int tmLv2 = 4;
+    public readonly static int tmLv3 = 10;
 
-    public static string[] NpcTypes = { "NPC", "Frank", "Bobby", "Ryan", "Suzy" };
+    public readonly static string[] NpcTypes = { "NPC", "Frank", "Bobby", "Ryan", "Suzy" };
     // Start is called before the first frame update
     void Start()
     {

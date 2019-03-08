@@ -14,8 +14,10 @@ public class EmoControl : MonoBehaviour
 
     private SpriteRenderer sr;
 
-    public static int mcBallHit = 0;
+    public static bool mcBallHit = false;
     public static bool rabbitHug = false;
+    public static bool bitten = false;
+    public static bool justPlayedCatch = false;
     private bool rabitJustHug = false;
     private bool emoDist;
 
@@ -39,14 +41,12 @@ public class EmoControl : MonoBehaviour
 
         
 
-        if (mcBallHit > 1)
+        if (mcBallHit || bitten)
         {
             hasEmo = true;
             sr.enabled = true;
             sr.sprite = angry;
-            emoChanged = true;
             Invoke("DestroyEmotion", 1f);
-            Invoke("ChangeEmoBack", 1f);
 
         }
         else if (rabbitHug)
@@ -55,6 +55,13 @@ public class EmoControl : MonoBehaviour
             hasEmo = true;
             sr.enabled = true;
             sr.sprite = happy;
+        }
+        else if (justPlayedCatch)
+        {
+            hasEmo = true;
+            sr.enabled = true;
+            sr.sprite = happy;
+            Invoke("DestroyEmotion", 1f);
         }
         else if (RadioControl.mcIsAffected)
         {
@@ -68,17 +75,9 @@ public class EmoControl : MonoBehaviour
    
     public void DestroyEmotion()
     {
-        //hasEmo = false;
-        //sr.enabled = false;
-        
-        
-        mcBallHit *= 0;
-        
-    }
-
-    public void ChangeEmoBack()
-    {
-        emoChanged = false;
+        bitten = false;
+        mcBallHit = false;
+        justPlayedCatch = false;
     }
 
     public void ReactToMusic()

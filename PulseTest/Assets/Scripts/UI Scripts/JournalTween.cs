@@ -63,6 +63,7 @@ public class JournalTween : MonoBehaviour
         if (FinishedAllStatus())
         {
             theBell.SetActive(true);
+            MentalState.journalInProgress = false;
             rabbit = null;
             ball = null;
             music = null;

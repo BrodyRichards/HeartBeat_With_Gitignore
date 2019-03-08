@@ -11,6 +11,8 @@ public class MentalState : MonoBehaviour
 
     public static int moodUpperBound = 11;
     public static int moodLowerBound = -11;
+
+    public static bool journalInProgress = true;
     // Played catch, Hit by ball, Held Rabbit, Bit by rabbit, Happy Song, Sad Song, Startled Song
 
     // -3 to 3 = neutral 
@@ -56,9 +58,13 @@ public class MentalState : MonoBehaviour
         int currCount;
         moodLog.TryGetValue(msg, out currCount);
         moodLog[msg] = currCount + 1;
-        EventTracking();
-        CheckForTween();
-        UpdateCurrentMood(msg);
+        if (journalInProgress)
+        {
+            EventTracking();
+            CheckForTween();
+            UpdateCurrentMood(msg);
+        }
+        
         Debug.Log("Action taken: " + msg + "/Emotion Level: " + moodLog[msg] + "/Current Mood" + currentState);
     }
 

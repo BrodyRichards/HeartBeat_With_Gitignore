@@ -27,7 +27,6 @@ public class RadioControl : MonoBehaviour
     [SerializeField] private AudioClip happySong;
     [SerializeField] private GameObject happyMusicNote;
     [SerializeField] private GameObject sadMusicNote;
-    private GameObject musicNoteObj;
     private AudioSource audioSource;
     private AudioSource backgroundMusic;
 

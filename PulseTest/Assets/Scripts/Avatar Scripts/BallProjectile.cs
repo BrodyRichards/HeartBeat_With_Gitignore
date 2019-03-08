@@ -55,7 +55,7 @@ public class BallProjectile : MonoBehaviour
                     //MC gets hit by ball and doesn't play catch
                     stationaryBall();
                     //Reset meanBall bool
-
+                    EmoControl.mcBallHit = true;
                     //meanBallThrown = false;
                 }
                 else
@@ -69,6 +69,7 @@ public class BallProjectile : MonoBehaviour
                     {
                         MentalState.sendMsg("Played catch");
                         McMovement.playedCatch = true;
+                        EmoControl.justPlayedCatch = true;
                     }
                     //NPC.GetComponent<PlayCatch>().hitByBall();
                     PlayCatch delayCatch = NPC.GetComponent<PlayCatch>();

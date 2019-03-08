@@ -95,6 +95,7 @@ public class RabbitJump : MonoBehaviour
                     if (victim.gameObject.tag == "MC")
                     {
                         bittenMC = true;
+                        EmoControl.bitten = true;
                         MentalState.sendMsg("Bit by rabbit");
                         PutRabbitDown();
                     }
