@@ -132,6 +132,7 @@ public class BallProjectile : MonoBehaviour
         Destroy(gameObject);
         GameObject newBall = Instantiate(gameObject, transform.position, Quaternion.identity);
         newBall.name = "newBall";
+        newBall.AddComponent<CircleCollider2D>().isTrigger = true;
     }
 
     static Quaternion LookAt2D(Vector2 forward)

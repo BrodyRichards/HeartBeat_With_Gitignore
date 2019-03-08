@@ -31,16 +31,11 @@ public class BallThrow : MonoBehaviour
         if (Input.GetKeyDown(Control.positiveAction) && !thrownBall)
         {
             ThrowBall();
-        }else if (Input.GetKeyDown(Control.negativeAction) && !thrownBall)
+        }
+        else if (Input.GetKeyDown(Control.negativeAction) && !thrownBall)
         {
             isMeanBall = true;
             ThrowBall();
-        }
-       
-        //Check to see that a ball was thrown and that it is resting stationary on the ground
-        if ((Input.GetKey(Control.positiveAction) || Input.GetKey(Control.negativeAction)) && thrownBall && GameObject.Find("newBall") != null)
-        {
-            PickupBall();
         }
     }
 
@@ -102,6 +97,14 @@ public class BallThrow : MonoBehaviour
             BallProjectile.meanBallThrown = false;
             Destroy(newBall);
             anim.SetBool("hasBall", true);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "newBall")
+        {
+            PickupBall();
         }
     }
 
