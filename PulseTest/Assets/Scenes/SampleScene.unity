@@ -16627,6 +16627,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainScreenUI
       objectReference: {fileID: 0}
+    - target: {fileID: 4732075093193868254, guid: 2456ca80e769b724c91e4760fa606929,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3925664930726770210, guid: 2456ca80e769b724c91e4760fa606929,
         type: 3}
       propertyPath: m_IsActive

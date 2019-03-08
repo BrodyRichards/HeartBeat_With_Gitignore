@@ -76,8 +76,9 @@ public class RadioControl : MonoBehaviour
     private void Update()
     {
         UIControl();
-        if (characterSwitcher.isMusicGuyInCharge)
+        if (characterSwitcher.isMusicGuyInCharge && !Movement.timeToLeave)
         {
+            
             DetectAction();
             DetectMusic();
         }
