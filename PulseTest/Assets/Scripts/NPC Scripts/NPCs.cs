@@ -233,6 +233,30 @@ public class NPCs : MonoBehaviour
         }
     }
 
+    protected virtual void checkBallBunny(bool inDist, Vector3 avatarPos)
+    {
+        if (inDist)
+        {
+            float dist = Vector3.Distance(avatarPos, transform.position);
+
+            if (dist > 10.0f)
+            {
+                target = avatarPos;
+                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            }
+        }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            if (transform.position == target)
+            {
+                int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
+                int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
+                target = new Vector3(ranX, ranY, -1);
+            }
+        }
+    }
+
     protected virtual void runOff()
     {
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);

@@ -25,7 +25,7 @@ public class BallPlayers : NPCs
             bool ballDist = checkDist(NpcInstantiator.ballKidPos, transform.position);
             directionCheck(target.x, transform.position.x);
             avatarChecks();
-            checkBall(ballDist);
+            checkBallBunny(ballDist, NpcInstantiator.ballKidPos);
             DetectMovement();
             if (Input.GetKeyDown(Control.evacuate))
             {
@@ -70,30 +70,6 @@ public class BallPlayers : NPCs
                 addEmo();
             }
             
-        }
-    }
-
-    private void checkBall(bool ballDist)
-    {
-        if (ballDist)
-        {
-            float dist = Vector3.Distance(NpcInstantiator.ballKidPos, transform.position);
-
-            if (dist > 10.0f)
-            {
-                target = NpcInstantiator.ballKidPos;
-                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-            }
-        }
-        else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-            if (transform.position == target)
-            {
-                int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
-                int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
-                target = new Vector3(ranX, ranY, -1);
-            }
         }
     }
 }

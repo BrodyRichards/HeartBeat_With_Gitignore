@@ -21,7 +21,7 @@ public class RabbitChasers : NPCs
             bool rabbitDist = checkDist(NpcInstantiator.rabbitPos, transform.position);
             directionCheck(target.x, transform.position.x);
             avatarChecks();
-            checkRabbit(rabbitDist);
+            checkBallBunny(rabbitDist, NpcInstantiator.rabbitPos);
             DetectMovement();
             if (Input.GetKeyDown(Control.evacuate))
             {
@@ -63,30 +63,5 @@ public class RabbitChasers : NPCs
             }
         }
     }
-
-
-    private void checkRabbit(bool rabbitDist)
-    {
-        if (rabbitDist)
-        {
-            float dist = Vector3.Distance(NpcInstantiator.rabbitPos, transform.position);
-            if (dist > 5.0f)
-            {
-                target = NpcInstantiator.rabbitPos;
-                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-            }
-        }
-        else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-            if (transform.position == target)
-            {
-                int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
-                int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
-                target = new Vector3(ranX, ranY, -1);
-            }
-        }
-    }
-
    
 }
