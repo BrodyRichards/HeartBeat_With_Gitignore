@@ -57,12 +57,16 @@ public class MentalState : MonoBehaviour
 
         moodLog.TryGetValue(msg, out currCount);
         moodLog[msg] = currCount + 1;
+        IconControl.journalTweening = true;
+        
+        
 
         if (WithinRange(currentState, moodUpperBound, moodLowerBound))
         {
             currentState += effectWeights[msg];
             currentState = Mathf.Clamp(currentState, moodLowerBound + 1 , moodUpperBound - 1);
         }
+
 
         Debug.Log("Action taken: " + msg + "/Emotion Level: " + moodLog[msg] + "/Current Mood" + currentState);
     }
@@ -111,4 +115,6 @@ public class MentalState : MonoBehaviour
         return (val < upper && val > lower) ? true : false;
 
     }
+
+    
 }

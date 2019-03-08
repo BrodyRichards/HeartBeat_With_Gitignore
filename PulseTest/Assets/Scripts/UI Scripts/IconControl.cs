@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class IconControl : MonoBehaviour
 {
     public static bool journalActivated = false;
+    public static bool journalTweening = false;
+    public Animator animator;
     public GameObject journal;
     [SerializeField]
     private Image rabbitIcon;
@@ -25,7 +27,7 @@ public class IconControl : MonoBehaviour
     {
         icons = new List<Image>{ rabbitIcon, ballIcon, musicIcon};
         journal.SetActive(false);
-        
+        animator.SetBool("newAccom", false);
 
     }
 
@@ -59,6 +61,17 @@ public class IconControl : MonoBehaviour
             }
         }
 
+        if (journalTweening)
+        {
+            animator.SetBool("newAccom", true);
+            
+        }
+        else
+        {
+            animator.SetBool("newAccom", false);
+        }
+
+
         if (journalActivated)
         {
             
@@ -81,4 +94,7 @@ public class IconControl : MonoBehaviour
     {
         im.rectTransform.sizeDelta = new Vector2(pixel, pixel*2f);
     }
+
+    
+    
 }

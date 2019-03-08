@@ -26,9 +26,9 @@ public class JournalTween : MonoBehaviour
     private readonly float tweenSpeed = 0.02f;
     private readonly float completedAlpha = 0.99f;
 
-    private readonly int[] rabbitThreshold = new int[] { 0, 1, 2 };
-    private readonly int[] ballThreshold = new int[] { 0, 1, 2 };
-    private readonly int[] musicThreshold = new int[] { 0, 1, 2 };
+    private readonly int[] rabbitThreshold = new int[] { 0, Playground.trLv2, Playground.trLv3 };
+    private readonly int[] ballThreshold = new int[] { 0, Playground.tbLv2, Playground.tbLv3 };
+    private readonly int[] musicThreshold = new int[] { 0, Playground.tmLv2, Playground.tmLv3 };
 
     // Start is called before the first frame update
     void Start()
@@ -52,7 +52,7 @@ public class JournalTween : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        IconControl.journalTweening = false;
         // update the occurences of events
         EventTracking();
 
@@ -130,7 +130,7 @@ public class JournalTween : MonoBehaviour
             }
         }
 
-        if (tempCount == 3)
+        if (tempCount == accomplishments.Count)
         {
             Debug.Log("journal is completed");
             return true;

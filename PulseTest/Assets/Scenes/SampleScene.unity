@@ -9030,7 +9030,16 @@ MonoBehaviour:
   currSpeed: 0
   acceleration: 0.8
   deceleration: 2
+  target: {x: 0, y: 0, z: 0}
+  scale: {x: 0, y: 0, z: 0}
+  scaleOpposite: {x: 0, y: 0, z: 0}
   anim: {fileID: 1333830100}
+--- !u!95 &1408718979 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3303754828160582275, guid: 2456ca80e769b724c91e4760fa606929,
+    type: 3}
+  m_PrefabInstance: {fileID: 4732075092609362642}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1440757409
 GameObject:
   m_ObjectHideFlags: 0
@@ -16743,6 +16752,11 @@ PrefabInstance:
       propertyPath: journal
       value: 
       objectReference: {fileID: 1009851945}
+    - target: {fileID: 4732075093193868227, guid: 2456ca80e769b724c91e4760fa606929,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1408718979}
     - target: {fileID: 4732075092730412288, guid: 2456ca80e769b724c91e4760fa606929,
         type: 3}
       propertyPath: m_AnchoredPosition.x

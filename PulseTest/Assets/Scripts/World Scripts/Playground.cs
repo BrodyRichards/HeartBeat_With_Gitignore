@@ -12,6 +12,13 @@ public class Playground: MonoBehaviour
     public static float UpperY = 10f;
     public static float MusicAoe = 20f;
 
+    public static int trLv2 = 3;
+    public static int trLv3 = 5;
+    public static int tbLv2 = 3;
+    public static int tbLv3 = 5;
+    public static int tmLv2 = 4;
+    public static int tmLv3 = 10;
+
     public static string[] NpcTypes = { "NPC", "Frank", "Bobby", "Ryan", "Suzy" };
     // Start is called before the first frame update
     void Start()
