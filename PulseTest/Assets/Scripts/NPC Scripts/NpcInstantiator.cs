@@ -8,7 +8,7 @@ public class NpcInstantiator : MonoBehaviour
 
     private int runnerCount = 3;    //0
     private int lonerCount = 3;     //1
-    private int rcCount = 3;        //2
+    private int rcCount = 1;        //2
     private int bpCount = 1;        //3
     
     public GameObject[] NPCs; //contains the 3 types of NPCs
@@ -57,6 +57,7 @@ public class NpcInstantiator : MonoBehaviour
             groupies[i] = Instantiate(groupiePrefab, pos, Quaternion.identity) as GameObject;
             groupies[i].GetComponent<SpriteRenderer>().sortingLayerName = "Main";
             groupies[i].GetComponent<Groupies>().target = RandomCircle(center, 3f, groupCount, i);
+            groupies[i].name += i;
 
         }
     }
@@ -89,12 +90,16 @@ public class NpcInstantiator : MonoBehaviour
 
     private void createNPCs(int choice, int count, int ranX, int ranY)
     {
-        ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
-        ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
-        Vector3 pos = new Vector3(ranX, ranY, -1);
-        Quaternion rot = new Quaternion(0, 0, 0, 0);
-        Instantiate(NPCs[choice], pos, rot);
-        NPCs[choice].GetComponent<SpriteRenderer>().sortingLayerName = "Main";
+        for (int i = 0; i < count; i++)
+        {
+            ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
+            ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
+            Vector3 pos = new Vector3(ranX, ranY, -1);
+            Quaternion rot = new Quaternion(0, 0, 0, 0);
+            Instantiate(NPCs[choice], pos, rot);
+            NPCs[choice].GetComponent<SpriteRenderer>().sortingLayerName = "Main";
+            NPCs[choice].name += i;
+        }        
     }
 
     private void Update()
@@ -104,8 +109,7 @@ public class NpcInstantiator : MonoBehaviour
         if (characterSwitcher.isMusicGuyInCharge)
         {
             musicKidPos = musicKid.transform.position;
-        }
-        
+        }    
     }
 
 

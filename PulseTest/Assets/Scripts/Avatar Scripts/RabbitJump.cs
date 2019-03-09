@@ -7,6 +7,7 @@ public class RabbitJump : MonoBehaviour
 {
     public static bool beingCarried = false;
     public static bool bittenMC = false;
+    public static string bitNpcName = "";
     public LayerMask Carriers;
     public float actionDist;
     private Rigidbody2D rb;
@@ -102,6 +103,7 @@ public class RabbitJump : MonoBehaviour
                     else if (victim.gameObject.tag == "Person")
                     {
                         Debug.Log("I bit " + victim.gameObject.name + "!");
+                        bitNpcName = victim.gameObject.name;
                     }
                 }
             }
