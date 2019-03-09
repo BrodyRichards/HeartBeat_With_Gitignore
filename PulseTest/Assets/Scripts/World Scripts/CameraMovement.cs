@@ -94,7 +94,7 @@ public class CameraMovement : MonoBehaviour
             target = mainChar.transform.position + offset;
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
         }
-        checkBounds(target);
+        //checkBounds(target);
         
     }
 
