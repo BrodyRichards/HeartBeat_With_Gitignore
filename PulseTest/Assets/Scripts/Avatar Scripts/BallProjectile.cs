@@ -51,11 +51,16 @@ public class BallProjectile : MonoBehaviour
                     //Debug.Log("You threw a mean ball!");
                     //Update Mental State
                     NpcName = hit.collider.gameObject.name;
-                    MentalState.sendMsg("Hit by ball");
+                    if (NpcName == "MC")
+                    {
+                        MentalState.sendMsg("Hit by ball");
+                        EmoControl.mcBallHit = true;
+                    }
+                    
                     //MC gets hit by ball and doesn't play catch
                     stationaryBall();
                     //Reset meanBall bool
-                    EmoControl.mcBallHit = true;
+                    
                     //meanBallThrown = false;
                 }
                 else
