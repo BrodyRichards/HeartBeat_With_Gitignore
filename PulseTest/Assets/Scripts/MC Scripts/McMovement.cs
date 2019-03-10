@@ -209,7 +209,7 @@ public class McMovement : MonoBehaviour
 
         if (Vector2.Distance(transform.position, target) < 1.0f)
         {
-            Debug.Log("arrive at" + target);
+            //Debug.Log("arrive at" + target);
             stillInterested = true;
             timeElapsed = 0f;
             mcWaypoints.RemoveAt(0);
