@@ -5000,6 +5000,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: 10
   destroy: 0
+--- !u!50 &118138688
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118138679}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &175190514
 GameObject:
   m_ObjectHideFlags: 0
@@ -14271,7 +14292,7 @@ Transform:
   m_LocalScale: {x: 1.1738, y: 6.2651577, z: 1.1738}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1539668834
 GameObject:
@@ -21440,7 +21461,7 @@ PrefabInstance:
     - target: {fileID: 4732075093193868255, guid: 2456ca80e769b724c91e4760fa606929,
         type: 3}
       propertyPath: m_RootOrder
-      value: 22
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 4732075093193868255, guid: 2456ca80e769b724c91e4760fa606929,
         type: 3}
@@ -21705,12 +21726,12 @@ PrefabInstance:
     - target: {fileID: 6006087785696357027, guid: 2456ca80e769b724c91e4760fa606929,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 64.18
+      value: 64.180176
       objectReference: {fileID: 0}
     - target: {fileID: 6006087785696357027, guid: 2456ca80e769b724c91e4760fa606929,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 33.9
+      value: 33.900024
       objectReference: {fileID: 0}
     - target: {fileID: 6006087785696357027, guid: 2456ca80e769b724c91e4760fa606929,
         type: 3}
@@ -21745,7 +21766,7 @@ PrefabInstance:
     - target: {fileID: 4732075094097760120, guid: 2456ca80e769b724c91e4760fa606929,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 37.8
+      value: 37.799805
       objectReference: {fileID: 0}
     - target: {fileID: 4732075094097760120, guid: 2456ca80e769b724c91e4760fa606929,
         type: 3}

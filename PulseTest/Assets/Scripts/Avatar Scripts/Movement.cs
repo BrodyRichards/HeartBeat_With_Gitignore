@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -35,6 +36,10 @@ public class Movement : MonoBehaviour
         {
             getInput();
             Move();
+            if (this.gameObject.name == "MC")
+            {
+                ExitCheck();
+            }
         }
         else
         {
@@ -116,6 +121,16 @@ public class Movement : MonoBehaviour
         {
             direction = Vector2.right;
 
+        }
+    }
+
+    public void ExitCheck()
+    {
+        //Check for MC exit scene
+        if (transform.position == target)
+        {
+            Debug.Log("Loading next scene...");
+            SceneManager.LoadScene("ResultScreen");
         }
     }
 
