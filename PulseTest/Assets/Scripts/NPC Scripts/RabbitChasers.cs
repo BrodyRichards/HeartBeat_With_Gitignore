@@ -10,6 +10,12 @@ public class RabbitChasers : NPCs
         base.Start();
         int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
         int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
+        /*
+        scale = transform.localScale;
+        scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        */
+        scale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        scaleOpposite = transform.localScale;
         target = new Vector3(ranX, ranY, -1);
     }
 
@@ -21,7 +27,7 @@ public class RabbitChasers : NPCs
             bool rabbitDist = checkDist(NpcInstantiator.rabbitPos, transform.position);
             directionCheck(target.x, transform.position.x);
             avatarChecks();
-            checkRabbit(rabbitDist);
+            checkBallBunny(rabbitDist, NpcInstantiator.rabbitPos);
             DetectMovement();
             if (Input.GetKeyDown(Control.evacuate))
             {
@@ -61,32 +67,24 @@ public class RabbitChasers : NPCs
                 int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
                 target = new Vector3(ranX, ranY, -1);
             }
+            /*
+            if (rabNameChange)
+            {
+                int count = transform.childCount;
+                for (int i = 0; i < count; i++)
+                {
+                    if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
+                    {
+                        GameObject.Destroy(transform.GetChild(i).gameObject);
+                    }
+                }
+                timer = time + 2.0f;
+                Emo = master.GetComponent<NpcInstantiator>().sadFace;
+                addEmo();
+            }
+            */
+
         }
     }
-
-
-    private void checkRabbit(bool rabbitDist)
-    {
-        if (rabbitDist)
-        {
-            float dist = Vector3.Distance(NpcInstantiator.rabbitPos, transform.position);
-            if (dist > 5.0f)
-            {
-                target = NpcInstantiator.rabbitPos;
-                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-            }
-        }
-        else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-            if (transform.position == target)
-            {
-                int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
-                int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
-                target = new Vector3(ranX, ranY, -1);
-            }
-        }
-    }
-
    
 }

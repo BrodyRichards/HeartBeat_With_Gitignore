@@ -23,6 +23,7 @@ public class NPCs : MonoBehaviour
 
     protected bool holdBunny = false;
     protected bool nameChange = false;
+    protected bool rabNameChange = false;
     public static bool schoolBell = false;
     public Vector3 target;
 
@@ -89,9 +90,15 @@ public class NPCs : MonoBehaviour
             nameChange = true;
             playBall();
         }
+        if (RabbitJump.bitNpcName == this.gameObject.name)
+        {
+            Debug.Log("this guy got bit lmaooo: " + RabbitJump.bitNpcName);
+            RabbitJump.bitNpcName = "";
+            rabNameChange = true;
+            checkRabbitBit();
+        }
         checkBools(emoDist);
-        checkRabbitCarry();
-        
+        checkRabbitCarry();      
     }
 
     protected virtual void checkBools(bool emoDist)
@@ -99,7 +106,7 @@ public class NPCs : MonoBehaviour
         //if ((characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false) || emoDist == false)
         if ((RadioControl.musicListener != this.gameObject.name && RabbitJump.beingCarried == false) || emoDist == false)
         {
-            if (nameChange == false)
+            if (nameChange == false && rabNameChange == false)
             {
                 holdBunny = false;
                 int count = transform.childCount;
@@ -115,6 +122,7 @@ public class NPCs : MonoBehaviour
         if (timer <= time)
         {
             nameChange = false;
+            rabNameChange = false;
         }
     }
 
@@ -132,6 +140,25 @@ public class NPCs : MonoBehaviour
                     addEmo();
                 }
             }
+        }
+        
+    }
+
+    protected virtual void checkRabbitBit()
+    {
+        if (rabNameChange)
+        {
+            int count = transform.childCount;
+            for (int i = 0; i < count; i++)
+            {
+                if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
+                {
+                    GameObject.Destroy(transform.GetChild(i).gameObject);
+                }
+            }
+            timer = time + 2.0f;
+            Emo = master.GetComponent<NpcInstantiator>().sadFace;
+            addEmo();
         }
     }
 
@@ -213,7 +240,6 @@ public class NPCs : MonoBehaviour
     {
         if (nameChange)
         {
-            Debug.Log("nameChange true");
             int count = transform.childCount;
             for (int i = 0; i < count; i++)
             {
@@ -229,6 +255,30 @@ public class NPCs : MonoBehaviour
                 Emo = master.GetComponent<NpcInstantiator>().madFace;
                 addEmo();
                 BallProjectile.meanBallThrown = false;
+            }
+        }
+    }
+
+    protected virtual void checkBallBunny(bool inDist, Vector3 avatarPos)
+    {
+        if (inDist)
+        {
+            float dist = Vector3.Distance(avatarPos, transform.position);
+
+            if (dist > 10.0f)
+            {
+                target = avatarPos;
+                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            }
+        }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            if (transform.position == target)
+            {
+                int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
+                int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
+                target = new Vector3(ranX, ranY, -1);
             }
         }
     }

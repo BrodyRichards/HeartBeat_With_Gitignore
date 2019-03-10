@@ -38,7 +38,7 @@ public class CameraMovement : MonoBehaviour
         avatars[0] = avatar1; avatars[1] = avatar2; avatars[2] = avatar3;
         cam = GetComponent<Camera>();
         cam.clearFlags = CameraClearFlags.SolidColor;
-        offset = new Vector3(0, 0, -10);
+        offset = new Vector3(0, 10, -10);
         //transform.position = mainChar.transform.position + offset;                    //camera jumps to character position
         target = mainChar.transform.position + offset;
         transform.position = target;
@@ -94,7 +94,7 @@ public class CameraMovement : MonoBehaviour
             target = mainChar.transform.position + offset;
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
         }
-        checkBounds(target);
+        //checkBounds(target);
         
     }
 

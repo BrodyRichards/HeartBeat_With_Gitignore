@@ -104,7 +104,7 @@ public class MentalState : MonoBehaviour
 
     public static void EventTracking()
     {
-
+        Debug.Log(moodLog["Played catch"]);
         JournalTween.ball.Num = moodLog["Played catch"] + moodLog["Hit by ball"];
         JournalTween.rabbit.Num = moodLog["Held Rabbit"] + moodLog["Bit by rabbit"];
         JournalTween.music.Num = moodLog["Happy Song"] + moodLog["Sad Song"];

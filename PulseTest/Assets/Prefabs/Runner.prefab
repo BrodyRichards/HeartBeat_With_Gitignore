@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 3777612879497992540}
+  target: {x: 0, y: 0, z: 0}
 --- !u!114 &4077814569576629753
 MonoBehaviour:
   m_ObjectHideFlags: 0

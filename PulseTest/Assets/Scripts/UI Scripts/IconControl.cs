@@ -18,8 +18,8 @@ public class IconControl : MonoBehaviour
     [SerializeField]
     private Image journalIcon;
     private List<Image> icons;
-    private Color red = new Color(1f, 0.5f, 0.5f);
-    private Color green = new Color(0.4f, 1f, 1f);
+    private Color red = new Color(0f, 0.38f, 0.9f);
+    private Color green = new Color(1f, 0.7007f, 0f);
 
     
     // Start is called before the first frame update

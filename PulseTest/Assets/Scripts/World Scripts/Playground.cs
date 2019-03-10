@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Playground: MonoBehaviour
 {
-    public readonly static float RightX = 120f;
-    public readonly static float LeftX = -120f;
-    public readonly static float LowerY = -25f;
-    public readonly static float UpperY = 10f;
+    public readonly static float RightX = 70f;
+    public readonly static float LeftX = -105f;
+    public readonly static float LowerY = -20f;
+    public readonly static float UpperY = -6f;
 
     public readonly static int trLv2 = 3;
     public readonly static int trLv3 = 5;

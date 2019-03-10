@@ -10,6 +10,7 @@ public class NpcInstantiator : MonoBehaviour
     private int lonerCount = 3;     //1
     private int rcCount = 1;        //2
     private int bpCount = 1;        //3
+    private string rename;
     
     public GameObject[] NPCs; //contains the 3 types of NPCs
     public GameObject[] groupies;
@@ -47,7 +48,7 @@ public class NpcInstantiator : MonoBehaviour
         createNPCs(1, lonerCount, ranX, ranY);
         createNPCs(2, rcCount, ranX, ranY);
         createNPCs(3, bpCount, ranX, ranY);
-
+        NPCs[0].name = "Runner"; NPCs[1].name = "Loner"; NPCs[2].name = "RabbitChaser"; NPCs[3].name = "BallPlayers";
         groupies = new GameObject[groupCount];
         for (int i = 0; i < groupCount; i++)
         {
@@ -57,6 +58,7 @@ public class NpcInstantiator : MonoBehaviour
             groupies[i] = Instantiate(groupiePrefab, pos, Quaternion.identity) as GameObject;
             groupies[i].GetComponent<SpriteRenderer>().sortingLayerName = "Main";
             groupies[i].GetComponent<Groupies>().target = RandomCircle(center, 3f, groupCount, i);
+            groupies[i].name = groupies[i].name + i;
 
         }
     }
@@ -89,12 +91,19 @@ public class NpcInstantiator : MonoBehaviour
 
     private void createNPCs(int choice, int count, int ranX, int ranY)
     {
-        ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
-        ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
-        Vector3 pos = new Vector3(ranX, ranY, -1);
-        Quaternion rot = new Quaternion(0, 0, 0, 0);
-        Instantiate(NPCs[choice], pos, rot);
-        NPCs[choice].GetComponent<SpriteRenderer>().sortingLayerName = "Main";
+        rename = NPCs[choice].name;
+        for (int i = 0; i < count; i++)
+        {
+            //NPCs[choice].name = rename;
+            ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
+            ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
+            Vector3 pos = new Vector3(ranX, ranY, -1);
+            Quaternion rot = new Quaternion(0, 0, 0, 0);
+            Instantiate(NPCs[choice], pos, rot);
+            NPCs[choice].GetComponent<SpriteRenderer>().sortingLayerName = "Main";
+            //string rename = NPCs[choice].name + i;
+            NPCs[choice].name = rename + i;
+        }        
     }
 
     private void Update()
@@ -104,8 +113,7 @@ public class NpcInstantiator : MonoBehaviour
         if (characterSwitcher.isMusicGuyInCharge)
         {
             musicKidPos = musicKid.transform.position;
-        }
-        
+        }    
     }
 
 
