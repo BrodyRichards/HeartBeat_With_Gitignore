@@ -19,16 +19,19 @@ public class AlarmClock : MonoBehaviour
     void Update()
     {
         time = Time.fixedUnscaledTime;
-        if (Input.GetKeyDown(Control.positiveAction))
+        if (Input.GetKeyDown(Control.negativeAction))
         {
+            Debug.Log("Alarm went off");
             timer = time + 3.0f;
             alarm = true;
             //mc.GetComponent<McMovement>().tutorialScene = true;
             //mc.GetComponent<McMovement>().endScene = true;
         }
+
         if (timer <= time && alarm)
         {
             alarm = false;
+            TutorialCharSwitch.WakeActionChosen = true;
             mc.GetComponent<McMovement>().tutorialScene = true;
             mc.GetComponent<McMovement>().endScene = true;
         }
