@@ -153,13 +153,13 @@ public class McMovement : MonoBehaviour
     {
         //When standing still, if not played catch then walk away after 5 secs
         //Otherwise, increment time when not playing catch until 5 secs
-        if(timeElapsed < 7f)
+        if (timeElapsed < 7f)
         {
             if (Vector2.Distance(transform.position, target) < 10.0f)
             {
                 anim.SetBool("wantToPlay", true);
                 anim.SetBool("isWalking", false);
-
+                FlipAssetForBallKid();
                 if (playedCatch)
                 {
                     timeElapsed = 0;
@@ -232,6 +232,21 @@ public class McMovement : MonoBehaviour
         }
 
         lastX = transform.position.x;
+    }
+
+    private void FlipAssetForBallKid()
+    {
+        if (NpcInstantiator.ballKidPos.x < transform.position.x && transform.localScale.x > 0 && !isFlipped)
+        {
+            isFlipped = true;
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+            //Debug.LogError("why the fuck is this not called?");
+        }
+        else if (NpcInstantiator.ballKidPos.x > transform.position.x && transform.localScale.x < 0 && isFlipped)
+        {
+            isFlipped = false;
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+        }
     }
 
     private void AnimationMoodCheck()

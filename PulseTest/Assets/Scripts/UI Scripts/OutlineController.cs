@@ -14,7 +14,7 @@ public class OutlineController : MonoBehaviour
 
     public static Color glowColor = Color.yellow;
     public static int outlineWidth = 5;
-    public static float alphaThreshold = 0.01f;
+    public static float alphaThreshold = 0.3f;
     public static float glowBrightness = 3f;
 
     GameObject[] go;

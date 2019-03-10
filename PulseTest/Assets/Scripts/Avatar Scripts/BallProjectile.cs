@@ -29,7 +29,7 @@ public class BallProjectile : MonoBehaviour
         targetLoc = GameObject.Find("target").transform.position;
         startPos = transform.position;
         meanSpeed = speed;
-        delayTime = 1.0f;
+        delayTime = 0.5f;
     }
 
     // Update is called once per frame
@@ -75,11 +75,14 @@ public class BallProjectile : MonoBehaviour
                         MentalState.sendMsg("Played catch");
                         McMovement.playedCatch = true;
                         EmoControl.justPlayedCatch = true;
+                        GameObject.Find("MC").GetComponent<Animator>().SetTrigger("playCatch");
                     }
                     //NPC.GetComponent<PlayCatch>().hitByBall();
                     PlayCatch delayCatch = NPC.GetComponent<PlayCatch>();
-                    delayCatch.Invoke("hitByBall", delayTime);
                     GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", false);
+                    
+                    delayCatch.Invoke("hitByBall", delayTime);
+                    
                 }
             }
             destroyBall();

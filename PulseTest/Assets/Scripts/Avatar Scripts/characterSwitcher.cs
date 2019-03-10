@@ -127,15 +127,15 @@ public class characterSwitcher : MonoBehaviour
         {
             case 1:
                 B.GetComponent<RabbitJump>().enabled = true;
-                GameObject.Find("Q1").GetComponent<SpriteRenderer>().enabled = false;
+                GameObject.Find("Q1").SetActive(false);
                 break;
             case 2:
                 B.GetComponent<BallThrow>().enabled = true;
-                GameObject.Find("Q2").GetComponent<SpriteRenderer>().enabled = false;
+                GameObject.Find("Q2").SetActive(false);
                 break;
             case 3:
                 isMusicGuyInCharge = true;
-                GameObject.Find("Q3").GetComponent<SpriteRenderer>().enabled = false;
+                GameObject.Find("Q3").SetActive(false);
                 break;
             default:
                 break;
