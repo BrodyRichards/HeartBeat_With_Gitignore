@@ -99,8 +99,8 @@ public class characterSwitcher : MonoBehaviour
     private void PerformSwitch()
     {
         GameObject choice = findGO(charChoice);
-        Enable(choice);
         disableOthers();
+        Enable(choice);
     }
 
     //Helper function for finding game objects
@@ -146,7 +146,13 @@ public class characterSwitcher : MonoBehaviour
     //Disables a game object's script
     private void Disable(GameObject B)
     {
+        if (charChoice != 1 && RabbitJump.beingCarried)
+        {
+            findGO(1).GetComponent<RabbitJump>().PutRabbitDown();
+        }
+
         B.GetComponent<Movement>().enabled = false;
+
         if (charChoice == -1)
         {
             findGO(1).GetComponent<RabbitJump>().enabled = false;
