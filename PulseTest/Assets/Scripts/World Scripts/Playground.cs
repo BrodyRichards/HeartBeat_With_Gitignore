@@ -13,8 +13,8 @@ public class Playground: MonoBehaviour
     public readonly static int trLv3 = 5;
     public readonly static int tbLv2 = 3;
     public readonly static int tbLv3 = 5;
-    public readonly static int tmLv2 = 4;
-    public readonly static int tmLv3 = 10;
+    public readonly static int tmLv2 = 1;
+    public readonly static int tmLv3 = 3;
 
     public readonly static string[] NpcTypes = { "NPC", "Frank", "Bobby", "Ryan", "Suzy" };
     // Start is called before the first frame update
