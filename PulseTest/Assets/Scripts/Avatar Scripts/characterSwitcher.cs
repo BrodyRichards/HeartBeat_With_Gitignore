@@ -127,15 +127,16 @@ public class characterSwitcher : MonoBehaviour
         {
             case 1:
                 B.GetComponent<RabbitJump>().enabled = true;
-                GameObject.Find("Q1").SetActive(false);
+
+                DisablePrompt("Q1");
                 break;
             case 2:
                 B.GetComponent<BallThrow>().enabled = true;
-                GameObject.Find("Q2").SetActive(false);
+                DisablePrompt("Q2");
                 break;
             case 3:
                 isMusicGuyInCharge = true;
-                GameObject.Find("Q3").SetActive(false);
+                DisablePrompt("Q3");
                 break;
             default:
                 break;
@@ -193,5 +194,11 @@ public class characterSwitcher : MonoBehaviour
     public int getChar()
     {
         return charChoice;
+    }
+
+    private void DisablePrompt(string target)
+    {
+        var go = GameObject.Find(target);
+        if (go!=null) { go.SetActive(false); }
     }
 }
