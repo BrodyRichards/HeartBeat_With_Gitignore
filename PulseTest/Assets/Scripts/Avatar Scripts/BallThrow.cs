@@ -82,7 +82,10 @@ public class BallThrow : MonoBehaviour
 
         anim.SetBool("hasBall", false);
         //Re-enable movement once animation has finished
-        GameObject.Find("2").GetComponent<Movement>().enabled = true;
+        if (characterSwitcher.charChoice == 2)
+        {
+            GameObject.Find("2").GetComponent<Movement>().enabled = true;
+        }
     }
 
     void PickupBall()
