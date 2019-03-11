@@ -5,6 +5,9 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     public GameObject obj;      //necessary to access characterSwitcher script
+    private float maxFOV = 22f;
+    private float minFOV = 15f;
+    private float targetOrtho;
 
     public GameObject avatar1;
     public GameObject avatar2;
@@ -17,7 +20,7 @@ public class CameraMovement : MonoBehaviour
     private int mcCheck;
     private bool reachMC = false;
 
-    private float speed = 20f;
+    private float speed = 30f;
     private int choice;
 
     private Vector3 offset;     //offset for camera 
@@ -40,10 +43,15 @@ public class CameraMovement : MonoBehaviour
         cam.clearFlags = CameraClearFlags.SolidColor;
         offset = new Vector3(0, 10, -10);
         //transform.position = mainChar.transform.position + offset;                    //camera jumps to character position
-        target = mainChar.transform.position + offset;
+        //target = mainChar.transform.position + offset;
+        target = transform.position;
         transform.position = target;
         time = Time.fixedUnscaledTime;
         timer = time;
+        targetOrtho = cam.orthographicSize;
+        //cam.fieldOfView = fov;
+        //zoomOut();
+        
     }
 
     void LateUpdate()
@@ -51,13 +59,26 @@ public class CameraMovement : MonoBehaviour
         time = Time.fixedUnscaledTime;
         if (characterSwitcher.charChoice != -1 && characterSwitcher.charChoice != 1000)
         {
+            //fov = 10f;
+            //cam.fieldOfView = fov;
+            
             avatar = avatars[characterSwitcher.charChoice - 1];
             mcCheck = lookMC;
             lookMC = EmoControl.hasEmo ? 1 : 0;
             if ((Vector3.Distance(transform.position, avatar.transform.position) > 5f && lookMC == 0)) //when character switches
             {
+                
                 target = avatar.transform.position + offset;
+                targetOrtho -= speed / 500;
+                if (targetOrtho < minFOV)//cam.orthographicSize < minFOV)
+                {
+                    //cam.orthographicSize = minFOV;
+                    targetOrtho = minFOV;
+                    //targetOrtho = Mathf.Clamp(targetOrtho, minFOV, maxFOV);
+                }
+                cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, targetOrtho, speed * Time.deltaTime);
                 transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+                //zoomIn();
             }
             else
             {
@@ -85,7 +106,7 @@ public class CameraMovement : MonoBehaviour
                         target = avatar.transform.position + offset;
                     }
                 }
-
+                
                 transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             }
         }
@@ -133,6 +154,28 @@ public class CameraMovement : MonoBehaviour
         Vector3 displace = new Vector3(f, 0, 0);
         //transform.position = pos + displace;
         transform.position = Vector3.MoveTowards(transform.position, pos + displace, speed * Time.deltaTime);
+    }
+
+    void zoomIn()
+    {
+        //cam.orthographicSize -= speed / 8;
+        targetOrtho -= speed / 20;
+        if (targetOrtho < minFOV)//cam.orthographicSize < minFOV)
+        {
+            //cam.orthographicSize = minFOV;
+            targetOrtho = minFOV;
+            //targetOrtho = Mathf.Clamp(targetOrtho, minFOV, maxFOV);
+        }
+        cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, targetOrtho, speed * Time.deltaTime);
+    }
+
+    void zoomOut()
+    {
+        cam.fieldOfView += speed / 8;
+        if (cam.fieldOfView < maxFOV)
+        {
+            cam.fieldOfView = maxFOV;
+        }
     }
 }
     
