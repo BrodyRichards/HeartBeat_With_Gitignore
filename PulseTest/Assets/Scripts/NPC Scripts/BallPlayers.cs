@@ -6,6 +6,7 @@ using UnityEngine;
 public class BallPlayers : NPCs
 {
     private Rigidbody2D rb;
+    private Vector3 mcPos;
 
     protected override void Start()
     {
@@ -14,6 +15,7 @@ public class BallPlayers : NPCs
         int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
         int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
         target = new Vector3(ranX, ranY, -1);
+        
     }
 
     // Update is called once per frame
@@ -21,12 +23,18 @@ public class BallPlayers : NPCs
     {
         if (schoolBell == false)
         {
+            mcPos = GameObject.Find("MC").transform.position;
             time = Time.fixedUnscaledTime;
             bool ballDist = checkDist(NpcInstantiator.ballKidPos, transform.position);
             directionCheck(target.x, transform.position.x);
             avatarChecks();
-            checkBallBunny(ballDist, NpcInstantiator.ballKidPos);
+            bool mcClose = mcOverlay();
+            if (mcClose == false)
+            {
+                checkBallBunny(ballDist, NpcInstantiator.ballKidPos);
+            }
             DetectMovement();
+            
             if (Input.GetKeyDown(Control.evacuate))
             {
                 schoolBell = true;
@@ -71,5 +79,15 @@ public class BallPlayers : NPCs
             }
             
         }
+    }
+
+    private bool mcOverlay()
+    {
+        float dist = Vector3.Distance(transform.position, mcPos);
+        if (dist <= 5.0f)
+        {
+            return true;
+        }
+        return false;
     }
 }
