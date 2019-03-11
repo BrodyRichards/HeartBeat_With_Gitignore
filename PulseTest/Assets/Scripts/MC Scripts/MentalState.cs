@@ -8,6 +8,7 @@ public class MentalState : MonoBehaviour
 
     public static Dictionary<string, int> moodLog;
     public static Dictionary<string, int> effectWeights;
+    public static List<EmoPlot> emoTimeline;
 
     public static int moodUpperBound = 11;
     public static int moodLowerBound = -11;
@@ -21,7 +22,7 @@ public class MentalState : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        emoTimeline = new List<EmoPlot> { };
         //Dictionary storing weights for each effect
         effectWeights = new Dictionary<string, int>
         {
@@ -64,8 +65,9 @@ public class MentalState : MonoBehaviour
             CheckForTween();
             UpdateCurrentMood(msg);
         }
-        
-        Debug.Log("Action taken: " + msg + "/Emotion Level: " + moodLog[msg] + "/Current Mood" + currentState);
+        var tempEmo = EmoPlot.CreateInstance(Mathf.RoundToInt(Time.time), msg);
+        emoTimeline.Add(tempEmo);
+        Debug.Log("Action taken: " + msg + "/Emotion Level: " + moodLog[msg] + "/Current Mood" + currentState + "/happening time" + Mathf.RoundToInt(Time.time));
     }
 
     public static void CheckForTween()
@@ -104,7 +106,6 @@ public class MentalState : MonoBehaviour
 
     public static void EventTracking()
     {
-        Debug.Log(moodLog["Played catch"]);
         JournalTween.ball.Num = moodLog["Played catch"] + moodLog["Hit by ball"];
         JournalTween.rabbit.Num = moodLog["Held Rabbit"] + moodLog["Bit by rabbit"];
         JournalTween.music.Num = moodLog["Happy Song"] + moodLog["Sad Song"];

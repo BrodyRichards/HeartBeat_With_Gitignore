@@ -17,6 +17,7 @@ public class JournalTween : MonoBehaviour
     public Image rabbitLv2;
     public Image rabbitLv3;
     public GameObject theBell;
+    public AudioSource ass;
 
     public static Accomplish rabbit;
     public static Accomplish ball;

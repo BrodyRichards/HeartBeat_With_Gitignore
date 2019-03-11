@@ -9,7 +9,7 @@ public class ButtonControl : MonoBehaviour
     public Button reset;
     public Button exit;
 
-    public Button[] buttons;
+    private Button[] buttons;
 
     private KeyCode kcForButton;
     private int currentIndex;
