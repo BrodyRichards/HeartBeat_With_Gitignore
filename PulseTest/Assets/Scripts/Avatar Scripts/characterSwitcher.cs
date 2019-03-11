@@ -74,6 +74,7 @@ public class characterSwitcher : MonoBehaviour
                 Movement.timeToLeave = true;
                 EnableAll();
                 this.enabled = false;
+                GameObject.Find("BellRing").GetComponent<AudioSource>().Play();
             }
         }
         
