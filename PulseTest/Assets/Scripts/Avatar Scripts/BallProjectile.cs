@@ -76,6 +76,8 @@ public class BallProjectile : MonoBehaviour
                         McMovement.playedCatch = true;
                         EmoControl.justPlayedCatch = true;
                         GameObject.Find("MC").GetComponent<Animator>().SetTrigger("playCatch");
+                        Debug.Log("why??");
+                        
                     }
                     //NPC.GetComponent<PlayCatch>().hitByBall();
                     PlayCatch delayCatch = NPC.GetComponent<PlayCatch>();

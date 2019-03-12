@@ -143,8 +143,8 @@ public class CameraMovement : MonoBehaviour
     {
         float leftDist = Vector3.Distance(pos, leftBound.transform.position);
         float rightDist = Vector3.Distance(pos, rightBound.transform.position);
-        Debug.Log("left " + leftDist);
-        Debug.Log("right " + rightDist);
+        //Debug.Log("left " + leftDist);
+        //Debug.Log("right " + rightDist);
         
         if (leftDist <= 65.0f)
         {

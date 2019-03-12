@@ -53,6 +53,7 @@ public class McMovement : MonoBehaviour
 
     void Update()
     {
+        
         // check whether the radio guy has been activated yet 
         //if (RadioControl.isMusic && !walkedIn)
         /*
@@ -257,7 +258,7 @@ public class McMovement : MonoBehaviour
     {
         
         
-        if (MentalState.WithinRange(MentalState.currentState, 4, -4)) // no mood
+        if (MentalState.WithinRange(MentalState.currentState, MentalState.normalBound.x, MentalState.normalBound.y)) // no mood
         {
             //Debug.Log("currentMood is calm" + MentalState.mood);
             //var scaling = !isFlipped ? new Vector2(1.0f, 1.0f) : new Vector2(-1.0f, 1.0f);
@@ -265,12 +266,12 @@ public class McMovement : MonoBehaviour
             speed = 4;
             anim.SetInteger("mood", (int)Mood.idle );
         }
-        else if (MentalState.WithinRange(MentalState.currentState, 11, 3)) // happy
+        else if (MentalState.WithinRange(MentalState.currentState, MentalState.happyBound.x, MentalState.happyBound.y)) // happy
         {
             anim.SetInteger("mood", (int)Mood.happy);
             speed = 6;
         }
-        else if (MentalState.WithinRange(MentalState.currentState, -3, -11)) // sad 
+        else if (MentalState.WithinRange(MentalState.currentState, MentalState.sadBound.x, MentalState.sadBound.y)) // sad 
         {
             var scaling = isFlipped ? new Vector2(-1.1f, 1.1f) : new Vector2(1.1f, 1.1f);
             transform.localScale = scaling;
