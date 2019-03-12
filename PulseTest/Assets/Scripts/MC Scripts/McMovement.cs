@@ -31,6 +31,7 @@ public class McMovement : MonoBehaviour
     public bool stillInterested = true;
     public bool endScene;
     public bool tutorialScene;
+    public static float leftBoundDist;
 
     void Start()
     {
@@ -54,18 +55,21 @@ public class McMovement : MonoBehaviour
     {
         // check whether the radio guy has been activated yet 
         //if (RadioControl.isMusic && !walkedIn)
+        /*
         if (characterSwitcher.charChoice != -1 && !walkedIn)
         {
             /*
             if (Playground.CheckDist(NpcInstantiator.musicKidPos, transform.position, Playground.MusicAoe))
             {
-            */
+            
             walkedIn = true;
             //  anim.SetInteger("mood", MentalState.mood);
 
             //}
         }
-
+    */
+        walkedIn = true;
+        leftBoundDist = Vector3.Distance(transform.position, GameObject.Find("LeftBound").transform.position);
         float step = speed * Time.deltaTime;
         if (walkedIn || endScene || tutorialScene)
         {
