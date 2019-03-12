@@ -11,14 +11,23 @@ public class McFreeMove : MonoBehaviour
     private Vector2 direction;
     public Vector3 scale;
     public Vector3 scaleOpposite;
-    public Animator anim;
+    public GameObject bed;
+    private Animator animForBed;
+    private Animator animForMC;
+    public GameObject pointLight;
+    public GameObject directionalLight;
+
+    private bool mcWokeUp = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        anim.SetBool("isWalking", false);
+
+        
         scale = transform.localScale;
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        animForBed = bed.GetComponent<Animator>();
+        animForMC = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -26,6 +35,14 @@ public class McFreeMove : MonoBehaviour
     {
         getInput();
         Move();
+        if (TutorialCharSwitch.WakeActionChosen && !mcWokeUp)
+        {
+            directionalLight.SetActive(true);
+            pointLight.GetComponent<Light>().intensity = 1;
+            animForBed.SetTrigger("wakeuplo");
+            mcWokeUp = true;
+        }
+        
     }
 
     public void Move()
@@ -34,11 +51,16 @@ public class McFreeMove : MonoBehaviour
 
         if (v2.x != 0 || v2.y != 0)
         {
-            anim.SetBool("isWalking", true);
+            animForMC.SetBool("isWalking", true);
+            //Debug.LogError("is walking");
+           
         }
         else
         {
-            anim.SetBool("isWalking", false);
+            //Debug.LogError("not walking");
+            //Debug.Log("dfdfdfdfdfdddf walking");
+            animForMC.SetBool("isWalking", false);
+            
         }
 
         if ((transform.position.x > 5.0f && v2.x > 0) ||

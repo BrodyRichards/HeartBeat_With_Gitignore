@@ -33,14 +33,14 @@ public class ButtonControl : MonoBehaviour
     {
 
         buttons[currentIndex].OnSelect(null);
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) || (Input.GetKeyDown(KeyCode.W)))
         {
             currentIndex = currentIndex==0 ? 2 : currentIndex -1;
            
             EnableThisDisableRest(currentIndex);
             
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKeyDown(KeyCode.DownArrow) || (Input.GetKeyDown(KeyCode.S)))
         {
             currentIndex = (currentIndex+1) % 3;
            

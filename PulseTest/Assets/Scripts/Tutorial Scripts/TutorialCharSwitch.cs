@@ -36,35 +36,37 @@ public class TutorialCharSwitch : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                Debug.Log("Changing");
+                Debug.Log("On the alarm clock");
                 TutCharChoice = 1;
                 PerformSwitch();
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
+                Debug.Log("On the curtain");
                 TutCharChoice = 2;
                 PerformSwitch();
             }
             else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
+                Debug.Log("On the car");
                 TutCharChoice = 3;
                 PerformSwitch();
             }
-            else if (Input.GetKeyDown(Control.pullJournal))
-            {
-                if (IconControl.journalActivated)
-                {
-                    Time.timeScale = 1.0f;
-                    IconControl.journalActivated = false;
-                    Debug.Log("Journal Deactivated");
-                }
-                else
-                {
-                    Time.timeScale = 0.0f;
-                    IconControl.journalActivated = true;
-                    Debug.Log("Journal Activated");
-                }
-            }
+            //else if (Input.GetKeyDown(Control.pullJournal))
+            //{
+            //    if (IconControl.journalActivated)
+            //    {
+            //        Time.timeScale = 1.0f;
+            //        IconControl.journalActivated = false;
+            //        Debug.Log("Journal Deactivated");
+            //    }
+            //    else
+            //    {
+            //        Time.timeScale = 0.0f;
+            //        IconControl.journalActivated = true;
+            //        Debug.Log("Journal Activated");
+            //    }
+            //}
         }
 
 

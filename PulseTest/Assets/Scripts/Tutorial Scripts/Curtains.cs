@@ -7,7 +7,7 @@ public class Curtains : MonoBehaviour
     public GameObject CurtainsOpen;
     public GameObject CurtainsClosed;
     public GameObject mc;
-
+    
     // Start is called before the first frame update
     void Start()
     {
