@@ -6,16 +6,16 @@ public class NpcInstantiator : MonoBehaviour
 {
     //private int npcCount = 1;
 
-    private int runnerCount = 2;    //0
-    private int lonerCount = 1;     //1
-    private int rcCount = 1;        //2
-    private int bpCount = 1;        //3
+    private int runnerCount = 0;    //0
+    private int lonerCount = 0;     //1
+    private int rcCount = 0;        //2
+    private int bpCount = 0;        //3
     private string rename;
     
     public GameObject[] NPCs; //contains the 3 types of NPCs
     public GameObject[] groupies;
     public GameObject groupiePrefab;
-    private int groupCount = 3;
+    private int groupCount = 0;
     private int num;
 
     public GameObject sadFace; //for reactions to avatars
