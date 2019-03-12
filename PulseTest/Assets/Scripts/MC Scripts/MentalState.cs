@@ -8,21 +8,22 @@ public class MentalState : MonoBehaviour
 
     public static Dictionary<string, int> moodLog;
     public static Dictionary<string, int> effectWeights;
-    public static List<EmoPlot> emoTimeline;
+    public static Queue<EmoPlot> emoTimeline;
 
     public static int moodUpperBound = 11;
     public static int moodLowerBound = -11;
-
     public static bool journalInProgress = true;
-    // Played catch, Hit by ball, Held Rabbit, Bit by rabbit, Happy Song, Sad Song, Startled Song
 
+    private int timelineLimit = 30;
+    // Played catch, Hit by ball, Held Rabbit, Bit by rabbit, Happy Song, Sad Song, Startled Song
+    
     // -3 to 3 = neutral 
     // 4 to 10 = happy
     // -10 to -4 = sad 
     // Start is called before the first frame update
     void Start()
     {
-        emoTimeline = new List<EmoPlot> { };
+        emoTimeline = new Queue<EmoPlot> { };
         //Dictionary storing weights for each effect
         effectWeights = new Dictionary<string, int>
         {
@@ -65,8 +66,7 @@ public class MentalState : MonoBehaviour
             CheckForTween();
             UpdateCurrentMood(msg);
         }
-        var tempEmo = EmoPlot.CreateInstance(Mathf.RoundToInt(Time.time), msg);
-        emoTimeline.Add(tempEmo);
+        PlotingTimeline(msg);
         Debug.Log("Action taken: " + msg + "/Emotion Level: " + moodLog[msg] + "/Current Mood" + currentState + "/happening time" + Mathf.RoundToInt(Time.time));
     }
 
@@ -148,9 +148,27 @@ public class MentalState : MonoBehaviour
         {
             currentState += 1;
         }
-
+        var msg = "None";
+        PlotingTimeline(msg);
         Debug.Log("MC mood pacified " + currentState);
     }
+    
+    /// <summary>
+    /// this function should only be called after the playground scene is finished! The formfactor for how 
+    /// the end scene light will lool 
+    /// </summary>
+    /// <returns>int</returns>
+    public static int OverallResult()
+    {
+        var average = 0;
+        foreach(var emo in emoTimeline)
+        {
+            average += emo.Mood;
+        }
+        average /= emoTimeline.Count;
+        return average;
+    }
+
 
     //-------------------------------
     //Helper functions
@@ -165,5 +183,15 @@ public class MentalState : MonoBehaviour
     {
         return (val < upper && val > lower) ? true : false;
 
+    }
+
+    public static void PlotingTimeline(string m)
+    {
+        var tempEmo = EmoPlot.CreateInstance(Mathf.RoundToInt(Time.time), currentState, m);
+        emoTimeline.Enqueue(tempEmo);
+        if (emoTimeline.Count > 30f)
+        {
+            emoTimeline.Dequeue();
+        }
     }
 }

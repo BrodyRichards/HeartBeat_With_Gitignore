@@ -14,11 +14,7 @@ public class LightController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mood = MentalState.currentState;
-        foreach(var emo in MentalState.emoTimeline)
-        {
-            Debug.Log(emo.ToString());
-        }
+        mood = MentalState.OverallResult();
         
         light.range = 10f;
         light.intensity = 1f;

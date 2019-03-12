@@ -6,18 +6,21 @@ public class EmoPlot : ScriptableObject
 {
     // Start is called before the first frame update
     private int happenTime;
+    private int mood;
     private string causingEvent;
+    
 
-    public void Init(int ht, string ce)
+    public void Init(int ht, int moo, string ce)
     {
         this.happenTime = ht;
         this.causingEvent = ce;
+        this.mood = moo;
     }
 
-    public static EmoPlot CreateInstance(int ht, string ce)
+    public static EmoPlot CreateInstance(int ht, int moo, string ce)
     {
         var emo = ScriptableObject.CreateInstance<EmoPlot>();
-        emo.Init(ht, ce);
+        emo.Init(ht, moo, ce);
         return emo;
     }
 
@@ -34,5 +37,10 @@ public class EmoPlot : ScriptableObject
     public string Event
     {
         get { return causingEvent; }
+    }
+
+    public int Mood
+    {
+        get { return mood; }
     }
 }

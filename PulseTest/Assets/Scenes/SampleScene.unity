@@ -14117,7 +14117,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3bf54ba4cc375134bb7fa59469e36760, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5c214533040ac454197518213f2583c9, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -14264,7 +14264,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   ps: {fileID: 1840503299}
-  sadSong: {fileID: 8300000, guid: 3bf54ba4cc375134bb7fa59469e36760, type: 3}
+  sadSong: {fileID: 8300000, guid: 5c214533040ac454197518213f2583c9, type: 3}
   happySong: {fileID: 8300000, guid: 5bfc60d36f7c62e499bdc8d1971bcdb3, type: 3}
   happyMusicNote: {fileID: 126157479690459792, guid: c287773a6bc18d247900dc114e1945fb,
     type: 3}
