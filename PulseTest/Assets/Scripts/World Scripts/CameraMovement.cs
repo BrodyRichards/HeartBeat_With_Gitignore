@@ -61,7 +61,7 @@ public class CameraMovement : MonoBehaviour
         {
             //fov = 10f;
             //cam.fieldOfView = fov;
-            
+            checkBounds(target);
             avatar = avatars[characterSwitcher.charChoice - 1];
             mcCheck = lookMC;
             lookMC = EmoControl.hasEmo ? 1 : 0;
@@ -123,36 +123,25 @@ public class CameraMovement : MonoBehaviour
     {
         float leftDist = Vector3.Distance(pos, leftBound.transform.position);
         float rightDist = Vector3.Distance(pos, rightBound.transform.position);
-        if (leftDist <= 45.0f)
+        Debug.Log("left " + leftDist);
+        Debug.Log("right " + rightDist);
+        
+        if (leftDist <= 65.0f)
         {
-            if (leftDist >= 25.0f || characterSwitcher.charChoice == -1)
-            {
-                left = leftDist;
-                newPos(pos, leftDist);
-            }
-            else
-            {
-                newPos(pos, left);
-            }
+            left = 65.0f - leftDist;
+            newPos(pos, left);
         }
-        if (rightDist <= 45.0f)
+        if (rightDist <= 60.0f)
         {
-            if (leftDist >= 25.0f || characterSwitcher.charChoice == -1)
-            {
-                right = rightDist;
-                newPos(pos, -1 * rightDist);
-            }
-            else
-            {
-                newPos(pos, -1 * right);
-            }
+            right = 60.0f - rightDist;
+            newPos(pos, -1 * right);
         }
+        
     }
 
     void newPos(Vector3 pos, float f)
     {
         Vector3 displace = new Vector3(f, 0, 0);
-        //transform.position = pos + displace;
         transform.position = Vector3.MoveTowards(transform.position, pos + displace, speed * Time.deltaTime);
     }
 

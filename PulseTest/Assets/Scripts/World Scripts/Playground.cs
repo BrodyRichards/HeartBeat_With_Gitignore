@@ -5,7 +5,7 @@ using UnityEngine;
 public class Playground: MonoBehaviour
 {
     public readonly static float RightX = 70f;
-    public readonly static float LeftX = -105f;
+    public readonly static float LeftX = -115f;
     public readonly static float LowerY = -16f;
     public readonly static float UpperY = -6f;
 
