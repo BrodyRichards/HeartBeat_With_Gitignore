@@ -32,8 +32,10 @@ public class AlarmClock : MonoBehaviour
         {
             alarm = false;
             TutorialCharSwitch.WakeActionChosen = true;
-            mc.GetComponent<McMovement>().tutorialScene = true;
-            mc.GetComponent<McMovement>().endScene = true;
+            mc.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            mc.GetComponent<McFreeMove>().enabled = true;
+            //mc.GetComponent<McMovement>().tutorialScene = true;
+            //mc.GetComponent<McMovement>().endScene = true;
         }
     }
 }

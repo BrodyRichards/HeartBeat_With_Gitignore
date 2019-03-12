@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class McExit : MonoBehaviour
 {
-    public Vector3 exitPos;
+    private float timer;
+    public float busArrival;
+    public bool printedAlready;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,16 +17,30 @@ public class McExit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*RaycastHit2D exit = Physics2D.Raycast(transform.position, -transform.up, 1f);
-        if (exit.collider != null && exit.collider.gameObject.name == "door")
+        timer += Time.deltaTime;
+        if (timer > busArrival)
         {
-            Debug.Log("Loading Scene...");
-            SceneManager.LoadScene("SampleScene");
-        }*/
-        if (transform.position == exitPos)
+            if (!printedAlready)
+            {
+                printedAlready = true;
+                Debug.Log("Bus is here, foo");
+            }
+
+            if (Input.GetKeyDown(Control.evacuate))
+            {
+                Debug.Log("Loading Scene...");
+                SceneManager.LoadScene("SampleScene");
+            }
+        }
+    }
+
+    //Function to exit on collision with door
+    /*private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "door")
         {
             Debug.Log("Loading Scene...");
             SceneManager.LoadScene("SampleScene");
         }
-    }
+    }*/
 }
