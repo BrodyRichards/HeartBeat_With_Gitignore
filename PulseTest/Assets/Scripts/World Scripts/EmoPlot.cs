@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class EmoPlot : ScriptableObject
 {
-    // Start is called before the first frame update
+    // this is the class object that store the event's happening time, the event type, and the MC's mood when that happen
+    // all these member variables are readonly after they are created, can't be modified 
+    
     private int happenTime;
     private int mood;
     private string causingEvent;
@@ -26,9 +28,10 @@ public class EmoPlot : ScriptableObject
 
     public override string ToString()
     {
-        return "happening time: " + this.Time + "causing event" + this.Event;
+        return "happening time: " + this.Time + "/causing event: " + this.Event + "/MC current mood: " + this.Mood;
     }
-
+    
+    // use as emoPlotObject.Time
     public int Time
     {
        get { return happenTime; }
