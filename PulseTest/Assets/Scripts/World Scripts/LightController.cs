@@ -17,7 +17,7 @@ public class LightController : MonoBehaviour
         mood = MentalState.OverallResult();
         
         light.range = 10f;
-        light.intensity = 1f;
+        light.intensity = 0.5f;
         //light.transform.position = Vector2()
         if (mood < 3 && mood > -3)
         {
@@ -49,7 +49,7 @@ public class LightController : MonoBehaviour
     public void Radiate()
     {
         light.range += 0.5f;
-        if (light.intensity < 2f)
+        if (light.intensity < 1.5f)
         {
             light.intensity += 0.1f;
         }

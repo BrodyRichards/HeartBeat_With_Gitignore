@@ -722,7 +722,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 504260496}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82b65f463fedf46d09c82f8a437b2a1f, type: 3}
   m_Name: 
@@ -732,13 +732,9 @@ MonoBehaviour:
   deceleration: 1
   scale: {x: 0, y: 0, z: 0}
   scaleOpposite: {x: 0, y: 0, z: 0}
-  anim: {fileID: 504260499}
---- !u!95 &504260499 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7476491800978798940, guid: dd3fe1050f0365448a1aca5ddba2b87d,
-    type: 3}
-  m_PrefabInstance: {fileID: 892266507}
-  m_PrefabAsset: {fileID: 0}
+  bed: {fileID: 0}
+  pointLight: {fileID: 0}
+  directionalLight: {fileID: 0}
 --- !u!1 &545045342
 GameObject:
   m_ObjectHideFlags: 0
@@ -1481,6 +1477,11 @@ PrefabInstance:
       propertyPath: endScene
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7476491800978798940, guid: dd3fe1050f0365448a1aca5ddba2b87d,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ea6bfe7d1d0acac48a1fdf5b274654d5, type: 2}
     m_RemovedComponents:
     - {fileID: 7476491800978798939, guid: dd3fe1050f0365448a1aca5ddba2b87d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dd3fe1050f0365448a1aca5ddba2b87d, type: 3}
