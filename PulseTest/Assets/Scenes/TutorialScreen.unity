@@ -1441,7 +1441,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a44e0d1d56bd442fb6e6fd2990a9602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  busArrival: 5
+  busArrival: 30
+  printedAlready: 0
 --- !u!114 &914818214
 MonoBehaviour:
   m_ObjectHideFlags: 0
