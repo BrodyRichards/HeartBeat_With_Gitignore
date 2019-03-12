@@ -28,8 +28,10 @@ public class Curtains : MonoBehaviour
             TutorialCharSwitch.WakeActionChosen = true;
             CurtainsOpen.GetComponent<Renderer>().enabled = false;
             //CurtainsClosed.GetComponent<Renderer>().enabled = true;
-            mc.GetComponent<McMovement>().tutorialScene = true;
-            mc.GetComponent<McMovement>().endScene = true;
+            mc.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            mc.GetComponent<McFreeMove>().enabled = true;
+            //mc.GetComponent<McMovement>().tutorialScene = true;
+            //mc.GetComponent<McMovement>().endScene = true;
         }
     }
 }

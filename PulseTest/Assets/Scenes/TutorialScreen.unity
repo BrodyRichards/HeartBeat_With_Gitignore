@@ -940,10 +940,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.25064945, y: -0.22786331}
+  m_Offset: {x: 0.021226168, y: -0.22786331}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -954,7 +954,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.0087013, y: 5.035111}
+  m_Size: {x: 2.5524526, y: 5.035111}
   m_EdgeRadius: 0
 --- !u!1 &631578261
 GameObject:
@@ -1441,7 +1441,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a44e0d1d56bd442fb6e6fd2990a9602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exitPos: {x: -7.2, y: -1, z: 0}
+  busArrival: 5
+--- !u!114 &914818214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914818211}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82b65f463fedf46d09c82f8a437b2a1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 5
+  acceleration: 0.8
+  deceleration: 1
+  scale: {x: 0, y: 0, z: 0}
+  scaleOpposite: {x: 0, y: 0, z: 0}
+  anim: {fileID: 1755410434}
+--- !u!50 &914818215
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914818211}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &940559303
 GameObject:
   m_ObjectHideFlags: 0
@@ -2726,7 +2765,7 @@ PrefabInstance:
     - target: {fileID: 7476491800978798938, guid: dd3fe1050f0365448a1aca5ddba2b87d,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.6887642
+      value: 0.6887643
       objectReference: {fileID: 0}
     - target: {fileID: 7476491800978798938, guid: dd3fe1050f0365448a1aca5ddba2b87d,
         type: 3}
@@ -2788,8 +2827,15 @@ PrefabInstance:
       propertyPath: endScene
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7476491800978798939, guid: dd3fe1050f0365448a1aca5ddba2b87d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dd3fe1050f0365448a1aca5ddba2b87d, type: 3}
+--- !u!95 &1755410434 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7476491800978798940, guid: dd3fe1050f0365448a1aca5ddba2b87d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1755410433}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1941857685
 GameObject:
   m_ObjectHideFlags: 0
