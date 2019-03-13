@@ -121,7 +121,7 @@ public class RabbitJump : MonoBehaviour
         transform.parent = null;
         GetComponent<Movement>().enabled = true;
         beingCarried = false;
-        GetComponent<SortRender>().offset = 2;
+        GetComponent<SortRender>().offset = 15;
         EmoControl.rabbitHug = false;
         anim.SetBool("isCarried", false);
     }
