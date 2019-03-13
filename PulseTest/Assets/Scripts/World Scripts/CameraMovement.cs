@@ -67,6 +67,7 @@ public class CameraMovement : MonoBehaviour
         }
         else if (characterSwitcher.charChoice == -1 && McMovement.leftBoundDist >= 30.0f)
         {
+            if (!IconControl.bringTheIconsIn) { IconControl.bringTheIconsIn = true; }
             Vector3 pos = new Vector3(-35.2f, 1.0f, -1.3f);
             target = pos;
             targetOrtho += speed / 500;

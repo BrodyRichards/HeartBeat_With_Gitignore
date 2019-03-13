@@ -7,6 +7,7 @@ public class IconControl : MonoBehaviour
 {
     public static bool journalActivated = false;
     public static bool journalTweening = false;
+    public static bool bringTheIconsIn = false;
     public Animator animator;
     public GameObject journal;
     [SerializeField]
@@ -27,6 +28,7 @@ public class IconControl : MonoBehaviour
     {
         icons = new List<Image>{ rabbitIcon, ballIcon, musicIcon};
         journal.SetActive(false);
+        ToggleIcons(false);
         animator.SetBool("newAccom", false);
 
     }
@@ -34,6 +36,7 @@ public class IconControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (bringTheIconsIn) { ToggleIcons(true); }
         foreach(var img in icons)
         {
             if ( icons.IndexOf(img) + 1 == characterSwitcher.charChoice)
@@ -95,6 +98,11 @@ public class IconControl : MonoBehaviour
         im.rectTransform.sizeDelta = new Vector2(pixel, pixel*2f);
     }
 
+    private void ToggleIcons(bool boo)
+    {
+        foreach (var i in icons) { i.enabled = boo; }
+        journalIcon.enabled = boo;
+    }
     
     
 }
