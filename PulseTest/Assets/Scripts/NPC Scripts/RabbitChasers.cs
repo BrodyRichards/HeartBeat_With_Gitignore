@@ -29,7 +29,7 @@ public class RabbitChasers : NPCs
             avatarChecks();
             checkBallBunny(rabbitDist, NpcInstantiator.rabbitPos);
             DetectMovement();
-            if (Input.GetKeyDown(Control.evacuate))
+            if (Input.GetKeyDown(Control.evacuate) && !MentalState.journalInProgress)
             {
                 schoolBell = true;
             }

@@ -53,7 +53,7 @@ public class NPCs : MonoBehaviour
             directionCheck(target.x, transform.position.x);
             avatarChecks();
             DetectMovement();
-            if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(Control.evacuate) && !MentalState.journalInProgress)
             {
                 schoolBell = true;
             }

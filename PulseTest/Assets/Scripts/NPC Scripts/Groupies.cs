@@ -16,7 +16,7 @@ public class Groupies : NPCs
             if (anim.GetBool("IsWalking") == true) { directionCheck(target.x, transform.position.x); }
             else { directionCheck(NpcInstantiator.center.x, transform.position.x); }
             DetectMovement();
-            if (Input.GetKeyDown(Control.evacuate))
+            if (Input.GetKeyDown(Control.evacuate) && !MentalState.journalInProgress)
             {
                 schoolBell = true;
             }

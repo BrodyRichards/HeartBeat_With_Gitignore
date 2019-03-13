@@ -29,7 +29,7 @@ public class Runners : NPCs
                 target = new Vector3(ranX, ranY, -1);
             }
             DetectMovement();
-            if (Input.GetKeyDown(Control.evacuate))
+            if (Input.GetKeyDown(Control.evacuate) && !MentalState.journalInProgress)
             {
                 schoolBell = true;
             }

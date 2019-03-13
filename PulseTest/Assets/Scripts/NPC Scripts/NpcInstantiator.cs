@@ -9,7 +9,7 @@ public class NpcInstantiator : MonoBehaviour
     private int runnerCount = 2;    //0
     private int lonerCount = 1;     //1
     private int rcCount = 0;        //2
-    private int bpCount = 1;        //3
+    private int bpCount = 0;        //3
     private string rename;
     
     public GameObject[] NPCs; //contains the 3 types of NPCs

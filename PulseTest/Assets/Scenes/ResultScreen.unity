@@ -722,7 +722,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 504260496}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82b65f463fedf46d09c82f8a437b2a1f, type: 3}
   m_Name: 
@@ -732,9 +732,6 @@ MonoBehaviour:
   deceleration: 1
   scale: {x: 0, y: 0, z: 0}
   scaleOpposite: {x: 0, y: 0, z: 0}
-  bed: {fileID: 0}
-  pointLight: {fileID: 0}
-  directionalLight: {fileID: 0}
 --- !u!1 &545045342
 GameObject:
   m_ObjectHideFlags: 0
