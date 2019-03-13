@@ -41,6 +41,7 @@ public class McFreeMove : MonoBehaviour
         if (v2.x != 0 || v2.y != 0)
         {
             animForMC.SetBool("isWalking", true);
+            if (GameObject.Find("Dir") != null) { GameObject.Find("Dir").SetActive(false); }
             //Debug.LogError("is walking");
            
         }

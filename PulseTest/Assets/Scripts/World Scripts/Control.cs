@@ -11,5 +11,5 @@ public class Control : MonoBehaviour
     public static KeyCode toBallKid = KeyCode.Alpha2;
     public static KeyCode toMusicKid = KeyCode.Alpha3;
     public static KeyCode pullPauseMenu = KeyCode.Escape;
-    public static KeyCode evacuate = KeyCode.P;
+    public static KeyCode evacuate = KeyCode.Alpha4;
 }

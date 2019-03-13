@@ -8,6 +8,7 @@ public class McExit : MonoBehaviour
     private float timer;
     public float busArrival;
     public bool printedAlready;
+    public GameObject bus;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,7 @@ public class McExit : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > busArrival)
         {
+            bus.SetActive(true);
             if (!printedAlready)
             {
                 printedAlready = true;
