@@ -41,9 +41,18 @@ public class Playground: MonoBehaviour
         return false;
     }
 
-    public static void RandomizeNpcAssets(Animator ani, SpriteRenderer sr)
+    public static void RandomizeNpcAssets(Animator ani, SpriteRenderer sr, string name)
     {
-        string selected = NpcTypes[Random.Range(0, 4)];
+        var selected = "";
+        if (name != "RabbitChaser")
+        {
+            selected = NpcTypes[Random.Range(0, 4)];
+        }
+        else
+        {
+            selected = NpcTypes[Random.Range(1, 4)];
+        }
+        
         ani.runtimeAnimatorController = Resources.Load(selected) as RuntimeAnimatorController;
         if (selected.Equals("NPC"))
         {

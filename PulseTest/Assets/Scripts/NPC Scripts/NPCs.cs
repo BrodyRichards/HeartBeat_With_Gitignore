@@ -34,7 +34,8 @@ public class NPCs : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         anim.SetBool("IsWalking", true);
-        Playground.RandomizeNpcAssets(anim, sr);
+        var name = this.name;
+        Playground.RandomizeNpcAssets(anim, sr, name);
         master = GameObject.Find("GameController");
         scale = transform.localScale;
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
