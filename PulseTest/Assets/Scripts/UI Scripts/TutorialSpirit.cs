@@ -11,6 +11,9 @@ public class TutorialSpirit : MonoBehaviour
 
     private GameObject MC;
     private GameObject possessed;
+    private GameObject bed;
+
+    public static bool goToMC = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,9 +21,10 @@ public class TutorialSpirit : MonoBehaviour
         em = ps.emission;
 
         avatars = GameObject.FindGameObjectsWithTag("Avatars");
-        MC = GameObject.FindGameObjectWithTag("MC");
-        transform.position = MC.transform.position;
-        possessed = MC;
+        
+        bed = GameObject.Find("bed");
+        transform.position = bed.transform.position;
+        possessed = bed;
     }
 
     // Update is called once per frame
@@ -28,23 +32,29 @@ public class TutorialSpirit : MonoBehaviour
     {
         var alarm = avatars[0];
         var curtain = avatars[1];
-        var toy = avatars[2];
 
         transform.position = possessed.transform.position;
+        if (!goToMC)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
 
-        if(Input.GetKeyDown(KeyCode.Alpha1)){
-            
-            possessed = alarm;
-            
+                possessed = alarm;
+
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                possessed = curtain;
+
+            }
         }
-        if(Input.GetKeyDown(KeyCode.Alpha2)){
-            possessed = curtain;
-            
+        else
+        {
+            MC = GameObject.FindGameObjectWithTag("MC");
+            possessed = MC;
         }
-        if(Input.GetKeyDown(KeyCode.Alpha3)){
-            possessed = toy;
-            
-        }
+        
+        
 
         
         

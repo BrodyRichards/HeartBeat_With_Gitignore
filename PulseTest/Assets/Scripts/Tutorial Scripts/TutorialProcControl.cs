@@ -39,5 +39,6 @@ public class TutorialProcControl : MonoBehaviour
     private void MagicMcAppear()
     {
         mc.SetActive(true);
+        TutorialSpirit.goToMC = true;
     }
 }
