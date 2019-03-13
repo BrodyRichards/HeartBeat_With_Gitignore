@@ -5,6 +5,7 @@ using UnityEngine;
 public class TutorialProcControl : MonoBehaviour
 {
     public GameObject bed;
+    public GameObject emptyBed;
     public GameObject mc;
     private Animator animForBed;
 
@@ -40,5 +41,8 @@ public class TutorialProcControl : MonoBehaviour
     {
         mc.SetActive(true);
         TutorialSpirit.goToMC = true;
+        bed.SetActive(false);
+        emptyBed.SetActive(true);
+        
     }
 }
