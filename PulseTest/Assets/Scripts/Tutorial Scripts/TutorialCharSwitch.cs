@@ -9,6 +9,11 @@ public class TutorialCharSwitch : MonoBehaviour
     //charChoice represents which named object to move
     public static int TutCharChoice = -1;
     public static bool WakeActionChosen = false;
+
+    public GameObject one;
+    public GameObject two;
+    public GameObject Q;
+    public GameObject E; 
     //public static bool isChar = false;
 
     // Use this for initialization
@@ -16,6 +21,7 @@ public class TutorialCharSwitch : MonoBehaviour
     {
         //Initially disable all but the chosen one
         disableOthers();
+        
     }
 
     // Update is called once per frame
@@ -110,9 +116,11 @@ public class TutorialCharSwitch : MonoBehaviour
         {
             case 1:
                 B.GetComponent<AlarmClock>().enabled = true;
+                EnablePrompts(E, Q);
                 break;
             case 2:
                 B.GetComponent<Curtains>().enabled = true;
+                EnablePrompts(Q, E);
                 break;
             case 3:
                 B.GetComponent<ToyCar>().enabled = true;
@@ -129,14 +137,14 @@ public class TutorialCharSwitch : MonoBehaviour
         {
             case 1:
                 findGO(2).GetComponent<Curtains>().enabled = false;
-                findGO(3).GetComponent<ToyCar>().enabled = false;
+                //findGO(3).GetComponent<ToyCar>().enabled = false;
                 //findGO(2).GetComponent<Animator>().SetBool("isThrowing", false);
                 //findGO(2).GetComponent<Animator>().SetBool("isWalking", false);
                 //findGO(3).GetComponent<Animator>().SetBool("isWalking", false);
                 break;
             case 2:
                 findGO(1).GetComponent<AlarmClock>().enabled = false;
-                findGO(3).GetComponent<ToyCar>().enabled = false;
+                //findGO(3).GetComponent<ToyCar>().enabled = false;
                 //findGO(1).GetComponent<Animator>().SetBool("isWalking", false);
                 //findGO(3).GetComponent<Animator>().SetBool("isWalking", false);
                 break;
@@ -162,8 +170,19 @@ public class TutorialCharSwitch : MonoBehaviour
         }
     }
 
+    
+
     public int getChar()
     {
         return TutCharChoice;
+    }
+
+    private void EnablePrompts(GameObject toEnable, GameObject toDisable)
+    {
+        one.SetActive(false);
+        two.SetActive(false);
+        toEnable.SetActive(true);
+        toDisable.SetActive(false);
+
     }
 }

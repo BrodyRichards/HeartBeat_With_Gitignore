@@ -30,6 +30,7 @@ public class Curtains : MonoBehaviour
             //CurtainsClosed.GetComponent<Renderer>().enabled = true;
             mc.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             mc.GetComponent<McFreeMove>().enabled = true;
+            GameObject.Find("Q").SetActive(false);
             //mc.GetComponent<McMovement>().tutorialScene = true;
             //mc.GetComponent<McMovement>().endScene = true;
         }

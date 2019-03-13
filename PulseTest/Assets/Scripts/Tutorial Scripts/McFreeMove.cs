@@ -4,30 +4,26 @@ using UnityEngine;
 
 public class McFreeMove : MonoBehaviour
 {
-    public float maxSpeed;
+   
     private float currSpeed = 0f;
+    private Animator animForMC;
+    public float maxSpeed;
     public float acceleration;
     public float deceleration;
     private Vector2 direction;
     public Vector3 scale;
     public Vector3 scaleOpposite;
-    public GameObject bed;
-    private Animator animForBed;
-    private Animator animForMC;
-    public GameObject pointLight;
-    public GameObject directionalLight;
+    
 
-    private bool mcWokeUp = false;
 
     // Start is called before the first frame update
     void Start()
     {
 
-        
+        animForMC = GetComponent<Animator>();
         scale = transform.localScale;
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        animForBed = bed.GetComponent<Animator>();
-        animForMC = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -35,13 +31,6 @@ public class McFreeMove : MonoBehaviour
     {
         getInput();
         Move();
-        if (TutorialCharSwitch.WakeActionChosen && !mcWokeUp)
-        {
-            directionalLight.SetActive(true);
-            pointLight.GetComponent<Light>().intensity = 1;
-            animForBed.SetTrigger("wakeuplo");
-            mcWokeUp = true;
-        }
         
     }
 
