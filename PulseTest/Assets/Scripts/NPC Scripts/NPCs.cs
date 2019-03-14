@@ -5,7 +5,7 @@ using UnityEngine;
 public class NPCs : MonoBehaviour
 {
     public Animator anim;
-    protected float speed = 5f;
+    protected float speed;// = Random.Range(3f, 5f);
 
     protected Vector3 scale;
     protected Vector3 scaleOpposite;
@@ -42,6 +42,8 @@ public class NPCs : MonoBehaviour
         check = music;
         time = Time.fixedUnscaledTime;
         timer = time;
+        speed = Random.Range(3f, 6f);
+        Debug.Log("speed: " + speed);
     }
 
     protected virtual void Update()
