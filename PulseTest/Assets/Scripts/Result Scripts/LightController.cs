@@ -5,7 +5,7 @@ using UnityEngine;
 public class LightController : MonoBehaviour
 {
     public Light light;
-
+    public GameObject go;
 
     public Color blue = new Color(0.0f, 0.1f, 0.9f);
     public Color yellow = new Color(1f, 0.2844f, 1f);
@@ -16,7 +16,7 @@ public class LightController : MonoBehaviour
     private int mood;
     private float turnToNightTimer = 10f;
     private bool isRadiateFinish = false;
-    private bool isNightGlowFinish = false;
+    public static bool isNightGlowFinish = false;
     // Start is called before the first frame update
     void Start()
     {

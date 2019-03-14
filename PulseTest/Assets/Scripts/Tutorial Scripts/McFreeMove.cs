@@ -36,7 +36,11 @@ public class McFreeMove : MonoBehaviour
     void Update()
     {
         getInput();
-        Move();
+        if (!EndJournal.journalIsOpened)
+        {
+            Move();
+        }
+       
 
     }
 
