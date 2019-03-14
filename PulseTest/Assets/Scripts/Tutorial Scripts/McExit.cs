@@ -31,7 +31,7 @@ public class McExit : MonoBehaviour
             if (Input.GetKeyDown(Control.evacuate))
             {
                 Debug.Log("Loading Scene...");
-                SceneManager.LoadScene("SampleScene");
+                //SceneManager.LoadScene("SampleScene");
             }
         }
     }
