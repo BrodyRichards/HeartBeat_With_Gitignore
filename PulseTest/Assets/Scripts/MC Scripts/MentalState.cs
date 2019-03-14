@@ -74,7 +74,7 @@ public class MentalState : MonoBehaviour
         UpdateCurrentMood(msg);
         PlotingTimeline(msg);
         noEventCounting *= 0.0f;
-        Debug.Log("Action taken: " + msg + "/Event count: " + moodLog[msg] + "/Current Mood: " + currentState + "/happening time: " + Mathf.RoundToInt(Time.time));
+        Debug.Log("Action taken: " + msg + "/Event count: " + moodLog[msg] + "/Current Mood: " + currentState + "/happening time: " + Mathf.RoundToInt(Time.timeSinceLevelLoad));
     }
     
    
@@ -117,7 +117,7 @@ public class MentalState : MonoBehaviour
 
     public static void PlotingTimeline(string m)
     {
-        var tempEmo = EmoPlot.CreateInstance(Mathf.RoundToInt(Time.time), currentState, m);
+        var tempEmo = EmoPlot.CreateInstance(Mathf.RoundToInt(Time.timeSinceLevelLoad), currentState, m);
         emoTimeline.Enqueue(tempEmo);
         // if the emotiontime line already contain more than 30 objects, dequeue 
         if (emoTimeline.Count > 30) // can playaround with the value 

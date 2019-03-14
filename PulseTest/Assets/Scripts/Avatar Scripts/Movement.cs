@@ -69,11 +69,11 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            if (direction == Vector2.right && transform.localScale.x < 0)
+            if (v2.x > 0 && transform.localScale.x < 0)
             {
                 transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             }
-            else if (direction == Vector2.left && transform.localScale.x > 0)
+            else if (v2.x < 0 && transform.localScale.x > 0)
             {
                 transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             }
