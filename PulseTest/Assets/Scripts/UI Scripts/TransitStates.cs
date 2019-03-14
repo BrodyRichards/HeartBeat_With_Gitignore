@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class TransitStates : MonoBehaviour
 {
     public Text loadingText;
+    public Text spaceText;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,11 +23,18 @@ public class TransitStates : MonoBehaviour
         {
             Application.Quit();
         }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            StartGame();
+        }
     }
 
     public void StartGame()
     {
         loadingText.enabled = true;
+        spaceText.enabled = false;
+        
         StartCoroutine(LoadAsyncScene(1));
     }
 

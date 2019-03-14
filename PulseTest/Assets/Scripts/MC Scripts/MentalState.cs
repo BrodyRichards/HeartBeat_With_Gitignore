@@ -101,7 +101,7 @@ public class MentalState : MonoBehaviour
             }
         }
             
-        return average;
+        return (int)average;
 
 
         return 0;
