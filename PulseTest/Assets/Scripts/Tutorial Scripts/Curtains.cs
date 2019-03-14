@@ -28,7 +28,6 @@ public class Curtains : MonoBehaviour
             TutorialCharSwitch.WakeActionChosen = true;
             CurtainsClosed.SetActive(false);
             CurtainsOpen.SetActive(true);
-            //CurtainsClosed.GetComponent<Renderer>().enabled = true;
             mc.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             mc.GetComponent<McFreeMove>().enabled = true;
             if (GameObject.Find("Q") != null)

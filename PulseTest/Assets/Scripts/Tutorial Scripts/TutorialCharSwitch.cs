@@ -21,7 +21,6 @@ public class TutorialCharSwitch : MonoBehaviour
     {
         //Initially disable all but the chosen one
         disableOthers();
-        
     }
 
     // Update is called once per frame
@@ -135,6 +134,10 @@ public class TutorialCharSwitch : MonoBehaviour
     {
         switch (TutCharChoice)
         {
+            case -1:
+                findGO(1).GetComponent<AlarmClock>().enabled = false;
+                findGO(2).GetComponent<Curtains>().enabled = false;
+                break;
             case 1:
                 findGO(2).GetComponent<Curtains>().enabled = false;
                 //findGO(3).GetComponent<ToyCar>().enabled = false;
