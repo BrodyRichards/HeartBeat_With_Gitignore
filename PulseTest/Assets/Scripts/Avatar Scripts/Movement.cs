@@ -129,9 +129,10 @@ public class Movement : MonoBehaviour
         RaycastHit2D wallCheck = Physics2D.Raycast(transform.position, transform.right, 0.25f);
         //Check for MC exit scene
         if (wallCheck.collider != null && wallCheck.collider.gameObject.name == "RightBound")
-        { 
-            Debug.Log("Loading ResultScreen...");
-            SceneManager.LoadScene("ResultScreen");
+        {
+            LevelFade.readyToLeave = true;
+            //Debug.Log("Loading ResultScreen...");
+            //SceneManager.LoadScene("ResultScreen");
         }
     }
 

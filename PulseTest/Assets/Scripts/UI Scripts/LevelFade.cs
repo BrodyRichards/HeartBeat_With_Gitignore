@@ -7,11 +7,12 @@ public class LevelFade : MonoBehaviour
 {
     public Animator animator;
     private int levelToLoad;
+    public static bool readyToLeave = false;
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown("4")){
+        if(readyToLeave){
             FadeToNextLevel();
         }
     }

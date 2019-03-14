@@ -22,7 +22,11 @@ public class AlarmClock : MonoBehaviour
         time = Time.fixedUnscaledTime;
         if (Input.GetKeyDown(Control.negativeAction))
         {
-            GameObject.Find("E").SetActive(false);
+            if (GameObject.Find("E") != null)
+            {
+                GameObject.Find("E").SetActive(false);
+            }
+            
             Debug.Log("Alarm went off");
             timer = time + 3.0f;
             if (!ass.isPlaying) { ass.Play(); }
