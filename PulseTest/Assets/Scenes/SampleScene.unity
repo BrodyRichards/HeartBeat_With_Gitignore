@@ -18128,6 +18128,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainScreenUI
       objectReference: {fileID: 0}
+    - target: {fileID: 3733528334395382477, guid: 7d9d22f7bc1a2c34cb3c997595f945db,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4900301706314133296, guid: 7d9d22f7bc1a2c34cb3c997595f945db,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18307,6 +18312,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934439261271974825, guid: 7d9d22f7bc1a2c34cb3c997595f945db,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -62
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934439261271974825, guid: 7d9d22f7bc1a2c34cb3c997595f945db,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 3195133999344593910, guid: 7d9d22f7bc1a2c34cb3c997595f945db,
         type: 3}

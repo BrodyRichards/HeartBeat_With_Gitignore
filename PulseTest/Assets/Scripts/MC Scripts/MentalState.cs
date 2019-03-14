@@ -89,12 +89,17 @@ public class MentalState : MonoBehaviour
     public static int OverallResult()
     {
         //var average = 0;
-        //foreach(var emo in emoTimeline)
+        //foreach (var emo in emoTimeline)
         //{
         //    average += emo.Mood;
         //}
-        //average /= emoTimeline.Count;
+        //if (emoTimeline.Count != 0)
+        //{
+        //    average /= emoTimeline.Count;
+        //}
         //return average;
+        
+        
         return 0;
     }
     //============== End of TODO ==========================

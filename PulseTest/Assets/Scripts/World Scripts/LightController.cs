@@ -10,48 +10,90 @@ public class LightController : MonoBehaviour
     public Color blue = new Color(0.0f, 0.1f, 0.9f);
     public Color yellow = new Color(1f, 0.2844f, 1f);
     public Color white = new Color(1f, 1f, 1f);
-    public int mood;
+
+    public GameObject lightOn;
+    public GameObject lightOff;
+    private int mood;
+    private float turnToNightTimer = 10f;
+    private bool isRadiateFinish = false;
+    private bool isNightGlowFinish = false;
     // Start is called before the first frame update
     void Start()
     {
         mood = MentalState.OverallResult();
         
-        light.range = 10f;
-        light.intensity = 0.5f;
+
         //light.transform.position = Vector2()
-        if (mood < 3 && mood > -3)
+        if (mood < 5 && mood > -5)
         {
             light.color = white;
-            
+            light.range = 20f;
+            light.intensity = 2f;
+
         }
-        else if (mood > 3)
+        else if (mood > 5)
         {
-
-            light.color = blue;
-            
-
+            light.color = yellow;
+            light.range = 30f;
+            light.intensity = 2.5f;
         }
         else
         {
-            light.color = yellow;
-            
+            light.color = blue;
+            light.range = 20f;
+            light.intensity = 1f;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+        
+        
+        if (Time.timeSinceLevelLoad > turnToNightTimer)
+        {
+            NightGlow();
+            
+            
+        }
 
-        Radiate();
+        if (isNightGlowFinish)
+        {
+            
+            lightOn.SetActive(true);
+            lightOff.SetActive(false);
+
+        }
         
     }
 
+    private void NightGlow()
+    {
+
+        if (light.intensity > 0.01f)
+        {
+            light.intensity -= 0.01f;
+            light.range -= 0.01f;
+        }
+        else
+        {
+            isNightGlowFinish = true;
+        }
+    }
+
+
     public void Radiate()
     {
-        light.range += 0.5f;
+        
         if (light.intensity < 1.5f)
         {
-            light.intensity += 0.1f;
+            light.intensity += 0.01f;
+            light.range += 0.01f;
+        }
+        else
+        {
+            isRadiateFinish = true;
         }
     }
 }
