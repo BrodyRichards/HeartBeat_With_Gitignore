@@ -5,6 +5,7 @@ using UnityEngine;
 public class FlipJournal : MonoBehaviour
 {
     public GameObject[] journalPages;
+    public GameObject[] journalDrawings; // 0 rabbit+ 1 rabbit- 2 ballkid+ 3 ballkid- 4 music+ 5 music-
     public static bool finishReadingJournal = false;
     private int currentIndex = 0;
     private bool[] haveYouReadMeYet;
@@ -24,8 +25,9 @@ public class FlipJournal : MonoBehaviour
     {
         if (EndJournal.journalIsOpened)
         {
-            EnableThisDisableRest(currentIndex);
+            EnableThisDisableRest(currentIndex, journalPages);
             haveYouReadMeYet[currentIndex] = true;
+            whichDrawingsToShow(currentIndex);
             if (Input.GetKeyDown(KeyCode.A))
             {
                 currentIndex -= 1;
@@ -57,12 +59,54 @@ public class FlipJournal : MonoBehaviour
         }
     }
 
-    void EnableThisDisableRest(int index)
+    void whichDrawingsToShow(int index)
     {
-        var sel = journalPages[index];
+        switch (index)
+        {
+            case 0:
+                if (EventHasPositiveResult("Held Rabbit", "Bit by rabbit"))
+                {
+                    EnableThisDisableRest(0, journalDrawings);
+                }
+                else
+                {
+                    EnableThisDisableRest(1, journalDrawings);
+                }
+
+                break;
+            case 1:
+                if (EventHasPositiveResult("Played catch", "Hit by ball"))
+                {
+                    EnableThisDisableRest(2, journalDrawings);
+                }
+                else
+                {
+                    EnableThisDisableRest(3, journalDrawings);
+                }
+                break;
+            case 2:
+                if (EventHasPositiveResult("Happy Song", "Sad Song"))
+                {
+                    EnableThisDisableRest(4, journalDrawings);
+                }
+                else
+                {
+                    EnableThisDisableRest(5, journalDrawings);
+                }
+                break;
+            default:
+                break;
+        }
+        
+    }
+
+
+    void EnableThisDisableRest(int index, GameObject[] go)
+    {
+        var sel = go[index];
 
         sel.SetActive(true);
-        foreach (var j in journalPages)
+        foreach (var j in go)
         {
             if (!j.Equals(sel))
             {
@@ -74,6 +118,7 @@ public class FlipJournal : MonoBehaviour
     void CloseJournalAndReset()
     {
         journalPages[currentIndex].SetActive(false);
+        foreach(var d in journalDrawings) { d.SetActive(false); }
         currentIndex = 0;
         EndJournal.journalIsOpened = false;
         
@@ -88,4 +133,24 @@ public class FlipJournal : MonoBehaviour
         }
         return tempBool;
     }
+
+    bool EventHasPositiveResult(string pos, string neg)
+    {
+        if (MentalState.moodLog != null)
+        {
+            if (MentalState.moodLog[pos] > MentalState.moodLog[neg])
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return false;
+
+        
+    }
+
+   
 }
