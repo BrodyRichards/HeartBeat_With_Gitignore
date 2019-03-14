@@ -88,18 +88,22 @@ public class MentalState : MonoBehaviour
     /// <returns>(int) Charlie's overall mood in the end</returns>
     public static int OverallResult()
     {
-        //var average = 0;
-        //foreach (var emo in emoTimeline)
-        //{
-        //    average += emo.Mood;
-        //}
-        //if (emoTimeline.Count != 0)
-        //{
-        //    average /= emoTimeline.Count;
-        //}
-        //return average;
-        
-        
+        var average = 0;
+        if (emoTimeline != null)
+        {
+            foreach (var emo in emoTimeline)
+            {
+                average += emo.Mood;
+            }
+            if (emoTimeline.Count != 0)
+            {
+                average /= emoTimeline.Count;
+            }
+        }
+            
+        return average;
+
+
         return 0;
     }
     //============== End of TODO ==========================

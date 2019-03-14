@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class McFreeMove : MonoBehaviour
 {
-   
+
     private float currSpeed = 0f;
     private Animator animForMC;
+    private enum Mood { happy, sad, idle };
     public float maxSpeed;
     public float acceleration;
     public float deceleration;
+    public bool inFinalScene;
     private Vector2 direction;
     public Vector3 scale;
     public Vector3 scaleOpposite;
-    
+
 
 
     // Start is called before the first frame update
@@ -21,9 +23,13 @@ public class McFreeMove : MonoBehaviour
     {
 
         animForMC = GetComponent<Animator>();
+        if (inFinalScene)
+        {
+            AnimationMoodCheck();
+        }
         scale = transform.localScale;
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        
+
     }
 
     // Update is called once per frame
@@ -31,7 +37,7 @@ public class McFreeMove : MonoBehaviour
     {
         getInput();
         Move();
-        
+
     }
 
     public void Move()
@@ -43,14 +49,14 @@ public class McFreeMove : MonoBehaviour
             animForMC.SetBool("isWalking", true);
             if (GameObject.Find("Dir") != null) { GameObject.Find("Dir").SetActive(false); }
             //Debug.LogError("is walking");
-           
+
         }
         else
         {
             //Debug.LogError("not walking");
             //Debug.Log("dfdfdfdfdfdddf walking");
             animForMC.SetBool("isWalking", false);
-            
+
         }
 
         if ((transform.position.x > 5.0f && v2.x > 0) ||
@@ -113,5 +119,27 @@ public class McFreeMove : MonoBehaviour
             direction = Vector2.right;
 
         }
+
+    }
+
+    private void AnimationMoodCheck()
+    {
+
+        var mood = MentalState.OverallResult();
+        if (mood < 5 && mood > -5) // no mood
+        {
+            animForMC.SetInteger("mood", (int)Mood.idle);
+        }
+        else if (mood > 5) // happy
+        {
+            animForMC.SetInteger("mood", (int)Mood.happy);
+        }
+        else
+        {
+
+            animForMC.SetInteger("mood", (int)Mood.sad);
+        }
     }
 }
+
+    

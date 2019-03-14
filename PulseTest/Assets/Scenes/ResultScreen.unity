@@ -730,6 +730,7 @@ MonoBehaviour:
   maxSpeed: 5
   acceleration: 0.8
   deceleration: 1
+  inFinalScene: 1
   scale: {x: 0, y: 0, z: 0}
   scaleOpposite: {x: 0, y: 0, z: 0}
 --- !u!4 &504260501 stripped
