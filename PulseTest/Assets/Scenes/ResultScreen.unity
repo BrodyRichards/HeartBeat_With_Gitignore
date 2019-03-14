@@ -1261,7 +1261,7 @@ SpriteRenderer:
   m_SortingLayerID: -2030066595
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0dfbcd3e7a1314041be13cadbd5412bc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d81eb4e7ea1e8474eb89c38641751d28, type: 3}
   m_Color: {r: 1, g: 0.75881445, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1281,7 +1281,7 @@ Transform:
   m_GameObject: {fileID: 751317317}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.13, y: 0.03296639, z: 4.5103335}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
@@ -1498,7 +1498,7 @@ SpriteRenderer:
   m_SortingLayerID: -2030066595
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0dfbcd3e7a1314041be13cadbd5412bc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bb792028503bfce498b2f9bda457c3de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1518,7 +1518,7 @@ Transform:
   m_GameObject: {fileID: 835904560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.13, y: 0.03296639, z: 4.5103335}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
@@ -2143,6 +2143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   journalIcon: {fileID: 418332162}
+  sleepIcon: {fileID: 8318072189251770186}
 --- !u!1 &1519800436
 GameObject:
   m_ObjectHideFlags: 0
@@ -2872,7 +2873,7 @@ SpriteRenderer:
   m_SortingLayerID: -2030066595
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0dfbcd3e7a1314041be13cadbd5412bc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2cb6e858cc93497408ba65e4a09cdb11, type: 3}
   m_Color: {r: 0, g: 1, b: 0.9623866, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2892,7 +2893,7 @@ Transform:
   m_GameObject: {fileID: 1891553246}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.13, y: 0.03296639, z: 4.5103335}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 12
@@ -3252,7 +3253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8318072189251770196
 Transform:
   m_ObjectHideFlags: 0
