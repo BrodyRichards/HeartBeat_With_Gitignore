@@ -10,6 +10,8 @@ public class IconControl : MonoBehaviour
     public static bool bringTheIconsIn = false;
     public Animator animator;
     public GameObject journal;
+    public GameObject iconsGroup;
+    public Image bg;
     [SerializeField]
     private Image rabbitIcon;
     [SerializeField]
@@ -100,8 +102,9 @@ public class IconControl : MonoBehaviour
 
     private void ToggleIcons(bool boo)
     {
-        foreach (var i in icons) { i.enabled = boo; }
+        iconsGroup.SetActive(boo);
         journalIcon.enabled = boo;
+        bg.enabled = boo;
     }
     
     

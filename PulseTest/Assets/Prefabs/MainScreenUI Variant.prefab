@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 4149682170105172346}
   - component: {fileID: 2526599962604458983}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,15 +75,15 @@ RectTransform:
   m_GameObject: {fileID: 721427149398372859}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 3.169226, y: 3.169226, z: 1.584613}
   m_Children: []
   m_Father: {fileID: 6870627673976626933}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 107, y: -50}
-  m_SizeDelta: {x: 90, y: 30}
+  m_AnchoredPosition: {x: 108.9, y: -41.63}
+  m_SizeDelta: {x: 65.95, y: 27.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4149682170105172346
 CanvasRenderer:
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.044974264, b: 0.047169805, a: 0.5254902}
+  m_Color: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 0.5254902}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -546,7 +546,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 125, y: -40}
+  m_AnchoredPosition: {x: 131.4, y: -40}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5688181250675566248
@@ -567,7 +567,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: 6
+  m_Spacing: 8
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -1086,7 +1086,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 37.799805, y: -37.5}
+  m_AnchoredPosition: {x: 41.5, y: -43.9}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4900301706286916497
@@ -1260,6 +1260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 2914850176372649580}
   journal: {fileID: 0}
+  bg: {fileID: 0}
   rabbitIcon: {fileID: 4900301704919519726}
   ballIcon: {fileID: 4900301705584157746}
   musicIcon: {fileID: 4900301705206444839}
