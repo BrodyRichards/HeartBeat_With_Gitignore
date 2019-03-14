@@ -60,7 +60,7 @@ public class McFreeMove : MonoBehaviour
         }
 
         if ((transform.position.x > 5.0f && v2.x > 0) ||
-            (transform.position.x < -8.0f && v2.x < 0) ||
+            (transform.position.x < -7.0f && v2.x < 0) ||
             (transform.position.y > 0.5f && v2.y > 0) ||
             (transform.position.y < -3.0f && v2.y < 0))
         {
