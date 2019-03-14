@@ -16,7 +16,7 @@ public class RadioControl : MonoBehaviour
     private bool isBG;
 
     private readonly float mcAffectedInterval = 4f;
-    private readonly float musicCreatedInterval = 0.2f;
+    //private readonly float musicCreatedInterval = 0.2f;
 
     public LayerMask Carriers;
     public ParticleSystem ps;
@@ -126,6 +126,7 @@ public class RadioControl : MonoBehaviour
                     if (!musicNoteCreated)
                     {
                         CreateMusicNote();
+                        var musicCreatedInterval = (currentMood == 0 ? 0.2f : 0.6f);
                         Invoke("ResetMusicNote", musicCreatedInterval);
                     }
                     
