@@ -134,6 +134,7 @@ public class CameraMovement : MonoBehaviour
         else if (characterSwitcher.charChoice == 1000)
         {
             target = mainChar.transform.position + offset;
+            checkBounds(target);
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
         }
         //checkBounds(target);
