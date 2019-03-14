@@ -23,13 +23,7 @@ public class Groupies : NPCs
         }
         else
         {
-            target = master.GetComponent<NpcInstantiator>().rightBound.transform.position;
-            directionCheck(target.x, transform.position.x);
-            runOff();
-            if (transform.position == target)
-            {
-                Destroy(gameObject);
-            }
+            toClass();
         }
     }
 

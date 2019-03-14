@@ -52,8 +52,8 @@ public class NPCs : MonoBehaviour
             directionCheck(target.x, transform.position.x);
             avatarChecks();
             DetectMovement();
-            if (Input.GetKeyDown(Control.evacuate) && !MentalState.journalInProgress)
-            {
+            if (Input.GetKeyDown(Control.evacuate) && !MentalState.journalInProgress) 
+            { 
                 schoolBell = true;
             }
         }
@@ -62,6 +62,7 @@ public class NPCs : MonoBehaviour
             target = master.GetComponent<NpcInstantiator>().rightBound.transform.position;
             directionCheck(target.x, transform.position.x);
             runOff();
+            DetectMovement();
             if (transform.position == target)
             {
                 Destroy(gameObject);
@@ -286,5 +287,17 @@ public class NPCs : MonoBehaviour
     protected virtual void runOff()
     {
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+    }
+
+    protected virtual void toClass()
+    {
+        target = master.GetComponent<NpcInstantiator>().rightBound.transform.position;
+        directionCheck(target.x, transform.position.x);
+        runOff();
+        DetectMovement();
+        if (transform.position == target)
+        {
+            Destroy(gameObject);
+        }
     }
 }

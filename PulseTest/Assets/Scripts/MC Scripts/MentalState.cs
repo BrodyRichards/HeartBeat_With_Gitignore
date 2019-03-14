@@ -52,7 +52,7 @@ public class MentalState : MonoBehaviour
     void Update()
     {
         noEventCounting += Time.deltaTime;
-        Debug.Log(noEventCounting);
+        //Debug.Log(noEventCounting);
         // if more than 10 seconds without event happening, do the pacifying thing 
         if (noEventCounting > 10f)
         {
