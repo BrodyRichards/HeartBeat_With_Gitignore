@@ -91,7 +91,7 @@ Animator:
   m_GameObject: {fileID: 7476491800978798943}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4ade4d00933341b4d9855671a10f3f44, type: 2}
+  m_Controller: {fileID: 9100000, guid: ea6bfe7d1d0acac48a1fdf5b274654d5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -113,4 +113,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 7476491800978798940}
+  mcWaypoints: []
+  refPoints: []
   speed: 0
+  followDist: 0
+  timeElapsed: 0
+  CRunning: 0
+  stillInterested: 1
+  endScene: 0
+  tutorialScene: 0

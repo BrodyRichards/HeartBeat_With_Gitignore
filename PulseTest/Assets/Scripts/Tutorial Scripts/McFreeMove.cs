@@ -23,10 +23,10 @@ public class McFreeMove : MonoBehaviour
     {
 
         animForMC = GetComponent<Animator>();
-        if (inFinalScene)
-        {
-            AnimationMoodCheck();
-        }
+        //if (inFinalScene)
+        //{
+        //    AnimationMoodCheck();
+        //}
         scale = transform.localScale;
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 

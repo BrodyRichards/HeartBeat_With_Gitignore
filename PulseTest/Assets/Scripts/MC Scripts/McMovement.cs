@@ -96,7 +96,7 @@ public class McMovement : MonoBehaviour
                         StartCoroutine(McRunsFromAvatar(NpcInstantiator.ballKidPos, step));
                     }
                 }
-                else if (CheckDist(transform.position, NpcInstantiator.ballKidPos) && !endScene && stillInterested)
+                else if (CheckDist(transform.position, NpcInstantiator.ballKidPos) && !endScene && stillInterested && !RabbitJump.beingCarried)
                 {
                     if (!CRunning)
                     {
