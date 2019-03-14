@@ -8,7 +8,7 @@ public class NpcInstantiator : MonoBehaviour
 
     private int runnerCount = 2;    //0
     private int lonerCount = 1;     //1
-    private int rcCount = 0;        //2
+    private int rcCount = 1;        //2
     private int bpCount = 0;        //3
     private string rename;
     

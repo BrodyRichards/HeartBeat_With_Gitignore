@@ -41,16 +41,16 @@ public class Playground: MonoBehaviour
         return false;
     }
 
-    public static void RandomizeNpcAssets(Animator ani, SpriteRenderer sr, string name)
+    public static void RandomizeNpcAssets(Animator ani, SpriteRenderer sr, GameObject go)
     {
         var selected = "";
-        if (name != "RabbitChaser")
+        if (go.GetComponent<RabbitChasers>() == null)
         {
             selected = NpcTypes[Random.Range(0, 4)];
         }
         else
         {
-            selected = NpcTypes[Random.Range(1, 4)];
+            selected = "Suzy";
         }
         
         ani.runtimeAnimatorController = Resources.Load(selected) as RuntimeAnimatorController;
