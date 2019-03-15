@@ -7,7 +7,9 @@ public class EndJournal : MonoBehaviour
     public GameObject journalIcon;
     public GameObject sleepIcon;
     public GameObject bed;
+    public GameObject emptyBed;
     public static bool journalIsOpened = false;
+    public static bool deemLight = false;
     private Animator anim;
     private Animator bedAnim;
     // Start is called before the first frame update
@@ -15,6 +17,7 @@ public class EndJournal : MonoBehaviour
     {
         anim = journalIcon.GetComponent<Animator>();
         bedAnim = bed.GetComponent<Animator>();
+        bed.GetComponent<SpriteRenderer>().enabled = false;
         journalIcon.SetActive(false);
     }
 
@@ -50,8 +53,11 @@ public class EndJournal : MonoBehaviour
             {
                 if (GameObject.Find("MC") != null)
                 {
+                    bed.GetComponent<SpriteRenderer>().enabled = true;
+                    emptyBed.GetComponent<SpriteRenderer>().enabled = false;
                     GameObject.Find("MC").SetActive(false);
                     Invoke("GoToBedPlsKid", 2f);
+                    Invoke("DeemTheLight", 3f);
                 }
                 
             }
@@ -61,5 +67,12 @@ public class EndJournal : MonoBehaviour
     void GoToBedPlsKid()
     {
         bedAnim.SetBool("goToBed", true);
+        
     }
+
+    void DeemTheLight()
+    {
+        deemLight = true;
+    }
+
 }

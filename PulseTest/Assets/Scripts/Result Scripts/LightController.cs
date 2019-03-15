@@ -65,6 +65,8 @@ public class LightController : MonoBehaviour
             lightOff.SetActive(false);
 
         }
+
+        
         
     }
 
@@ -83,17 +85,15 @@ public class LightController : MonoBehaviour
     }
 
 
-    public void Radiate()
+    public void Deem()
     {
         
-        if (light.intensity < 1.5f)
+        if (light.intensity > 0)
         {
-            light.intensity += 0.01f;
-            light.range += 0.01f;
+            light.intensity -= 0.01f;
+            Debug.Log(light.intensity);
+            
         }
-        else
-        {
-            isRadiateFinish = true;
-        }
+        
     }
 }
