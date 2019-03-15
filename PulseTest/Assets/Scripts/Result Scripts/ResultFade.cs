@@ -28,12 +28,13 @@ public class ResultFade : MonoBehaviour
 
     public void OnFadeComplete()
     {
-        //SceneManager.LoadScene(levelToLoad);
+        SceneManager.LoadScene(0);
     }
 
     public void FadeOut()
     {
         animator.Play("Fade_Out", 0, 0f);
+        Invoke("OnFadeComplete", 3f);
     }
 
     public void FadeOutStay()
