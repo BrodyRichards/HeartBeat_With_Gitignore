@@ -11,6 +11,7 @@ public class IconControl : MonoBehaviour
     public Animator animator;
     public GameObject journal;
     public GameObject iconsGroup;
+    public GameObject tabPrompt;
     public Image bg;
     [SerializeField]
     private Image rabbitIcon;
@@ -31,6 +32,7 @@ public class IconControl : MonoBehaviour
     {
         icons = new List<Image>{ rabbitIcon, ballIcon, musicIcon};
         journal.SetActive(false);
+        tabPrompt.SetActive(false);
         ToggleIcons(false);
         animator.SetBool("newAccom", false);
 
@@ -73,11 +75,13 @@ public class IconControl : MonoBehaviour
 
         if (journalTweening)
         {
+            tabPrompt.SetActive(true);
             animator.SetBool("newAccom", true);
             
         }
         else
         {
+            tabPrompt.SetActive(false);
             animator.SetBool("newAccom", false);
         }
 

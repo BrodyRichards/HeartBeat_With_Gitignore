@@ -2208,7 +2208,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1092448408
 Transform:
   m_ObjectHideFlags: 0
@@ -2221,7 +2221,7 @@ Transform:
   m_LocalScale: {x: -1.214, y: 1.214, z: 1.214}
   m_Children:
   - {fileID: 1024695997}
-  m_Father: {fileID: 1490269923}
+  m_Father: {fileID: 1838690079}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1092448409
@@ -2427,6 +2427,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1838690079}
     m_Modifications:
+    - target: {fileID: 1084809874421368897, guid: 5eef9da54e7f782418005bcee2536df3,
+        type: 3}
+      propertyPath: m_Name
+      value: journalIcon
+      objectReference: {fileID: 0}
     - target: {fileID: 1084809874421368898, guid: 5eef9da54e7f782418005bcee2536df3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2531,11 +2536,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1084809874421368897, guid: 5eef9da54e7f782418005bcee2536df3,
-        type: 3}
-      propertyPath: m_Name
-      value: journalIcon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5eef9da54e7f782418005bcee2536df3, type: 3}
@@ -2789,8 +2789,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1838690079}
-  - {fileID: 1787410748}
-  - {fileID: 1092448408}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3429,7 +3427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1787410748
 Transform:
   m_ObjectHideFlags: 0
@@ -3442,7 +3440,7 @@ Transform:
   m_LocalScale: {x: 1.271, y: 1.271, z: 1.271}
   m_Children:
   - {fileID: 881613083}
-  m_Father: {fileID: 1490269923}
+  m_Father: {fileID: 1838690079}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1787410749
@@ -3523,6 +3521,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 418332163}
+  - {fileID: 1787410748}
+  - {fileID: 1092448408}
   m_Father: {fileID: 1490269923}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
