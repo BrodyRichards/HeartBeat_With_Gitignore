@@ -15,6 +15,7 @@ public class McFreeMove : MonoBehaviour
     private Vector2 direction;
     public Vector3 scale;
     public Vector3 scaleOpposite;
+    private string[] controllersName = { "MC_happy", "MC_sad", "MC_controller" };
 
 
 
@@ -23,10 +24,10 @@ public class McFreeMove : MonoBehaviour
     {
 
         animForMC = GetComponent<Animator>();
-        //if (inFinalScene)
-        //{
-        //    AnimationMoodCheck();
-        //}
+        if (inFinalScene)
+        {
+            AnimationMoodCheck();
+        }
         scale = transform.localScale;
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 
@@ -130,19 +131,28 @@ public class McFreeMove : MonoBehaviour
     {
 
         var mood = MentalState.OverallResult();
+        //var mood = -10;
         if (mood < 5 && mood > -5) // no mood
         {
-            animForMC.SetInteger("mood", (int)Mood.idle);
+            SwitchAnimController((int)Mood.idle);
+            animForMC.SetFloat("speed", 1f);
         }
         else if (mood > 5) // happy
         {
-            animForMC.SetInteger("mood", (int)Mood.happy);
+            animForMC.SetFloat("speed", 0.25f);
+            SwitchAnimController((int)Mood.happy);
         }
         else
         {
+            animForMC.SetFloat("speed", 0.2f);
 
-            animForMC.SetInteger("mood", (int)Mood.sad);
+            SwitchAnimController((int)Mood.sad);
         }
+    }
+
+    private void SwitchAnimController(int i)
+    {
+        animForMC.runtimeAnimatorController = Resources.Load(controllersName[i]) as RuntimeAnimatorController;
     }
 }
 
