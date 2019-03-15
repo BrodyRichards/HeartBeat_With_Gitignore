@@ -16,6 +16,8 @@ public class BallProjectile : MonoBehaviour
     public LayerMask hittableObjects;
     //This is like its hitbox
     public float distance;
+    public float McCheckDist;
+    public float radius;
     public static bool meanBallThrown = false;
     //public static bool playBallPlayer = false;
 
@@ -30,68 +32,90 @@ public class BallProjectile : MonoBehaviour
         startPos = transform.position;
         meanSpeed = speed * 1.5f;
         delayTime = 0.5f;
+        McCheckDist = 10f;
+        radius = 4f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, distance, hittableObjects);
-        if (hit.collider != null && hit.collider.gameObject.name != "2")
+        //This check is to see if the MC is in view of the ball kid
+        RaycastHit2D[] McCheck = Physics2D.CircleCastAll(transform.position, radius, transform.right, McCheckDist, hittableObjects);
+        if (McCheck != null && CheckForMC(McCheck))
         {
-            if (hit.collider.CompareTag("Person") || hit.collider.CompareTag("MC"))
+            //Debug.Log("MC Detected");
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, distance, hittableObjects);
+            if (hit.collider != null && hit.collider.gameObject.name != "2")
             {
+                if (hit.collider.CompareTag("MC")) //hit.collider.CompareTag("Person") || 
+                {
+                    if (meanBallThrown)
+                    {
+                        //A mean ball was thrown
+                        //Debug.Log("You threw a mean ball!");
+                        //Update Mental State
+                        NpcName = hit.collider.gameObject.name;
+                        if (NpcName == "MC")
+                        {
+                            MentalState.sendMsg("Hit by ball");
+                            EmoControl.mcBallHit = true;
+                            McMovement.gotHit = true;
+                        }
 
-                
-                //Debug.Log("Name: " + NpcName);
-                //if (hit.collider.CompareTag("MC") && meanBallThrown)
+                        //MC gets hit by ball and doesn't play catch
+                        stationaryBall();
+                        //Reset meanBall bool
 
+                        //meanBallThrown = false;
+                    }
+                    else
+                    {
+                        //This is stuff for normal nicely thrown balls
+                        //Debug.Log("You played catch with " + hit.collider.gameObject.name);
+                        meanBallThrown = false;
+                        GameObject NPC = hit.collider.gameObject;
+                        NpcName = NPC.name;
+
+                        if (NPC.name == "MC")
+                        {
+                            MentalState.sendMsg("Played catch");
+                            McMovement.playedCatch = true;
+                            EmoControl.justPlayedCatch = true;
+                            GameObject.Find("MC").GetComponent<Animator>().SetTrigger("playCatch");
+                        }
+                        //NPC.GetComponent<PlayCatch>().hitByBall();
+                        PlayCatch delayCatch = NPC.GetComponent<PlayCatch>();
+                        GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", false);
+
+                        delayCatch.Invoke("hitByBall", delayTime);
+                        destroyBall();
+                    }
+                }
+            }
+        }
+        else
+        {
+            //Ball catch stuff for the NPCs
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, distance, hittableObjects);
+            if (hit.collider != null && hit.collider.gameObject.name != "2")
+            {
                 if (meanBallThrown)
                 {
-                    //A mean ball was thrown
-                    //Debug.Log("You threw a mean ball!");
-                    //Update Mental State
-                    NpcName = hit.collider.gameObject.name;
-                    if (NpcName == "MC")
-                    {
-                        MentalState.sendMsg("Hit by ball");
-                        EmoControl.mcBallHit = true;
-                        McMovement.gotHit = true;
-                    }
-                    
-                    //MC gets hit by ball and doesn't play catch
                     stationaryBall();
-                    //Reset meanBall bool
-                    
-                    //meanBallThrown = false;
                 }
                 else
                 {
-                    //This is stuff for normal nicely thrown balls
-                    //Debug.Log("You played catch with " + hit.collider.gameObject.name);
                     meanBallThrown = false;
                     GameObject NPC = hit.collider.gameObject;
-                    NpcName = NPC.name;
-
-                    if (NPC.name == "MC")
-                    {
-                        MentalState.sendMsg("Played catch");
-                        McMovement.playedCatch = true;
-                        EmoControl.justPlayedCatch = true;
-                        GameObject.Find("MC").GetComponent<Animator>().SetTrigger("playCatch");
-                        //Debug.Log("why??");  
-                    }
-                    //NPC.GetComponent<PlayCatch>().hitByBall();
                     PlayCatch delayCatch = NPC.GetComponent<PlayCatch>();
                     GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", false);
-                    
                     delayCatch.Invoke("hitByBall", delayTime);
-                    
                 }
+                destroyBall();
             }
-            destroyBall();
         }
 
-        if( transform.position.x > Playground.RightX ||
+        if ( transform.position.x > Playground.RightX ||
             transform.position.x < Playground.LeftX  ||
             transform.position.y > Playground.UpperY ||
             transform.position.y < Playground.LowerY - 5f )
@@ -144,6 +168,20 @@ public class BallProjectile : MonoBehaviour
     static Quaternion LookAt2D(Vector2 forward)
     {
         return Quaternion.Euler(0, 0, Mathf.Atan2(forward.y, forward.x) * Mathf.Rad2Deg);
+    }
+
+    //Helper function for checking if the MC is in the Circle Cast
+    private bool CheckForMC(RaycastHit2D[] results)
+    {
+        foreach(RaycastHit2D result in results)
+        {
+            if(result.collider.gameObject.name == "MC")
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void getBallAnim()
