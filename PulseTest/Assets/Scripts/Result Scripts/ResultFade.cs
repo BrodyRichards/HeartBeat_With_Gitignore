@@ -3,39 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TutorialFade : MonoBehaviour
+public class ResultFade : MonoBehaviour
 {
-    public Animator fadeAnimator;
+    public Animator animator;
     private int levelToLoad;
 
     // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown("4")){
-            FadeToLevel(2);
+            FadeToNextLevel();
         }
-        
     }
 
     public void FadeToNextLevel()
     {
-        FadeToLevel(SceneManager.GetActiveScene().buildIndex + 1);
+        //FadeToLevel();
     }
     public void FadeToLevel (int levelIndex)
     {
         levelToLoad = levelIndex;
-        fadeAnimator.SetTrigger("FadeOut");
+        animator.SetTrigger("FadeOut");
     }
 
     public void OnFadeComplete()
     {
-        SceneManager.LoadScene(levelToLoad);
-    }
-
-    public void FadeOut(){
-        fadeAnimator.Play("Fade_Out",0,0f);
-    }
-    public void FadeIn(){
-        fadeAnimator.Play("Fade_In",0,0f);
+        //SceneManager.LoadScene(levelToLoad);
     }
 }
