@@ -35,23 +35,23 @@ public class FlipJournal : MonoBehaviour
             haveYouReadMeYet[currentIndex] = true;
             whichDrawingsToShow(currentIndex);
             if (Input.GetKeyDown(KeyCode.A))
-            {
-                speechBubble1.SetActive(false);
-                speechBubble2.SetActive(false);
+            {           
                 currentIndex -= 1;
                 if (currentIndex == -1)
                 {
+                    speechBubble1.SetActive(false);
+                    speechBubble2.SetActive(false);
                     currentIndex = 0;
                     CloseJournalAndReset();
                 }
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
-                speechBubble1.SetActive(false);
-                speechBubble2.SetActive(false);
                 currentIndex += 1;
                 if (currentIndex == 3)
                 {
+                    speechBubble1.SetActive(false);
+                    speechBubble2.SetActive(false);
                     currentIndex = 2;
                     CloseJournalAndReset();
                 }
@@ -60,6 +60,8 @@ public class FlipJournal : MonoBehaviour
         }
         else
         {
+            speechBubble1.SetActive(false);
+            speechBubble2.SetActive(false);
             CloseJournalAndReset();
         }
         
