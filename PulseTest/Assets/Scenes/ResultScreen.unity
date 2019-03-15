@@ -687,8 +687,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1822444261
-  m_SortingLayer: 3
+  m_SortingLayerID: 2092895947
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: be7a6ee01f286c545be6f6cb6ad79986, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -711,7 +711,7 @@ Animator:
   m_GameObject: {fileID: 319385215}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f57a49d9c4953bd45a776bae38b568bd, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8baeb7da5e93cb642b3de00c5ba528a4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1089,8 +1089,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1822444261
-  m_SortingLayer: 3
+  m_SortingLayerID: 2092895947
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1ae2548728877bd479dd4c51ca19f379, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2811,6 +2811,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   journalIcon: {fileID: 418332162}
   sleepIcon: {fileID: 8318072189251770186}
+  bed: {fileID: 319385215}
 --- !u!1 &1519800436
 GameObject:
   m_ObjectHideFlags: 0
@@ -3397,8 +3398,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1822444261
-  m_SortingLayer: 3
+  m_SortingLayerID: 2092895947
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e1cf54f088d24954ca7aad3def51d49d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
