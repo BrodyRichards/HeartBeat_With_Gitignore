@@ -14,6 +14,7 @@ public class TutorialFade : MonoBehaviour
         if(Input.GetKeyDown("4")){
             FadeToLevel(2);
         }
+        
     }
 
     public void FadeToNextLevel()
@@ -29,5 +30,12 @@ public class TutorialFade : MonoBehaviour
     public void OnFadeComplete()
     {
         SceneManager.LoadScene(levelToLoad);
+    }
+
+    public void FadeOut(){
+        fadeAnimator.Play("Fade_Out",0,0f);
+    }
+    public void FadeIn(){
+        fadeAnimator.Play("Fade_In",0,0f);
     }
 }
