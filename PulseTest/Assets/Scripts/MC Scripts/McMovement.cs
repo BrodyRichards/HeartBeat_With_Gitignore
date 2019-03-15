@@ -12,6 +12,7 @@ public class McMovement : MonoBehaviour
     private int checkArrivals;
     private Vector2 direction;
     private enum Mood { happy, sad, idle };
+    private string[] controllersName = { "MC_happy", "MC_sad", "MC_controller"};
     private float step;
     public float speed;
     private double worldX;
@@ -268,11 +269,15 @@ public class McMovement : MonoBehaviour
             //var scaling = !isFlipped ? new Vector2(1.0f, 1.0f) : new Vector2(-1.0f, 1.0f);
             //transform.localScale = scaling;
             speed = 4;
-            anim.SetInteger("mood", (int)Mood.idle );
+            //anim.SetInteger("mood", (int)Mood.idle );
+            SwitchAnimController((int)Mood.idle);
+            anim.SetFloat("speed", 1f);
         }
         else if (MentalState.WithinRange(MentalState.currentState, MentalState.happyBound.x, MentalState.happyBound.y)) // happy
         {
-            anim.SetInteger("mood", (int)Mood.happy);
+            //anim.SetInteger("mood", (int)Mood.happy);
+            SwitchAnimController((int)Mood.happy);
+            anim.SetFloat("speed", 0.25f);
             speed = 6;
         }
         else if (MentalState.WithinRange(MentalState.currentState, MentalState.sadBound.x, MentalState.sadBound.y)) // sad 
@@ -280,8 +285,10 @@ public class McMovement : MonoBehaviour
             var scaling = isFlipped ? new Vector2(-1.1f, 1.1f) : new Vector2(1.1f, 1.1f);
             transform.localScale = scaling;
             
-            speed = 2;
-            anim.SetInteger("mood", (int)Mood.sad);
+            speed = 3;
+            //anim.SetInteger("mood", (int)Mood.sad);
+            SwitchAnimController((int)Mood.sad);
+            anim.SetFloat("speed", 0.1f);
         }
         else
         {
@@ -294,6 +301,11 @@ public class McMovement : MonoBehaviour
         float dist = Vector3.Distance(pos1, pos2);
         if (dist <= followDist) { return true; }
         return false;
+    }
+
+    private void SwitchAnimController(int i)
+    {
+        anim.runtimeAnimatorController = Resources.Load(controllersName[i]) as RuntimeAnimatorController;
     }
 }
     
