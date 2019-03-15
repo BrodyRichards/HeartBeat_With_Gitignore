@@ -61,8 +61,9 @@ public class EndJournal : MonoBehaviour
                     bed.GetComponent<SpriteRenderer>().enabled = true;
                     emptyBed.GetComponent<SpriteRenderer>().enabled = false;
                     GameObject.Find("MC").SetActive(false);
-                    Invoke("fadeOut", 1.0f);
-                    Invoke("fadeIn", 1.5f);
+                    //Invoke("fadeOut", 0.1f);
+                    Invoke("fadeOut", 0.5f);
+                    Invoke("fadeIn", 1.25f);
                     Invoke("GoToBedPlsKid", 2f);
                     Invoke("DeemTheLight", 3f);
 
