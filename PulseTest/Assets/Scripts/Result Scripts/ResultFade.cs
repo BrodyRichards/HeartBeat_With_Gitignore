@@ -30,4 +30,20 @@ public class ResultFade : MonoBehaviour
     {
         //SceneManager.LoadScene(levelToLoad);
     }
+
+    public void FadeOut()
+    {
+        animator.Play("Fade_Out", 0, 0f);
+    }
+
+    public void FadeOutStay()
+    {
+        Debug.Log("FHDSJK");
+        animator.Play("Fade_Out_Stay", 0, 0f);
+    }
+    public void FadeIn()
+    {
+        Debug.Log("HFSJK");
+        animator.Play("Fade_In", 0, 0f);
+    }
 }
