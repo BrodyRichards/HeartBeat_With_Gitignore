@@ -28,7 +28,7 @@ public class BallProjectile : MonoBehaviour
         Invoke("stationaryBall", lifetime);
         targetLoc = GameObject.Find("target").transform.position;
         startPos = transform.position;
-        meanSpeed = speed;
+        meanSpeed = speed * 1.5f;
         delayTime = 0.5f;
     }
 
@@ -55,6 +55,7 @@ public class BallProjectile : MonoBehaviour
                     {
                         MentalState.sendMsg("Hit by ball");
                         EmoControl.mcBallHit = true;
+                        McMovement.gotHit = true;
                     }
                     
                     //MC gets hit by ball and doesn't play catch
@@ -70,14 +71,14 @@ public class BallProjectile : MonoBehaviour
                     meanBallThrown = false;
                     GameObject NPC = hit.collider.gameObject;
                     NpcName = NPC.name;
+
                     if (NPC.name == "MC")
                     {
                         MentalState.sendMsg("Played catch");
                         McMovement.playedCatch = true;
                         EmoControl.justPlayedCatch = true;
                         GameObject.Find("MC").GetComponent<Animator>().SetTrigger("playCatch");
-                        Debug.Log("why??");
-                        
+                        //Debug.Log("why??");  
                     }
                     //NPC.GetComponent<PlayCatch>().hitByBall();
                     PlayCatch delayCatch = NPC.GetComponent<PlayCatch>();
@@ -100,7 +101,7 @@ public class BallProjectile : MonoBehaviour
 
         if (meanBallThrown)
         {
-            speed = meanSpeed * 1.5f;
+            speed = meanSpeed;
             transform.Translate(Vector2.right * speed * Time.deltaTime);
         }
         else
@@ -134,11 +135,6 @@ public class BallProjectile : MonoBehaviour
     private void stationaryBall()
     {
         //Sound and special FX can go here
-        if (meanBallThrown)
-        {
-            McMovement.gotHit = true;
-        }
-
         Destroy(gameObject);
         GameObject newBall = Instantiate(gameObject, transform.position, Quaternion.identity);
         newBall.name = "newBall";
