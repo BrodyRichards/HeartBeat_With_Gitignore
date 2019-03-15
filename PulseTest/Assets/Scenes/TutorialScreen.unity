@@ -1292,7 +1292,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -23.8}
+  m_AnchoredPosition: {x: 0, y: -23.800003}
   m_SizeDelta: {x: 44.4, y: 54.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &455853392
@@ -4609,6 +4609,7 @@ MonoBehaviour:
   mc: {fileID: 914818211}
   pointLight: {fileID: 236231324}
   directionalLight: {fileID: 967474705}
+  fadeObject: {fileID: 724679100}
 --- !u!1 &2131656256
 GameObject:
   m_ObjectHideFlags: 0

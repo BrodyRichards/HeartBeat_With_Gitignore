@@ -11,6 +11,7 @@ public class TutorialProcControl : MonoBehaviour
 
     public GameObject pointLight;
     public GameObject directionalLight;
+    public GameObject fadeObject;
 
     private bool mcWokeUp = false;
     private float mcAppearWaitTime = 4f; // Play around with the value for fade in/out
@@ -34,6 +35,11 @@ public class TutorialProcControl : MonoBehaviour
             animForBed.SetTrigger("wakeuplo");
             mcWokeUp = true;
             Invoke("MagicMcAppear", mcAppearWaitTime);
+            //var meh = fadeObject.GetComponent<TutorialFade>();
+            //meh.FadeOut();
+            //meh.FadeIn();
+            Invoke("fadeOut", mcAppearWaitTime - 0.5f);
+            Invoke("fadeIn", mcAppearWaitTime);
         }
     }
 
@@ -45,4 +51,18 @@ public class TutorialProcControl : MonoBehaviour
         emptyBed.SetActive(true);
         
     }
+
+    private void fadeIn()
+    {
+        var meh = fadeObject.GetComponent<TutorialFade>();
+        meh.FadeIn();
+    }
+
+    private void fadeOut()
+    {
+        var meh = fadeObject.GetComponent<TutorialFade>();
+        meh.FadeOutStay();
+    }
+
+
 }

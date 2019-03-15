@@ -35,7 +35,13 @@ public class TutorialFade : MonoBehaviour
     public void FadeOut(){
         fadeAnimator.Play("Fade_Out",0,0f);
     }
+
+    public void FadeOutStay()
+    {
+        fadeAnimator.Play("Fade_Out_Stay", 0, 0f);
+    }
     public void FadeIn(){
         fadeAnimator.Play("Fade_In",0,0f);
     }
+
 }
