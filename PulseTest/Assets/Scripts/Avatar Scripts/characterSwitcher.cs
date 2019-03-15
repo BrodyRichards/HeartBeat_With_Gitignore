@@ -74,6 +74,7 @@ public class characterSwitcher : MonoBehaviour
                 GameObject.Find("MC").GetComponent<Animator>().SetBool("wantToPlay", false);
                 GameObject.Find("MC").GetComponent<Animator>().SetBool("isWalking", true);
                 Movement.timeToLeave = true;
+                disableOthers();
                 EnableAll();
                 this.enabled = false;
                 GameObject.Find("BellRing").GetComponent<AudioSource>().Play();
