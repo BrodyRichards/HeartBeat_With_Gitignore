@@ -96,9 +96,10 @@ MonoBehaviour:
   targetLoc: {x: 0, y: 0, z: 0}
   startPos: {x: 0, y: 0, z: 0}
   arcHeight: 2
+  delayTime: 0
   speed: 15
   meanSpeed: 0
-  lifetime: 1
+  lifetime: 0.75
   hittableObjects:
     serializedVersion: 2
     m_Bits: 512

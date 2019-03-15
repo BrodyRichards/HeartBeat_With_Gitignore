@@ -6,12 +6,16 @@ public class FlipJournal : MonoBehaviour
 {
     public GameObject[] journalPages;
     public GameObject[] journalDrawings; // 0 rabbit+ 1 rabbit- 2 ballkid+ 3 ballkid- 4 music+ 5 music-
+    public GameObject speechBubble1;
+    public GameObject speechBubble2;
     public static bool finishReadingJournal = false;
     private int currentIndex = 0;
     private bool[] haveYouReadMeYet;
     // Start is called before the first frame update
     void Start()
     {
+        speechBubble1.SetActive(false);
+        speechBubble2.SetActive(false);
         foreach(var j in journalPages)
         {
             j.SetActive(false);
@@ -25,11 +29,15 @@ public class FlipJournal : MonoBehaviour
     {
         if (EndJournal.journalIsOpened)
         {
+            speechBubble1.SetActive(true);
+            speechBubble2.SetActive(true);
             EnableThisDisableRest(currentIndex, journalPages);
             haveYouReadMeYet[currentIndex] = true;
             whichDrawingsToShow(currentIndex);
             if (Input.GetKeyDown(KeyCode.A))
             {
+                speechBubble1.SetActive(false);
+                speechBubble2.SetActive(false);
                 currentIndex -= 1;
                 if (currentIndex == -1)
                 {
@@ -39,6 +47,8 @@ public class FlipJournal : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
+                speechBubble1.SetActive(false);
+                speechBubble2.SetActive(false);
                 currentIndex += 1;
                 if (currentIndex == 3)
                 {
