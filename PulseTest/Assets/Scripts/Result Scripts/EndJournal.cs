@@ -65,7 +65,7 @@ public class EndJournal : MonoBehaviour
                     Invoke("fadeOut", 0.5f);
                     Invoke("fadeIn", 1.25f);
                     Invoke("GoToBedPlsKid", 2f);
-                    Invoke("DeemTheLight", 3f);
+                    Invoke("DeemTheLight", 8f);
 
                 }
                 
@@ -81,7 +81,8 @@ public class EndJournal : MonoBehaviour
 
     void DeemTheLight()
     {
-        deemLight = true;
+        var meh = fadeObject.GetComponent<ResultFade>();
+        meh.FadeOut();
     }
 
     private void fadeOut()
