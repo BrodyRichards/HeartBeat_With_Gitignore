@@ -6,6 +6,7 @@ public class EndJournal : MonoBehaviour
 {
     public GameObject journalIcon;
     public GameObject sleepIcon;
+    public GameObject tabIcon;
     public GameObject bed;
     public static bool journalIsOpened = false;
     private Animator anim;
@@ -16,6 +17,7 @@ public class EndJournal : MonoBehaviour
         anim = journalIcon.GetComponent<Animator>();
         bedAnim = bed.GetComponent<Animator>();
         journalIcon.SetActive(false);
+        tabIcon.SetActive(false);
     }
 
     // Update is called once per frame
@@ -25,6 +27,7 @@ public class EndJournal : MonoBehaviour
         {
             journalIcon.SetActive(true);
             anim.SetBool("newAccom", true);
+            tabIcon.SetActive(true);
         }
 
         if (journalIcon.activeSelf)
@@ -33,8 +36,8 @@ public class EndJournal : MonoBehaviour
             {
                 
                 journalIsOpened = true;
-                
-                
+                tabIcon.SetActive(false);
+
             }
             else if (Input.GetKeyDown(Control.pullJournal) && journalIsOpened)
             {
@@ -46,6 +49,7 @@ public class EndJournal : MonoBehaviour
         {
             sleepIcon.SetActive(true);
             anim.SetBool("newAccom", false);
+            tabIcon.SetActive(false);
             if (Input.GetKeyDown(Control.evacuate))
             {
                 if (GameObject.Find("MC") != null)
