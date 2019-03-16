@@ -66,7 +66,7 @@ public class characterSwitcher : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(Control.evacuate) && !MentalState.journalInProgress)
+            if (Input.GetKeyDown(Control.evacuate) && !MentalState.journalInProgress && !IconControl.journalActivated)
             {
                 charChoice = 1000;
                 GameObject.Find("MC").GetComponent<Movement>().enabled = true;
