@@ -43,7 +43,15 @@ public class BallThrow : MonoBehaviour
     void ThrowBall()
     {
         thrownBall = true;
-        anim.SetBool("isThrowing", true);
+        if (isMeanBall)
+        {
+            anim.SetBool("isThrowing", true);
+        }
+        else
+        {
+            anim.SetTrigger("kindThrow");
+        }
+        
         
 
         // postpone 0.6 seconds to finish the animation

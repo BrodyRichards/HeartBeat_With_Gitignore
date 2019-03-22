@@ -51,7 +51,7 @@ public class Movement : MonoBehaviour
     {
         var v2 = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        if (v2.x != 0 || v2.y != 0)
+        if (v2.x != 0 || v2.y!=0 )
         {
             anim.SetBool("isWalking", true);
         }
