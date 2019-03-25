@@ -104,7 +104,7 @@ public class McMovement : MonoBehaviour
                         McGoesToAvatar(NpcInstantiator.ballKidPos, step);
                     }
                 }
-                else if (RadioControl.mcIsAffected && RadioControl.currentMood == 0)
+                else if (RadioControl.musicListener=="MC" && RadioControl.currentMood == 0)
                 {
                     anim.SetBool("isWalking", false);
                 }

@@ -18,8 +18,6 @@ public class EmoControl : MonoBehaviour
     public static bool rabbitHug = false;
     public static bool bitten = false;
     public static bool justPlayedCatch = false;
-    private bool rabitJustHug = false;
-    private bool emoDist;
 
     public static bool hasEmo = false;
     public static bool emoChanged = false;
@@ -36,15 +34,9 @@ public class EmoControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        //emoDist = Playground.CheckDist(NpcInstantiator.musicKidPos, transform.position, Playground.MusicAoe);
-
-        
-
         if (mcBallHit || bitten)
         {
             hasEmo = true;
-            sr.enabled = true;
             sr.sprite = angry;
             Invoke("DestroyEmotion", 1f);
 
@@ -53,23 +45,21 @@ public class EmoControl : MonoBehaviour
         {
             
             hasEmo = true;
-            sr.enabled = true;
             sr.sprite = happy;
         }
         else if (justPlayedCatch)
         {
             hasEmo = true;
-            sr.enabled = true;
             sr.sprite = happy;
             Invoke("DestroyEmotion", 1f);
         }
-        else if (RadioControl.mcIsAffected)
+        else if (RadioControl.musicListener=="MC")
         {
             ReactToMusic();
         }
         else
         {
-            sr.enabled = false;
+            sr.sprite = null;
         }
     }
    
@@ -82,42 +72,28 @@ public class EmoControl : MonoBehaviour
 
     public void ReactToMusic()
     {
-        switch (RadioControl.currentMood)
+        if (RadioControl.currentMood == 0)
         {
-            case 0:
-                
-                sr.enabled = true;
-                hasEmo = true;
-                sr.sprite = happy;
-                gameObject.transform.localScale = new Vector2(1.0f, 1.0f);
-                CRunning = true;
-                break;
-            case 1:
-                sr.enabled = true;
-                hasEmo = true;
-                sr.sprite = sad;
-                gameObject.transform.localScale = new Vector2(1.0f, 1.0f);
-                CRunning = true;
-                break;
-            default:
-                sr.enabled = false;
-                hasEmo = false;
-                sr.sprite = null;
-                
-                break;
-        }
-    }
-
-    IEnumerator IncrementMoodLog(string msg, int mood)
-    {
-        Debug.Log("emoDist" + emoDist);
-        while(RadioControl.currentMood == mood && emoDist)
+            hasEmo = true;
+            sr.sprite = happy;
+        }else if (RadioControl.currentMood == 1)
         {
-            yield return new WaitForSeconds(3f);
-            MentalState.sendMsg(msg);
+            hasEmo = true;
+            sr.sprite = sad;
         }
-        yield break;
+        
     }
+    //[Obsolete]
+    //IEnumerator IncrementMoodLog(string msg, int mood)
+    //{
+    //    Debug.Log("emoDist" + emoDist);
+    //    while(RadioControl.currentMood == mood && emoDist)
+    //    {
+    //        yield return new WaitForSeconds(3f);
+    //        MentalState.sendMsg(msg);
+    //    }
+    //    yield break;
+    //}
 
     
 }

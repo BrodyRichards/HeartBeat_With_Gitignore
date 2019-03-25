@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class RadioControl : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
     public static int currentMood = 0;
     public static string musicListener = "";
     public static bool mcIsAffected = false;
     public static bool npcIsAffected = false;
     public static bool isMusic = false;
+    public static float actionDist;
 
     private bool musicNoteCreated = false;
     private bool isBG;
@@ -43,14 +44,13 @@ public class RadioControl : MonoBehaviour
     public Sprite sadNote3;
 
 
-    public static float actionDist;
+    
 
 
     Sprite[] sprites;
     Sprite[] happyNoteSprites;
     Sprite[] sadNoteSprites;
     AudioClip[] audioClips;
-    Color[] particleColors;
 
 
     private void Start()
@@ -59,7 +59,6 @@ public class RadioControl : MonoBehaviour
         happyNoteSprites = new Sprite[] { happyNote1, happyNote2, happyNote3 };
         sadNoteSprites = new Sprite[] { sadNote1, sadNote2, sadNote3 };
         audioClips = new AudioClip[] { happySong, sadSong };
-        particleColors = new Color[] { Color.yellow, Color.cyan };
         currentMood = (int) Mood.idle;
 
         sr = GetComponent<SpriteRenderer>();
@@ -67,7 +66,6 @@ public class RadioControl : MonoBehaviour
         backgroundMusic = GameObject.Find("/GameController").GetComponent<AudioSource>();
 
         isBG = true;
-        ps.Stop();
         actionDist = 4f;
 
     }
@@ -81,11 +79,10 @@ public class RadioControl : MonoBehaviour
             
             DetectAction();
             DetectMusic();
+            SendNotesToMusicListenerOrDestroy();
         }
         else
         {
-            
-            // ps.Stop();
             TurnBgOn();
             ResetThisGuy();
         }
@@ -93,17 +90,17 @@ public class RadioControl : MonoBehaviour
 
     private void DetectAction()
     {
-        if (Input.GetKeyDown(Control.positiveAction) && currentMood != 0)
+        if (Input.GetKeyDown(Control.positiveAction) && currentMood != (int)Mood.happy)
         {
             PlaySong(0);
             TurnBgOff();
         }
-        else if (Input.GetKeyDown(Control.negativeAction) && currentMood != 1)
+        else if (Input.GetKeyDown(Control.negativeAction) && currentMood != (int)Mood.sad)
         {
             PlaySong(1);
             TurnBgOff();
         }
-        else if ((Input.GetKeyDown(Control.negativeAction) && currentMood == 1) || (Input.GetKeyDown(Control.positiveAction) && currentMood == 0))
+        else if ((Input.GetKeyDown(Control.negativeAction) && currentMood == (int)Mood.sad) || (Input.GetKeyDown(Control.positiveAction) && currentMood == (int)Mood.happy))
         {
             ResetThisGuy();
             TurnBgOn();
@@ -132,11 +129,9 @@ public class RadioControl : MonoBehaviour
                     
                     if (coll.gameObject.tag == "MC" && !mcIsAffected)
                     {
-                        
-                       
                         musicListener = coll.gameObject.name;
                         mcIsAffected = true;
-                        // 3 seconds later call this function and reset MC 
+                        // 4 seconds later call this function and reset MC 
                         Invoke("McNotAffected", mcAffectedInterval);
                     }
                     else if (coll.gameObject.tag == "Person" && !mcIsAffected && !npcIsAffected)
@@ -144,29 +139,23 @@ public class RadioControl : MonoBehaviour
                         
                         npcIsAffected = true;
                         musicListener = coll.gameObject.name;
-                        //Debug.Log(musicListener);
-                        // 3 seconds later reset npc
                         Invoke("NpcNotAffected", 3f);
                         break;
                     }
                 }
             }
+            else
+            {
+                ResetAffectedPeople();
+                
+            }
         }
         else
         {
-            // reset 
-            mcIsAffected = false;
-            npcIsAffected = false;
-            musicListener = "";
-            
-            
-
+            ResetAffectedPeople();
         }
 
-        if (musicListener!="")
-        {
-            SendMusicToTarget(GameObject.Find(musicListener));
-        }
+        
         
 
     }
@@ -181,19 +170,11 @@ public class RadioControl : MonoBehaviour
 
         audioSource.Play();
 
-        //EmitParticles(index);
-
         isMusic = true;
 
     }
    
 
-    private void EmitParticles(int index)
-    {
-
-        ps.startColor = particleColors[index];
-        ps.Play();
-    }
 
     private void ResetThisGuy()
     {
@@ -204,7 +185,6 @@ public class RadioControl : MonoBehaviour
         isMusic = false;
         DestroyRemainingNote();
 
-        //ps.Stop();
     }
     private void TurnBgOff()
     {
@@ -255,6 +235,11 @@ public class RadioControl : MonoBehaviour
         var tempList = GameObject.FindGameObjectsWithTag("MusicNote");
         foreach (var temp in tempList)
         {
+            if (Vector2.Distance(temp.transform.position, target.transform.position) > actionDist + 5f)
+            {
+                Destroy(temp);
+                continue;
+            }
             temp.transform.position = Vector3.MoveTowards(temp.transform.position, target.transform.position, 10f * Time.deltaTime);
             if (temp.transform.position == target.transform.position)
             {
@@ -266,16 +251,7 @@ public class RadioControl : MonoBehaviour
         
     }
 
-    //private float RoatateParticles(Vector3 myself, GameObject other)
-    //{
-    //    var dir = other.transform.position - myself;
-    //    dir = other.transform.InverseTransformDirection(dir);
-    //    var angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
-    //    Debug.Log(" particle is rotating!! " + angle);
-    //    return angle;
-        
-        
-    //}
+
 
     private void CreateMusicNote()
     {
@@ -313,4 +289,34 @@ public class RadioControl : MonoBehaviour
         foreach (var t in temp) { Destroy(t); }
         //musicNoteCreated = false;
     }
+
+    private void ResetAffectedPeople()
+    {
+        mcIsAffected = false;
+        npcIsAffected = false;
+        musicListener = "";
+    }
+
+    private void SendNotesToMusicListenerOrDestroy()
+    {
+        if (musicListener != "")
+        {
+            SendMusicToTarget(GameObject.Find(musicListener));
+        }
+        else
+        {
+            DestroyRemainingNote();
+        }
+    }
+
+    //private float RoatateParticles(Vector3 myself, GameObject other)
+    //{
+    //    var dir = other.transform.position - myself;
+    //    dir = other.transform.InverseTransformDirection(dir);
+    //    var angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
+    //    Debug.Log(" particle is rotating!! " + angle);
+    //    return angle;
+
+
+    //}
 }
