@@ -123,7 +123,7 @@ public class RadioControl : MonoBehaviour
                     if (!musicNoteCreated)
                     {
                         CreateMusicNote();
-                        var musicCreatedInterval = (currentMood == 0 ? 0.2f : 0.6f);
+                        var musicCreatedInterval = (currentMood == 0 ? 0.3f : 0.6f);
                         Invoke("ResetMusicNote", musicCreatedInterval);
                     }
                     
@@ -280,6 +280,9 @@ public class RadioControl : MonoBehaviour
         SpriteRenderer srsr = go.GetComponent<SpriteRenderer>();
         var index = UnityEngine.Random.Range(0, 3);
         srsr.sprite = spriteArray[index];
+        var col = srsr.color;
+        col.a = 0.8f;
+        srsr.color = col;
         return go;
     }
 
