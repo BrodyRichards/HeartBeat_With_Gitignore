@@ -2983,7 +2983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &794478680
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -17562,6 +17562,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642466804788993816, guid: fce55a7740c9bd7488d94c06368b7557,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901192932752524100, guid: fce55a7740c9bd7488d94c06368b7557,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2030066595
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901192932752524100, guid: fce55a7740c9bd7488d94c06368b7557,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fce55a7740c9bd7488d94c06368b7557, type: 3}

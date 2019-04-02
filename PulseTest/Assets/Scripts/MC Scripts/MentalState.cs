@@ -87,6 +87,8 @@ public class MentalState : MonoBehaviour
             Debug.Log("ResetEmoControl");
             currentActionCombo = 0;
             coolDownCounting = 5.0f;
+            
+               
             return;
         }
 
