@@ -5,6 +5,9 @@ using UnityEngine;
 public class MentalState : MonoBehaviour
 {
     public static int currentState;
+    public static int currentActionCombo;
+    public static float coolDownCounting = 0.0f;
+    public static string lastEvent = "";
 
     public static Dictionary<string, int> moodLog;
     public static Dictionary<string, int> effectWeights;
@@ -17,6 +20,7 @@ public class MentalState : MonoBehaviour
     public readonly static Vector2Int happyBound = new Vector2Int(6, 30);
     public readonly static Vector2Int sadBound = new Vector2Int(-30, -6);
     public readonly static Vector2Int normalBound = new Vector2Int(-5, 5);
+    public readonly static int comboBound = 4;
 
     // Played catch, Hit by ball, Held Rabbit, Bit by rabbit, Happy Song, Sad Song
     // Start is called before the first frame update
@@ -52,6 +56,15 @@ public class MentalState : MonoBehaviour
     void Update()
     {
         noEventCounting += Time.deltaTime;
+        if (!Mathf.Approximately(coolDownCounting, float.Epsilon) && coolDownCounting > 0.0f)
+        {
+            coolDownCounting -= Time.deltaTime;
+        }
+        else
+        {
+            coolDownCounting = 0.0f;
+        }
+        
         //Debug.Log(noEventCounting);
         // if more than 10 seconds without event happening, do the pacifying thing 
         if (noEventCounting > 10f)
@@ -62,6 +75,21 @@ public class MentalState : MonoBehaviour
 
     public static void sendMsg(string msg)
     {
+        currentActionCombo = lastEvent == msg ? currentActionCombo + 1 : 1;
+        if (!Mathf.Approximately(coolDownCounting, float.Epsilon) && lastEvent == msg)
+        {
+            // if the action is still on cool down, skip function
+            return;
+        }
+        else if (currentActionCombo > comboBound)
+        {
+            // if the action exceeds the combo bound, skip function
+            Debug.Log("ResetEmoControl");
+            currentActionCombo = 0;
+            coolDownCounting = 5.0f;
+            return;
+        }
+
         int currCount;
         moodLog.TryGetValue(msg, out currCount);
         moodLog[msg] = currCount + 1;
@@ -119,6 +147,7 @@ public class MentalState : MonoBehaviour
     {
         var tempEmo = EmoPlot.CreateInstance(Mathf.RoundToInt(Time.timeSinceLevelLoad), currentState, m);
         emoTimeline.Enqueue(tempEmo);
+        lastEvent = m;
         // if the emotiontime line already contain more than 30 objects, dequeue 
         if (emoTimeline.Count > 30) // can playaround with the value 
         {

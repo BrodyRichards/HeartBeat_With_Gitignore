@@ -46,4 +46,6 @@ public class EmoPlot : ScriptableObject
     {
         get { return mood; }
     }
+
+    
 }

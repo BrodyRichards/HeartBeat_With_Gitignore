@@ -16,7 +16,7 @@ public class RadioControl : MonoBehaviour
     private bool musicNoteCreated = false;
     private bool isBG;
 
-    private readonly float mcAffectedInterval = 4f;
+    private readonly float mcAffectedInterval = 3f;
     //private readonly float musicCreatedInterval = 0.2f;
 
     public LayerMask Carriers;
@@ -133,6 +133,7 @@ public class RadioControl : MonoBehaviour
                         mcIsAffected = true;
                         // 4 seconds later call this function and reset MC 
                         Invoke("McNotAffected", mcAffectedInterval);
+
                     }
                     else if (coll.gameObject.tag == "Person" && !mcIsAffected && !npcIsAffected)
                     {
@@ -146,8 +147,7 @@ public class RadioControl : MonoBehaviour
             }
             else
             {
-                ResetAffectedPeople();
-                
+                musicListener = "";
             }
         }
         else
@@ -184,6 +184,7 @@ public class RadioControl : MonoBehaviour
         audioSource.Pause();
         isMusic = false;
         DestroyRemainingNote();
+        CancelInvoke("McNotAffected");
 
     }
     private void TurnBgOff()

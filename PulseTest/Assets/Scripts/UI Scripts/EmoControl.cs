@@ -13,6 +13,9 @@ public class EmoControl : MonoBehaviour
     public Sprite angry;
 
     private SpriteRenderer sr;
+    private float emoSize = 1f;
+    private float sFa = 0.5f; // scaling factor
+    private float iFa = 0.05f; // incrementing size value per update for emo sprite
 
     public static bool mcBallHit = false;
     public static bool rabbitHug = false;
@@ -34,6 +37,11 @@ public class EmoControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!EmoResetSize())
+        {
+            EmoGrowInSize();
+        }
+        
         if (mcBallHit || bitten)
         {
             hasEmo = true;
@@ -43,7 +51,6 @@ public class EmoControl : MonoBehaviour
         }
         else if (rabbitHug)
         {
-            
             hasEmo = true;
             sr.sprite = happy;
         }
@@ -68,6 +75,7 @@ public class EmoControl : MonoBehaviour
         bitten = false;
         mcBallHit = false;
         justPlayedCatch = false;
+        sr.sprite = null;
     }
 
     public void ReactToMusic()
@@ -76,12 +84,43 @@ public class EmoControl : MonoBehaviour
         {
             hasEmo = true;
             sr.sprite = happy;
-        }else if (RadioControl.currentMood == 1)
+        }
+        else if (RadioControl.currentMood == 1)
         {
             hasEmo = true;
             sr.sprite = sad;
         }
         
+    }
+
+    public void EmoGrowInSize()
+    {
+        if (emoSize < MentalState.currentActionCombo)
+        {
+            emoSize += iFa;
+            transform.localScale = new Vector2(sFa * Mathf.Sqrt(emoSize) , sFa * Mathf.Sqrt(emoSize));
+        }
+
+        if (MentalState.currentActionCombo == 1)
+        {
+            emoSize = 1f;
+            transform.localScale = new Vector2(sFa * emoSize, sFa * emoSize);
+        }
+
+    }
+
+    public bool EmoResetSize()
+    {
+        // if resetting, show no emoticon 
+        if (MentalState.currentActionCombo == 0)
+        {
+            transform.localScale = new Vector2(0f, 0f);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     //[Obsolete]
     //IEnumerator IncrementMoodLog(string msg, int mood)
