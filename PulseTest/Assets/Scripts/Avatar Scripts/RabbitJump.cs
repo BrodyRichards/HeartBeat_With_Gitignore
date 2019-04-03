@@ -10,6 +10,8 @@ public class RabbitJump : MonoBehaviour
     public static string bitNpcName = "";
     public LayerMask Carriers;
     public float actionDist;
+    public float biteTimer;
+    private float coolTime;
     private Rigidbody2D rb;
     private double currentPosX;
     private double lastPosX;
@@ -21,6 +23,8 @@ public class RabbitJump : MonoBehaviour
     {
         lastPosX = transform.position.x;
         actionDist = 4f;
+        biteTimer = 2f;
+        coolTime = 0f;
     }
 
     // Update is called once per frame
@@ -32,10 +36,8 @@ public class RabbitJump : MonoBehaviour
 
     public void JumpIntoArms()
     {
-
-
         //Swap a flag
-        if(bittenMC)
+        if (bittenMC)
         {
             bittenMC = !bittenMC;
         }
@@ -78,32 +80,36 @@ public class RabbitJump : MonoBehaviour
             } 
 
         }else if (Input.GetKeyDown(Control.negativeAction))
-        { 
-
-            //Rabbit bite code!
-            //Send out circle cast to see who's around to munch on
-            //RaycastHit2D biteCheck = Physics2D.CircleCast(transform.position, actionDist, Vector2.zero);
-            Collider2D[] theBitten = Physics2D.OverlapCircleAll(transform.position, actionDist, Carriers);
-
-            if (theBitten.Length != 0)
+        {
+            if(Time.time >= coolTime)
             {
-                Array.Reverse(theBitten);
+                coolTime = Time.time + biteTimer;
+                //Rabbit bite code!
+                //Send out circle cast to see who's around to munch on
+                //RaycastHit2D biteCheck = Physics2D.CircleCast(transform.position, actionDist, Vector2.zero);
+                Collider2D[] theBitten = Physics2D.OverlapCircleAll(transform.position, actionDist, Carriers);
 
-                //Run through each item and check collisions. MC will always be first
-                //because it is sorted in increasing order of Z coordinate. 
-                foreach (Collider2D victim in theBitten)
+                if (theBitten.Length != 0)
                 {
-                    if (victim.gameObject.tag == "MC")
+                    Array.Reverse(theBitten);
+
+                    //Run through each item and check collisions. MC will always be first
+                    //because it is sorted in increasing order of Z coordinate. 
+                    foreach (Collider2D victim in theBitten)
                     {
-                        bittenMC = true;
-                        EmoControl.bitten = true;
-                        MentalState.sendMsg("Bit by rabbit");
-                        PutRabbitDown();
-                    }
-                    else if (victim.gameObject.tag == "Person")
-                    {
-                        Debug.Log("I bit " + victim.gameObject.name + "!");
-                        bitNpcName = victim.gameObject.name;
+                        if (victim.gameObject.tag == "MC")
+                        {
+                            bittenMC = true;
+                            EmoControl.bitten = true;
+                            MentalState.sendMsg("Bit by rabbit");
+                            PutRabbitDown();
+                        }
+                        else if (victim.gameObject.tag == "Person")
+                        {
+                            Debug.Log("I bit " + victim.gameObject.name + "!");
+                            bitNpcName = victim.gameObject.name;
+                        }
+                        break;
                     }
                 }
             }
