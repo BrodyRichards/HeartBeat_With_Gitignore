@@ -25,6 +25,7 @@ public class TutorialSpirit : MonoBehaviour
         bed = GameObject.Find("bed");
         transform.position = bed.transform.position;
         possessed = bed;
+        goToMC = false;
     }
 
     // Update is called once per frame

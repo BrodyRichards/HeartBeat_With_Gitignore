@@ -75,52 +75,44 @@ public class McMovement : MonoBehaviour
         float step = speed * Time.deltaTime;
         if (walkedIn || endScene || tutorialScene)
         {
-            if (!EmoControl.emoChanged)
+            FlipAssetDirection();
+            AnimationMoodCheck();
+
+            if (RabbitJump.bittenMC)
             {
-
-                FlipAssetDirection();
-                AnimationMoodCheck();
-
-                if (RabbitJump.bittenMC)
+                if (!CRunning)
                 {
-                    if (!CRunning)
-                    {
-                        CRunning = true;
-                        StartCoroutine(McRunsFromAvatar(NpcInstantiator.rabbitPos, step));
-                    }
+                    CRunning = true;
+                    StartCoroutine(McRunsFromAvatar(NpcInstantiator.rabbitPos, step));
                 }
-                else if (CheckDist(transform.position, NpcInstantiator.ballKidPos) && BallProjectile.meanBallThrown && gotHit)
+            }
+            else if (CheckDist(transform.position, NpcInstantiator.ballKidPos) && BallProjectile.meanBallThrown && gotHit)
+            {
+                if (!CRunning)
                 {
-                    if (!CRunning)
-                    {
-                        CRunning = true;
-                        StartCoroutine(McRunsFromAvatar(NpcInstantiator.ballKidPos, step));
-                    }
+                    CRunning = true;
+                    StartCoroutine(McRunsFromAvatar(NpcInstantiator.ballKidPos, step));
                 }
-                else if (CheckDist(transform.position, NpcInstantiator.ballKidPos) && !endScene && stillInterested && !RabbitJump.beingCarried)
+            }
+            else if (CheckDist(transform.position, NpcInstantiator.ballKidPos) && !endScene && stillInterested && !RabbitJump.beingCarried)
+            {
+                if (!CRunning)
                 {
-                    if (!CRunning)
-                    {
-                        McGoesToAvatar(NpcInstantiator.ballKidPos, step);
-                    }
+                    McGoesToAvatar(NpcInstantiator.ballKidPos, step);
                 }
-                else if (RadioControl.musicListener=="MC" && RadioControl.currentMood == 0)
-                {
-                    anim.SetBool("isWalking", false);
-                }
-                else
-                {
-                    if (!CRunning)
-                    {
-                        GoToWaypoints(step);
-                        anim.SetBool("wantToPlay", false);
-                        anim.SetBool("isWalking", true);
-                    }
-                }
+            }
+            else if (RadioControl.musicListener=="MC" && RadioControl.currentMood == 0)
+            {
+                anim.SetBool("isWalking", false);
             }
             else
             {
-                anim.SetBool("isWalking", false);
+                if (!CRunning)
+                {
+                    GoToWaypoints(step);
+                    anim.SetBool("wantToPlay", false);
+                    anim.SetBool("isWalking", true);
+                }
             }
         }
     }

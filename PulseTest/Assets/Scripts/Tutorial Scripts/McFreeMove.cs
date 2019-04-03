@@ -5,7 +5,7 @@ using UnityEngine;
 public class McFreeMove : MonoBehaviour
 {
 
-    private float currSpeed = 0f;
+    private float currSpeed;
     private Animator animForMC;
     private enum Mood { happy, sad, idle };
     public float maxSpeed;
@@ -17,7 +17,10 @@ public class McFreeMove : MonoBehaviour
     public Vector3 scaleOpposite;
     private string[] controllersName = { "MC_happy", "MC_sad", "MC_controller" };
 
-
+    private void Awake()
+    {
+        currSpeed = 0f;
+    }
 
     // Start is called before the first frame update
     void Start()

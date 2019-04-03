@@ -19,7 +19,7 @@ public class CameraMovement : MonoBehaviour
     public GameObject mainChar;
     private int lookMC = 0;
     private int mcCheck;
-    private bool reachMC = false;
+    private bool reachMC;
 
     private float speed = 30f;
     private int choice;
@@ -36,6 +36,11 @@ public class CameraMovement : MonoBehaviour
 
     float time;
     float timer;
+
+    private void Awake()
+    {
+        reachMC = false;
+    }
 
     void Start()
     {

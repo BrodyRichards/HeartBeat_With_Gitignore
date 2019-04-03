@@ -7,15 +7,15 @@ public class MentalState : MonoBehaviour
     public static int currentState;
     public static int currentActionCombo;
     public static float coolDownCounting = 0.0f;
-    public static string lastEvent = "";
+    public static string lastEvent;
 
     public static Dictionary<string, int> moodLog;
     public static Dictionary<string, int> effectWeights;
     public static Queue<EmoPlot> emoTimeline;
 
     
-    public static bool journalInProgress = true;
-    public static float noEventCounting = 0.0f;
+    public static bool journalInProgress;
+    public static float noEventCounting;
 
     public readonly static Vector2Int happyBound = new Vector2Int(6, 30);
     public readonly static Vector2Int sadBound = new Vector2Int(-30, -6);
@@ -23,7 +23,13 @@ public class MentalState : MonoBehaviour
     public readonly static int comboBound = 4;
 
     // Played catch, Hit by ball, Held Rabbit, Bit by rabbit, Happy Song, Sad Song
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        journalInProgress = true;
+        noEventCounting = 0.0f;
+        lastEvent = "";
+        currentActionCombo = 0;
+    }
     void Start()
     {
         emoTimeline = new Queue<EmoPlot> { };
@@ -85,10 +91,8 @@ public class MentalState : MonoBehaviour
         {
             // if the action exceeds the combo bound, skip function
             Debug.Log("ResetEmoControl");
-            currentActionCombo = 0;
             coolDownCounting = 5.0f;
-            
-               
+            currentActionCombo = 0;
             return;
         }
 

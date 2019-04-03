@@ -14,7 +14,7 @@ public class PauseUI : MonoBehaviour
 
     private void Start()
     {
-        thisSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        
         pauseUI.SetActive(false);
     }
     // Update is called once per frame
@@ -38,6 +38,7 @@ public class PauseUI : MonoBehaviour
 
     public void Resume()
     {
+
         pauseUI.SetActive(false);
         Time.timeScale = 1f;
         IsPaused = false;
@@ -53,12 +54,27 @@ public class PauseUI : MonoBehaviour
 
     public void Restart()
     {
+        thisSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        Debug.Log("restart the scene");
         StartCoroutine(LoadAsyncScene(thisSceneIndex));
         IsPaused = false;
         Time.timeScale = 1f;
-        IconControl.journalActivated = false;
-        characterSwitcher.charChoice = -1;
-        RadioControl.isMusic = false;
+        if (thisSceneIndex == 1) // the tutorial scene 
+        {
+            
+        }
+        else if (thisSceneIndex == 2)
+        {
+            
+            characterSwitcher.charChoice = -1;
+            MentalState.journalInProgress = true;
+            RadioControl.isMusic = false;
+        }
+        else if (thisSceneIndex == 3)
+        {
+            
+        }
+        
     }
 
     public void Quit()

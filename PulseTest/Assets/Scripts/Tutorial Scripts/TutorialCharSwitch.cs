@@ -13,9 +13,14 @@ public class TutorialCharSwitch : MonoBehaviour
     public GameObject one;
     public GameObject two;
     public GameObject Q;
-    public GameObject E; 
+    public GameObject E;
     //public static bool isChar = false;
-
+    private void Awake()
+    {
+        TutCharChoice = -1;
+        WakeActionChosen = false;
+    
+    }
     // Use this for initialization
     void Start()
     {

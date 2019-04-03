@@ -8,10 +8,15 @@ public class FlipJournal : MonoBehaviour
     public GameObject[] journalDrawings; // 0 rabbit+ 1 rabbit- 2 ballkid+ 3 ballkid- 4 music+ 5 music-
     public GameObject speechBubble1;
     public GameObject speechBubble2;
-    public static bool finishReadingJournal = false;
-    private int currentIndex = 0;
+    public static bool finishReadingJournal;
+    private int currentIndex;
     private bool[] haveYouReadMeYet;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        finishReadingJournal = false;
+        currentIndex = 0;
+    }
     void Start()
     {
         speechBubble1.SetActive(false);

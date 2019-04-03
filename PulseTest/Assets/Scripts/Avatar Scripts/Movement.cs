@@ -11,8 +11,8 @@ public class Movement : MonoBehaviour
     public float currSpeed = 0f;
     public float acceleration;
     public float deceleration;
-    public static bool isRight = true;
-    public static bool timeToLeave = false;
+    public static bool isRight;
+    public static bool timeToLeave;
     private Vector2 direction;
     public Vector3 target;
     public Vector3 scale;
@@ -20,7 +20,11 @@ public class Movement : MonoBehaviour
 
     public Animator anim;
 
-
+    private void Awake()
+    {
+        timeToLeave = false;
+        isRight = true;
+    }
     void Start()
     {
         anim.SetBool("isWalking", false);

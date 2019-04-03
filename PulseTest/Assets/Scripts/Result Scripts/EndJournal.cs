@@ -10,11 +10,16 @@ public class EndJournal : MonoBehaviour
     public GameObject bed;
     public GameObject emptyBed;
     public GameObject fadeObject;
-    public static bool journalIsOpened = false;
-    public static bool deemLight = false;
+    public static bool journalIsOpened;
+    public static bool deemLight;
     private Animator anim;
     private Animator bedAnim;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        journalIsOpened = false;
+        deemLight = false;
+    }
     void Start()
     {
         anim = journalIcon.GetComponent<Animator>();

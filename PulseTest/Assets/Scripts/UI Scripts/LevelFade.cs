@@ -8,7 +8,10 @@ public class LevelFade : MonoBehaviour
     public Animator animator;
     private int levelToLoad;
     public static bool readyToLeave = false;
-
+    private void Awake()
+    {
+        readyToLeave = false;
+    }
     // Update is called once per frame
     void Update()
     {

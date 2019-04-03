@@ -13,13 +13,14 @@ public class TutorialProcControl : MonoBehaviour
     public GameObject directionalLight;
     public GameObject fadeObject;
 
-    private bool mcWokeUp = false;
-    private float mcAppearWaitTime = 4f; // Play around with the value for fade in/out
+    private bool mcWokeUp;
+    private float mcAppearWaitTime; // Play around with the value for fade in/out
     // Start is called before the first frame update
     void Start()
     {
         animForBed = bed.GetComponent<Animator>();
-        
+        mcWokeUp = false;
+        mcAppearWaitTime = 4f;
     }
 
     // Update is called once per frame

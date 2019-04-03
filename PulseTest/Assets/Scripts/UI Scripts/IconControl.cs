@@ -5,28 +5,30 @@ using UnityEngine.UI;
 
 public class IconControl : MonoBehaviour
 {
-    public static bool journalActivated = false;
-    public static bool journalTweening = false;
-    public static bool bringTheIconsIn = false;
+    public static bool journalActivated;
+    public static bool journalTweening;
+    public static bool bringTheIconsIn;
     public Animator animator;
     public GameObject journal;
     public GameObject iconsGroup;
     public GameObject tabPrompt;
     public Image bg;
-    [SerializeField]
-    private Image rabbitIcon;
-    [SerializeField]
-    private Image ballIcon;
-    [SerializeField]
-    private Image musicIcon;
-    [SerializeField]
-    private Image journalIcon;
+
+    [SerializeField]private Image rabbitIcon;
+    [SerializeField]private Image ballIcon;
+    [SerializeField]private Image musicIcon;
+    [SerializeField]private Image journalIcon;
     private List<Image> icons;
     private Color red = new Color(0f, 0.38f, 0.9f);
     private Color green = new Color(1f, 0.7007f, 0f);
     private float iconBringinTime = 5f;
 
-    
+    private void Awake()
+    {
+        journalActivated = false;
+        journalTweening = false;
+        bringTheIconsIn = false;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +37,6 @@ public class IconControl : MonoBehaviour
         tabPrompt.SetActive(false);
         ToggleIcons(false);
         animator.SetBool("newAccom", false);
-
     }
 
     // Update is called once per frame
@@ -46,7 +47,8 @@ public class IconControl : MonoBehaviour
             ToggleIcons(true);
             bringTheIconsIn = true;
         }
-        foreach(var img in icons)
+
+        foreach (var img in icons)
         {
             if ( icons.IndexOf(img) + 1 == characterSwitcher.charChoice)
             {

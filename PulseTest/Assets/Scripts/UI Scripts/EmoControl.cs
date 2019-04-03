@@ -5,7 +5,7 @@ using UnityEngine;
 public class EmoControl : MonoBehaviour
 {
     //public GameObject musicKid;
-    public static bool CRunning = false;
+    //public static bool CRunning = false;
 
     public Sprite happy;
     public Sprite sad;
@@ -16,21 +16,32 @@ public class EmoControl : MonoBehaviour
     private ParticleSystem.EmissionModule em;
 
     private SpriteRenderer sr;
-    private float emoSize = 1f;
-    private float sFa = 0.5f; // scaling factor
-    private float iFa = 0.5f; // incrementing size value per update for emo sprite
+    private float emoSize;
+    private float sFa; // scaling factor
+    private float iFa; // incrementing size value per update for emo sprite
 
-    public static bool mcBallHit = false;
-    public static bool rabbitHug = false;
-    public static bool bitten = false;
-    public static bool justPlayedCatch = false;
-
-    public static bool hasEmo = false;
+    public static bool mcBallHit;
+    public static bool rabbitHug;
+    public static bool bitten;
+    public static bool justPlayedCatch;
+    public static bool hasEmo;
     public static bool emoChanged = false;
-    public static bool isAffectedByMusic = false;
-    public static bool emitParticleNow = false;
+    public static bool isAffectedByMusic;
+    public static bool emitParticleNow;
 
-
+    void Awake()
+    {
+        mcBallHit = false;
+        rabbitHug = false;
+        bitten = false;
+        justPlayedCatch = false;
+        hasEmo = false;
+        isAffectedByMusic = false;
+        emitParticleNow = false;
+        sFa = 0.5f;
+        iFa = 0.5f;
+        emoSize = 1f;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -58,19 +69,16 @@ public class EmoControl : MonoBehaviour
         
         if (mcBallHit || bitten)
         {
-            hasEmo = true;
             sr.sprite = angry;
             Invoke("DestroyEmotion", 1f);
 
         }
         else if (rabbitHug)
         {
-            hasEmo = true;
             sr.sprite = happy;
         }
         else if (justPlayedCatch)
         {
-            hasEmo = true;
             sr.sprite = happy;
             Invoke("DestroyEmotion", 1f);
         }
@@ -84,7 +92,7 @@ public class EmoControl : MonoBehaviour
         }
     }
    
-    public void DestroyEmotion()
+    private void DestroyEmotion()
     {
         bitten = false;
         mcBallHit = false;
@@ -92,7 +100,7 @@ public class EmoControl : MonoBehaviour
         //sr.sprite = null;
     }
 
-    public void ReactToMusic()
+    private void ReactToMusic()
     {
         if (RadioControl.currentMood == 0)
         {
@@ -107,7 +115,7 @@ public class EmoControl : MonoBehaviour
         
     }
 
-    public void EmoGrowInSize()
+    private void EmoGrowInSize()
     {
        
         if (emoSize < MentalState.currentActionCombo)
@@ -130,7 +138,7 @@ public class EmoControl : MonoBehaviour
 
     }
 
-    public bool EmoResetSize()
+    private bool EmoResetSize()
     {
         // if resetting, show no emoticon 
         if (MentalState.currentActionCombo == 0)

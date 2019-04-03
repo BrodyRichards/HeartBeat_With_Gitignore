@@ -14,10 +14,15 @@ public class LightController : MonoBehaviour
     public GameObject lightOn;
     public GameObject lightOff;
     private int mood;
-    private float turnToNightTimer = 7f;
-    private bool isRadiateFinish = false;
-    public static bool isNightGlowFinish = false;
+    private readonly float turnToNightTimer = 7f;
+    private bool isRadiateFinish;
+    public static bool isNightGlowFinish;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        isRadiateFinish = false;
+        isNightGlowFinish = false;
+    }
     void Start()
     {
         mood = MentalState.OverallResult();
