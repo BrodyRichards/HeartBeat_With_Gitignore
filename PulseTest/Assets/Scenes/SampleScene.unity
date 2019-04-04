@@ -17611,6 +17611,26 @@ PrefabInstance:
       propertyPath: InitialModule.startColor.maxColor.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3642466804788993816, guid: fce55a7740c9bd7488d94c06368b7557,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642466804788993816, guid: fce55a7740c9bd7488d94c06368b7557,
+        type: 3}
+      propertyPath: simulationSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642466804788993816, guid: fce55a7740c9bd7488d94c06368b7557,
+        type: 3}
+      propertyPath: ForceModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642466804788993816, guid: fce55a7740c9bd7488d94c06368b7557,
+        type: 3}
+      propertyPath: ForceModule.y.scalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2901192932752524100, guid: fce55a7740c9bd7488d94c06368b7557,
         type: 3}
       propertyPath: m_SortingLayerID
