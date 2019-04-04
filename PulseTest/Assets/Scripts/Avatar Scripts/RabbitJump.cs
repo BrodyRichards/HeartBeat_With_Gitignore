@@ -17,6 +17,7 @@ public class RabbitJump : MonoBehaviour
     private double lastPosX;
 
     public Animator anim;
+    public AudioSource ass;
    
     // Start is called before the first frame update
     void Start()
@@ -102,12 +103,14 @@ public class RabbitJump : MonoBehaviour
                             bittenMC = true;
                             EmoControl.bitten = true;
                             MentalState.sendMsg("Bit by rabbit");
+                            ass.Play();
                             PutRabbitDown();
                         }
                         else if (victim.gameObject.tag == "Person")
                         {
                             Debug.Log("I bit " + victim.gameObject.name + "!");
                             bitNpcName = victim.gameObject.name;
+                            ass.Play();
                         }
                         break;
                     }
