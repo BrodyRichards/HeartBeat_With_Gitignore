@@ -12,9 +12,6 @@ public class EmoControl : MonoBehaviour
     public Sprite startle;
     public Sprite angry;
 
-    public ParticleSystem ps;
-    private ParticleSystem.EmissionModule em;
-
     private SpriteRenderer sr;
     private float emoSize;
     private float sFa; // scaling factor
@@ -27,7 +24,7 @@ public class EmoControl : MonoBehaviour
     public static bool hasEmo;
     public static bool emoChanged = false;
     public static bool isAffectedByMusic;
-    public static bool emitParticleNow;
+    public static int currentEffect;
 
     void Awake()
     {
@@ -37,19 +34,16 @@ public class EmoControl : MonoBehaviour
         justPlayedCatch = false;
         hasEmo = false;
         isAffectedByMusic = false;
-        emitParticleNow = false;
         sFa = 0.5f;
         iFa = 0.5f;
         emoSize = 1f;
+        currentEffect = 0; // None
     }
     // Start is called before the first frame update
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = null;
-        
-        em = ps.emission;
-        em.enabled = false;
     }
 
     // Update is called once per frame
@@ -59,28 +53,24 @@ public class EmoControl : MonoBehaviour
         {
             EmoGrowInSize();
         }
-
-        if (emitParticleNow)
-        {
-            
-            em.enabled = true;
-            Invoke("PauseEmoPs", 0.5f);
-        }
         
         if (mcBallHit || bitten)
         {
             sr.sprite = angry;
             Invoke("DestroyEmotion", 1f);
+            currentEffect = 3;
 
         }
         else if (rabbitHug)
         {
             sr.sprite = happy;
+            currentEffect = 1;
         }
         else if (justPlayedCatch)
         {
             sr.sprite = happy;
             Invoke("DestroyEmotion", 1f);
+            currentEffect = 1;
         }
         else if (RadioControl.musicListener=="MC")
         {
@@ -106,11 +96,13 @@ public class EmoControl : MonoBehaviour
         {
             hasEmo = true;
             sr.sprite = happy;
+            currentEffect = 1;
         }
         else if (RadioControl.currentMood == 1)
         {
             hasEmo = true;
             sr.sprite = sad;
+            currentEffect = 2;
         }
         
     }
@@ -124,7 +116,7 @@ public class EmoControl : MonoBehaviour
             transform.localScale = new Vector2(sFa * Mathf.Sqrt(emoSize) , sFa * Mathf.Sqrt(emoSize));
             if (emoSize > 3.99f)
             {
-                emitParticleNow = true;
+                ExplodeEmo.emitParticleNow = true;
                 transform.localScale = new Vector2(0f, 0f);
                 
             }
@@ -154,12 +146,7 @@ public class EmoControl : MonoBehaviour
         }
     }
 
-    private void PauseEmoPs()
-    {
-        
-        em.enabled = false;
-        emitParticleNow = false;
-    }
+    
     //[Obsolete]
     //IEnumerator IncrementMoodLog(string msg, int mood)
     //{
