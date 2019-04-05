@@ -68,7 +68,7 @@ public class RabbitJump : MonoBehaviour
                         if (coll.gameObject.tag == "MC")
                         {
                             PickRabbitUp(coll.gameObject);
-                            EmoControl.rabbitHug = true;
+                            
                             InvokeRepeating("RabbitHappiness", 0f, 3f);
                             break;
                         }else if (coll.gameObject.tag == "Person")
@@ -101,7 +101,6 @@ public class RabbitJump : MonoBehaviour
                         if (victim.gameObject.tag == "MC")
                         {
                             bittenMC = true;
-                            EmoControl.bitten = true;
                             MentalState.sendMsg("Bit by rabbit");
                             ass.Play();
                             PutRabbitDown();
@@ -131,7 +130,6 @@ public class RabbitJump : MonoBehaviour
         GetComponent<Movement>().enabled = true;
         beingCarried = false;
         GetComponent<SortRender>().offset = 12;
-        EmoControl.rabbitHug = false;
         anim.SetBool("isCarried", false);
     }
 

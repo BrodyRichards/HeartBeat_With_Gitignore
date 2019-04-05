@@ -58,7 +58,7 @@ public class BallProjectile : MonoBehaviour
                         if (NpcName == "MC")
                         {
                             MentalState.sendMsg("Hit by ball");
-                            EmoControl.mcBallHit = true;
+                            
                             McMovement.gotHit = true;
                         }
 
@@ -80,7 +80,6 @@ public class BallProjectile : MonoBehaviour
                         {
                             MentalState.sendMsg("Played catch");
                             McMovement.playedCatch = true;
-                            EmoControl.justPlayedCatch = true;
                             GameObject.Find("MC").GetComponent<Animator>().SetTrigger("playCatch");
                         }
                         //NPC.GetComponent<PlayCatch>().hitByBall();
