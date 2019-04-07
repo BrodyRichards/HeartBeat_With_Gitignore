@@ -48,10 +48,12 @@ public class Loners : NPCs
         if (RadioControl.currentMood == 1) //sad music
         {
             Emo = master.GetComponent<NpcInstantiator>().happyFace;
+            addQueue(4);
         }
         else if (RadioControl.currentMood == 0) //scary music
         {
             Emo = master.GetComponent<NpcInstantiator>().sadFace;
+            addQueue(3);
         }
         addEmo();
     }

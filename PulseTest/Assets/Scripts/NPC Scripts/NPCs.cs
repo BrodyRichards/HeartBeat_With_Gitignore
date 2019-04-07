@@ -15,6 +15,7 @@ public class NPCs : MonoBehaviour
 
     protected GameObject master;
     protected GameObject Emo;
+    public Queue<int> actions; //a queue of integers as Ball: 1, 2; Music: 3, 4; Rabbit: 5, 6 (bigger number is the negative)
 
     private int music;
     private int check;
@@ -44,6 +45,7 @@ public class NPCs : MonoBehaviour
         timer = time;
         speed = Random.Range(3f, 6f);
         Debug.Log("speed: " + speed);
+        actions = new Queue<int> { }; 
     }
 
     protected virtual void Update()
@@ -86,12 +88,14 @@ public class NPCs : MonoBehaviour
         {
             Emo = master.GetComponent<NpcInstantiator>().madFace;
             addEmo();
+            //addQueue(-1);
         }
         if (BallProjectile.NpcName == this.gameObject.name)
         {
             BallProjectile.NpcName = "";
             nameChange = true;
             playBall();
+            //addQueue(1);
         }
         if (RabbitJump.bitNpcName == this.gameObject.name)
         {
@@ -99,6 +103,7 @@ public class NPCs : MonoBehaviour
             RabbitJump.bitNpcName = "";
             rabNameChange = true;
             checkRabbitBit();
+            addQueue(6);
         }
         checkBools(emoDist);
         checkRabbitCarry();      
@@ -141,6 +146,7 @@ public class NPCs : MonoBehaviour
                     holdBunny = true;
                     Emo = master.GetComponent<NpcInstantiator>().happyFace;
                     addEmo();
+                    addQueue(35);
                 }
             }
         }
@@ -170,10 +176,12 @@ public class NPCs : MonoBehaviour
         if (RadioControl.currentMood == 1)                      //sad song
         {
             Emo = master.GetComponent<NpcInstantiator>().sadFace;
+            addQueue(4);
         }
         else if (RadioControl.currentMood == 0)                 //happy song
         {
             Emo = master.GetComponent<NpcInstantiator>().happyFace;
+            addQueue(3);
         }
         addEmo();
     }
@@ -256,9 +264,11 @@ public class NPCs : MonoBehaviour
                 Debug.Log("ouch");
                 timer = time + 2.0f;
                 Emo = master.GetComponent<NpcInstantiator>().madFace;
+                addQueue(2);
                 addEmo();
                 BallProjectile.meanBallThrown = false;
             }
+            else { addQueue(1); }
         }
     }
 
@@ -300,6 +310,15 @@ public class NPCs : MonoBehaviour
         if (transform.position == target)
         {
             Destroy(gameObject);
+        }
+    }
+
+    protected virtual void addQueue(int num)
+    {
+        actions.Enqueue(num);
+        if (actions.Count > 5)
+        {
+            actions.Dequeue();
         }
     }
 }

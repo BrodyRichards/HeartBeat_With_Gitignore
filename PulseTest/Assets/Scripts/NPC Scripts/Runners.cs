@@ -42,11 +42,13 @@ public class Runners : NPCs
         
     }
     
+    /*
     protected override void checkMusic()
     {
-        if (RadioControl.currentMood == 1)
+        if (RadioControl.currentMood == 1) //
         {
             Emo = master.GetComponent<NpcInstantiator>().sadFace;
+
         }
         else if (RadioControl.currentMood == 0)
         {
@@ -54,5 +56,5 @@ public class Runners : NPCs
         }
         addEmo();
     }
-
+    */
 }

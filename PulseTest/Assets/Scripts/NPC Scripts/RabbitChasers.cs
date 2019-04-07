@@ -52,6 +52,7 @@ public class RabbitChasers : NPCs
                     holdBunny = true;
                     Emo = master.GetComponent<NpcInstantiator>().happyFace;
                     addEmo();
+                    addQueue(5);
                 }
             }
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);

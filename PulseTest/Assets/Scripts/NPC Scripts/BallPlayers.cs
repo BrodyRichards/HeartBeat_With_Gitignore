@@ -63,12 +63,14 @@ public class BallPlayers : NPCs
                 timer = time + 2.0f;
                 Emo = master.GetComponent<NpcInstantiator>().madFace;
                 addEmo();
+                addQueue(2);
                 BallProjectile.meanBallThrown = false;
             }
             else
             {
                 timer = time + 2.0f;
                 Emo = master.GetComponent<NpcInstantiator>().happyFace;
+                addQueue(1);
                 addEmo();
             }
             
