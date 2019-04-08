@@ -15,6 +15,8 @@ public class NPCs : MonoBehaviour
 
     private float musicCoolDown;
     private float curTime;
+    private float rabbitCoolDown;
+    private float rabbitTime;
 
     protected GameObject master;
     protected GameObject Emo;
@@ -49,8 +51,10 @@ public class NPCs : MonoBehaviour
         speed = Random.Range(3f, 6f);
         Debug.Log("speed: " + speed);
         actions = new Queue<int> { };
-        musicCoolDown = 2f;
+        musicCoolDown = 4f;
         curTime = 0f;
+        rabbitCoolDown = 4f;
+        rabbitTime = 0f;
     }
 
     protected virtual void Update()
@@ -151,11 +155,14 @@ public class NPCs : MonoBehaviour
                     holdBunny = true;
                     Emo = master.GetComponent<NpcInstantiator>().happyFace;
                     addEmo();
-                    addQueue(5);
+                    if (Time.time >= rabbitTime)
+                    {
+                        rabbitTime = Time.time + rabbitCoolDown;
+                        addQueue(5);
+                    }
                 }
             }
         }
-        
     }
 
     protected virtual void checkRabbitBit()
@@ -178,8 +185,6 @@ public class NPCs : MonoBehaviour
 
     protected virtual void checkMusic()
     {
-
-
         if (RadioControl.currentMood == 1)                      //sad song
         {
             Emo = master.GetComponent<NpcInstantiator>().sadFace;
@@ -194,6 +199,7 @@ public class NPCs : MonoBehaviour
             Emo = master.GetComponent<NpcInstantiator>().happyFace;
             if (Time.time >= curTime)
             {
+                Debug.Log("I'm happy");
                 addQueue(3);
                 curTime = Time.time + musicCoolDown;
             }
@@ -336,6 +342,6 @@ public class NPCs : MonoBehaviour
             actions.Dequeue();
         }
 
-        MentalState.UpdateNPCMood();
+        MentalState.UpdateNPCMood(num);
     }
 }

@@ -195,18 +195,21 @@ public class MentalState : MonoBehaviour
         }
     }
 
-    public static void UpdateNPCMood()
+    public static void UpdateNPCMood(int newAction)
     {
         //Add up the actions taken in NPC event queue and add it to currentState
-        Queue<int> tempQueue = new Queue<int>();
-        tempQueue = NPCs.actions;
+        //Queue<int> tempQueue = new Queue<int>();
+        //tempQueue = NPCs.actions;
 
-        foreach(int action in tempQueue)
+        /*foreach(int action in tempQueue)
         {
             Debug.Log("Updating emotion");
             currentState += npcEffectWeights[action];
             Debug.Log("Current State: " + currentState);
-        }
+        }*/
+        currentState += npcEffectWeights[newAction];
+        //Debug.Log("Updating emotion");
+        Debug.Log("Current State: " + currentState);
     }
 
     public void PacifyMood()
