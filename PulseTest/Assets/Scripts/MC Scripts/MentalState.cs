@@ -11,6 +11,7 @@ public class MentalState : MonoBehaviour
 
     public static Dictionary<string, int> moodLog;
     public static Dictionary<string, int> effectWeights;
+    public static Dictionary<int, int> npcEffectWeights;
     public static Queue<EmoPlot> emoTimeline;
 
     
@@ -33,6 +34,18 @@ public class MentalState : MonoBehaviour
     void Start()
     {
         emoTimeline = new Queue<EmoPlot> { };
+
+        //Dictionary storing weights for NPC interactions
+        npcEffectWeights = new Dictionary<int, int>
+        {
+            {1, 1},
+            {2, -1},
+            {3, 1},
+            {4, -1},
+            {5, 1},
+            {6, -1}
+        };
+
         //Dictionary storing weights for each effect
         effectWeights = new Dictionary<string, int>
         {
@@ -103,7 +116,6 @@ public class MentalState : MonoBehaviour
         {
             EventTracking();
             CheckForTween();
-            
         }
         UpdateCurrentMood(msg);
         PlotingTimeline(msg);
@@ -180,6 +192,20 @@ public class MentalState : MonoBehaviour
         {
             currentState += effectWeights[m];
             currentState = Mathf.Clamp(currentState, sadBound.x, happyBound.y);
+        }
+    }
+
+    public static void UpdateNPCMood()
+    {
+        //Add up the actions taken in NPC event queue and add it to currentState
+        Queue<int> tempQueue = new Queue<int>();
+        tempQueue = NPCs.actions;
+
+        foreach(int action in tempQueue)
+        {
+            Debug.Log("Updating emotion");
+            currentState += npcEffectWeights[action];
+            Debug.Log("Current State: " + currentState);
         }
     }
 

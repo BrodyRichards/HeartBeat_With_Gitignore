@@ -13,9 +13,12 @@ public class NPCs : MonoBehaviour
     private float currentPosX;
     private float lastPosX;
 
+    private float musicCoolDown;
+    private float curTime;
+
     protected GameObject master;
     protected GameObject Emo;
-    public Queue<int> actions; //a queue of integers as Ball: 1, 2; Music: 3, 4; Rabbit: 5, 6 (bigger number is the negative)
+    public static Queue<int> actions; //a queue of integers as Ball: 1, 2; Music: 3, 4; Rabbit: 5, 6 (bigger number is the negative)
 
     private int music;
     private int check;
@@ -45,7 +48,9 @@ public class NPCs : MonoBehaviour
         timer = time;
         speed = Random.Range(3f, 6f);
         Debug.Log("speed: " + speed);
-        actions = new Queue<int> { }; 
+        actions = new Queue<int> { };
+        musicCoolDown = 2f;
+        curTime = 0f;
     }
 
     protected virtual void Update()
@@ -146,7 +151,7 @@ public class NPCs : MonoBehaviour
                     holdBunny = true;
                     Emo = master.GetComponent<NpcInstantiator>().happyFace;
                     addEmo();
-                    addQueue(35);
+                    addQueue(5);
                 }
             }
         }
@@ -173,15 +178,25 @@ public class NPCs : MonoBehaviour
 
     protected virtual void checkMusic()
     {
+
+
         if (RadioControl.currentMood == 1)                      //sad song
         {
             Emo = master.GetComponent<NpcInstantiator>().sadFace;
-            addQueue(4);
+            if (Time.time >= curTime)
+            {
+                addQueue(4);
+                curTime = Time.time + musicCoolDown;
+            }
         }
         else if (RadioControl.currentMood == 0)                 //happy song
         {
             Emo = master.GetComponent<NpcInstantiator>().happyFace;
-            addQueue(3);
+            if (Time.time >= curTime)
+            {
+                addQueue(3);
+                curTime = Time.time + musicCoolDown;
+            }
         }
         addEmo();
     }
@@ -320,5 +335,7 @@ public class NPCs : MonoBehaviour
         {
             actions.Dequeue();
         }
+
+        MentalState.UpdateNPCMood();
     }
 }
