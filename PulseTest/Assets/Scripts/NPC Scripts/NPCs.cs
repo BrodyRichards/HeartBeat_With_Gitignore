@@ -97,7 +97,7 @@ public class NPCs : MonoBehaviour
         {
             Emo = master.GetComponent<NpcInstantiator>().madFace;
             addEmo();
-            //addQueue(-1);
+            //addQueue(2);
         }
         if (BallProjectile.NpcName == this.gameObject.name)
         {
@@ -337,6 +337,7 @@ public class NPCs : MonoBehaviour
     protected virtual void addQueue(int num)
     {
         actions.Enqueue(num);
+        Debug.Log(num);
         if (actions.Count > 5)
         {
             actions.Dequeue();

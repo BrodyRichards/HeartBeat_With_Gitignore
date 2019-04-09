@@ -100,12 +100,14 @@ public class BallProjectile : MonoBehaviour
             {
                 if (meanBallThrown)
                 {
+                    NpcName = hit.collider.gameObject.name;
                     stationaryBall();
                 }
                 else
                 {
                     meanBallThrown = false;
                     GameObject NPC = hit.collider.gameObject;
+                    NpcName = NPC.name;
                     PlayCatch delayCatch = NPC.GetComponent<PlayCatch>();
                     GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", false);
                     delayCatch.Invoke("hitByBall", delayTime);
