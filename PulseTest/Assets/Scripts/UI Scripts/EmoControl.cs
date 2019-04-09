@@ -6,135 +6,113 @@ public class EmoControl : MonoBehaviour
 {
     //public GameObject musicKid;
     //public static bool CRunning = false;
-
+    //string compare explain: https://docs.unity3d.com/Manual/BestPracticeUnderstandingPerformanceInUnity5.html
     public Sprite happy;
     public Sprite sad;
     public Sprite startle;
     public Sprite angry;
-
-    public ParticleSystem ps;
-    private ParticleSystem.EmissionModule em;
 
     private SpriteRenderer sr;
     private float emoSize;
     private float sFa; // scaling factor
     private float iFa; // incrementing size value per update for emo sprite
 
-    public static bool mcBallHit;
-    public static bool rabbitHug;
-    public static bool bitten;
-    public static bool justPlayedCatch;
     public static bool hasEmo;
-    public static bool emoChanged = false;
-    public static bool isAffectedByMusic;
-    public static bool emitParticleNow;
+    public static bool emoChanged;
+    public static int currentEffect;
 
     void Awake()
     {
-        mcBallHit = false;
-        rabbitHug = false;
-        bitten = false;
-        justPlayedCatch = false;
+        
         hasEmo = false;
-        isAffectedByMusic = false;
-        emitParticleNow = false;
+        emoChanged = false;
         sFa = 0.5f;
         iFa = 0.5f;
-        emoSize = 1f;
+        emoSize = 0f;
+        currentEffect = 0; // None
     }
     // Start is called before the first frame update
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = null;
-        
-        em = ps.emission;
-        em.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (emoChanged)
+        {
+            CheckWhichEmoToShow();
+        }
+        
         if (!EmoResetSize())
         {
             EmoGrowInSize();
         }
 
-        if (emitParticleNow)
-        {
-            
-            em.enabled = true;
-            Invoke("PauseEmoPs", 0.5f);
-        }
         
-        if (mcBallHit || bitten)
-        {
-            sr.sprite = angry;
-            Invoke("DestroyEmotion", 1f);
-
-        }
-        else if (rabbitHug)
-        {
-            sr.sprite = happy;
-        }
-        else if (justPlayedCatch)
-        {
-            sr.sprite = happy;
-            Invoke("DestroyEmotion", 1f);
-        }
-        else if (RadioControl.musicListener=="MC")
-        {
-            ReactToMusic();
-        }
-        else
+       
+    }
+    private void CheckWhichEmoToShow()
+    {
+        Debug.Log("currentActionCombo" + MentalState.currentActionCombo);
+        if (MentalState.currentActionCombo == 0)
         {
             sr.sprite = null;
         }
-    }
-   
-    private void DestroyEmotion()
-    {
-        bitten = false;
-        mcBallHit = false;
-        justPlayedCatch = false;
-        //sr.sprite = null;
-    }
 
-    private void ReactToMusic()
-    {
-        if (RadioControl.currentMood == 0)
+        if (MentalState.currentActionCombo > 0)
         {
-            hasEmo = true;
             sr.sprite = happy;
+            currentEffect = 1;
         }
-        else if (RadioControl.currentMood == 1)
+        else if(MentalState.currentActionCombo < 0 && MentalState.currentActionCombo!=-999)
         {
-            hasEmo = true;
             sr.sprite = sad;
+            currentEffect = 2;
         }
+
+        emoChanged = false;
         
     }
 
     private void EmoGrowInSize()
     {
-       
-        if (emoSize < MentalState.currentActionCombo)
+        
+        if (emoSize < Mathf.Abs(MentalState.currentActionCombo))
         {
+            //if (!hasEmo)
+            //{
+            //    hasEmo = true;
+            //    Invoke("ResetHasEmo", 1f);
+            //}
+            
             emoSize += iFa * 2f * Mathf.Sin(Time.deltaTime);
             transform.localScale = new Vector2(sFa * Mathf.Sqrt(emoSize) , sFa * Mathf.Sqrt(emoSize));
             if (emoSize > 3.99f)
             {
-                emitParticleNow = true;
+                ExplodeEmo.emitParticleNow = true;
                 transform.localScale = new Vector2(0f, 0f);
+                MentalState.currentActionCombo = 0;
+                emoSize = 0f;
                 
             }
         }
-
-        if (MentalState.currentActionCombo == 1)
+        else if (emoSize > Mathf.Abs(MentalState.currentActionCombo))
         {
-            emoSize = 1f;
-            transform.localScale = new Vector2(sFa * emoSize, sFa * emoSize);
+            emoSize -= iFa * 3f * Mathf.Sin(Time.deltaTime);
+            transform.localScale = new Vector2(sFa * Mathf.Sqrt(emoSize), sFa * Mathf.Sqrt(emoSize));
         }
+        
+
+        //if (Mathf.Abs(MentalState.currentActionCombo) == 1)
+        //{
+        //    emoSize = 1f;
+        //    transform.localScale = new Vector2(sFa * emoSize, sFa * emoSize);
+        //}
+
+
 
     }
 
@@ -148,17 +126,37 @@ public class EmoControl : MonoBehaviour
             
             return true;
         }
+        else if (MentalState.currentActionCombo == -999)
+        {
+
+            if (emoSize > 0.02f)
+            {
+                hasEmo = true;
+                emoSize -= iFa * 3f * Mathf.Sin(Time.deltaTime);
+                transform.localScale = new Vector2(sFa * Mathf.Sqrt(emoSize), sFa * Mathf.Sqrt(emoSize));
+                if (emoSize < 0.03f)
+                {
+                    ResetHasEmo();
+                    transform.localScale = new Vector2(0,0);
+                    MentalState.currentActionCombo *= 0;
+                }
+            }
+            else
+            {
+                MentalState.currentActionCombo *= 0;
+            }
+
+            return true;
+        }
         else
         {
             return false;
         }
     }
 
-    private void PauseEmoPs()
+    private void ResetHasEmo()
     {
-        
-        em.enabled = false;
-        emitParticleNow = false;
+        hasEmo = false;
     }
     //[Obsolete]
     //IEnumerator IncrementMoodLog(string msg, int mood)

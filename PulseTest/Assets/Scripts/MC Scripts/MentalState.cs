@@ -13,6 +13,7 @@ public class MentalState : MonoBehaviour
     public static Dictionary<string, int> effectWeights;
     public static Queue<EmoPlot> emoTimeline;
 
+
     
     public static bool journalInProgress;
     public static float noEventCounting;
@@ -21,6 +22,10 @@ public class MentalState : MonoBehaviour
     public readonly static Vector2Int sadBound = new Vector2Int(-30, -6);
     public readonly static Vector2Int normalBound = new Vector2Int(-5, 5);
     public readonly static int comboBound = 4;
+    public readonly static List<string> positiveAct 
+        = new List<string>() { "Played catch", "Held Rabbit", "Happy Song" };
+    public readonly static List<string> negativeAct 
+        = new List<string>() { "Hit by ball", "Bit by rabbit", "Sad Song" };
 
     // Played catch, Hit by ball, Held Rabbit, Bit by rabbit, Happy Song, Sad Song
     private void Awake()
@@ -40,8 +45,8 @@ public class MentalState : MonoBehaviour
             { "Hit by ball", -3},
             { "Held Rabbit", 1 },
             { "Bit by rabbit", -2},
-            { "Happy Song", 2},
-            { "Sad Song", -2},
+            { "Happy Song", 1},
+            { "Sad Song", -1},
         };
 
         //Dictionary storing number of interactions
@@ -54,6 +59,7 @@ public class MentalState : MonoBehaviour
             { "Happy Song", 0 },
             { "Sad Song", 0 },
         };
+        
         // call the mood equilibrium every 10 seconds
         
     }
@@ -62,14 +68,6 @@ public class MentalState : MonoBehaviour
     void Update()
     {
         noEventCounting += Time.deltaTime;
-        if (!Mathf.Approximately(coolDownCounting, float.Epsilon) && coolDownCounting > 0.0f)
-        {
-            coolDownCounting -= Time.deltaTime;
-        }
-        else
-        {
-            coolDownCounting = 0.0f;
-        }
         
         //Debug.Log(noEventCounting);
         // if more than 10 seconds without event happening, do the pacifying thing 
@@ -81,21 +79,15 @@ public class MentalState : MonoBehaviour
 
     public static void sendMsg(string msg)
     {
-        currentActionCombo = lastEvent == msg ? currentActionCombo + 1 : 1;
-        if (!Mathf.Approximately(coolDownCounting, float.Epsilon) && lastEvent == msg)
+        if (positiveAct.Contains(msg) || negativeAct.Contains(msg))
         {
-            // if the action is still on cool down, skip function
-            return;
+            var before = currentActionCombo;
+            var comboFactor = positiveAct.Contains(msg) ? 1 : -1;
+            currentActionCombo += comboFactor;
+            if (currentActionCombo == 0) { currentActionCombo = comboFactor; }
+            var after = currentActionCombo;
+            if (before * after <= 0) { EmoControl.emoChanged = true; }
         }
-        else if (currentActionCombo > comboBound)
-        {
-            // if the action exceeds the combo bound, skip function
-            Debug.Log("ResetEmoControl");
-            coolDownCounting = 5.0f;
-            currentActionCombo = 0;
-            return;
-        }
-
         int currCount;
         moodLog.TryGetValue(msg, out currCount);
         moodLog[msg] = currCount + 1;
@@ -186,6 +178,7 @@ public class MentalState : MonoBehaviour
     public void PacifyMood()
     {
         noEventCounting *= 0.0f;
+        currentActionCombo = -999;
 
         if (WithinRange(currentState, normalBound.x, normalBound.y))
         {
@@ -207,19 +200,7 @@ public class MentalState : MonoBehaviour
 
         Debug.Log("MC mood pacified " + currentState);
     }
-    // [obsolete] 
-    public static int tallyEmotion()
-    {
-        var mood = 0;
-
-        foreach (KeyValuePair<string, int> moodEntry in moodLog)
-        {
-            mood += moodEntry.Value * effectWeights[moodEntry.Key];
-
-        }
-
-        return mood;
-    }
+    
 
     //--------------Functions for Journals--------------------------------------
 
@@ -258,4 +239,45 @@ public class MentalState : MonoBehaviour
         JournalTween.music.Num = moodLog["Happy Song"] + moodLog["Sad Song"];
     }
     //------------------------------------------------------------------
+
+    //[Obsolete]
+    public static void CheckCooldown()
+    {
+        //if (!Mathf.Approximately(coolDownCounting, float.Epsilon))
+        //{
+        //    // if the action is still on cool down, skip function
+        //    return;
+        //}
+        //else if (Mathf.Abs(currentActionCombo) == comboBound)
+        //{
+        //    // if the action exceeds the combo bound, skip function
+        //    Debug.Log("ResetEmoControl");
+        //    coolDownCounting = 5.0f;
+        //    return;
+        //}
+
+        //if (!Mathf.Approximately(coolDownCounting, float.Epsilon) && coolDownCounting > 0.0f)
+        //{
+        //    coolDownCounting -= Time.deltaTime;
+        //}
+        //else
+        //{
+        //    coolDownCounting = 0.0f;
+        //}
+
+    }
+
+    // [obsolete] 
+    public static int tallyEmotion()
+    {
+        var mood = 0;
+
+        foreach (KeyValuePair<string, int> moodEntry in moodLog)
+        {
+            mood += moodEntry.Value * effectWeights[moodEntry.Key];
+
+        }
+
+        return mood;
+    }
 }
