@@ -13,9 +13,14 @@ public class NPCs : MonoBehaviour
     private float currentPosX;
     private float lastPosX;
 
+    private float musicCoolDown;
+    private float curTime;
+    private float rabbitCoolDown;
+    private float rabbitTime;
+
     protected GameObject master;
     protected GameObject Emo;
-    public Queue<int> actions; //a queue of integers as Ball: 1, 2; Music: 3, 4; Rabbit: 5, 6 (bigger number is the negative)
+    public static Queue<int> actions; //a queue of integers as Ball: 1, 2; Music: 3, 4; Rabbit: 5, 6 (bigger number is the negative)
 
     private int music;
     private int check;
@@ -45,7 +50,11 @@ public class NPCs : MonoBehaviour
         timer = time;
         speed = Random.Range(3f, 6f);
         Debug.Log("speed: " + speed);
-        actions = new Queue<int> { }; 
+        actions = new Queue<int> { };
+        musicCoolDown = 4f;
+        curTime = 0f;
+        rabbitCoolDown = 4f;
+        rabbitTime = 0f;
     }
 
     protected virtual void Update()
@@ -146,11 +155,14 @@ public class NPCs : MonoBehaviour
                     holdBunny = true;
                     Emo = master.GetComponent<NpcInstantiator>().happyFace;
                     addEmo();
-                    addQueue(35);
+                    if (Time.time >= rabbitTime)
+                    {
+                        rabbitTime = Time.time + rabbitCoolDown;
+                        addQueue(5);
+                    }
                 }
             }
         }
-        
     }
 
     protected virtual void checkRabbitBit()
@@ -176,12 +188,21 @@ public class NPCs : MonoBehaviour
         if (RadioControl.currentMood == 1)                      //sad song
         {
             Emo = master.GetComponent<NpcInstantiator>().sadFace;
-            addQueue(4);
+            if (Time.time >= curTime)
+            {
+                addQueue(4);
+                curTime = Time.time + musicCoolDown;
+            }
         }
         else if (RadioControl.currentMood == 0)                 //happy song
         {
             Emo = master.GetComponent<NpcInstantiator>().happyFace;
-            addQueue(3);
+            if (Time.time >= curTime)
+            {
+                Debug.Log("I'm happy");
+                addQueue(3);
+                curTime = Time.time + musicCoolDown;
+            }
         }
         addEmo();
     }
@@ -320,5 +341,7 @@ public class NPCs : MonoBehaviour
         {
             actions.Dequeue();
         }
+
+        MentalState.UpdateNPCMood(num);
     }
 }
