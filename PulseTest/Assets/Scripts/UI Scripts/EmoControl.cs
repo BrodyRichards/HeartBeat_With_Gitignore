@@ -125,10 +125,10 @@ public class EmoControl : MonoBehaviour
         else if (MentalState.currentActionCombo == -999)
         {
 
-            if (emoSize > 0.02f)
+            if (emoSize > 0.09f)
             {
                 hasEmo = true;
-                emoSize -= iFa * 3f * Mathf.Sin(Time.deltaTime);
+                emoSize -= iFa * Mathf.Sin(Time.deltaTime);
                 transform.localScale = new Vector2(sFa * Mathf.Sqrt(emoSize), sFa * Mathf.Sqrt(emoSize));
                 if (emoSize < 0.03f)
                 {

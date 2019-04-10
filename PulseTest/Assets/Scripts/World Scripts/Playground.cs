@@ -43,13 +43,13 @@ public class Playground: MonoBehaviour
 
     public static void RandomizeNpcAssets(Animator ani, SpriteRenderer sr, GameObject go)
     {
-        var selected = go.GetComponent<RabbitChasers>() == null ? NpcTypes[Random.Range(0, 4)] : "Suzy";
+        var selected = NpcTypes[Random.Range(0, 4)];
 
 
         ani.runtimeAnimatorController = Resources.Load(selected) as RuntimeAnimatorController;
-        if (selected.Equals("NPC"))
-        {
-            sr.flipX = true;
-        }
+        //if (selected.Equals("NPC"))
+        //{
+        //    sr.flipX = true;
+        //}
     }
 }
