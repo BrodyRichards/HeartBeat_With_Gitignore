@@ -99,16 +99,12 @@ public class BallThrow : MonoBehaviour
     void PickupBall()
     {
         newBall = GameObject.Find("newBall");
-        float distance = Vector3.Distance(transform.position, newBall.transform.position);
-
-        if(distance < pickupDist)
-        {
-            thrownBall = false;
-            isMeanBall = false;
-            BallProjectile.meanBallThrown = false;
-            Destroy(newBall);
-            anim.SetBool("hasBall", true);
-        }
+        
+        thrownBall = false;
+        isMeanBall = false;
+        BallProjectile.meanBallThrown = false;
+        Destroy(newBall);
+        anim.SetBool("hasBall", true);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

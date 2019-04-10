@@ -54,36 +54,23 @@ public class BallProjectile : MonoBehaviour
                         //A mean ball was thrown
                         //Debug.Log("You threw a mean ball!");
                         //Update Mental State
-                        NpcName = hit.collider.gameObject.name;
-                        if (NpcName == "MC")
-                        {
-                            MentalState.sendMsg("Hit by ball");
-                            
-                            McMovement.gotHit = true;
-                        }
+                        MentalState.sendMsg("Hit by ball");
+                        McMovement.gotHit = true;
 
                         //MC gets hit by ball and doesn't play catch
                         stationaryBall();
-                        //Reset meanBall bool
-
-                        //meanBallThrown = false;
                     }
                     else
                     {
                         //This is stuff for normal nicely thrown balls
                         //Debug.Log("You played catch with " + hit.collider.gameObject.name);
                         meanBallThrown = false;
-                        GameObject NPC = hit.collider.gameObject;
-                        NpcName = NPC.name;
+                        GameObject MC = hit.collider.gameObject;
+                        MentalState.sendMsg("Played catch");
+                        McMovement.playedCatch = true;
+                        GameObject.Find("MC").GetComponent<Animator>().SetTrigger("playCatch");
 
-                        if (NPC.name == "MC")
-                        {
-                            MentalState.sendMsg("Played catch");
-                            McMovement.playedCatch = true;
-                            GameObject.Find("MC").GetComponent<Animator>().SetTrigger("playCatch");
-                        }
-                        //NPC.GetComponent<PlayCatch>().hitByBall();
-                        PlayCatch delayCatch = NPC.GetComponent<PlayCatch>();
+                        PlayCatch delayCatch = MC.GetComponent<PlayCatch>();
                         GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", false);
 
                         delayCatch.Invoke("hitByBall", delayTime);
