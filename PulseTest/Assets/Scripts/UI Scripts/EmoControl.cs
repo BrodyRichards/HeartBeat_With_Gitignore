@@ -27,7 +27,7 @@ public class EmoControl : MonoBehaviour
         hasEmo = false;
         emoChanged = false;
         sFa = 0.5f;
-        iFa = 0.5f;
+        iFa = 3f;
         emoSize = 0f;
         currentEffect = 0; // None
     }
@@ -80,17 +80,13 @@ public class EmoControl : MonoBehaviour
     private void EmoGrowInSize()
     {
         
-        if (emoSize < Mathf.Abs(MentalState.currentActionCombo))
+        if (emoSize < Mathf.Abs(MentalState.currentActionCombo) - 0.1f)
         {
-            //if (!hasEmo)
-            //{
-            //    hasEmo = true;
-            //    Invoke("ResetHasEmo", 1f);
-            //}
             
-            emoSize += iFa * 2f * Mathf.Sin(Time.deltaTime);
+            
+            emoSize += iFa * Mathf.Sin(Time.deltaTime);
             transform.localScale = new Vector2(sFa * Mathf.Sqrt(emoSize) , sFa * Mathf.Sqrt(emoSize));
-            if (emoSize > 3.99f)
+            if (emoSize > 3.89f)
             {
                 ExplodeEmo.emitParticleNow = true;
                 transform.localScale = new Vector2(0f, 0f);
@@ -99,12 +95,12 @@ public class EmoControl : MonoBehaviour
                 
             }
         }
-        else if (emoSize > Mathf.Abs(MentalState.currentActionCombo))
+        else if (emoSize > Mathf.Abs(MentalState.currentActionCombo) + 0.1f)
         {
-            emoSize -= iFa * 3f * Mathf.Sin(Time.deltaTime);
+            emoSize -= iFa * Mathf.Sin(Time.deltaTime);
             transform.localScale = new Vector2(sFa * Mathf.Sqrt(emoSize), sFa * Mathf.Sqrt(emoSize));
         }
-        
+
 
         //if (Mathf.Abs(MentalState.currentActionCombo) == 1)
         //{
@@ -129,10 +125,10 @@ public class EmoControl : MonoBehaviour
         else if (MentalState.currentActionCombo == -999)
         {
 
-            if (emoSize > 0.02f)
+            if (emoSize > 0.09f)
             {
                 hasEmo = true;
-                emoSize -= iFa * 3f * Mathf.Sin(Time.deltaTime);
+                emoSize -= iFa * Mathf.Sin(Time.deltaTime);
                 transform.localScale = new Vector2(sFa * Mathf.Sqrt(emoSize), sFa * Mathf.Sqrt(emoSize));
                 if (emoSize < 0.03f)
                 {
