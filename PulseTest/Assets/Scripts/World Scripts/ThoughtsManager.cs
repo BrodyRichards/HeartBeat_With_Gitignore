@@ -10,6 +10,7 @@ public class ThoughtsManager : MonoBehaviour
     public Thought thought;
 
     private List<string> thoughts;
+    public static Dictionary<string, int> thoughtLine;
 
     float time;
     float timer;
@@ -21,11 +22,21 @@ public class ThoughtsManager : MonoBehaviour
         time = 0f;
         timer = 0f;
 
+        thoughtLine = new Dictionary<string, int>
+        {
+            { "Played catch", 2},
+            { "Hit by ball", 3},
+            { "Held Rabbit", 0 },
+            { "Bit by rabbit", 1},
+            { "Happy Song", 4},
+            { "Sad Song", 5},
+        };
+
         foreach (string thought in thought.thoughts)
         {
             thoughts.Add(thought);
         }
-        thoughtText.text = thoughts[1];
+        
     }
 
     /*
@@ -48,7 +59,8 @@ public class ThoughtsManager : MonoBehaviour
 
     void changeThought(int line)
     {
-
+        thoughtText.text = thoughts[line];
+        setTimer();
     }
 
     void setTimer()
@@ -67,8 +79,10 @@ public class ThoughtsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        time = Time.fixedUnscaledTime;
         //random events?
         //what will trigger thoughts
+        /*
         if (Input.GetKeyDown(KeyCode.T))
         {
             showThought();
@@ -76,6 +90,22 @@ public class ThoughtsManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             hideThought();
+        }
+        */
+        if (time >= timer)
+        {
+            hideThought();
+        }
+        else //if (timer >= time)
+        {
+            showThought();
+        }
+        if (MentalState.message != "")
+        {     
+            int lineNum = thoughtLine[MentalState.message];
+            Debug.Log("line = " + lineNum);
+            MentalState.message = "";
+            changeThought(lineNum);
         }
     }
 }

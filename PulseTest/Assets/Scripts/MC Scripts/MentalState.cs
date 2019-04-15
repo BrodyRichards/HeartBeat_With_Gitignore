@@ -28,6 +28,8 @@ public class MentalState : MonoBehaviour
     public readonly static List<string> negativeAct 
         = new List<string>() { "Hit by ball", "Bit by rabbit", "Sad Song" };
 
+    public static string message = "";
+
     // Played catch, Hit by ball, Held Rabbit, Bit by rabbit, Happy Song, Sad Song
     private void Awake()
     {
@@ -94,6 +96,7 @@ public class MentalState : MonoBehaviour
     {
         if (positiveAct.Contains(msg) || negativeAct.Contains(msg))
         {
+            message = msg;
             var before = currentActionCombo;
             var comboFactor = positiveAct.Contains(msg) ? 1 : -1;
             currentActionCombo += comboFactor;
