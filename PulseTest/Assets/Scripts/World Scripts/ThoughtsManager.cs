@@ -7,9 +7,10 @@ public class ThoughtsManager : MonoBehaviour
 {
     public Text thoughtText;
     public Image thoughtBubble;
-    public Thought thought;
+    //public Thought thought;
 
     private List<string> thoughts;
+    //private string[] thoughts;
     public static Dictionary<string, int> thoughtLine;
 
     float time;
@@ -17,8 +18,9 @@ public class ThoughtsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        setThoughts();
         hideThought();
-        thoughts = new List<string>();
+      
         time = 0f;
         timer = 0f;
 
@@ -31,12 +33,6 @@ public class ThoughtsManager : MonoBehaviour
             { "Happy Song", 4},
             { "Sad Song", 5},
         };
-
-        foreach (string thought in thought.thoughts)
-        {
-            thoughts.Add(thought);
-        }
-        
     }
 
     /*
@@ -46,6 +42,18 @@ public class ThoughtsManager : MonoBehaviour
 
     }
     */
+
+    void setThoughts()
+    {
+        thoughts = new List<string>(new string[]{
+            "So adorable",
+            "Ouch!",
+            "Awesome",
+            "What a big meanie head",
+            "Sounds great",
+            "Sounds terrible"
+        });
+    }
 
     void hideThought()
     {
@@ -57,7 +65,7 @@ public class ThoughtsManager : MonoBehaviour
         thoughtBubble.GetComponent<Image>().gameObject.SetActive(true);
     }
 
-    void changeThought(int line)
+    void changeThought(int line)            //0 = rabbit pos, 1 = rabbit neg, 2 = ball pos, 3 = ball neg, 4 = music pos, 5 = music neg
     {
         thoughtText.text = thoughts[line];
         setTimer();
@@ -82,7 +90,7 @@ public class ThoughtsManager : MonoBehaviour
         time = Time.fixedUnscaledTime;
         //random events?
         //what will trigger thoughts
-        /*
+        
         if (Input.GetKeyDown(KeyCode.T))
         {
             showThought();
@@ -91,7 +99,7 @@ public class ThoughtsManager : MonoBehaviour
         {
             hideThought();
         }
-        */
+        
         if (time >= timer)
         {
             hideThought();
