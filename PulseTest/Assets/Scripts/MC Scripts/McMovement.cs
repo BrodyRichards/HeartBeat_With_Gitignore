@@ -255,7 +255,7 @@ public class McMovement : MonoBehaviour
     {
         
         
-        if (MentalState.WithinRange(MentalState.currentState, MentalState.normalBound.x, MentalState.normalBound.y)) // no mood
+        if (MentalState.WithinRange(MentalState.currentActionCombo, -1, 1)) // no mood
         {
             //Debug.Log("currentMood is calm" + MentalState.mood);
             //var scaling = !isFlipped ? new Vector2(1.0f, 1.0f) : new Vector2(-1.0f, 1.0f);
@@ -265,14 +265,14 @@ public class McMovement : MonoBehaviour
             SwitchAnimController((int)Mood.idle);
             anim.SetFloat("speed", 1f);
         }
-        else if (MentalState.WithinRange(MentalState.currentState, MentalState.happyBound.x, MentalState.happyBound.y)) // happy
+        else if (MentalState.currentActionCombo > 1 ) // happy
         {
             //anim.SetInteger("mood", (int)Mood.happy);
             SwitchAnimController((int)Mood.happy);
             anim.SetFloat("speed", 0.25f);
             speed = 6;
         }
-        else if (MentalState.WithinRange(MentalState.currentState, MentalState.sadBound.x, MentalState.sadBound.y)) // sad 
+        else if (MentalState.currentActionCombo < -1) // sad 
         {
             var scaling = isFlipped ? new Vector2(-1.1f, 1.1f) : new Vector2(1.1f, 1.1f);
             transform.localScale = scaling;
