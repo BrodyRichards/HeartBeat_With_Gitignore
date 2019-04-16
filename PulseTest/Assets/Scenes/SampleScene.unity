@@ -10672,6 +10672,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thoughtText: {fileID: 1538936537}
   thoughtBubble: {fileID: 735934947}
+  thought:
+    thoughts:
+    - Bunny hold
+    - bunny bit
+    - ball catch
+    - ball hit
+    - happy music
+    - sad music
 --- !u!114 &1453256355
 MonoBehaviour:
   m_ObjectHideFlags: 0
