@@ -7,10 +7,8 @@ public class ThoughtsManager : MonoBehaviour
 {
     public Text thoughtText;
     public Image thoughtBubble;
-    //public Thought thought;
 
     private List<string> thoughts;
-    //private string[] thoughts;
     public static Dictionary<string, int> thoughtLine;
 
     float time;
@@ -90,15 +88,6 @@ public class ThoughtsManager : MonoBehaviour
         time = Time.fixedUnscaledTime;
         //random events?
         //what will trigger thoughts
-        
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            showThought();
-        }
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            hideThought();
-        }
         
         if (time >= timer)
         {
