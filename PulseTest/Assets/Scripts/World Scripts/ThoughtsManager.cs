@@ -134,14 +134,18 @@ public class ThoughtsManager : MonoBehaviour
             MentalState.message = "";
             changeThought(lineNum);
         }
+        /*
         else if (MentalState.message == "")
         {
+            
             int ran = Random.Range(0, 10);
             if (ran >= 7)
             {
                 //int lineNum = 6;
                 changeThought(6);
             }
+            
         }
+        */
     }
 }
