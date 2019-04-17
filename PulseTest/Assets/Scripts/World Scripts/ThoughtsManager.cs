@@ -31,6 +31,7 @@ public class ThoughtsManager : MonoBehaviour
             { "Bit by rabbit", 1},
             { "Happy Song", 4},
             { "Sad Song", 5},
+            { "", 6 }
         };
     }
 
@@ -64,7 +65,8 @@ public class ThoughtsManager : MonoBehaviour
             {2, new List<string>(new string[]{"First time ball play", "Awesome", "Ball play"}) },
             {3, new List<string>(new string[]{"First time ball hit", "What a big meanie head", "Ball hit"}) },
             {4, new List<string>(new string[]{"First time music pos", "Sounds great", "Music pos"}) },
-            {5, new List<string>(new string[]{"First time music neg", "Sounds terrible", "Music neg"}) }
+            {5, new List<string>(new string[]{"First time music neg", "Sounds terrible", "Music neg"}) },
+            {6, new List<string>(new string[]{ "The snow is beautiful", "I'm an ice dragon", "so cold brrr", "i wanna draw "}) }
         };
     }
 
@@ -88,8 +90,10 @@ public class ThoughtsManager : MonoBehaviour
         }
         else
         {
-            int num = thoughts.Count;
-            int ran = Random.Range(1, num);
+            int num = thoughts.Count; int ran;
+            if (line == 6) { ran = Random.Range(0, num); }
+            else { ran = Random.Range(1, num); }
+            
             thoughtText.text = thoughts[ran];
         }
         setTimer();
@@ -129,6 +133,15 @@ public class ThoughtsManager : MonoBehaviour
             //Debug.Log("line = " + lineNum);
             MentalState.message = "";
             changeThought(lineNum);
+        }
+        else if (MentalState.message == "")
+        {
+            int ran = Random.Range(0, 10);
+            if (ran >= 7)
+            {
+                //int lineNum = 6;
+                changeThought(6);
+            }
         }
     }
 }
