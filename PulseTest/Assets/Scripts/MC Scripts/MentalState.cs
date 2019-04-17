@@ -28,7 +28,8 @@ public class MentalState : MonoBehaviour
     public readonly static List<string> negativeAct 
         = new List<string>() { "Hit by ball", "Bit by rabbit", "Sad Song" };
 
-    public static string message = "";
+    public static string message = "";          //for the thought system
+    public static int firstTime = 99;           //for the though system
 
     // Played catch, Hit by ball, Held Rabbit, Bit by rabbit, Happy Song, Sad Song
     private void Awake()
@@ -106,7 +107,9 @@ public class MentalState : MonoBehaviour
         }
         int currCount;
         moodLog.TryGetValue(msg, out currCount);
+        firstTime = moodLog[msg];
         moodLog[msg] = currCount + 1;
+        
         if (journalInProgress)
         {
             EventTracking();
