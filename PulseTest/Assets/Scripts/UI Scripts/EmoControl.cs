@@ -150,21 +150,7 @@ public class EmoControl : MonoBehaviour
         }
     }
 
-    private void ResetHasEmo()
-    {
-        hasEmo = false;
-    }
-    //[Obsolete]
-    //IEnumerator IncrementMoodLog(string msg, int mood)
-    //{
-    //    Debug.Log("emoDist" + emoDist);
-    //    while(RadioControl.currentMood == mood && emoDist)
-    //    {
-    //        yield return new WaitForSeconds(3f);
-    //        MentalState.sendMsg(msg);
-    //    }
-    //    yield break;
-    //}
+
 
     
 }
