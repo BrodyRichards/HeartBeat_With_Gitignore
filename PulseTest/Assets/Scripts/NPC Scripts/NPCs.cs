@@ -185,26 +185,30 @@ public class NPCs : MonoBehaviour
 
     protected virtual void checkMusic()
     {
-        if (RadioControl.currentMood == 1)                      //sad song
+        if (RadioControl.npcIsAffected && RadioControl.musicListener==transform.name)
         {
-            Emo = master.GetComponent<NpcInstantiator>().sadFace;
-            if (Time.time >= curTime)
+            if (RadioControl.currentMood == 1)                      //sad song
             {
-                addQueue(4);
-                curTime = Time.time + musicCoolDown;
+                Emo = master.GetComponent<NpcInstantiator>().sadFace;
+                if (Time.time >= curTime)
+                {
+                    addQueue(4);
+                    curTime = Time.time + musicCoolDown;
+                }
             }
-        }
-        else if (RadioControl.currentMood == 0)                 //happy song
-        {
-            Emo = master.GetComponent<NpcInstantiator>().happyFace;
-            if (Time.time >= curTime)
+            else if (RadioControl.currentMood == 0)                 //happy song
             {
-                Debug.Log("I'm happy");
-                addQueue(3);
-                curTime = Time.time + musicCoolDown;
+                Emo = master.GetComponent<NpcInstantiator>().happyFace;
+                if (Time.time >= curTime)
+                {
+                    Debug.Log("I'm happy");
+                    addQueue(3);
+                    curTime = Time.time + musicCoolDown;
+                }
             }
+            addEmo();
         }
-        addEmo();
+
     }
 
     protected virtual void directionCheck(float target1, float pos)
