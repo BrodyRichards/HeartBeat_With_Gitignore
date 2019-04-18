@@ -12,6 +12,8 @@ public class ThoughtsManager : MonoBehaviour
     public static Dictionary<string, int> thoughtLine;
     public static Dictionary<int, List<string>> thoughtPossibilities;
 
+    bool thoughtOn = false;
+
     float time;
     float timer;
     // Start is called before the first frame update
@@ -87,14 +89,19 @@ public class ThoughtsManager : MonoBehaviour
         if (MentalState.firstTime == 0)
         {
             thoughtText.text = thoughts[0];
+            showThought();
         }
         else
         {
-            int num = thoughts.Count; int ran;
-            if (line == 6) { ran = Random.Range(0, num); }
-            else { ran = Random.Range(1, num); }
-            
-            thoughtText.text = thoughts[ran];
+            int num = thoughts.Count; int ran; int ran2;
+            ran2 = Random.Range(0, 10);
+            if (ran2 > 5)
+            {
+                if (line == 6) { ran = Random.Range(0, num); }
+                else { ran = Random.Range(1, num); }
+                thoughtText.text = thoughts[ran];
+                showThought();
+            }    
         }
         setTimer();
     }
@@ -103,6 +110,7 @@ public class ThoughtsManager : MonoBehaviour
     {
         time = Time.fixedUnscaledTime;
         timer = time + 3.0f;
+        thoughtOn = true;
     }
 
     /*
@@ -121,11 +129,27 @@ public class ThoughtsManager : MonoBehaviour
         
         if (time >= timer)
         {
+            thoughtOn = false;
             hideThought();
         }
-        else //if (timer >= time)
+        /*
+        else //if (time <= timer && thoughtOn == false)//if (timer >= time)
         {
-            showThought();
+            if (thoughtOn)
+            {
+                showThought();
+            }
+            
+        }
+        */
+           
+        int ran = Random.Range(0, 1000);
+        Debug.Log("random num: " + ran);
+        if (ran > 997 && thoughtOn == false)
+        {
+                //int lineNum = 6;
+            changeThought(6);
+
         }
         if (MentalState.message != "")
         {     
@@ -137,7 +161,7 @@ public class ThoughtsManager : MonoBehaviour
         /*
         else if (MentalState.message == "")
         {
-            
+         
             int ran = Random.Range(0, 10);
             if (ran >= 7)
             {
