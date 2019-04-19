@@ -10378,6 +10378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd37ee38170d32b47b5a169ab04ac598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 20722762716967102}
   mcWaypoints:
   - {x: -52, y: -9}
   - {x: -15, y: -16}
@@ -18045,6 +18046,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fce55a7740c9bd7488d94c06368b7557, type: 3}
+--- !u!95 &20722762716967102 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 20722763564241263, guid: fce55a7740c9bd7488d94c06368b7557,
+    type: 3}
+  m_PrefabInstance: {fileID: 20722762716967101}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &950103261848615187
 PrefabInstance:
   m_ObjectHideFlags: 0

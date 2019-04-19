@@ -98,7 +98,7 @@ public class MCBTCreator : MonoBehaviour
         lastX = transform.position.x;
     }
 
-    private void McRunsFromAvatar()
+    private void McRunsFromAvatar(Vector3 target)
     {
         anim.SetBool("isWalking", true);
         anim.SetBool("wantToPlay", false);
@@ -120,7 +120,7 @@ public class MCBTCreator : MonoBehaviour
             }
             else
             {
-                transform.position = Vector2.MoveTowards(transform.position, target, (-1) * step);
+                transform.position = Vector2.MoveTowards(transform.position, target, (-1) * walkSpeed * Time.deltaTime);
                 timePassed += Time.deltaTime;
             }
         }
