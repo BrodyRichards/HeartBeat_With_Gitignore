@@ -11,11 +11,15 @@ public class ThoughtsManager : MonoBehaviour
     private List<string> thoughts;
     public static Dictionary<string, int> thoughtLine;
     public static Dictionary<int, List<string>> thoughtPossibilities;
+    public static Dictionary<int[], string> successiveThoughts;
 
     bool thoughtOn = false;
+    bool nextThought = false;
 
     float time;
     float timer;
+
+    string next;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,19 +51,6 @@ public class ThoughtsManager : MonoBehaviour
 
     void setThoughts()
     {
-        /*
-        thoughts = new List<string>(new string[]{
-            "First time bunny",    
-            "So adorable",
-            "Ouch!",
-            "First time ball",
-            "Awesome",
-            "What a big meanie head",
-            "First time music",
-            "Sounds great",
-            "Sounds terrible"
-        });
-        */
         thoughtPossibilities = new Dictionary<int, List<string>>
         {
             {0, new List<string>(new string[]{"It's so foofy!", "So cute!", "I want to take it home!"}) },
@@ -68,9 +59,15 @@ public class ThoughtsManager : MonoBehaviour
             {3, new List<string>(new string[]{"Ow!", "What a big meanie head", "I don't like him"}) }, //mommy said big kids don't cry, I guess I'm not a big kid
             {4, new List<string>(new string[]{"Pretty music!", "I like this song", "This sounds like mommy's music"}) },
             {5, new List<string>(new string[]{"Yucky song!", "Sounds bad", "This song is ugly"}) },
-            {6, new List<string>(new string[]{ "Snow!", "I'm an ice dragon", "so cold brrr", "i wanna draw", "I didn't see daddy yesterday", "I miss mommy"}) }
+            {6, new List<string>(new string[]{ "Snow!", "I'm an ice dragon", "so cold brrr", "i wanna draw", "I didn't see daddy yesterday", "I miss mommy"}) },
+            {7, new List<string>(new string[]{"Mommy said big kids don't cry"}) }
             //maybe I can separate some strings depending on the mood of the MC
+        };
 
+        successiveThoughts = new Dictionary<int[], string>
+        {
+            {new int[2] {0, 0}, "It's like a marshmallow!"},
+            {new int[2] {7, 0}, "I guess I'm not a big kid"}
         };
     }
 
@@ -88,9 +85,11 @@ public class ThoughtsManager : MonoBehaviour
     {
         //thoughtText.text = thoughts[line];
         thoughts = thoughtPossibilities[line];
+        int successive = 999;
         if (MentalState.firstTime == 0)
         {
             thoughtText.text = thoughts[0];
+            successive = 0;
             showThought();
         }
         else
@@ -103,7 +102,31 @@ public class ThoughtsManager : MonoBehaviour
                 else { ran = Random.Range(1, num); }
                 thoughtText.text = thoughts[ran];
                 showThought();
-            }    
+                //int[] check = new int[2] { line, ran };
+                //Debug.Log("check: " + check);
+                successive = ran;
+                /*
+                if (successiveThoughts[check] != null)
+                {
+                    Debug.Log()
+                    nextThought = true;
+                    next = successiveThoughts[check];
+                }
+                */
+                
+            }
+            
+            
+        }
+        //successive = 0;
+        int[] check = new int[2] { line, successive };
+        Debug.Log("check: " + check[0] + check[1]);
+        Debug.Log("is it in? : " + successiveThoughts.ContainsKey(check));
+        if (successiveThoughts.ContainsKey(check))
+        {
+            Debug.Log("yay");
+            nextThought = true;
+            next = successiveThoughts[check];
         }
         setTimer();
     }
@@ -131,8 +154,18 @@ public class ThoughtsManager : MonoBehaviour
         
         if (time >= timer)
         {
-            thoughtOn = false;
-            hideThought();
+            if (nextThought)
+            {
+                Debug.Log("HELLOOO");
+                thoughtText.text = next;
+                setTimer();
+                nextThought = false;
+            }
+            else
+            {
+                thoughtOn = false;
+                hideThought();
+            }
         }
         /*
         else //if (time <= timer && thoughtOn == false)//if (timer >= time)
@@ -146,7 +179,6 @@ public class ThoughtsManager : MonoBehaviour
         */
            
         int ran = Random.Range(0, 1000);
-        Debug.Log("random num: " + ran);
         if (ran > 997 && thoughtOn == false)
         {
                 //int lineNum = 6;
@@ -156,9 +188,17 @@ public class ThoughtsManager : MonoBehaviour
         if (MentalState.message != "")
         {     
             int lineNum = thoughtLine[MentalState.message];
+            //string followUpThought = lineNum.ToString();
+            //followUpThought.
+            //Debug.Log(followUpThought);
             //Debug.Log("line = " + lineNum);
+            Debug.Log("lineNum: " + lineNum);
             MentalState.message = "";
             changeThought(lineNum);
+        }
+        if (Input.GetKey(KeyCode.T))
+        {
+            changeThought(7);
         }
         /*
         else if (MentalState.message == "")
