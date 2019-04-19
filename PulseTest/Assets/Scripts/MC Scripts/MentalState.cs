@@ -95,21 +95,12 @@ public class MentalState : MonoBehaviour
 
     public static void sendMsg(string msg)
     {
-        if (positiveAct.Contains(msg) || negativeAct.Contains(msg))
-        {
-            message = msg;
-            var before = currentActionCombo;
-            var comboFactor = positiveAct.Contains(msg) ? 1 : -1;
-            currentActionCombo += comboFactor;
-            if (currentActionCombo == 0) { currentActionCombo = comboFactor; }
-            var after = currentActionCombo;
-            if (before * after <= 0) { EmoControl.emoChanged = true; }
-        }
+
         int currCount;
         moodLog.TryGetValue(msg, out currCount);
         firstTime = moodLog[msg];
         moodLog[msg] = currCount + 1;
-        
+        UpdateEmoWithAction(msg);
         if (journalInProgress)
         {
             EventTracking();
@@ -148,7 +139,7 @@ public class MentalState : MonoBehaviour
         return (int)average;
 
 
-        return 0;
+        //return 0;
     }
     //============== End of TODO ==========================
 
@@ -206,6 +197,7 @@ public class MentalState : MonoBehaviour
             Debug.Log("Current State: " + currentState);
         }*/
         currentState += npcEffectWeights[newAction];
+        //currentState = Mathf.Clamp(currentState, sadBound.x, happyBound.y);
         //Debug.Log("Updating emotion");
         Debug.Log("Current State: " + currentState);
     }
@@ -314,5 +306,27 @@ public class MentalState : MonoBehaviour
         }
 
         return mood;
+    }
+    // [obsolete]
+    public static void ByeByeOldEmoSystem(string msg)
+    {
+        if (positiveAct.Contains(msg) || negativeAct.Contains(msg))
+        {
+            message = msg;
+            var before = currentActionCombo;
+            var comboFactor = positiveAct.Contains(msg) ? 1 : -1;
+            currentActionCombo += comboFactor;
+            if (currentActionCombo == 0) { currentActionCombo = comboFactor; }
+            var after = currentActionCombo;
+            if (before * after <= 0) { EmoControl.emoChanged = true; }
+        }
+    }
+
+    public static void UpdateEmoWithAction(string act)
+    {
+        if (NewEmoControl.NoEmoAtm)
+        {
+            NewEmoControl.ReactEmo = act;
+        }
     }
 }

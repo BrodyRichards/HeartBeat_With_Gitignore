@@ -205,6 +205,8 @@ public class NPCs : MonoBehaviour
             }
         }
         addEmo();
+
+
     }
 
     protected virtual void directionCheck(float target1, float pos)

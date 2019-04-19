@@ -43,10 +43,6 @@ public class RadioControl : MonoBehaviour
     public Sprite sadNote2;
     public Sprite sadNote3;
 
-
-    
-
-
     Sprite[] sprites;
     Sprite[] happyNoteSprites;
     Sprite[] sadNoteSprites;
@@ -147,6 +143,7 @@ public class RadioControl : MonoBehaviour
             }
             else
             {
+                CancelInvoke("MCNotAffected");
                 musicListener = "";
             }
         }
