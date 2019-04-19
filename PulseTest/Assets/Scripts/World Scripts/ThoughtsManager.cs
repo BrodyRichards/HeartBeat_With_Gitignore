@@ -62,13 +62,15 @@ public class ThoughtsManager : MonoBehaviour
         */
         thoughtPossibilities = new Dictionary<int, List<string>>
         {
-            {0, new List<string>(new string[]{"First time bunny hold", "So adorable", "Bunny hold"}) },
-            {1, new List<string>(new string[]{"First time bunny bite", "Ouch!", "Bunny bite"}) },
-            {2, new List<string>(new string[]{"First time ball play", "Awesome", "Ball play"}) },
-            {3, new List<string>(new string[]{"First time ball hit", "What a big meanie head", "Ball hit"}) },
-            {4, new List<string>(new string[]{"First time music pos", "Sounds great", "Music pos"}) },
-            {5, new List<string>(new string[]{"First time music neg", "Sounds terrible", "Music neg"}) },
-            {6, new List<string>(new string[]{ "The snow is beautiful", "I'm an ice dragon", "so cold brrr", "i wanna draw "}) }
+            {0, new List<string>(new string[]{"It's so foofy!", "So cute!", "I want to take it home!"}) },
+            {1, new List<string>(new string[]{"Ouch!", "Go away!", "Stop it!"}) },
+            {2, new List<string>(new string[]{"This is fun!", "Yay!", "More!", "Can we be friends?"}) },
+            {3, new List<string>(new string[]{"Ow!", "What a big meanie head", "I don't like him"}) }, //mommy said big kids don't cry, I guess I'm not a big kid
+            {4, new List<string>(new string[]{"Pretty music!", "I like this song", "This sounds like mommy's music"}) },
+            {5, new List<string>(new string[]{"Yucky song!", "Sounds bad", "This song is ugly"}) },
+            {6, new List<string>(new string[]{ "Snow!", "I'm an ice dragon", "so cold brrr", "i wanna draw", "I didn't see daddy yesterday", "I miss mommy"}) }
+            //maybe I can separate some strings depending on the mood of the MC
+
         };
     }
 
