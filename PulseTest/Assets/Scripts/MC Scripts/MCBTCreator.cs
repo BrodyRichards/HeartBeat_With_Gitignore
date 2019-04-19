@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MCBTCreator : MonoBehaviour
 {
+    public Animator anim;
+
     public List<Vector2> mcWaypoints;
     public List<Vector2> refPoints;
 
@@ -12,14 +14,20 @@ public class MCBTCreator : MonoBehaviour
 
     private bool isFlipped;
     private float lastX;
+    private float timePassed;
+
+    public static bool gotHit = false;
 
     Node MC_BT;
 
     // Start is called before the first frame update
     void Start()
     {
+        anim.SetBool("isWalking", false);
+
         isFlipped = false;
         followDist = 20f;
+        timePassed = 0f;
 
         MC_BT = createBehaviorTree();
         refPoints = new List<Vector2>(mcWaypoints);
@@ -36,6 +44,10 @@ public class MCBTCreator : MonoBehaviour
     Node createBehaviorTree()
     {
         Leaf Walk = new Leaf(GoToWaypoints);
+
+        //Create Rabbit Bite Check Sequence
+        //Create Ball Kid mean ball check Sequence
+        //Create Ball kid nearby follow him Sequence
 
         return Walk;
     }
@@ -86,6 +98,38 @@ public class MCBTCreator : MonoBehaviour
         lastX = transform.position.x;
     }
 
+    private void McRunsFromAvatar()
+    {
+        anim.SetBool("isWalking", true);
+        anim.SetBool("wantToPlay", false);
+
+        if (gotHit)
+        {
+            gotHit = !gotHit;
+        }
+
+        if(timePassed <= 4f)
+        {
+            if (transform.position.x > Playground.RightX ||
+                transform.position.x < Playground.LeftX ||
+                transform.position.y > Playground.UpperY ||
+                transform.position.y < Playground.LowerY)
+            {
+                //Trying to exit bound
+                timePassed += Time.deltaTime;
+            }
+            else
+            {
+                transform.position = Vector2.MoveTowards(transform.position, target, (-1) * step);
+                timePassed += Time.deltaTime;
+            }
+        }
+        else
+        {
+            timePassed = 0f;
+        }
+    }
+
     /*------------------Leaf functions------------------*/
 
     NodeStatus GoToWaypoints()
@@ -96,6 +140,7 @@ public class MCBTCreator : MonoBehaviour
         {
             //McGoesTo(mcWaypoints[0], step);
             transform.position = Vector2.MoveTowards(transform.position, mcWaypoints[0], walkSpeed * Time.deltaTime);
+            anim.SetBool("isWalking", true);
 
             if (Vector2.Distance(transform.position, mcWaypoints[0]) < 1.0f)
             {
