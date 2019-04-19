@@ -143,6 +143,7 @@ public class RadioControl : MonoBehaviour
             }
             else
             {
+                CancelInvoke("MCNotAffected");
                 musicListener = "";
             }
         }
