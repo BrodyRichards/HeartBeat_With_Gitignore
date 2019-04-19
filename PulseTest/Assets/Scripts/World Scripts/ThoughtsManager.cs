@@ -11,7 +11,8 @@ public class ThoughtsManager : MonoBehaviour
     private List<string> thoughts;
     public static Dictionary<string, int> thoughtLine;
     public static Dictionary<int, List<string>> thoughtPossibilities;
-    public static Dictionary<int[], string> successiveThoughts;
+    //public static Dictionary<int[], string> successiveThoughts;
+    public static Dictionary<string, string> successiveThoughts;
 
     bool thoughtOn = false;
     bool nextThought = false;
@@ -64,10 +65,17 @@ public class ThoughtsManager : MonoBehaviour
             //maybe I can separate some strings depending on the mood of the MC
         };
 
+        /*
         successiveThoughts = new Dictionary<int[], string>
         {
             {new int[2] {0, 0}, "It's like a marshmallow!"},
             {new int[2] {7, 0}, "I guess I'm not a big kid"}
+        };
+        */
+        successiveThoughts = new Dictionary<string, string>
+        {
+            {"00", "It's like a marshmallow!"},
+            {"70", "I guess I'm not a big kid"}
         };
     }
 
@@ -119,14 +127,17 @@ public class ThoughtsManager : MonoBehaviour
             
         }
         //successive = 0;
-        int[] check = new int[2] { line, successive };
-        Debug.Log("check: " + check[0] + check[1]);
-        Debug.Log("is it in? : " + successiveThoughts.ContainsKey(check));
-        if (successiveThoughts.ContainsKey(check))
+        //int[] check = new int[2] { line, successive };
+        string ok = line.ToString() +  successive.ToString();
+        //Debug.Log(successiveThoughts);
+        //check = new int[2] { 0, 0 };
+        //Debug.Log("check: " + check[0] + check[1]);
+        //Debug.Log("is it in? : " + successiveThoughts.ContainsKey(check));
+        if (successiveThoughts.ContainsKey(ok))
         {
             Debug.Log("yay");
             nextThought = true;
-            next = successiveThoughts[check];
+            next = successiveThoughts[ok];
         }
         setTimer();
     }
