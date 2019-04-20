@@ -13,7 +13,7 @@ public class ThoughtBubble : MonoBehaviour
     void Start()
     {
         pos = mc.transform.position;
-        offset = new Vector3(-7, 7, 0);
+        offset = new Vector3(-8, 5, 0);
 
         
     }
