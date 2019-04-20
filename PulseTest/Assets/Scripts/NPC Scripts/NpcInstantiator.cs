@@ -22,6 +22,8 @@ public class NpcInstantiator : MonoBehaviour
     public GameObject madFace;
     public GameObject happyFace;
     public GameObject surpriseFace;
+    public GameObject hurtFace;
+    public GameObject groovinFace;
 
     public GameObject ballKid;  //to get the position of these guys
     public static Vector3 ballKidPos;
@@ -114,23 +116,27 @@ public class NpcInstantiator : MonoBehaviour
 
     private void checkPositions()
     {
+        int temp = npcPositions[0].layer;
         for (int i = 0; i < npcPositions.Count - 1; i++)
         {
             for (int j = 1; j < npcPositions.Count; j++)
             {
+                //if (npcPositions[i].)
                 Vector3 pos1 = npcPositions[i].transform.position;
                 Vector3 pos2 = npcPositions[j].transform.position;
                 bool checkXPos = checkXPosition(pos1.x, pos2.x);
                 bool checkYPos = checkYPosition(pos1.y, pos2.y);
-                int temp = npcPositions[i].layer;
+                
                 if (checkXPos && checkYPos)
                 {
                     npcPositions[i].layer = 31;
+                    //Debug.Log("should be 31 on layer " + npcPositions[i].layer);
                 }
                 else
                 {
                     npcPositions[i].layer = temp;
-                }
+                    //Debug.Log("should be whatever on layer " + npcPositions[i].layer);
+                }     
             }
         }
     }

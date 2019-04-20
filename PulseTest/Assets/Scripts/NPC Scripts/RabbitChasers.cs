@@ -21,6 +21,7 @@ public class RabbitChasers : NPCs
 
     protected override void Update()
     {
+        //isWalking = anim.GetBool("IsWalking");
         if (schoolBell == false)
         {
             time = Time.fixedUnscaledTime;
@@ -50,7 +51,7 @@ public class RabbitChasers : NPCs
                 if (transform.GetChild(i).gameObject.tag == "Avatars" && holdBunny == false)
                 {
                     holdBunny = true;
-                    Emo = master.GetComponent<NpcInstantiator>().happyFace;
+                    Emo = master.GetComponent<NpcInstantiator>().surpriseFace;
                     addEmo();
                     addQueue(5);
                 }

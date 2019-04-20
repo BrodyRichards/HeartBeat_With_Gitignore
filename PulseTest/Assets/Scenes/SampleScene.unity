@@ -10717,6 +10717,10 @@ MonoBehaviour:
     type: 3}
   surpriseFace: {fileID: 3238967181762715144, guid: 9b15009aef1e85e46996b488884a7cca,
     type: 3}
+  hurtFace: {fileID: 3084480849789096003, guid: f0d804279d9e7d348bf26a908b43fce1,
+    type: 3}
+  groovinFace: {fileID: 449069240278931057, guid: c4c60992a9dabab468ab3390f537b6e1,
+    type: 3}
   ballKid: {fileID: 118138679}
   rabbit: {fileID: 616797539}
   musicKid: {fileID: 1332290333}

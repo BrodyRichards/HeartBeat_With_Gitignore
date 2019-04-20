@@ -16,6 +16,7 @@ public class Runners : NPCs
 
     protected override void Update()
     {
+        //isWalking = anim.GetBool("IsWalking");
         if (schoolBell == false)
         {
             time = Time.fixedUnscaledTime;
