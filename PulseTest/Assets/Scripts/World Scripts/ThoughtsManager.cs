@@ -45,24 +45,29 @@ public class ThoughtsManager : MonoBehaviour
     {
         thoughtPossibilities = new Dictionary<int, List<string>>
         {
-            {0, new List<string>(new string[]{"It's so foofy!", "So cute!", "I want to take it home!"}) },
-            {1, new List<string>(new string[]{"Ouch!", "Go away!", "Stop it!"}) },
+            {0, new List<string>(new string[]{"It's so foofy!", "So cute!", "I want to take it home!", "I want to draw this!"}) },
+            {1, new List<string>(new string[]{"Ouch!", "Go away!", "Stop it!", "Why?", "Evil rabbit"}) },
             {2, new List<string>(new string[]{"This is fun!", "Yay!", "More!", "Can we be friends?"}) },
-            {3, new List<string>(new string[]{"Ow!", "What a big meanie head", "I don't like him"}) },
+            {3, new List<string>(new string[]{"Ow!", "What a big meanie head", "I don't like him", "Why is he doing that"}) },
             {4, new List<string>(new string[]{"Pretty music!", "I like this song", "This sounds like mommy's music"}) },
-            {5, new List<string>(new string[]{"Yucky song!", "Sounds bad", "This song is ugly"}) },
+            {5, new List<string>(new string[]{"Yucky song!", "Sounds bad", "This song is ugly", "Why does she keep playing it?"}) },
             //Below are idle thoughts, 6 is for idle, 7 for sad, 8 for happy
-            {6, new List<string>(new string[]{ "Snow!", "I'm an ice dragon", "so cold brrr", "i wanna draw", "I didn't see daddy yesterday", "I miss mommy"}) }, 
-            {7, new List<string>(new string[]{"Mommy said big kids don't cry", "Sad", "sad2"}) },
-            {8, new List<string>(new string[]{"Happy", "Happy2", "Happy3"}) }
+            {6, new List<string>(new string[]{"Snow!", "I'm an ice dragon", "so cold brrr", "I wanna draw", "I hope daddy doesn't work too late"}) }, 
+            {7, new List<string>(new string[]{"Mommy said big kids don't cry", "I didn't see daddy yesterday", "I want to go home", "*Sniffle*", "I miss mommy",
+                                                "I don't like this school"}) },
+            {8, new List<string>(new string[]{"I want to tell mommy about today!", "Can't wait to make new friends!", "Can't wait for class!"}) }
             //maybe I can separate some strings depending on the mood of the MC
         };
 
         successiveThoughts = new Dictionary<string, string>
         {
             {"00", "It's like a marshmallow!"},
-            {"70", "I guess I'm not a big kid"}
+            {"70", "I guess I'm not a big kid"},
+            {"61", "Rawrrr"},
+            {"80", "I wonder when I'll see her" }
         };
+        
+        //add thoughts for avatar actions done to NPCs
     }
 
     void hideThought()
@@ -127,7 +132,7 @@ public class ThoughtsManager : MonoBehaviour
             {
                 if (nextThought)
                 {
-                    Debug.Log("HELLOOO");
+                    //Debug.Log("HELLOOO");
                     thoughtText.text = next;
                     setTimer();
                     nextThought = false;
@@ -154,7 +159,6 @@ public class ThoughtsManager : MonoBehaviour
                 {
                     changeThought(7);
                 }
-
             }
             if (MentalState.message != "")
             {
