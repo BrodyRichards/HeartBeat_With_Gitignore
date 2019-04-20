@@ -34,16 +34,40 @@ public class NewEmoControl : MonoBehaviour
     {
         if (ReactEmo !="" && NoEmoAtm)
         {
-            NoEmoAtm = false;
-            Invoke("ResetEmo", 1.0f);
+
+            if (ReactEmo!= "Held Rabbit" && ReactEmo!= "Happy Song")
+            {
+                NoEmoAtm = false;
+                Invoke("ResetEmo", 1.0f);
+            }
+            else if(ReactEmo=="Happy Song")
+            {
+
+                if (!RadioControl.mcIsAffected)
+                {
+                    ResetEmo();
+                }
+            }
+            else if (ReactEmo=="Held Rabbit")
+            {
+
+                Debug.LogError("Being carried is " + RabbitJump.beingCarried);
+                if (!RabbitJump.beingCarried)
+                {
+                    ResetEmo();
+                }
+            }
+
+
         }
 
-        EmoSwitcher();
+        EmoSwitcher(ReactEmo);
+
     }
 
-    void EmoSwitcher()
+    void EmoSwitcher(string s)
     {
-        switch (ReactEmo)
+        switch (s)
         {
             case "Played catch":
                 sr.sprite = happy;
