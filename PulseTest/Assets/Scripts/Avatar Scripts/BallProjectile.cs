@@ -55,7 +55,8 @@ public class BallProjectile : MonoBehaviour
                         //Debug.Log("You threw a mean ball!");
                         //Update Mental State
                         MentalState.sendMsg("Hit by ball");
-                        McMovement.gotHit = true;
+                        //McMovement.gotHit = true;
+                        MCBTCreator.gotHit = true;
 
                         //MC gets hit by ball and doesn't play catch
                         stationaryBall();

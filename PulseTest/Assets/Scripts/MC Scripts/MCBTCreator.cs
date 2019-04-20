@@ -8,13 +8,18 @@ public class MCBTCreator : MonoBehaviour
 
     public List<Vector2> mcWaypoints;
     public List<Vector2> refPoints;
+    private string[] controllersName = { "MC_happy", "MC_sad", "MC_controller" };
+    private enum Mood { happy, sad, idle };
 
     public float followDist;
     public float walkSpeed;
 
     private bool isFlipped;
+    private bool biteStatus;
+    private bool ballStatus;
     private float lastX;
-    private float timePassed;
+    private float rabbitTimePassed;
+    private float ballTimePassed;
 
     public static bool gotHit = false;
 
@@ -27,7 +32,8 @@ public class MCBTCreator : MonoBehaviour
 
         isFlipped = false;
         followDist = 20f;
-        timePassed = 0f;
+        rabbitTimePassed = 0f;
+        ballTimePassed = 0f;
 
         MC_BT = createBehaviorTree();
         refPoints = new List<Vector2>(mcWaypoints);
@@ -43,13 +49,24 @@ public class MCBTCreator : MonoBehaviour
 
     Node createBehaviorTree()
     {
+        //Default child for MC walking
         Leaf Walk = new Leaf(GoToWaypoints);
 
         //Create Rabbit Bite Check Sequence
+        Leaf CheckBite = new Leaf(checkBite);
+        Leaf RunFromRabbit = new Leaf(runFromRabbit);
+        Sequence RabbitSeq = createSeqRoot(CheckBite, RunFromRabbit);
+
         //Create Ball Kid mean ball check Sequence
+        Leaf CheckMeanThrow = new Leaf(checkMeanThrow);
+        Leaf RunFromBallKid = new Leaf(runFromBallKid);
+        Sequence MeanBallSeq = createSeqRoot(CheckMeanThrow, RunFromBallKid);
+
         //Create Ball kid nearby follow him Sequence
 
-        return Walk;
+        Selector root = createSelRoot(RabbitSeq, MeanBallSeq, Walk);
+
+        return root;
     }
 
     /*------------------Helper functions------------------*/
@@ -98,8 +115,11 @@ public class MCBTCreator : MonoBehaviour
         lastX = transform.position.x;
     }
 
-    private void McRunsFromAvatar(Vector3 target)
+    private void McRunsFromAvatar(Vector2 target)
     {
+        AnimationMoodCheck();
+        FlipAssetDirection();
+
         anim.SetBool("isWalking", true);
         anim.SetBool("wantToPlay", false);
 
@@ -108,32 +128,127 @@ public class MCBTCreator : MonoBehaviour
             gotHit = !gotHit;
         }
 
-        if(timePassed <= 4f)
+        if (transform.position.x > Playground.RightX ||
+            transform.position.x < Playground.LeftX  ||
+            transform.position.y > Playground.UpperY ||
+            transform.position.y < Playground.LowerY)
         {
-            if (transform.position.x > Playground.RightX ||
-                transform.position.x < Playground.LeftX ||
-                transform.position.y > Playground.UpperY ||
-                transform.position.y < Playground.LowerY)
+            //Trying to exit bound
+            //timePassed += Time.deltaTime;
+            anim.SetBool("isWalking", false);
+        }
+        else
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target, (-1) * walkSpeed * Time.deltaTime);
+            //timePassed += Time.deltaTime;
+        }
+    }
+
+    /*private void McGoesToAvatar(Vector2 target, float step)
+    {
+        //When standing still, if not played catch then walk away after 5 secs
+        //Otherwise, increment time when not playing catch until 5 secs
+        if (timeElapsed < 7f)
+        {
+            if (Vector2.Distance(transform.position, target) < 10.0f)
             {
-                //Trying to exit bound
-                timePassed += Time.deltaTime;
+                anim.SetBool("wantToPlay", true);
+                anim.SetBool("isWalking", false);
+                FlipAssetForBallKid();
+                if (playedCatch)
+                {
+                    timeElapsed = 0;
+                    playedCatch = false;
+                }
+                else
+                {
+                    timeElapsed += Time.deltaTime;
+                    //Debug.Log(timeElapsed);
+                }
             }
             else
             {
-                transform.position = Vector2.MoveTowards(transform.position, target, (-1) * walkSpeed * Time.deltaTime);
-                timePassed += Time.deltaTime;
+                anim.SetBool("wantToPlay", false);
+                anim.SetBool("isWalking", true);
+                transform.position = Vector2.MoveTowards(transform.position, target, step);
             }
         }
         else
         {
-            timePassed = 0f;
+            stillInterested = false;
+            //Still need to figure out when to set playedCatch to false
+            //and need to break out of if condition
+            //Walk away
         }
+    }*/
+
+    private bool CheckDist(Vector3 pos1, Vector3 pos2)
+    {
+        float dist = Vector3.Distance(pos1, pos2);
+        if (dist <= followDist) { return true; }
+        return false;
+    }
+
+    private void FlipAssetForBallKid()
+    {
+        if (NpcInstantiator.ballKidPos.x < transform.position.x && transform.localScale.x > 0 && !isFlipped)
+        {
+            isFlipped = true;
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+            //Debug.LogError("why the fuck is this not called?");
+        }
+        else if (NpcInstantiator.ballKidPos.x > transform.position.x && transform.localScale.x < 0 && isFlipped)
+        {
+            isFlipped = false;
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+        }
+    }
+
+    private void AnimationMoodCheck()
+    {
+        if (MentalState.WithinRange(MentalState.currentActionCombo, -1, 1)) // no mood
+        {
+            //Debug.Log("currentMood is calm" + MentalState.mood);
+            //var scaling = !isFlipped ? new Vector2(1.0f, 1.0f) : new Vector2(-1.0f, 1.0f);
+            //transform.localScale = scaling;
+            walkSpeed = 4;
+            //anim.SetInteger("mood", (int)Mood.idle );
+            SwitchAnimController((int)Mood.idle);
+            anim.SetFloat("speed", 1f);
+        }
+        else if (MentalState.currentActionCombo > 1) // happy
+        {
+            //anim.SetInteger("mood", (int)Mood.happy);
+            SwitchAnimController((int)Mood.happy);
+            anim.SetFloat("speed", 0.25f);
+            walkSpeed = 6;
+        }
+        else if (MentalState.currentActionCombo < -1) // sad 
+        {
+            var scaling = isFlipped ? new Vector2(-1.1f, 1.1f) : new Vector2(1.1f, 1.1f);
+            transform.localScale = scaling;
+
+            walkSpeed = 3;
+            //anim.SetInteger("mood", (int)Mood.sad);
+            SwitchAnimController((int)Mood.sad);
+            anim.SetFloat("speed", 0.1f);
+        }
+        else
+        {
+            //Debug.Log("mood overfloww");
+        }
+    }
+
+    private void SwitchAnimController(int i)
+    {
+        anim.runtimeAnimatorController = Resources.Load(controllersName[i]) as RuntimeAnimatorController;
     }
 
     /*------------------Leaf functions------------------*/
 
     NodeStatus GoToWaypoints()
     {
+        AnimationMoodCheck();
         FlipAssetDirection();
 
         if (mcWaypoints.Count != 0)
@@ -152,6 +267,61 @@ public class MCBTCreator : MonoBehaviour
         {
             mcWaypoints = new List<Vector2>(refPoints);
         }
+
+        return NodeStatus.SUCCESS;
+    }
+
+    NodeStatus checkBite()
+    {
+        if (RabbitJump.bittenMC)
+        {
+            biteStatus = RabbitJump.bittenMC;
+        }
+
+        if(rabbitTimePassed <= 4f && biteStatus)
+        {
+            rabbitTimePassed += Time.deltaTime;
+            return NodeStatus.SUCCESS;
+        }
+        else
+        {
+            rabbitTimePassed = 0f;
+            biteStatus = false;
+            return NodeStatus.FAILURE;
+        }
+    }
+
+    NodeStatus runFromRabbit()
+    {
+        McRunsFromAvatar(NpcInstantiator.rabbitPos);
+
+        return NodeStatus.SUCCESS;
+    }
+
+    NodeStatus checkMeanThrow()
+    {
+        if (CheckDist(transform.position, NpcInstantiator.ballKidPos) && BallProjectile.meanBallThrown && gotHit)
+        {
+            Debug.Log("got hit yo");
+            ballStatus = gotHit;
+        }
+
+        if (ballTimePassed <= 4f && ballStatus)
+        {
+            ballTimePassed += Time.deltaTime;
+            return NodeStatus.SUCCESS;
+        }
+        else
+        {
+            ballTimePassed = 0f;
+            ballStatus = false;
+            return NodeStatus.FAILURE;
+        }
+    }
+
+    NodeStatus runFromBallKid()
+    {
+        McRunsFromAvatar(NpcInstantiator.ballKidPos);
 
         return NodeStatus.SUCCESS;
     }

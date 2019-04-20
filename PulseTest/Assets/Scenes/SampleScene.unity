@@ -10384,7 +10384,7 @@ MonoBehaviour:
   - {x: -15, y: -16}
   - {x: 18, y: -10}
   refPoints: []
-  followDist: 0
+  followDist: 20
   walkSpeed: 4
 --- !u!1 &1333872272
 GameObject:

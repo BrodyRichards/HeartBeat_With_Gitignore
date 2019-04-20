@@ -72,7 +72,7 @@ public class McMovement : MonoBehaviour
     */
         walkedIn = true;
         leftBoundDist = Vector3.Distance(transform.position, GameObject.Find("LeftBound").transform.position);
-        float step = speed * Time.deltaTime;
+        step = speed * Time.deltaTime;
         if (walkedIn || endScene || tutorialScene)
         {
             FlipAssetDirection();
@@ -253,8 +253,6 @@ public class McMovement : MonoBehaviour
 
     private void AnimationMoodCheck()
     {
-        
-        
         if (MentalState.WithinRange(MentalState.currentActionCombo, -1, 1)) // no mood
         {
             //Debug.Log("currentMood is calm" + MentalState.mood);
