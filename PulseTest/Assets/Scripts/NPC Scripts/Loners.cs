@@ -22,10 +22,10 @@ public class Loners : NPCs
             avatarChecks();
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             DetectMovement();
-            if (Input.GetKeyDown(Control.evacuate) && !MentalState.journalInProgress)
-            {
-                schoolBell = true;
-            }
+            //if (Input.GetKeyDown(Control.evacuate) && !MentalState.journalInProgress)
+            //{
+            //    schoolBell = true;
+            //}
         }
         else
         {

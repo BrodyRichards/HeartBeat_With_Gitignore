@@ -36,10 +36,7 @@ public class BallPlayers : NPCs
             }
             DetectMovement();
             
-            if (Input.GetKeyDown(Control.evacuate))
-            {
-                schoolBell = true;
-            }
+     
         }
         else
         {

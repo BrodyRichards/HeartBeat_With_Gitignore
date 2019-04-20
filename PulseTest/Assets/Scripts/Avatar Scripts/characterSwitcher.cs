@@ -77,6 +77,7 @@ public class characterSwitcher : MonoBehaviour
                 disableOthers();
                 EnableAll();
                 this.enabled = false;
+                NPCs.schoolBell = true;
                 GameObject.Find("BellRing").GetComponent<AudioSource>().Play();
             }
         }
