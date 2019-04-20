@@ -113,7 +113,7 @@ public class ThoughtsManager : MonoBehaviour
     void setTimer()
     {
         time = Time.fixedUnscaledTime;
-        timer = time + 3.0f;
+        timer = time + 2.5f;
         thoughtOn = true;
     }
 
@@ -121,51 +121,58 @@ public class ThoughtsManager : MonoBehaviour
     void Update()
     {
         time = Time.fixedUnscaledTime;
-        
-        if (time >= timer)
+        if (CameraMovement.thoughtSystem)
         {
-            if (nextThought)
+            if (time >= timer)
             {
-                Debug.Log("HELLOOO");
-                thoughtText.text = next;
-                setTimer();
-                nextThought = false;
-            }
-            else
-            {
-                thoughtOn = false;
-                hideThought();
-            }
-        }
-           
-        int ran = Random.Range(0, 1000);
-        if (ran > 997 && thoughtOn == false)
-        {
-            if (McMovement.speed == 4) //no mood
-            {
-                changeThought(6);
-            }
-            else if (McMovement.speed == 6) //happy
-            {
-                changeThought(8);
-            }
-            else if (McMovement.speed == 3) //sad
-            {
-                changeThought(7);
+                if (nextThought)
+                {
+                    Debug.Log("HELLOOO");
+                    thoughtText.text = next;
+                    setTimer();
+                    nextThought = false;
+                }
+                else
+                {
+                    thoughtOn = false;
+                    hideThought();
+                }
             }
 
+            int ran = Random.Range(0, 1000);
+            if (ran > 997 && thoughtOn == false)
+            {
+                if (McMovement.speed == 4) //no mood
+                {
+                    changeThought(6);
+                }
+                else if (McMovement.speed == 6) //happy
+                {
+                    changeThought(8);
+                }
+                else if (McMovement.speed == 3) //sad
+                {
+                    changeThought(7);
+                }
+
+            }
+            if (MentalState.message != "")
+            {
+                int lineNum = thoughtLine[MentalState.message];
+
+                Debug.Log("lineNum: " + lineNum);
+                MentalState.message = "";
+                changeThought(lineNum);
+            }
         }
-        if (MentalState.message != "")
-        {     
-            int lineNum = thoughtLine[MentalState.message];
- 
-            Debug.Log("lineNum: " + lineNum);
-            MentalState.message = "";
-            changeThought(lineNum);
-        }
+        
+        
+        
+        /*
         if (Input.GetKey(KeyCode.T))
         {
             changeThought(7);
         }
+        */
     }
 }
