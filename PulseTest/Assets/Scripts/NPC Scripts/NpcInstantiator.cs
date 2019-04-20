@@ -36,9 +36,12 @@ public class NpcInstantiator : MonoBehaviour
     public static Vector3 center;
     public Vector3[] groupiePos;
 
+    private List<GameObject> npcPositions;
+
     // Start is called before the first frame update
     void Start()
     {
+        npcPositions = new List<GameObject>();
         int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
         int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
         center = new Vector3(ranX, ranY, -1);
@@ -56,9 +59,11 @@ public class NpcInstantiator : MonoBehaviour
             ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
             Vector3 pos = new Vector3(ranX, ranY, -1);
             groupies[i] = Instantiate(groupiePrefab, pos, Quaternion.identity) as GameObject;
+            npcPositions.Add(groupies[i]);
             groupies[i].GetComponent<SpriteRenderer>().sortingLayerName = "Main";
             groupies[i].GetComponent<Groupies>().target = RandomCircle(center, 3f, groupCount, i);
             groupies[i].name = groupies[i].name + i;
+
 
         }
     }
@@ -99,11 +104,55 @@ public class NpcInstantiator : MonoBehaviour
             ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
             Vector3 pos = new Vector3(ranX, ranY, -1);
             Quaternion rot = new Quaternion(0, 0, 0, 0);
-            Instantiate(NPCs[choice], pos, rot);
+            GameObject temp = Instantiate(NPCs[choice], pos, rot);
+            npcPositions.Add(temp);
             NPCs[choice].GetComponent<SpriteRenderer>().sortingLayerName = "Main";
             //string rename = NPCs[choice].name + i;
             NPCs[choice].name = rename + i;
         }        
+    }
+
+    private void checkPositions()
+    {
+        for (int i = 0; i < npcPositions.Count - 1; i++)
+        {
+            for (int j = 1; j < npcPositions.Count; j++)
+            {
+                Vector3 pos1 = npcPositions[i].transform.position;
+                Vector3 pos2 = npcPositions[j].transform.position;
+                bool checkXPos = checkXPosition(pos1.x, pos2.x);
+                bool checkYPos = checkYPosition(pos1.y, pos2.y);
+                int temp = npcPositions[i].layer;
+                if (checkXPos && checkYPos)
+                {
+                    npcPositions[i].layer = 31;
+                }
+                else
+                {
+                    npcPositions[i].layer = temp;
+                }
+            }
+        }
+    }
+
+    private bool checkXPosition(float x1, float x2)
+    {
+        float distance = Mathf.Abs(x1) - Mathf.Abs(x2);
+        if (Mathf.Abs(distance) < 2f)
+        {
+            return true;
+        }
+        return false;
+    } 
+
+    private bool checkYPosition(float y1, float y2)
+    {
+        float distance = Mathf.Abs(y1) - Mathf.Abs(y2);
+        if (Mathf.Abs(distance) < 2f)
+        {
+            return true;
+        }
+        return false;
     }
 
     private void Update()
@@ -113,7 +162,8 @@ public class NpcInstantiator : MonoBehaviour
         if (characterSwitcher.isMusicGuyInCharge)
         {
             musicKidPos = musicKid.transform.position;
-        }    
+        }
+        checkPositions();
     }
 
 
