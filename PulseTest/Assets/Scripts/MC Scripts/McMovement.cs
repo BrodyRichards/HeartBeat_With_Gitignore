@@ -14,7 +14,7 @@ public class McMovement : MonoBehaviour
     private enum Mood { happy, sad, idle };
     private string[] controllersName = { "MC_happy", "MC_sad", "MC_controller"};
     private float step;
-    public float speed;
+    public static float speed;
     private double worldX;
 
     private int moodBound = 10;

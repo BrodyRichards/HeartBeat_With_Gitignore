@@ -11,7 +11,6 @@ public class ThoughtsManager : MonoBehaviour
     private List<string> thoughts;
     public static Dictionary<string, int> thoughtLine;
     public static Dictionary<int, List<string>> thoughtPossibilities;
-    //public static Dictionary<int[], string> successiveThoughts;
     public static Dictionary<string, string> successiveThoughts;
 
     bool thoughtOn = false;
@@ -42,14 +41,6 @@ public class ThoughtsManager : MonoBehaviour
         };
     }
 
-    /*
-    public void DisplayThought(Thought thought)
-    {
-        //have different string arrays in Thought.cs for different types of thoughts?
-
-    }
-    */
-
     void setThoughts()
     {
         thoughtPossibilities = new Dictionary<int, List<string>>
@@ -57,21 +48,16 @@ public class ThoughtsManager : MonoBehaviour
             {0, new List<string>(new string[]{"It's so foofy!", "So cute!", "I want to take it home!"}) },
             {1, new List<string>(new string[]{"Ouch!", "Go away!", "Stop it!"}) },
             {2, new List<string>(new string[]{"This is fun!", "Yay!", "More!", "Can we be friends?"}) },
-            {3, new List<string>(new string[]{"Ow!", "What a big meanie head", "I don't like him"}) }, //mommy said big kids don't cry, I guess I'm not a big kid
+            {3, new List<string>(new string[]{"Ow!", "What a big meanie head", "I don't like him"}) },
             {4, new List<string>(new string[]{"Pretty music!", "I like this song", "This sounds like mommy's music"}) },
             {5, new List<string>(new string[]{"Yucky song!", "Sounds bad", "This song is ugly"}) },
-            {6, new List<string>(new string[]{ "Snow!", "I'm an ice dragon", "so cold brrr", "i wanna draw", "I didn't see daddy yesterday", "I miss mommy"}) },
-            {7, new List<string>(new string[]{"Mommy said big kids don't cry"}) }
+            //Below are idle thoughts, 6 is for idle, 7 for sad, 8 for happy
+            {6, new List<string>(new string[]{ "Snow!", "I'm an ice dragon", "so cold brrr", "i wanna draw", "I didn't see daddy yesterday", "I miss mommy"}) }, 
+            {7, new List<string>(new string[]{"Mommy said big kids don't cry", "Sad", "sad2"}) },
+            {8, new List<string>(new string[]{"Happy", "Happy2", "Happy3"}) }
             //maybe I can separate some strings depending on the mood of the MC
         };
 
-        /*
-        successiveThoughts = new Dictionary<int[], string>
-        {
-            {new int[2] {0, 0}, "It's like a marshmallow!"},
-            {new int[2] {7, 0}, "I guess I'm not a big kid"}
-        };
-        */
         successiveThoughts = new Dictionary<string, string>
         {
             {"00", "It's like a marshmallow!"},
@@ -110,32 +96,14 @@ public class ThoughtsManager : MonoBehaviour
                 else { ran = Random.Range(1, num); }
                 thoughtText.text = thoughts[ran];
                 showThought();
-                //int[] check = new int[2] { line, ran };
-                //Debug.Log("check: " + check);
-                successive = ran;
-                /*
-                if (successiveThoughts[check] != null)
-                {
-                    Debug.Log()
-                    nextThought = true;
-                    next = successiveThoughts[check];
-                }
-                */
-                
+                successive = ran;       
             }
             
             
         }
-        //successive = 0;
-        //int[] check = new int[2] { line, successive };
         string ok = line.ToString() +  successive.ToString();
-        //Debug.Log(successiveThoughts);
-        //check = new int[2] { 0, 0 };
-        //Debug.Log("check: " + check[0] + check[1]);
-        //Debug.Log("is it in? : " + successiveThoughts.ContainsKey(check));
         if (successiveThoughts.ContainsKey(ok))
         {
-            Debug.Log("yay");
             nextThought = true;
             next = successiveThoughts[ok];
         }
@@ -149,19 +117,10 @@ public class ThoughtsManager : MonoBehaviour
         thoughtOn = true;
     }
 
-    /*
-    public void TriggerDialogue()
-    {
-        
-    }
-    */
-
     // Update is called once per frame
     void Update()
     {
         time = Time.fixedUnscaledTime;
-        //random events?
-        //what will trigger thoughts
         
         if (time >= timer)
         {
@@ -178,31 +137,28 @@ public class ThoughtsManager : MonoBehaviour
                 hideThought();
             }
         }
-        /*
-        else //if (time <= timer && thoughtOn == false)//if (timer >= time)
-        {
-            if (thoughtOn)
-            {
-                showThought();
-            }
-            
-        }
-        */
            
         int ran = Random.Range(0, 1000);
         if (ran > 997 && thoughtOn == false)
         {
-                //int lineNum = 6;
-            changeThought(6);
+            if (McMovement.speed == 4) //no mood
+            {
+                changeThought(6);
+            }
+            else if (McMovement.speed == 6) //happy
+            {
+                changeThought(8);
+            }
+            else if (McMovement.speed == 3) //sad
+            {
+                changeThought(7);
+            }
 
         }
         if (MentalState.message != "")
         {     
             int lineNum = thoughtLine[MentalState.message];
-            //string followUpThought = lineNum.ToString();
-            //followUpThought.
-            //Debug.Log(followUpThought);
-            //Debug.Log("line = " + lineNum);
+ 
             Debug.Log("lineNum: " + lineNum);
             MentalState.message = "";
             changeThought(lineNum);
@@ -211,18 +167,5 @@ public class ThoughtsManager : MonoBehaviour
         {
             changeThought(7);
         }
-        /*
-        else if (MentalState.message == "")
-        {
-         
-            int ran = Random.Range(0, 10);
-            if (ran >= 7)
-            {
-                //int lineNum = 6;
-                changeThought(6);
-            }
-            
-        }
-        */
     }
 }

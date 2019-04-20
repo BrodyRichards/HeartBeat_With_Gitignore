@@ -29,7 +29,7 @@ public class MentalState : MonoBehaviour
         = new List<string>() { "Hit by ball", "Bit by rabbit", "Sad Song" };
 
     public static string message = "";          //for the thought system
-    public static int firstTime = 99;           //for the though system
+    public static int firstTime = 99;           //for the thought system
 
     // Played catch, Hit by ball, Held Rabbit, Bit by rabbit, Happy Song, Sad Song
     private void Awake()
@@ -97,6 +97,7 @@ public class MentalState : MonoBehaviour
     {
 
         int currCount;
+        message = msg;
         moodLog.TryGetValue(msg, out currCount);
         firstTime = moodLog[msg];
         moodLog[msg] = currCount + 1;
