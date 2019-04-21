@@ -5,9 +5,13 @@ using UnityEngine;
 
 public class RabbitChasers : NPCs
 {
+    private float rabbitCoolDown;
+    private float rabbitTime;
     protected override void Start()
     {       
         base.Start();
+        rabbitCoolDown = 4f;
+        rabbitTime = 0f;
         int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
         int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
         /*
@@ -53,7 +57,11 @@ public class RabbitChasers : NPCs
                     holdBunny = true;
                     Emo = master.GetComponent<NpcInstantiator>().surpriseFace;
                     addEmo();
-                    addQueue(5);
+                    if (Time.time >= rabbitTime)
+                    {
+                        rabbitTime = Time.time + rabbitCoolDown;
+                        addQueue(5);
+                    }
                 }
             }
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);

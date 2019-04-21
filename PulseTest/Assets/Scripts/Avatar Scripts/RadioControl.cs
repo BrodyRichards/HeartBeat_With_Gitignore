@@ -48,6 +48,8 @@ public class RadioControl : MonoBehaviour
     Sprite[] sadNoteSprites;
     AudioClip[] audioClips;
 
+    private Animator anim;
+
 
     private void Start()
     {
@@ -63,6 +65,8 @@ public class RadioControl : MonoBehaviour
 
         isBG = true;
         actionDist = 4f;
+
+        anim = GetComponent<Animator>();
 
     }
 
@@ -90,16 +94,19 @@ public class RadioControl : MonoBehaviour
         {
             PlaySong(0);
             TurnBgOff();
+            anim.SetTrigger("click");
         }
         else if (Input.GetKeyDown(Control.negativeAction) && currentMood != (int)Mood.sad)
         {
             PlaySong(1);
             TurnBgOff();
+            anim.SetTrigger("click");
         }
         else if ((Input.GetKeyDown(Control.negativeAction) && currentMood == (int)Mood.sad) || (Input.GetKeyDown(Control.positiveAction) && currentMood == (int)Mood.happy))
         {
             ResetThisGuy();
             TurnBgOn();
+            anim.SetTrigger("click");
         }
     }
 
