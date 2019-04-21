@@ -37,6 +37,8 @@ public class NPCs : MonoBehaviour
     protected float time;
     protected float timer;
 
+
+
     protected virtual void Start()
     {
         sr = GetComponent<SpriteRenderer>();
