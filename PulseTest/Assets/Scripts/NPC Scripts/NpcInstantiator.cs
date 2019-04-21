@@ -39,6 +39,7 @@ public class NpcInstantiator : MonoBehaviour
     public Vector3[] groupiePos;
 
     private List<GameObject> npcPositions;
+    int origLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +69,7 @@ public class NpcInstantiator : MonoBehaviour
 
 
         }
+        origLayer = npcPositions[0].layer;
     }
 
     Vector3 RandomCircle(Vector3 center, float radius, int ranNum, int num)
@@ -116,7 +118,7 @@ public class NpcInstantiator : MonoBehaviour
 
     private void checkPositions()
     {
-        int temp = npcPositions[0].layer;
+        //int temp = npcPositions[0].layer;
         for (int i = 0; i < npcPositions.Count - 1; i++)
         {
             for (int j = 1; j < npcPositions.Count; j++)
@@ -134,7 +136,8 @@ public class NpcInstantiator : MonoBehaviour
                 }
                 else
                 {
-                    npcPositions[i].layer = temp;
+                    //npcPositions[i].layer = temp;
+                    npcPositions[i].layer = origLayer;
                     //Debug.Log("should be whatever on layer " + npcPositions[i].layer);
                 }     
             }
