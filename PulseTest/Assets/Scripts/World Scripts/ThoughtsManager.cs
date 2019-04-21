@@ -140,7 +140,7 @@ public class ThoughtsManager : MonoBehaviour
                 if (nextThought)
                 {
                     //Debug.Log("HELLOOO");
-                    thoughtText.text = next;
+                    tmpug.text = next;
                     setTimer();
                     nextThought = false;
                 }
