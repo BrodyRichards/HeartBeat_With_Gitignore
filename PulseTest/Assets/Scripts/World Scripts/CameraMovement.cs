@@ -37,6 +37,8 @@ public class CameraMovement : MonoBehaviour
     float time;
     float timer;
 
+    public static bool thoughtSystem = false;
+
     private void Awake()
     {
         reachMC = false;
@@ -72,7 +74,7 @@ public class CameraMovement : MonoBehaviour
         }
         else if (characterSwitcher.charChoice == -1 && McMovement.leftBoundDist >= 30.0f)
         {
-            
+            thoughtSystem = true;
             Vector3 pos = new Vector3(-35.2f, 1.0f, -1.3f);
             target = pos;
             targetOrtho += speed / 500;

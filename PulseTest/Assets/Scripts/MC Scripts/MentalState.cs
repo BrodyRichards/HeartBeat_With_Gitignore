@@ -46,12 +46,12 @@ public class MentalState : MonoBehaviour
         //Dictionary storing weights for NPC interactions
         npcEffectWeights = new Dictionary<int, int>
         {
-            {1, 1},
-            {2, -1},
-            {3, 1},
-            {4, -1},
-            {5, 1},
-            {6, -1}
+            {1, 1},     //rabbit hold
+            {2, -1},    //rabbit bite
+            {3, 1},     //ball play
+            {4, -1},    //ball throw
+            {5, 1},     //happy music
+            {6, -1}     //sad music
         };
 
         //Dictionary storing weights for each effect
