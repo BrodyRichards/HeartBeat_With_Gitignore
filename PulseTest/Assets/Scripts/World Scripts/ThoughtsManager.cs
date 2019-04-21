@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ThoughtsManager : MonoBehaviour
 {
-    public Text thoughtText;
+    public  GameObject text;
     public Image thoughtBubble;
 
     private List<string> thoughts;
@@ -20,9 +21,14 @@ public class ThoughtsManager : MonoBehaviour
     float timer;
 
     string next;
+
+    private TextMeshProUGUI tmpug; 
     // Start is called before the first frame update
     void Start()
     {
+        tmpug = text.GetComponent<TextMeshProUGUI>();
+        
+
         setThoughts();
         hideThought();
       
@@ -87,7 +93,7 @@ public class ThoughtsManager : MonoBehaviour
         int successive = 999;
         if (MentalState.firstTime == 0)
         {
-            thoughtText.text = thoughts[0];
+            tmpug.text = thoughts[0];
             successive = 0;
             showThought();
         }
@@ -99,7 +105,7 @@ public class ThoughtsManager : MonoBehaviour
             {
                 if (line == 6) { ran = Random.Range(0, num); }
                 else { ran = Random.Range(1, num); }
-                thoughtText.text = thoughts[ran];
+                tmpug.text = thoughts[ran];
                 showThought();
                 successive = ran;       
             }
@@ -126,6 +132,7 @@ public class ThoughtsManager : MonoBehaviour
     void Update()
     {
         time = Time.fixedUnscaledTime;
+
         if (CameraMovement.thoughtSystem)
         {
             if (time >= timer)
@@ -133,7 +140,7 @@ public class ThoughtsManager : MonoBehaviour
                 if (nextThought)
                 {
                     //Debug.Log("HELLOOO");
-                    thoughtText.text = next;
+                    tmpug.text = next;
                     setTimer();
                     nextThought = false;
                 }

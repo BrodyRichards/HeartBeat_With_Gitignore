@@ -147,7 +147,7 @@ public class NpcInstantiator : MonoBehaviour
     private bool checkXPosition(float x1, float x2)
     {
         float distance = Mathf.Abs(x1) - Mathf.Abs(x2);
-        if (Mathf.Abs(distance) < 2f)
+        if (Mathf.Abs(distance) < 1f)
         {
             return true;
         }
@@ -157,7 +157,7 @@ public class NpcInstantiator : MonoBehaviour
     private bool checkYPosition(float y1, float y2)
     {
         float distance = Mathf.Abs(y1) - Mathf.Abs(y2);
-        if (Mathf.Abs(distance) < 2f)
+        if (Mathf.Abs(distance) < 1f)
         {
             return true;
         }
