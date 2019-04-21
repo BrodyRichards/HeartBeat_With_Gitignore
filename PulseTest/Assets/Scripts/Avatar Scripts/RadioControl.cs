@@ -49,6 +49,7 @@ public class RadioControl : MonoBehaviour
     AudioClip[] audioClips;
 
     private Animator anim;
+    public Animator mc_anim;
 
 
     private void Start()
@@ -67,12 +68,16 @@ public class RadioControl : MonoBehaviour
         actionDist = 4f;
 
         anim = GetComponent<Animator>();
+        mc_anim = GameObject.Find("MC").GetComponent<Animator>();
+        
 
     }
 
     // Update is called once per frame
     private void Update()
     {
+        Debug.Log(mc_anim.GetBool("isHappySong"));
+        McAnimCheck();
         UIControl();
         if (characterSwitcher.isMusicGuyInCharge && !Movement.timeToLeave)
         {
@@ -109,7 +114,17 @@ public class RadioControl : MonoBehaviour
             anim.SetTrigger("click");
         }
     }
-
+    private void McAnimCheck()
+    {
+        if (mcIsAffected && currentMood == (int)Mood.happy)
+        {
+            mc_anim.SetBool("isHappySong", true);
+        }
+        else
+        {
+            mc_anim.SetBool("isHappySong", false);
+        }
+    }
     private void DetectMusic()
     {
         if (isMusic)
@@ -137,6 +152,7 @@ public class RadioControl : MonoBehaviour
                         // 4 seconds later call this function and reset MC 
                         Invoke("McNotAffected", mcAffectedInterval);
 
+
                     }
                     else if (coll.gameObject.tag == "Person" && !mcIsAffected && !npcIsAffected)
                     {
@@ -152,6 +168,7 @@ public class RadioControl : MonoBehaviour
             {
                 CancelInvoke("MCNotAffected");
                 musicListener = "";
+                mcIsAffected = false;
             }
         }
         else
