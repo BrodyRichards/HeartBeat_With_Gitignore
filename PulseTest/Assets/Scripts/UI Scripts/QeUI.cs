@@ -12,11 +12,11 @@ public class QeUI : MonoBehaviour
     public Sprite mE;
 
     public GameObject Q;
-    public GameObject E; 
+    public GameObject E;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -43,6 +43,15 @@ public class QeUI : MonoBehaviour
 
         }
 
-
+        if (characterSwitcher.charChoice > 0 && characterSwitcher.charChoice < 1000)
+        {
+            Q.GetComponent<Image>().color = Color.white;
+            E.GetComponent<Image>().color = Color.white;
+        }
+        else
+        {
+            Q.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+            E.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+        }
     }
 }
