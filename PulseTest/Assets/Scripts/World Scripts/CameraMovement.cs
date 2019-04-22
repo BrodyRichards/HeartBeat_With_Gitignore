@@ -17,7 +17,7 @@ public class CameraMovement : MonoBehaviour
     private GameObject avatar;
 
     public GameObject mainChar;
-    private int lookMC = 0;
+    private int lookMC;
     private int mcCheck;
     private bool reachMC;
 
@@ -37,11 +37,13 @@ public class CameraMovement : MonoBehaviour
     float time;
     float timer;
 
-    public static bool thoughtSystem = false;
+    public static bool thoughtSystem;
 
     private void Awake()
     {
         reachMC = false;
+        lookMC = 0;
+        thoughtSystem = false;
     }
 
     void Start()

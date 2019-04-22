@@ -5,13 +5,11 @@ using UnityEngine;
 
 public class RabbitChasers : NPCs
 {
-    private float rabbitCoolDown;
-    private float rabbitTime;
+
     protected override void Start()
     {       
         base.Start();
-        rabbitCoolDown = 4f;
-        rabbitTime = 0f;
+
         int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
         int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
         /*

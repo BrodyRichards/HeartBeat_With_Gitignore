@@ -76,7 +76,7 @@ public class RadioControl : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        Debug.Log(mc_anim.GetBool("isHappySong"));
+
         McAnimCheck();
         UIControl();
         if (characterSwitcher.isMusicGuyInCharge && !Movement.timeToLeave)

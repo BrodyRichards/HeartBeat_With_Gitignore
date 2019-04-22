@@ -15,8 +15,8 @@ public class NPCs : MonoBehaviour
 
     private float musicCoolDown;
     private float curTime;
-    private float rabbitCoolDown;
-    private float rabbitTime;
+    protected float rabbitCoolDown;
+    protected float rabbitTime;
 
     protected GameObject master;
     protected GameObject Emo;

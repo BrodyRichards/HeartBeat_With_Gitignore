@@ -7,7 +7,6 @@ public class MentalState : MonoBehaviour
     public static int currentState;
     public static int currentActionCombo;
     public static float coolDownCounting = 0.0f;
-    public static string lastEvent;
 
     public static Dictionary<string, int> moodLog;
     public static Dictionary<string, int> effectWeights;
@@ -28,7 +27,7 @@ public class MentalState : MonoBehaviour
     public readonly static List<string> negativeAct 
         = new List<string>() { "Hit by ball", "Bit by rabbit", "Sad Song" };
 
-    public static string message = "";          //for the thought system
+    public static string message;          //for the thought system
     public static int firstTime = 99;           //for the thought system
 
     // Played catch, Hit by ball, Held Rabbit, Bit by rabbit, Happy Song, Sad Song
@@ -36,12 +35,14 @@ public class MentalState : MonoBehaviour
     {
         journalInProgress = true;
         noEventCounting = 0.0f;
-        lastEvent = "";
         currentActionCombo = 0;
+        emoTimeline = new Queue<EmoPlot>() { };
+        currentState = 0;
+        message = "";
     }
     void Start()
     {
-        emoTimeline = new Queue<EmoPlot> { };
+
 
         //Dictionary storing weights for NPC interactions
         npcEffectWeights = new Dictionary<int, int>
@@ -155,7 +156,6 @@ public class MentalState : MonoBehaviour
     {
         var tempEmo = EmoPlot.CreateInstance(Mathf.RoundToInt(Time.timeSinceLevelLoad), currentState, m);
         emoTimeline.Enqueue(tempEmo);
-        lastEvent = m;
         // if the emotiontime line already contain more than 30 objects, dequeue 
         if (emoTimeline.Count > 30) // can playaround with the value 
         {

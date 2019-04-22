@@ -51,7 +51,7 @@ public class NewEmoControl : MonoBehaviour
             else if (ReactEmo=="Held Rabbit")
             {
 
-                Debug.LogError("Being carried is " + RabbitJump.beingCarried);
+                //Debug.LogError("Being carried is " + RabbitJump.beingCarried);
                 if (!RabbitJump.beingCarried)
                 {
                     ResetEmo();
