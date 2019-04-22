@@ -38,6 +38,9 @@ public class characterSwitcher : MonoBehaviour
         if (charChoice == -1)
         {
             PlayerIdleCheck();
+        }else if (anim_keyPrompt.enabled)
+        {
+            anim_keyPrompt.enabled = false;
         }
         //Poll for input
         switchCharacter();

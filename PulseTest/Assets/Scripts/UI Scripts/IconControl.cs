@@ -39,6 +39,7 @@ public class IconControl : MonoBehaviour
         tabPrompt.SetActive(false);
         ToggleIcons(false);
         animator.SetBool("newAccom", false);
+        QEIcons.SetActive(false);
     }
 
     // Update is called once per frame
@@ -48,6 +49,11 @@ public class IconControl : MonoBehaviour
         if (Time.timeSinceLevelLoad > iconBringinTime && !bringTheIconsIn) {
             ToggleIcons(true);
             bringTheIconsIn = true;
+        }
+
+        if (characterSwitcher.charChoice!= -1 && !QEIcons.activeSelf)
+        {
+            QEIcons.SetActive(true);
         }
 
         foreach (var img in icons)
@@ -119,7 +125,7 @@ public class IconControl : MonoBehaviour
         journalIcon.enabled = boo;
         bg.enabled = boo;
         ring.SetActive(boo);
-        QEIcons.SetActive(boo);
+
     }
     
     
