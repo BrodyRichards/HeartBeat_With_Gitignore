@@ -41,7 +41,7 @@ public class RingUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isCompleted)
+        if (emoCurrentLength < 13)
         {
             AddSegToRing();
             IsRingFinished();
@@ -73,9 +73,12 @@ public class RingUI : MonoBehaviour
     {
         if (MentalState.emoTimeline != null)
         {
+
             if (MentalState.emoTimeline.Count > emoCurrentLength)
             {
+
                 emoCurrentLength = MentalState.emoTimeline.Count;
+                
                 string currentEvent = MentalState.message;
                 var thisObj = emoSegments[emoCurrentLength - 1];
                 if (MentalState.positiveAct.Contains(currentEvent))
