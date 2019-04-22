@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1445,6 +1445,8 @@ MonoBehaviour:
   iconsGroup: {fileID: 6057989817902974589}
   tabPrompt: {fileID: 2950492696128697180}
   bg: {fileID: 5756539641914294058}
+  ring: {fileID: 6855383757305853440}
+  QEIcons: {fileID: 4417096556452573491}
   rabbitIcon: {fileID: 2950492696155045155}
   ballIcon: {fileID: 2950492696828512511}
   musicIcon: {fileID: 2950492696384282602}
@@ -3046,7 +3048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

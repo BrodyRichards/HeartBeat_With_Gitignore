@@ -215,14 +215,12 @@ public class MentalState : MonoBehaviour
         else if (WithinRange(currentState, happyBound.x, happyBound.y))
         {
 
-            var msg = "Calm down";
-            PlotingTimeline(msg);
+
             currentState -= 3;
         }
         else if (WithinRange(currentState, sadBound.x, sadBound.y))
         {
-            var msg = "Cheer up";
-            PlotingTimeline(msg);
+
             currentState += 2;
         }
 

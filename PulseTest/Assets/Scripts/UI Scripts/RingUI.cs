@@ -41,7 +41,7 @@ public class RingUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (emoCurrentLength < 13)
+        if (emoCurrentLength < 12)
         {
             AddSegToRing();
             IsRingFinished();
@@ -104,7 +104,7 @@ public class RingUI : MonoBehaviour
 
     void IsRingFinished()
     {
-        if (emoCurrentLength == 13)
+        if (emoCurrentLength == 12)
         {
             isCompleted = true;
             ring.GetComponent<Image>().sprite = bell;

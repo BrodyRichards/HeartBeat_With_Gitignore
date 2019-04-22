@@ -13,6 +13,8 @@ public class IconControl : MonoBehaviour
     public GameObject iconsGroup;
     public GameObject tabPrompt;
     public Image bg;
+    public GameObject ring;
+    public GameObject QEIcons;
 
     [SerializeField]private Image rabbitIcon;
     [SerializeField]private Image ballIcon;
@@ -116,6 +118,8 @@ public class IconControl : MonoBehaviour
         iconsGroup.SetActive(boo);
         journalIcon.enabled = boo;
         bg.enabled = boo;
+        ring.SetActive(boo);
+        QEIcons.SetActive(boo);
     }
     
     

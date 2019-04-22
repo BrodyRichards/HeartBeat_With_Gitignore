@@ -813,7 +813,7 @@ Transform:
   m_Children:
   - {fileID: 161550501}
   m_Father: {fileID: 874476369}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -24.341002}
 --- !u!212 &216836611
 SpriteRenderer:
@@ -877,6 +877,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: 0
   destroy: 0
+--- !u!1 &220116575 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4417096556452573491, guid: d77767d21a93b4e82b20fa4436d930cb,
+    type: 3}
+  m_PrefabInstance: {fileID: 2950492696032815856}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &260472801
 GameObject:
   m_ObjectHideFlags: 0
@@ -9451,7 +9457,7 @@ Transform:
   m_LocalScale: {x: 0.80615, y: 0.403075, z: 0.80615}
   m_Children: []
   m_Father: {fileID: 874476369}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1266879768
 SpriteRenderer:
@@ -11526,11 +11532,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840503296}
   m_LocalRotation: {x: -0.61342496, y: 0.35172406, z: -0.35172436, w: 0.61342484}
-  m_LocalPosition: {x: -0.2, y: 4, z: 2.1763403}
+  m_LocalPosition: {x: 0.3, y: 1.3, z: 2.18}
   m_LocalScale: {x: 1.4285713, y: 1, z: 1.4285719}
   m_Children: []
   m_Father: {fileID: 874476369}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -149.658, y: -90, z: 89.99999}
 --- !u!199 &1840503298
 ParticleSystemRenderer:
@@ -11568,8 +11574,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -2030066595
-  m_SortingLayer: 5
+  m_SortingLayerID: 594697131
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -11608,7 +11614,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -11784,7 +11790,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 1, b: 0.9130335, a: 1}
+      maxColor: {r: 1, g: 0.92001164, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -12111,7 +12117,7 @@ ParticleSystem:
     startRotation:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3.1415927
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -12162,7 +12168,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 100
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -12221,7 +12227,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 4
+    type: 0
     angle: 60.07992
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -12308,7 +12314,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.1
+      value: 5
       mode: 0
       spread: 0
       speed:
@@ -12427,7 +12433,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 10
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -18036,6 +18042,16 @@ PrefabInstance:
       propertyPath: journal
       value: 
       objectReference: {fileID: 1009851945}
+    - target: {fileID: 2950492697692242913, guid: d77767d21a93b4e82b20fa4436d930cb,
+        type: 3}
+      propertyPath: QEIcons
+      value: 
+      objectReference: {fileID: 220116575}
+    - target: {fileID: 2950492697692242913, guid: d77767d21a93b4e82b20fa4436d930cb,
+        type: 3}
+      propertyPath: ring
+      value: 
+      objectReference: {fileID: 8633812034642320624}
     - target: {fileID: 2950492696155045154, guid: d77767d21a93b4e82b20fa4436d930cb,
         type: 3}
       propertyPath: m_AnchorMin.y
