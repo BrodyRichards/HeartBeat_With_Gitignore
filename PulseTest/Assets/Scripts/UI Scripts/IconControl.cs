@@ -14,7 +14,7 @@ public class IconControl : MonoBehaviour
     public GameObject tabPrompt;
     public Image bg;
     public GameObject ring;
-    public GameObject QEIcons;
+
 
     [SerializeField]private Image rabbitIcon;
     [SerializeField]private Image ballIcon;
@@ -39,7 +39,7 @@ public class IconControl : MonoBehaviour
         tabPrompt.SetActive(false);
         ToggleIcons(false);
         animator.SetBool("newAccom", false);
-        QEIcons.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -51,9 +51,9 @@ public class IconControl : MonoBehaviour
             bringTheIconsIn = true;
         }
 
-        if (characterSwitcher.charChoice!= -1 && !QEIcons.activeSelf)
+        if (characterSwitcher.charChoice==1000 && iconsGroup.activeSelf)
         {
-            QEIcons.SetActive(true);
+            iconsGroup.SetActive(false);
         }
 
         foreach (var img in icons)
