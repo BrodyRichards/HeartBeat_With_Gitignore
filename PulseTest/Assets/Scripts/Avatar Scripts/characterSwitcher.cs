@@ -8,7 +8,7 @@ public class characterSwitcher : MonoBehaviour
     //This enables you to see and set the field from inspector but 
     //it is hidden from other scripts and objects. 
     //charChoice represents which named object to move
-    public static int charChoice = -1;
+    public static int charChoice;
     public static bool isMusicGuyInCharge;
     //public static bool isChar = false;
 
@@ -20,7 +20,7 @@ public class characterSwitcher : MonoBehaviour
         GameObject.Find("3").GetComponent<Movement>().enabled = false;
         isMusicGuyInCharge = false;
         GameObject.Find("MC").GetComponent<Movement>().enabled = false;
-
+        charChoice = -1;
     }
 
     // Update is called once per frame

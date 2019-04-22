@@ -12314,7 +12314,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 5
+      value: 1
       mode: 0
       spread: 0
       speed:
@@ -12372,7 +12372,7 @@ ParticleSystem:
           m_RotationOrder: 4
     arc:
       value: 360
-      mode: 3
+      mode: 1
       spread: 0
       speed:
         serializedVersion: 2
@@ -18141,7 +18141,12 @@ PrefabInstance:
     - target: {fileID: 7904195116613511890, guid: d77767d21a93b4e82b20fa4436d930cb,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 143
+      value: -71
+      objectReference: {fileID: 0}
+    - target: {fileID: 7904195116613511890, guid: d77767d21a93b4e82b20fa4436d930cb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 5008215525472145703, guid: d77767d21a93b4e82b20fa4436d930cb,
         type: 3}
