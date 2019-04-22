@@ -11,6 +11,7 @@ public class characterSwitcher : MonoBehaviour
     public static int charChoice;
     public static bool isMusicGuyInCharge;
     //public static bool isChar = false;
+    private Animator anim_keyPrompt;
 
     // Use this for initialization
     void Start()
@@ -21,11 +22,15 @@ public class characterSwitcher : MonoBehaviour
         isMusicGuyInCharge = false;
         GameObject.Find("MC").GetComponent<Movement>().enabled = false;
         charChoice = -1;
+
+        anim_keyPrompt = GameObject.Find("KeyPrompt1").GetComponent<Animator>();
+        anim_keyPrompt.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        GiveSomePromptIfPlayerDoesntKnowWhatsGoingOn();
         //Poll for input
         switchCharacter();
     }
@@ -211,5 +216,11 @@ public class characterSwitcher : MonoBehaviour
     {
         var go = GameObject.Find(target);
         if (go!=null) { go.SetActive(false); }
+    }
+
+    private void GiveSomePromptIfPlayerDoesntKnowWhatsGoingOn()
+    {
+        //var ran = Random.Range(1, 4);
+        anim_keyPrompt.enabled = true; 
     }
 }

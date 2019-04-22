@@ -1478,6 +1478,7 @@ MonoBehaviour:
   - {fileID: 1756266670611023757}
   ring: {fileID: 6855383757305853440}
   face: {fileID: 3154404420775989205}
+  buttonPrompt: {fileID: 4443322806728806545}
   happySeg: {fileID: 21300000, guid: 2fb4c5115d82f445d8122a7659bc494a, type: 3}
   sadSeg: {fileID: 21300000, guid: aba00ca34433e441f8a5c45b0d6d55f2, type: 3}
   angrySeg: {fileID: 21300000, guid: 4fbdd1beb6c9341ffba8e716eb40503a, type: 3}
@@ -1485,6 +1486,7 @@ MonoBehaviour:
   happyFace: {fileID: 21300000, guid: f1f52beab3255314bb7d19171cd600a0, type: 3}
   sadFace: {fileID: 21300000, guid: 0118ce6c620cec848bacbb8088e77987, type: 3}
   bell: {fileID: 21300000, guid: 5f46f8641787a82449955f57c02d23c9, type: 3}
+  bell_anim: {fileID: 2894115327291571039}
 --- !u!114 &9191876175957998652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2913,6 +2915,7 @@ GameObject:
   - component: {fileID: 6515284381353627492}
   - component: {fileID: 3638062379710430007}
   - component: {fileID: 7323709896814256093}
+  - component: {fileID: 2894115327291571039}
   m_Layer: 5
   m_Name: Bell
   m_TagString: Untagged
@@ -2990,6 +2993,25 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!95 &2894115327291571039
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6855383757305853440}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dc8e0520beea34756978470a8965cf49, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6894984644612071606
 GameObject:
   m_ObjectHideFlags: 0

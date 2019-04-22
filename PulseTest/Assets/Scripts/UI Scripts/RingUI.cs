@@ -9,6 +9,7 @@ public class RingUI : MonoBehaviour
 
     public GameObject ring;
     public GameObject face;
+    public GameObject buttonPrompt; 
 
     public static bool isCompleted;
 
@@ -22,13 +23,17 @@ public class RingUI : MonoBehaviour
 
     public Sprite bell;
 
+    public Animator bell_anim; 
+
     private int emoCurrentLength;
+    private readonly int segNum = 12;
     // Start is called before the first frame update
 
     private void Awake()
     {
         emoCurrentLength = 0;
-        isCompleted = false; 
+        isCompleted = false;
+
     }
     void Start()
     {
@@ -36,12 +41,14 @@ public class RingUI : MonoBehaviour
         {
             es.SetActive(false);
         }
+
+        bell_anim.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (emoCurrentLength < 12)
+        if (emoCurrentLength < segNum && !isCompleted)
         {
             AddSegToRing();
             IsRingFinished();
@@ -49,7 +56,11 @@ public class RingUI : MonoBehaviour
         SwitchFace();
 
 
-
+        if (NPCs.schoolBell)
+        {
+            bell_anim.enabled = false;
+            ring.SetActive(false);
+        }
     }
 
     void SwitchFace()
@@ -104,17 +115,25 @@ public class RingUI : MonoBehaviour
 
     void IsRingFinished()
     {
-        if (emoCurrentLength == 12)
+        if (emoCurrentLength == segNum)    
         {
-            isCompleted = true;
-            ring.GetComponent<Image>().sprite = bell;
-            foreach (var es in emoSegments)
-            {
-                es.SetActive(false);
-            }
+            bell_anim.enabled = true;
+            Invoke("AnimCompleted", 2.0f);
 
-            face.SetActive(false);
 
         }
+    }
+
+    void AnimCompleted()
+    {
+        isCompleted = true;
+        ring.GetComponent<Image>().sprite = bell;
+        foreach (var es in emoSegments)
+        {
+            es.SetActive(false);
+        }
+
+        face.SetActive(false);
+        buttonPrompt.SetActive(true);
     }
 }
