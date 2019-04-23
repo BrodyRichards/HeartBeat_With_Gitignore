@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1446,7 +1446,6 @@ MonoBehaviour:
   tabPrompt: {fileID: 2950492696128697180}
   bg: {fileID: 5756539641914294058}
   ring: {fileID: 6855383757305853440}
-  QEIcons: {fileID: 4417096556452573491}
   rabbitIcon: {fileID: 2950492696155045155}
   ballIcon: {fileID: 2950492696828512511}
   musicIcon: {fileID: 2950492696384282602}
@@ -1507,6 +1506,7 @@ MonoBehaviour:
   mE: {fileID: 21300000, guid: cdbc7b211fdae4c3ba59a92f1e5d9425, type: 3}
   Q: {fileID: 573469455202958275}
   E: {fileID: 6894984644612071606}
+  QEIcons: {fileID: 0}
 --- !u!1 &3154404420775989205
 GameObject:
   m_ObjectHideFlags: 0
@@ -2953,7 +2953,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -50.049, y: -20.2}
+  m_AnchoredPosition: {x: -50.04895, y: -20.200012}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.38522798, y: 0.72955143}
 --- !u!222 &3638062379710430007
@@ -3070,7 +3070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
