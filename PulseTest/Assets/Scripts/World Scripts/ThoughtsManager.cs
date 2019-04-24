@@ -9,25 +9,24 @@ public class ThoughtsManager : MonoBehaviour
     public  GameObject text;
     public Image thoughtBubble;
 
-    private List<string> thoughts;
-    public static Dictionary<string, int> thoughtLine;
-    public static Dictionary<int, List<string>> thoughtPossibilities;
-    public static Dictionary<string, string> successiveThoughts;
+    private List<string> thoughts;                                          //thoughts on deck
+    public static Dictionary<string, int> thoughtLine;                      //a dictionary that maps action to the index of a possible list of thoughts
+    public static Dictionary<int, List<string>> thoughtPossibilities;       //index to possible list of thoughts
+    public static Dictionary<string, string> successiveThoughts;            //for thoughts that have a continuation
 
-    bool thoughtOn = false;
-    bool nextThought = false;
+    bool thoughtOn = false;                                 //bool for if a thought is currently on or not
+    bool nextThought = false;                               //used for successive thoughts
 
     float time;
     float timer;
 
-    string next;
+    string next;                                            //used for successive thoughts
 
     private TextMeshProUGUI tmpug; 
     // Start is called before the first frame update
     void Start()
     {
         tmpug = text.GetComponent<TextMeshProUGUI>();
-        
 
         setThoughts();
         hideThought();
@@ -109,8 +108,6 @@ public class ThoughtsManager : MonoBehaviour
                 showThought();
                 successive = ran;       
             }
-            
-            
         }
         string ok = line.ToString() +  successive.ToString();
         if (successiveThoughts.ContainsKey(ok))
@@ -133,7 +130,7 @@ public class ThoughtsManager : MonoBehaviour
     {
         time = Time.fixedUnscaledTime;
 
-        if (CameraMovement.thoughtSystem)
+        if (CameraMovement.thoughtSystem)       //makes it that the MC can't get thoughts in the walking in scene
         {
             if (time >= timer)
             {

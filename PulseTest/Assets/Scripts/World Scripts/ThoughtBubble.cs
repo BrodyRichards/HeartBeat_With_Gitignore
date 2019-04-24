@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ThoughtBubble : MonoBehaviour
 {
@@ -13,9 +14,14 @@ public class ThoughtBubble : MonoBehaviour
     void Start()
     {
         pos = mc.transform.position;
-        offset = new Vector3(-8, 5, 0);
-
-        
+        if ("SampleScene" == SceneManager.GetActiveScene().name)
+        {
+            offset = new Vector3(-8, 5, 0);
+        }
+        else
+        {
+            offset = new Vector3(-3, 2, 0);
+        }      
     }
 
     // Update is called once per frame
