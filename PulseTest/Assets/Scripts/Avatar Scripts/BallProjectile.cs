@@ -56,8 +56,7 @@ public class BallProjectile : MonoBehaviour
                         //Update Mental State
 
                         MentalState.sendMsg("Hit by ball");
-                        //McMovement.gotHit = true;
-                        MCBTCreator.gotHit = true;
+                        McMovement.gotHit = true;
 
                         //MC gets hit by ball and doesn't play catch
                         stationaryBall();
