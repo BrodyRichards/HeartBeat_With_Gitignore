@@ -13,6 +13,7 @@ public class MCBTCreator : MonoBehaviour
 
     public float followDist;
     public float walkSpeed;
+    public bool stillInterested;
 
     private bool isFlipped;
     private bool biteStatus;
@@ -20,8 +21,11 @@ public class MCBTCreator : MonoBehaviour
     private float lastX;
     private float rabbitTimePassed;
     private float ballTimePassed;
+    private float interestTimer;
+    private float interestResetTimer;
 
     public static bool gotHit = false;
+    public static bool playedCatch = false;
 
     Node MC_BT;
 
@@ -31,9 +35,12 @@ public class MCBTCreator : MonoBehaviour
         anim.SetBool("isWalking", false);
 
         isFlipped = false;
+        stillInterested = true;
         followDist = 20f;
         rabbitTimePassed = 0f;
         ballTimePassed = 0f;
+        interestTimer = 0f;
+        interestResetTimer = 0f;
 
         MC_BT = createBehaviorTree();
         refPoints = new List<Vector2>(mcWaypoints);
@@ -62,9 +69,15 @@ public class MCBTCreator : MonoBehaviour
         Leaf RunFromBallKid = new Leaf(runFromBallKid);
         Sequence MeanBallSeq = createSeqRoot(CheckMeanThrow, RunFromBallKid);
 
-        //Create Ball kid nearby follow him Sequence
+        //Create Play Catch with Ball Kid Sequence
+        Leaf CheckInterest = new Leaf(checkInterest);
+        Leaf MoveToBallKid = new Leaf(moveToBallKid);
+        Sequence PlayCatch = createSeqRoot(CheckInterest, MoveToBallKid);
 
-        Selector root = createSelRoot(RabbitSeq, MeanBallSeq, Walk);
+        //Music Kid Sequence
+        Leaf CheckMusic = new Leaf(checkMusic);
+
+        Selector root = createSelRoot(RabbitSeq, PlayCatch, MeanBallSeq, CheckMusic, Walk);
 
         return root;
     }
@@ -115,6 +128,32 @@ public class MCBTCreator : MonoBehaviour
         lastX = transform.position.x;
     }
 
+    private void McGoesToAvatar(Vector2 target)
+    {
+        //When standing still, if not played catch then walk away after 5 secs
+        //Otherwise, increment time when not playing catch until 5 secs
+        if (Vector2.Distance(transform.position, target) < 10.0f)
+        {
+            anim.SetBool("wantToPlay", true);
+            anim.SetBool("isWalking", false);
+            FlipAssetForBallKid();
+            if (playedCatch)
+            {
+                playedCatch = false;
+            }
+        }
+        else
+        {
+            anim.SetBool("wantToPlay", false);
+            anim.SetBool("isWalking", true);
+            transform.position = Vector2.MoveTowards(transform.position, target, walkSpeed * Time.deltaTime);
+        }
+        //stillInterested = false;
+        //Still need to figure out when to set playedCatch to false
+        //and need to break out of if condition
+        //Walk away
+    }
+
     private void McRunsFromAvatar(Vector2 target)
     {
         AnimationMoodCheck();
@@ -129,7 +168,7 @@ public class MCBTCreator : MonoBehaviour
         }
 
         if (transform.position.x > Playground.RightX ||
-            transform.position.x < Playground.LeftX  ||
+            transform.position.x < Playground.LeftX ||
             transform.position.y > Playground.UpperY ||
             transform.position.y < Playground.LowerY)
         {
@@ -143,44 +182,6 @@ public class MCBTCreator : MonoBehaviour
             //timePassed += Time.deltaTime;
         }
     }
-
-    /*private void McGoesToAvatar(Vector2 target, float step)
-    {
-        //When standing still, if not played catch then walk away after 5 secs
-        //Otherwise, increment time when not playing catch until 5 secs
-        if (timeElapsed < 7f)
-        {
-            if (Vector2.Distance(transform.position, target) < 10.0f)
-            {
-                anim.SetBool("wantToPlay", true);
-                anim.SetBool("isWalking", false);
-                FlipAssetForBallKid();
-                if (playedCatch)
-                {
-                    timeElapsed = 0;
-                    playedCatch = false;
-                }
-                else
-                {
-                    timeElapsed += Time.deltaTime;
-                    //Debug.Log(timeElapsed);
-                }
-            }
-            else
-            {
-                anim.SetBool("wantToPlay", false);
-                anim.SetBool("isWalking", true);
-                transform.position = Vector2.MoveTowards(transform.position, target, step);
-            }
-        }
-        else
-        {
-            stillInterested = false;
-            //Still need to figure out when to set playedCatch to false
-            //and need to break out of if condition
-            //Walk away
-        }
-    }*/
 
     private bool CheckDist(Vector3 pos1, Vector3 pos2)
     {
@@ -239,6 +240,32 @@ public class MCBTCreator : MonoBehaviour
         }
     }
 
+    private void updateInterest()
+    {
+        //If the interest timer is still under 7 seconds then the MC is still interested
+        //Else if not interested then start counting for 5 seconds to reset interest
+        if (interestTimer <= 7f)
+        {
+            interestResetTimer = 0f;
+            stillInterested = true;
+        }
+        else
+        {
+            //If interest timer hasn't counted to 5 then keep counting and report not interested
+            //Otherwise, update interest and report interested again
+            if (interestResetTimer <= 10f)
+            {
+                stillInterested = false;
+                interestResetTimer += Time.deltaTime;
+            }
+            else
+            {
+                interestTimer = 0f;
+                stillInterested = true;
+            }
+        }
+    }
+
     private void SwitchAnimController(int i)
     {
         anim.runtimeAnimatorController = Resources.Load(controllersName[i]) as RuntimeAnimatorController;
@@ -278,7 +305,7 @@ public class MCBTCreator : MonoBehaviour
             biteStatus = RabbitJump.bittenMC;
         }
 
-        if(rabbitTimePassed <= 4f && biteStatus)
+        if (rabbitTimePassed <= 4f && biteStatus)
         {
             rabbitTimePassed += Time.deltaTime;
             return NodeStatus.SUCCESS;
@@ -302,7 +329,7 @@ public class MCBTCreator : MonoBehaviour
     {
         if (CheckDist(transform.position, NpcInstantiator.ballKidPos) && BallProjectile.meanBallThrown && gotHit)
         {
-            Debug.Log("got hit yo");
+            //Debug.Log("got hit yo");
             ballStatus = gotHit;
         }
 
@@ -324,5 +351,53 @@ public class MCBTCreator : MonoBehaviour
         McRunsFromAvatar(NpcInstantiator.ballKidPos);
 
         return NodeStatus.SUCCESS;
+    }
+
+    NodeStatus checkInterest()
+    {
+        //Check if MC is still interested
+        updateInterest();
+
+        if(interestTimer <= 7f && stillInterested && !RabbitJump.beingCarried && CheckDist(transform.position, NpcInstantiator.ballKidPos))
+        {
+            Debug.Log("Am interested");
+            if (playedCatch)
+            {
+                interestTimer = 0f;
+                playedCatch = false;
+            }
+            else
+            {
+                interestTimer += Time.deltaTime;
+            }
+
+            return NodeStatus.SUCCESS;
+        }
+        else
+        {
+            return NodeStatus.FAILURE;
+        }
+    }
+
+    NodeStatus moveToBallKid()
+    {
+        McGoesToAvatar(NpcInstantiator.ballKidPos);
+
+        return NodeStatus.SUCCESS;
+    }
+
+    NodeStatus checkMusic()
+    {
+        if (RadioControl.musicListener == "MC" && RadioControl.currentMood == 0)
+        {
+            Debug.Log("Listening to music");
+            anim.SetBool("isWalking", false);
+            anim.SetBool("wantToPlay", false);
+            return NodeStatus.SUCCESS;
+        }
+        else
+        {
+            return NodeStatus.FAILURE;
+        }
     }
 }

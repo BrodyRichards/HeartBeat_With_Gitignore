@@ -68,7 +68,8 @@ public class BallProjectile : MonoBehaviour
                         meanBallThrown = false;
                         GameObject MC = hit.collider.gameObject;
                         MentalState.sendMsg("Played catch");
-                        McMovement.playedCatch = true;
+                        MCBTCreator.playedCatch = true;
+                        //McMovement.playedCatch = true;
                         GameObject.Find("MC").GetComponent<Animator>().SetTrigger("playCatch");
 
                         PlayCatch delayCatch = MC.GetComponent<PlayCatch>();
