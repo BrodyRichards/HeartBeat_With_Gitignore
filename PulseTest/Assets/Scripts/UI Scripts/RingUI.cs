@@ -118,13 +118,11 @@ public class RingUI : MonoBehaviour
         if (emoCurrentLength == segNum)    
         {
             bell_anim.enabled = true;
-            Invoke("AnimCompleted", 2.0f);
-
 
         }
     }
 
-    void AnimCompleted()
+    public void AnimCompleted()
     {
         isCompleted = true;
         ring.GetComponent<Image>().sprite = bell;
