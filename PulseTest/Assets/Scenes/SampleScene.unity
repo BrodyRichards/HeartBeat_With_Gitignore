@@ -454,11 +454,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -2013,7 +2013,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 147e809ec0f3a8a449133d3cf18b5052, type: 3}
   m_Name: 
@@ -2026,7 +2026,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 634283956edd20c498c807e83dc69a12, type: 3}
   m_Name: 
@@ -3005,7 +3005,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &768425837
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9367,11 +9367,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -9411,7 +9411,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1129796410
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10812,12 +10812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a4ef6dff4b3da746ba4236e228d4249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NPCs:
-  - {fileID: 3979756376367142934, guid: 5edbf62804e531e48bdc2ca51aa268f6, type: 3}
-  - {fileID: 8576220664124497193, guid: 83dc350b8f2563549972849501d702e8, type: 3}
-  - {fileID: 7622444672486768124, guid: 7d3260bd80c055c4a84b0aed454b0113, type: 3}
-  - {fileID: 8645926626911675491, guid: 1d727df8afb25a14783e89b53b8ec96a, type: 3}
-  - {fileID: 8389502171091223094, guid: 13eda64546eca1444861c1b3d54e2d8c, type: 3}
+  NPCtypes: []
   groupies: []
   groupiePrefab: {fileID: 8389502171091223094, guid: 13eda64546eca1444861c1b3d54e2d8c,
     type: 3}
