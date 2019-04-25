@@ -10987,7 +10987,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a4ef6dff4b3da746ba4236e228d4249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NPCtypes: []
+  NPCtypes:
+  - {fileID: 3979756376367142934, guid: 5edbf62804e531e48bdc2ca51aa268f6, type: 3}
+  - {fileID: 8576220664124497193, guid: 83dc350b8f2563549972849501d702e8, type: 3}
+  - {fileID: 7622444672486768124, guid: 7d3260bd80c055c4a84b0aed454b0113, type: 3}
+  - {fileID: 8645926626911675491, guid: 1d727df8afb25a14783e89b53b8ec96a, type: 3}
   groupies: []
   groupiePrefab: {fileID: 8389502171091223094, guid: 13eda64546eca1444861c1b3d54e2d8c,
     type: 3}
@@ -11156,6 +11160,12 @@ MonoBehaviour:
   bunny: {fileID: 616797539}
   ballKid: {fileID: 118138679}
   musicKid: {fileID: 1332290333}
+  bunnyPos: {fileID: 0}
+  bunnyNeg: {fileID: 0}
+  ballPos: {fileID: 0}
+  ballNeg: {fileID: 0}
+  musicPos: {fileID: 0}
+  musicNeg: {fileID: 0}
 --- !u!1 &1464267447
 GameObject:
   m_ObjectHideFlags: 0
