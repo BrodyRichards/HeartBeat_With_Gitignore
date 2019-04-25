@@ -7,7 +7,6 @@ public class MentalState : MonoBehaviour
     public static int currentState;
     public static int currentActionCombo;
     public static float coolDownCounting = 0.0f;
-    public static string lastEvent;
 
     public static Dictionary<string, int> moodLog;
     public static Dictionary<string, int> effectWeights;
@@ -28,30 +27,32 @@ public class MentalState : MonoBehaviour
     public readonly static List<string> negativeAct 
         = new List<string>() { "Hit by ball", "Bit by rabbit", "Sad Song" };
 
-    public static string message = "";          //for the thought system
-    public static int firstTime = 99;           //for the though system
+    public static string message;          //for the thought system
+    public static int firstTime = 99;           //for the thought system
 
     // Played catch, Hit by ball, Held Rabbit, Bit by rabbit, Happy Song, Sad Song
     private void Awake()
     {
         journalInProgress = true;
         noEventCounting = 0.0f;
-        lastEvent = "";
         currentActionCombo = 0;
+        emoTimeline = new Queue<EmoPlot>() { };
+        currentState = 0;
+        message = "";
     }
     void Start()
     {
-        emoTimeline = new Queue<EmoPlot> { };
+
 
         //Dictionary storing weights for NPC interactions
         npcEffectWeights = new Dictionary<int, int>
         {
-            {1, 1},
-            {2, -1},
-            {3, 1},
-            {4, -1},
-            {5, 1},
-            {6, -1}
+            {1, 1},     //rabbit hold
+            {2, -1},    //rabbit bite
+            {3, 1},     //ball play
+            {4, -1},    //ball throw
+            {5, 1},     //happy music
+            {6, -1}     //sad music
         };
 
         //Dictionary storing weights for each effect
@@ -84,6 +85,7 @@ public class MentalState : MonoBehaviour
     void Update()
     {
         noEventCounting += Time.deltaTime;
+
         
         //Debug.Log(noEventCounting);
         // if more than 10 seconds without event happening, do the pacifying thing 
@@ -95,21 +97,13 @@ public class MentalState : MonoBehaviour
 
     public static void sendMsg(string msg)
     {
-        if (positiveAct.Contains(msg) || negativeAct.Contains(msg))
-        {
-            message = msg;
-            var before = currentActionCombo;
-            var comboFactor = positiveAct.Contains(msg) ? 1 : -1;
-            currentActionCombo += comboFactor;
-            if (currentActionCombo == 0) { currentActionCombo = comboFactor; }
-            var after = currentActionCombo;
-            if (before * after <= 0) { EmoControl.emoChanged = true; }
-        }
+
         int currCount;
+        message = msg;
         moodLog.TryGetValue(msg, out currCount);
         firstTime = moodLog[msg];
         moodLog[msg] = currCount + 1;
-        
+        UpdateEmoWithAction(msg);
         if (journalInProgress)
         {
             EventTracking();
@@ -148,7 +142,7 @@ public class MentalState : MonoBehaviour
         return (int)average;
 
 
-        return 0;
+        //return 0;
     }
     //============== End of TODO ==========================
 
@@ -163,7 +157,6 @@ public class MentalState : MonoBehaviour
     {
         var tempEmo = EmoPlot.CreateInstance(Mathf.RoundToInt(Time.timeSinceLevelLoad), currentState, m);
         emoTimeline.Enqueue(tempEmo);
-        lastEvent = m;
         // if the emotiontime line already contain more than 30 objects, dequeue 
         if (emoTimeline.Count > 30) // can playaround with the value 
         {
@@ -206,6 +199,7 @@ public class MentalState : MonoBehaviour
             Debug.Log("Current State: " + currentState);
         }*/
         currentState += npcEffectWeights[newAction];
+        //currentState = Mathf.Clamp(currentState, sadBound.x, happyBound.y);
         //Debug.Log("Updating emotion");
         Debug.Log("Current State: " + currentState);
     }
@@ -222,14 +216,12 @@ public class MentalState : MonoBehaviour
         else if (WithinRange(currentState, happyBound.x, happyBound.y))
         {
 
-            var msg = "Calm down";
-            PlotingTimeline(msg);
+
             currentState -= 3;
         }
         else if (WithinRange(currentState, sadBound.x, sadBound.y))
         {
-            var msg = "Cheer up";
-            PlotingTimeline(msg);
+
             currentState += 2;
         }
 
@@ -314,5 +306,27 @@ public class MentalState : MonoBehaviour
         }
 
         return mood;
+    }
+    // [obsolete]
+    public static void ByeByeOldEmoSystem(string msg)
+    {
+        if (positiveAct.Contains(msg) || negativeAct.Contains(msg))
+        {
+            message = msg;
+            var before = currentActionCombo;
+            var comboFactor = positiveAct.Contains(msg) ? 1 : -1;
+            currentActionCombo += comboFactor;
+            if (currentActionCombo == 0) { currentActionCombo = comboFactor; }
+            var after = currentActionCombo;
+            if (before * after <= 0) { EmoControl.emoChanged = true; }
+        }
+    }
+
+    public static void UpdateEmoWithAction(string act)
+    {
+        if (NewEmoControl.NoEmoAtm)
+        {
+            NewEmoControl.ReactEmo = act;
+        }
     }
 }

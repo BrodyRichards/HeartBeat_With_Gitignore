@@ -97,7 +97,6 @@ MonoBehaviour:
   sad: {fileID: 21300000, guid: 0118ce6c620cec848bacbb8088e77987, type: 3}
   startle: {fileID: 21300000, guid: 673e8baa999e5474bb8d4ddeaba8d99e, type: 3}
   angry: {fileID: 21300000, guid: e132baa666e4228428f01485bbc4b87f, type: 3}
-  ps: {fileID: 3642466804788993816}
 --- !u!1 &20722763311755063
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,7 +300,6 @@ MonoBehaviour:
   - {x: -15, y: -16}
   - {x: 18, y: -10}
   refPoints: []
-  speed: 4
   followDist: 0
   timeElapsed: 0
   CRunning: 0

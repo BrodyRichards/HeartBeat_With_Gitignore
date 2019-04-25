@@ -16,6 +16,7 @@ public class Runners : NPCs
 
     protected override void Update()
     {
+        //isWalking = anim.GetBool("IsWalking");
         if (schoolBell == false)
         {
             time = Time.fixedUnscaledTime;
@@ -29,10 +30,10 @@ public class Runners : NPCs
                 target = new Vector3(ranX, ranY, -1);
             }
             DetectMovement();
-            if (Input.GetKeyDown(Control.evacuate) && !MentalState.journalInProgress)
-            {
-                schoolBell = true;
-            }
+            //if (Input.GetKeyDown(Control.evacuate) && !MentalState.journalInProgress)
+            //{
+            //    schoolBell = true;
+            //}
         }
         else
         {

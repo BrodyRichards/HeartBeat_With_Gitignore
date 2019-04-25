@@ -13,6 +13,8 @@ public class IconControl : MonoBehaviour
     public GameObject iconsGroup;
     public GameObject tabPrompt;
     public Image bg;
+    public GameObject ring;
+
 
     [SerializeField]private Image rabbitIcon;
     [SerializeField]private Image ballIcon;
@@ -37,6 +39,7 @@ public class IconControl : MonoBehaviour
         tabPrompt.SetActive(false);
         ToggleIcons(false);
         animator.SetBool("newAccom", false);
+
     }
 
     // Update is called once per frame
@@ -48,12 +51,17 @@ public class IconControl : MonoBehaviour
             bringTheIconsIn = true;
         }
 
+        if (characterSwitcher.charChoice==1000 && iconsGroup.activeSelf)
+        {
+            iconsGroup.SetActive(false);
+        }
+
         foreach (var img in icons)
         {
             if ( icons.IndexOf(img) + 1 == characterSwitcher.charChoice)
             {
                 
-                Rescale(img, 40f);
+                Rescale(img, 70f);
 
                 if (Input.GetKey(Control.positiveAction))
                 {
@@ -71,7 +79,7 @@ public class IconControl : MonoBehaviour
             else
             {
                 
-                Rescale(img, 30f);
+                Rescale(img, 50f);
             }
         }
 
@@ -108,7 +116,7 @@ public class IconControl : MonoBehaviour
 
     void Rescale(Image im, float pixel)
     {
-        im.rectTransform.sizeDelta = new Vector2(pixel, pixel*2f);
+        im.rectTransform.sizeDelta = new Vector2(pixel, 50f);
     }
 
     private void ToggleIcons(bool boo)
@@ -116,6 +124,8 @@ public class IconControl : MonoBehaviour
         iconsGroup.SetActive(boo);
         journalIcon.enabled = boo;
         bg.enabled = boo;
+        ring.SetActive(boo);
+
     }
     
     

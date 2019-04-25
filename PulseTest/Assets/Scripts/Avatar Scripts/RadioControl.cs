@@ -14,6 +14,7 @@ public class RadioControl : MonoBehaviour
     public static float actionDist;
 
     private bool musicNoteCreated = false;
+    private bool emitParticleNow;
     private bool isBG;
 
     private readonly float mcAffectedInterval = 3f;
@@ -43,15 +44,21 @@ public class RadioControl : MonoBehaviour
     public Sprite sadNote2;
     public Sprite sadNote3;
 
-
-    
-
-
     Sprite[] sprites;
     Sprite[] happyNoteSprites;
     Sprite[] sadNoteSprites;
     AudioClip[] audioClips;
 
+    private Animator anim;
+    public Animator mc_anim;
+
+    private ParticleSystem.EmissionModule em;
+    private ParticleSystem.MainModule pm;
+
+    private void Awake()
+    {
+        emitParticleNow = false;
+    }
 
     private void Start()
     {
@@ -68,11 +75,21 @@ public class RadioControl : MonoBehaviour
         isBG = true;
         actionDist = 4f;
 
+        anim = GetComponent<Animator>();
+        mc_anim = GameObject.Find("MC").GetComponent<Animator>();
+
+        em = ps.emission;
+        pm = ps.main;
+        em.enabled = false;
+
+
     }
 
     // Update is called once per frame
     private void Update()
     {
+
+        McAnimCheck();
         UIControl();
         if (characterSwitcher.isMusicGuyInCharge && !Movement.timeToLeave)
         {
@@ -86,6 +103,14 @@ public class RadioControl : MonoBehaviour
             TurnBgOn();
             ResetThisGuy();
         }
+
+        if (emitParticleNow)
+        {
+            ChooseParticleColor();
+
+            em.enabled = true;
+            Invoke("PauseEmoPs", 0.5f);
+        }
     }
 
     private void DetectAction()
@@ -93,20 +118,35 @@ public class RadioControl : MonoBehaviour
         if (Input.GetKeyDown(Control.positiveAction) && currentMood != (int)Mood.happy)
         {
             PlaySong(0);
+
             TurnBgOff();
+            anim.SetTrigger("click");
         }
         else if (Input.GetKeyDown(Control.negativeAction) && currentMood != (int)Mood.sad)
         {
             PlaySong(1);
             TurnBgOff();
+            anim.SetTrigger("click");
+
         }
         else if ((Input.GetKeyDown(Control.negativeAction) && currentMood == (int)Mood.sad) || (Input.GetKeyDown(Control.positiveAction) && currentMood == (int)Mood.happy))
         {
             ResetThisGuy();
             TurnBgOn();
+            anim.SetTrigger("click");
         }
     }
-
+    private void McAnimCheck()
+    {
+        if (mcIsAffected && currentMood == (int)Mood.happy)
+        {
+            mc_anim.SetBool("isHappySong", true);
+        }
+        else
+        {
+            mc_anim.SetBool("isHappySong", false);
+        }
+    }
     private void DetectMusic()
     {
         if (isMusic)
@@ -134,6 +174,7 @@ public class RadioControl : MonoBehaviour
                         // 4 seconds later call this function and reset MC 
                         Invoke("McNotAffected", mcAffectedInterval);
 
+
                     }
                     else if (coll.gameObject.tag == "Person" && !mcIsAffected && !npcIsAffected)
                     {
@@ -147,7 +188,9 @@ public class RadioControl : MonoBehaviour
             }
             else
             {
+                CancelInvoke("MCNotAffected");
                 musicListener = "";
+                mcIsAffected = false;
             }
         }
         else
@@ -172,6 +215,7 @@ public class RadioControl : MonoBehaviour
 
         isMusic = true;
 
+        emitParticleNow = true;
     }
    
 
@@ -311,6 +355,28 @@ public class RadioControl : MonoBehaviour
         {
             DestroyRemainingNote();
         }
+    }
+
+    private void ChooseParticleColor()
+    {
+        if (currentMood==(int)Mood.happy)
+        {
+
+            pm.startColor = Color.yellow;
+        }
+        else if (currentMood == (int)Mood.sad)
+        {
+
+            pm.startColor = Color.blue;
+        }
+
+    }
+
+    private void PauseEmoPs()
+    {
+
+        em.enabled = false;
+        emitParticleNow = false;
     }
 
     //private float RoatateParticles(Vector3 myself, GameObject other)

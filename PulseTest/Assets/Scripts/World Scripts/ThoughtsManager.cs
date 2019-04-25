@@ -2,21 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ThoughtsManager : MonoBehaviour
 {
-    public Text thoughtText;
+    public  GameObject text;
     public Image thoughtBubble;
 
-    private List<string> thoughts;
-    public static Dictionary<string, int> thoughtLine;
-    public static Dictionary<int, List<string>> thoughtPossibilities;
+    private List<string> thoughts;                                          //thoughts on deck
+    public static Dictionary<string, int> thoughtLine;                      //a dictionary that maps action to the index of a possible list of thoughts
+    public static Dictionary<int, List<string>> thoughtPossibilities;       //index to possible list of thoughts
+    public static Dictionary<string, string> successiveThoughts;            //for thoughts that have a continuation
+
+    bool thoughtOn = false;                                 //bool for if a thought is currently on or not
+    bool nextThought = false;                               //used for successive thoughts
 
     float time;
     float timer;
+
+    string next;                                            //used for successive thoughts
+
+    private TextMeshProUGUI tmpug; 
     // Start is called before the first frame update
     void Start()
     {
+        tmpug = text.GetComponent<TextMeshProUGUI>();
+
         setThoughts();
         hideThought();
       
@@ -35,39 +46,33 @@ public class ThoughtsManager : MonoBehaviour
         };
     }
 
-    /*
-    public void DisplayThought(Thought thought)
-    {
-        //have different string arrays in Thought.cs for different types of thoughts?
-
-    }
-    */
-
     void setThoughts()
     {
-        /*
-        thoughts = new List<string>(new string[]{
-            "First time bunny",    
-            "So adorable",
-            "Ouch!",
-            "First time ball",
-            "Awesome",
-            "What a big meanie head",
-            "First time music",
-            "Sounds great",
-            "Sounds terrible"
-        });
-        */
         thoughtPossibilities = new Dictionary<int, List<string>>
         {
-            {0, new List<string>(new string[]{"First time bunny hold", "So adorable", "Bunny hold"}) },
-            {1, new List<string>(new string[]{"First time bunny bite", "Ouch!", "Bunny bite"}) },
-            {2, new List<string>(new string[]{"First time ball play", "Awesome", "Ball play"}) },
-            {3, new List<string>(new string[]{"First time ball hit", "What a big meanie head", "Ball hit"}) },
-            {4, new List<string>(new string[]{"First time music pos", "Sounds great", "Music pos"}) },
-            {5, new List<string>(new string[]{"First time music neg", "Sounds terrible", "Music neg"}) },
-            {6, new List<string>(new string[]{ "The snow is beautiful", "I'm an ice dragon", "so cold brrr", "i wanna draw "}) }
+            {0, new List<string>(new string[]{"It's so foofy!", "So cute!", "I want to take it home!", "I want to draw this!"}) },
+            {1, new List<string>(new string[]{"Ouch!", "Go away!", "Stop it!", "Why?", "Evil rabbit"}) },
+            {2, new List<string>(new string[]{"This is fun!", "Yay!", "More!", "Can we be friends?"}) },
+            {3, new List<string>(new string[]{"Ow!", "What a big meanie head", "I don't like him", "Why is he doing that"}) },
+            {4, new List<string>(new string[]{"Pretty music!", "I like this song", "This sounds like mommy's music"}) },
+            {5, new List<string>(new string[]{"Yucky song!", "Sounds bad", "This song is ugly", "Why does she keep playing it?"}) },
+            //Below are idle thoughts, 6 is for idle, 7 for sad, 8 for happy
+            {6, new List<string>(new string[]{"Snow!", "I'm an ice dragon", "so cold brrr", "I wanna draw", "I hope daddy doesn't work too late"}) }, 
+            {7, new List<string>(new string[]{"Mommy said big kids don't cry", "I didn't see daddy yesterday", "I want to go home", "*Sniffle*", "I miss mommy",
+                                                "I don't like this school"}) },
+            {8, new List<string>(new string[]{"I want to tell mommy about today!", "Can't wait to make new friends!", "Can't wait for class!"}) }
+            //maybe I can separate some strings depending on the mood of the MC
         };
+
+        successiveThoughts = new Dictionary<string, string>
+        {
+            {"00", "It's like a marshmallow!"},
+            {"70", "I guess I'm not a big kid"},
+            {"61", "Rawrrr"},
+            {"80", "I wonder when I'll see her" }
+        };
+        
+        //add thoughts for avatar actions done to NPCs
     }
 
     void hideThought()
@@ -84,17 +89,31 @@ public class ThoughtsManager : MonoBehaviour
     {
         //thoughtText.text = thoughts[line];
         thoughts = thoughtPossibilities[line];
+        int successive = 999;
         if (MentalState.firstTime == 0)
         {
-            thoughtText.text = thoughts[0];
+            tmpug.text = thoughts[0];
+            successive = 0;
+            showThought();
         }
         else
         {
-            int num = thoughts.Count; int ran;
-            if (line == 6) { ran = Random.Range(0, num); }
-            else { ran = Random.Range(1, num); }
-            
-            thoughtText.text = thoughts[ran];
+            int num = thoughts.Count; int ran; int ran2;
+            ran2 = Random.Range(0, 10);
+            if (ran2 > 5)
+            {
+                if (line == 6) { ran = Random.Range(0, num); }
+                else { ran = Random.Range(1, num); }
+                tmpug.text = thoughts[ran];
+                showThought();
+                successive = ran;       
+            }
+        }
+        string ok = line.ToString() +  successive.ToString();
+        if (successiveThoughts.ContainsKey(ok))
+        {
+            nextThought = true;
+            next = successiveThoughts[ok];
         }
         setTimer();
     }
@@ -102,49 +121,65 @@ public class ThoughtsManager : MonoBehaviour
     void setTimer()
     {
         time = Time.fixedUnscaledTime;
-        timer = time + 3.0f;
+        timer = time + 2.5f;
+        thoughtOn = true;
     }
-
-    /*
-    public void TriggerDialogue()
-    {
-        
-    }
-    */
 
     // Update is called once per frame
     void Update()
     {
         time = Time.fixedUnscaledTime;
-        //random events?
-        //what will trigger thoughts
-        
-        if (time >= timer)
+
+        if (CameraMovement.thoughtSystem)       //makes it that the MC can't get thoughts in the walking in scene
         {
-            hideThought();
-        }
-        else //if (timer >= time)
-        {
-            showThought();
-        }
-        if (MentalState.message != "")
-        {     
-            int lineNum = thoughtLine[MentalState.message];
-            //Debug.Log("line = " + lineNum);
-            MentalState.message = "";
-            changeThought(lineNum);
-        }
-        /*
-        else if (MentalState.message == "")
-        {
-            
-            int ran = Random.Range(0, 10);
-            if (ran >= 7)
+            if (time >= timer)
             {
-                //int lineNum = 6;
-                changeThought(6);
+                if (nextThought)
+                {
+                    //Debug.Log("HELLOOO");
+                    tmpug.text = next;
+                    setTimer();
+                    nextThought = false;
+                }
+                else
+                {
+                    thoughtOn = false;
+                    hideThought();
+                }
             }
-            
+
+            int ran = Random.Range(0, 1000);
+            if (ran > 997 && thoughtOn == false)
+            {
+                if (McMovement.speed == 4) //no mood
+                {
+                    changeThought(6);
+                }
+                else if (McMovement.speed == 6) //happy
+                {
+                    changeThought(8);
+                }
+                else if (McMovement.speed == 3) //sad
+                {
+                    changeThought(7);
+                }
+            }
+            if (MentalState.message != "")
+            {
+                int lineNum = thoughtLine[MentalState.message];
+
+                Debug.Log("lineNum: " + lineNum);
+                MentalState.message = "";
+                changeThought(lineNum);
+            }
+        }
+        
+        
+        
+        /*
+        if (Input.GetKey(KeyCode.T))
+        {
+            changeThought(7);
         }
         */
     }

@@ -14,6 +14,7 @@ public class Loners : NPCs
 
     protected override void Update()
     {
+        //isWalking = anim.GetBool("IsWalking");
         if (schoolBell == false)
         {
             time = Time.fixedUnscaledTime;
@@ -21,10 +22,10 @@ public class Loners : NPCs
             avatarChecks();
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             DetectMovement();
-            if (Input.GetKeyDown(Control.evacuate) && !MentalState.journalInProgress)
-            {
-                schoolBell = true;
-            }
+            //if (Input.GetKeyDown(Control.evacuate) && !MentalState.journalInProgress)
+            //{
+            //    schoolBell = true;
+            //}
         }
         else
         {
@@ -43,18 +44,5 @@ public class Loners : NPCs
 
     }
 
-    protected override void checkMusic()
-    {
-        if (RadioControl.currentMood == 1) //sad music
-        {
-            Emo = master.GetComponent<NpcInstantiator>().happyFace;
-            addQueue(4);
-        }
-        else if (RadioControl.currentMood == 0) //scary music
-        {
-            Emo = master.GetComponent<NpcInstantiator>().sadFace;
-            addQueue(3);
-        }
-        addEmo();
-    }
+
 }

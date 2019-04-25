@@ -8,9 +8,12 @@ public class characterSwitcher : MonoBehaviour
     //This enables you to see and set the field from inspector but 
     //it is hidden from other scripts and objects. 
     //charChoice represents which named object to move
-    public static int charChoice = -1;
+    public static int charChoice;
     public static bool isMusicGuyInCharge;
     //public static bool isChar = false;
+    private Animator anim_keyPrompt;
+    private float doNothingTimer; 
+    
 
     // Use this for initialization
     void Start()
@@ -20,12 +23,25 @@ public class characterSwitcher : MonoBehaviour
         GameObject.Find("3").GetComponent<Movement>().enabled = false;
         isMusicGuyInCharge = false;
         GameObject.Find("MC").GetComponent<Movement>().enabled = false;
+        charChoice = -1;
 
+        anim_keyPrompt = GameObject.Find("KeyPrompt1").GetComponent<Animator>();
+        anim_keyPrompt.enabled = false;
+
+        doNothingTimer = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (charChoice == -1)
+        {
+            PlayerIdleCheck();
+        }else if (anim_keyPrompt.enabled)
+        {
+            anim_keyPrompt.enabled = false;
+        }
         //Poll for input
         switchCharacter();
     }
@@ -66,7 +82,7 @@ public class characterSwitcher : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(Control.evacuate) && !MentalState.journalInProgress && !IconControl.journalActivated)
+            if (Input.GetKeyDown(Control.evacuate) && RingUI.isCompleted && !IconControl.journalActivated)
             {
                 charChoice = 1000;
                 GameObject.Find("MC").GetComponent<Movement>().enabled = true;
@@ -77,6 +93,7 @@ public class characterSwitcher : MonoBehaviour
                 disableOthers();
                 EnableAll();
                 this.enabled = false;
+                NPCs.schoolBell = true;
                 GameObject.Find("BellRing").GetComponent<AudioSource>().Play();
             }
         }
@@ -210,5 +227,22 @@ public class characterSwitcher : MonoBehaviour
     {
         var go = GameObject.Find(target);
         if (go!=null) { go.SetActive(false); }
+    }
+
+    private void PlayerIdleCheck()
+    {
+        doNothingTimer += Time.deltaTime;
+
+        if (doNothingTimer > 20f)
+        {
+            GiveSomePromptIfPlayerDoesntKnowWhatsGoingOn();
+            doNothingTimer *= 0f;
+        }
+    }
+
+    private void GiveSomePromptIfPlayerDoesntKnowWhatsGoingOn()
+    {
+        //var ran = Random.Range(1, 4);
+        anim_keyPrompt.enabled = true; 
     }
 }

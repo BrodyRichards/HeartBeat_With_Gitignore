@@ -15,8 +15,8 @@ public class NPCs : MonoBehaviour
 
     private float musicCoolDown;
     private float curTime;
-    private float rabbitCoolDown;
-    private float rabbitTime;
+    protected float rabbitCoolDown;
+    protected float rabbitTime;
 
     protected GameObject master;
     protected GameObject Emo;
@@ -30,11 +30,14 @@ public class NPCs : MonoBehaviour
     protected bool holdBunny = false;
     protected bool nameChange = false;
     protected bool rabNameChange = false;
+    //public bool isWalking = false;
     public static bool schoolBell = false;
     public Vector3 target;
 
     protected float time;
     protected float timer;
+
+
 
     protected virtual void Start()
     {
@@ -59,16 +62,17 @@ public class NPCs : MonoBehaviour
 
     protected virtual void Update()
     {
+        //isWalking = anim.GetBool("IsWalking");
         if (schoolBell == false)
         {
             time = Time.fixedUnscaledTime;
             directionCheck(target.x, transform.position.x);
             avatarChecks();
             DetectMovement();
-            if (Input.GetKeyDown(Control.evacuate) && !MentalState.journalInProgress) 
-            { 
-                schoolBell = true;
-            }
+            //if (Input.GetKeyDown(Control.evacuate) && !MentalState.journalInProgress) 
+            //{ 
+            //    schoolBell = true;
+            //}
         }
         else
         {
@@ -153,7 +157,7 @@ public class NPCs : MonoBehaviour
                 if (transform.GetChild(i).gameObject.tag == "Avatars" && holdBunny == false)
                 {
                     holdBunny = true;
-                    Emo = master.GetComponent<NpcInstantiator>().happyFace;
+                    Emo = master.GetComponent<NpcInstantiator>().surpriseFace;
                     addEmo();
                     if (Time.time >= rabbitTime)
                     {
@@ -178,7 +182,7 @@ public class NPCs : MonoBehaviour
                 }
             }
             timer = time + 2.0f;
-            Emo = master.GetComponent<NpcInstantiator>().sadFace;
+            Emo = master.GetComponent<NpcInstantiator>().hurtFace;
             addEmo();
         }
     }
@@ -196,7 +200,7 @@ public class NPCs : MonoBehaviour
         }
         else if (RadioControl.currentMood == 0)                 //happy song
         {
-            Emo = master.GetComponent<NpcInstantiator>().happyFace;
+            Emo = master.GetComponent<NpcInstantiator>().groovinFace;
             if (Time.time >= curTime)
             {
                 Debug.Log("I'm happy");
@@ -205,6 +209,8 @@ public class NPCs : MonoBehaviour
             }
         }
         addEmo();
+
+
     }
 
     protected virtual void directionCheck(float target1, float pos)

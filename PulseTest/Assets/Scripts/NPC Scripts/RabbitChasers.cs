@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class RabbitChasers : NPCs
 {
+
     protected override void Start()
     {       
         base.Start();
+
         int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
         int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
         /*
@@ -21,6 +23,7 @@ public class RabbitChasers : NPCs
 
     protected override void Update()
     {
+        //isWalking = anim.GetBool("IsWalking");
         if (schoolBell == false)
         {
             time = Time.fixedUnscaledTime;
@@ -29,10 +32,10 @@ public class RabbitChasers : NPCs
             avatarChecks();
             checkBallBunny(rabbitDist, NpcInstantiator.rabbitPos);
             DetectMovement();
-            if (Input.GetKeyDown(Control.evacuate) && !MentalState.journalInProgress)
-            {
-                schoolBell = true;
-            }
+            //if (Input.GetKeyDown(Control.evacuate) && !MentalState.journalInProgress)
+            //{
+            //    schoolBell = true;
+            //}
         }
         else
         {
@@ -50,9 +53,13 @@ public class RabbitChasers : NPCs
                 if (transform.GetChild(i).gameObject.tag == "Avatars" && holdBunny == false)
                 {
                     holdBunny = true;
-                    Emo = master.GetComponent<NpcInstantiator>().happyFace;
+                    Emo = master.GetComponent<NpcInstantiator>().surpriseFace;
                     addEmo();
-                    addQueue(5);
+                    if (Time.time >= rabbitTime)
+                    {
+                        rabbitTime = Time.time + rabbitCoolDown;
+                        addQueue(5);
+                    }
                 }
             }
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);

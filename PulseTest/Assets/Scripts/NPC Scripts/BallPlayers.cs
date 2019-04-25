@@ -21,6 +21,7 @@ public class BallPlayers : NPCs
     // Update is called once per frame
     protected override void Update()
     {
+        //isWalking = anim.GetBool("IsWalking");
         if (schoolBell == false)
         {
             mcPos = GameObject.Find("MC").transform.position;
@@ -35,10 +36,7 @@ public class BallPlayers : NPCs
             }
             DetectMovement();
             
-            if (Input.GetKeyDown(Control.evacuate))
-            {
-                schoolBell = true;
-            }
+     
         }
         else
         {
