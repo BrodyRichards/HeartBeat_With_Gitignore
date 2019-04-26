@@ -11,16 +11,17 @@ public class ActionThoughts : MonoBehaviour
     Vector3 offsetQ;
     Vector3 offsetE;
 
-    public GameObject bunny;
+    public GameObject bunny;            //to get the position of the avatars
     public GameObject ballKid;
     public GameObject musicKid;
 
-    public Image bunnyPos;
-    public Image bunnyNeg;
-    public Image ballPos;
-    public Image ballNeg;
-    public Image musicPos;
-    public Image musicNeg;
+    public GameObject bunnyPos;         //the images for the actions
+    public GameObject bunnyNeg;
+    public GameObject ballPos;
+    public GameObject ballNeg;
+    public GameObject musicPos;
+    public GameObject musicNeg;
+
 
     bool bunnyQ = false, bunnyE = false;                //for switching on and off
     bool ballQ = false, ballE = false; 
@@ -51,8 +52,11 @@ public class ActionThoughts : MonoBehaviour
     {
         if (characterSwitcher.charChoice == 1) //bunny
         {
+            showThought(bunnyPos); showThought(bunnyNeg);
+            hideThought(ballPos); hideThought(ballNeg);
+            hideThought(musicPos); hideThought(musicNeg);
             if (bunnyQ == false) { showThought(q); }
-            if (bunnyE == false) { showThought(q); }
+            if (bunnyE == false) { showThought(e); }
             q.transform.position = bunny.transform.position + offsetQ + new Vector3(1, -1, 0);
             e.transform.position = bunny.transform.position + offsetE + new Vector3(-1, -1, 0);
             if (Input.GetKey(KeyCode.Q)) { hideThought(q); bunnyQ = true; }
@@ -60,13 +64,27 @@ public class ActionThoughts : MonoBehaviour
         }
         else if (characterSwitcher.charChoice == 2) //ball kid
         {
+            showThought(ballPos); showThought(ballNeg);
+            hideThought(bunnyPos); hideThought(bunnyNeg);
+            hideThought(musicPos); hideThought(musicNeg);
+            if (ballQ == false) { showThought(q); }
+            if (ballE == false) { showThought(e); }
             q.transform.position = ballKid.transform.position + offsetQ;
             e.transform.position = ballKid.transform.position + offsetE;
+            if (Input.GetKey(KeyCode.Q)) { hideThought(q); ballQ = true; }
+            if (Input.GetKey(KeyCode.E)) { hideThought(e); ballE = true; }
         }
         else if (characterSwitcher.charChoice == 3) //music kid
         {
+            showThought(musicPos); showThought(musicNeg);
+            hideThought(ballPos); hideThought(ballNeg);
+            hideThought(bunnyPos); hideThought(bunnyNeg);
+            if (musicQ == false) { showThought(q); }
+            if (musicE == false) { showThought(e); }
             q.transform.position = musicKid.transform.position + offsetQ;
             e.transform.position = musicKid.transform.position + offsetE;
+            if (Input.GetKey(KeyCode.Q)) { hideThought(q); musicQ = true; }
+            if (Input.GetKey(KeyCode.E)) { hideThought(e); musicE = true; }
         }
             
 
