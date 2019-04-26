@@ -86,6 +86,11 @@ public class ActionThoughts : MonoBehaviour
             if (Input.GetKey(KeyCode.Q)) { hideThought(q); musicQ = true; }
             if (Input.GetKey(KeyCode.E)) { hideThought(e); musicE = true; }
         }
+        else
+        {
+            hideThought(q);
+            hideThought(e);
+        }
             
 
     }
