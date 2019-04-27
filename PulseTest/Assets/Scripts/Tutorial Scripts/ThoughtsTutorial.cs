@@ -83,15 +83,21 @@ public class ThoughtsTutorial : MonoBehaviour
         {
             hideThought();
         }
-        if (Input.GetKey(KeyCode.Q))
+        if (TutorialCharSwitch.TutCharChoice == 1)
         {
-            action = 0;
-            Invoke("changeThought", 5f);
+            if (Input.GetKey(KeyCode.E))
+            {
+                action = 1;
+                Invoke("changeThought", 9f);
+            }
         }
-        if (Input.GetKey(KeyCode.E))
+        else if (TutorialCharSwitch.TutCharChoice == 2)
         {
-            action = 1;
-            Invoke("changeThought", 9f);
-        }
+            if (Input.GetKey(KeyCode.Q))
+            {
+                action = 0;
+                Invoke("changeThought", 5f);
+            }
+        }   
     }
 }
