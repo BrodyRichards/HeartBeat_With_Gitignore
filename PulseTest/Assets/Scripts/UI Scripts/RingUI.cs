@@ -9,7 +9,7 @@ public class RingUI : MonoBehaviour
 
     public GameObject ring;
     public GameObject face;
-    public GameObject buttonPrompt; 
+    public GameObject buttonPrompt;
 
     public static bool isCompleted;
 
@@ -60,6 +60,7 @@ public class RingUI : MonoBehaviour
         {
             bell_anim.enabled = false;
             ring.SetActive(false);
+            buttonPrompt.SetActive(false);
         }
     }
 
