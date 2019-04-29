@@ -56,7 +56,9 @@ public class ActionThoughts : MonoBehaviour
             hideThought(ballPos); hideThought(ballNeg);
             hideThought(musicPos); hideThought(musicNeg);
             if (bunnyQ == false) { showThought(q); }
+            else { hideThought(q); }
             if (bunnyE == false) { showThought(e); }
+            else { hideThought(e); }
             q.transform.position = bunny.transform.position + offsetQ + new Vector3(1, -1, 0);
             e.transform.position = bunny.transform.position + offsetE + new Vector3(-1, -1, 0);
             if (Input.GetKey(KeyCode.Q)) { hideThought(q); bunnyQ = true; }
@@ -68,7 +70,9 @@ public class ActionThoughts : MonoBehaviour
             hideThought(bunnyPos); hideThought(bunnyNeg);
             hideThought(musicPos); hideThought(musicNeg);
             if (ballQ == false) { showThought(q); }
+            else { hideThought(q); }
             if (ballE == false) { showThought(e); }
+            else { hideThought(e); }
             q.transform.position = ballKid.transform.position + offsetQ;
             e.transform.position = ballKid.transform.position + offsetE;
             if (Input.GetKey(KeyCode.Q)) { hideThought(q); ballQ = true; }
@@ -80,7 +84,9 @@ public class ActionThoughts : MonoBehaviour
             hideThought(ballPos); hideThought(ballNeg);
             hideThought(bunnyPos); hideThought(bunnyNeg);
             if (musicQ == false) { showThought(q); }
+            else { hideThought(q); }
             if (musicE == false) { showThought(e); }
+            else { hideThought(e); }
             q.transform.position = musicKid.transform.position + offsetQ;
             e.transform.position = musicKid.transform.position + offsetE;
             if (Input.GetKey(KeyCode.Q)) { hideThought(q); musicQ = true; }
