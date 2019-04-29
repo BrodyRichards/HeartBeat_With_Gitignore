@@ -19126,7 +19126,7 @@ PrefabInstance:
     - target: {fileID: 5841612919240639078, guid: d77767d21a93b4e82b20fa4436d930cb,
         type: 3}
       propertyPath: m_Color.a
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5841612919240639078, guid: d77767d21a93b4e82b20fa4436d930cb,
         type: 3}
@@ -20022,6 +20022,16 @@ PrefabInstance:
       propertyPath: m_fontStyle
       value: 17
       objectReference: {fileID: 0}
+    - target: {fileID: 6373760172302962363, guid: 993a81acb1e2044dd835d4808f2ff9cb,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6373760172302962363, guid: 993a81acb1e2044dd835d4808f2ff9cb,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 6373760172302962360, guid: 993a81acb1e2044dd835d4808f2ff9cb,
         type: 3}
       propertyPath: mc
@@ -20036,16 +20046,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6373760172302962363, guid: 993a81acb1e2044dd835d4808f2ff9cb,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 6373760172302962363, guid: 993a81acb1e2044dd835d4808f2ff9cb,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 993a81acb1e2044dd835d4808f2ff9cb, type: 3}
