@@ -54,7 +54,7 @@ public class BallProjectile : MonoBehaviour
                         //A mean ball was thrown
                         //Debug.Log("You threw a mean ball!");
                         //Update Mental State
-
+                        TriggerHitAnim();
                         MentalState.sendMsg("Hit by ball");
                         McMovement.gotHit = true;
 
@@ -124,6 +124,19 @@ public class BallProjectile : MonoBehaviour
         }
 
     }
+
+    private void TriggerHitAnim()
+    {
+        GameObject mc = GameObject.Find("MC");
+        if (Vector2.Distance(gameObject.transform.position, mc.transform.position) < 3f)
+        {
+            mc.GetComponent<Animator>().SetTrigger("isHit");
+
+
+        }
+    }
+
+
 
     private void SimulateProjectile()
     {
