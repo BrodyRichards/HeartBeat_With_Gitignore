@@ -35,13 +35,13 @@ public class characterSwitcher : MonoBehaviour
     void Update()
     {
 
-        if (charChoice == -1)
-        {
-            PlayerIdleCheck();
-        }else if (anim_keyPrompt.enabled)
-        {
-            anim_keyPrompt.enabled = false;
-        }
+        //if (charChoice == -1)
+        //{
+        //    PlayerIdleCheck();
+        //}else if (anim_keyPrompt.enabled)
+        //{
+        //    anim_keyPrompt.enabled = false;
+        //}
         //Poll for input
         switchCharacter();
     }
