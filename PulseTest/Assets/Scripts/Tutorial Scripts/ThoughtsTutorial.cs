@@ -8,6 +8,7 @@ public class ThoughtsTutorial : MonoBehaviour
 {
     public GameObject text;
     public Image thoughtBubble;
+    //public Image speechBubble;
 
     private List<string> thoughts;                                          //thoughts on deck
     //public static Dictionary<string, int> thoughtLine;                      //a dictionary that maps action to the index of a possible list of thoughts
@@ -31,7 +32,9 @@ public class ThoughtsTutorial : MonoBehaviour
         tmpug = text.GetComponent<TextMeshProUGUI>();
 
         setThoughts();
-        hideThought();
+        hideThought(thoughtBubble);
+        //hideThought(speechBubble);
+
 
         time = 0f;
         timer = 0f;
@@ -65,9 +68,10 @@ public class ThoughtsTutorial : MonoBehaviour
         thoughtOn = true;
     }
 
-    void hideThought()
+    void hideThought(Image img)
     {
-        thoughtBubble.GetComponent<Image>().gameObject.SetActive(false);
+        img.GetComponent<Image>().gameObject.SetActive(false);
+
     }
 
     void showThought()
@@ -81,7 +85,7 @@ public class ThoughtsTutorial : MonoBehaviour
         time = Time.fixedUnscaledTime;
         if (time >= timer)
         {
-            hideThought();
+            hideThought(thoughtBubble);
         }
         if (TutorialCharSwitch.TutCharChoice == 1)
         {
