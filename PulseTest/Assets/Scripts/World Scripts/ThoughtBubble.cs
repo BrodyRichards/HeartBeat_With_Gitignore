@@ -24,11 +24,10 @@ public class ThoughtBubble : MonoBehaviour
         {
             offset = new Vector3(-3, 2, 0);
         }
-        //scale = transform.localScale;
-        //scaleOpp = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        //scaleText = text.transform.localScale;
-        //scaleTextOpp = new Vector3(-text.transform.localScale.x, text.transform.localScale.y, text.transform.localScale.z);
-        //GameObject obj = GetComponent<>
+        scale = transform.localScale;
+        scaleOpp = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        scaleText = text.transform.localScale;
+        scaleTextOpp = new Vector3(-text.transform.localScale.x, text.transform.localScale.y, text.transform.localScale.z);
     }
 
     // Update is called once per frame
@@ -36,22 +35,18 @@ public class ThoughtBubble : MonoBehaviour
     {
         pos = mc.transform.position;
         transform.position = pos + offset;
-        /*
-        if (Vector3.Distance(transform.position, GameObject.Find("LeftBound").transform.position) <= 50)
+        
+        if (Vector3.Distance(transform.position, GameObject.Find("LeftBound").transform.position) <= 30)
         {
             transform.localScale = scaleOpp;            //make it flip
+            text.transform.localScale = scaleTextOpp;
             transform.position = pos + offset2;
         }
-        else if (Vector3.Distance(transform.position, GameObject.Find("LeftBound").transform.position) >= 50)
+        else if (Vector3.Distance(transform.position, GameObject.Find("LeftBound").transform.position) > 30)
         {
             transform.localScale = scale;
+            text.transform.localScale = scaleText;
             transform.position = pos + offset;
-        }    
-        */
-        /*
-        transform.localScale = scaleOpp;            //make it flip
-        text.transform.localScale = scaleTextOpp;
-        transform.position = pos + offset2;
-        */
+        }       
     }
 }
