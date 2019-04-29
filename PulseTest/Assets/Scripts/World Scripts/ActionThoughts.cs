@@ -33,8 +33,8 @@ public class ActionThoughts : MonoBehaviour
         hideThought(q);
         hideThought(e);
 
-        offsetQ = new Vector3(-9, 6, 0);
-        offsetE = new Vector3(9, 6, 0);
+        offsetQ = new Vector3(-7.5f, 6, 0);
+        offsetE = new Vector3(8, 6, 0);
     }
 
     void hideThought(GameObject obj)
