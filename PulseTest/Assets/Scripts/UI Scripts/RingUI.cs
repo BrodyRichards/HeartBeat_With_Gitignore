@@ -23,16 +23,19 @@ public class RingUI : MonoBehaviour
 
     public Sprite bell;
 
-    public Animator bell_anim; 
+    public Animator bell_anim;
+    public static string fuckingString;
 
     private int emoCurrentLength;
     private readonly int segNum = 12;
+
     // Start is called before the first frame update
 
     private void Awake()
     {
         emoCurrentLength = 0;
         isCompleted = false;
+        fuckingString = "";
 
     }
     void Start()
@@ -60,7 +63,7 @@ public class RingUI : MonoBehaviour
         {
             bell_anim.enabled = false;
             ring.SetActive(false);
-            buttonPrompt.SetActive(false);
+            buttonPrompt.SetActive(false);  
         }
     }
 
@@ -91,21 +94,27 @@ public class RingUI : MonoBehaviour
 
                 emoCurrentLength = MentalState.emoTimeline.Count;
                 
-                string currentEvent = MentalState.message;
+
                 var thisObj = emoSegments[emoCurrentLength - 1];
-                if (MentalState.positiveAct.Contains(currentEvent))
+                if (MentalState.positiveAct.Contains(fuckingString))
                 {
 
                     thisObj.SetActive(true);
                     thisObj.GetComponent<Image>().sprite = happySeg;
                 }
-                else if (currentEvent == "Bit by rabbit" || currentEvent == "Hit by ball")
+                else if (fuckingString == "Bit by rabbit" || fuckingString == "Hit by ball")
                 {
                     thisObj.SetActive(true);
                     thisObj.GetComponent<Image>().sprite = angrySeg;
                 }
-                else if (currentEvent == "Sad Song")
+                else if (fuckingString == "Sad Song")
                 {
+                    thisObj.SetActive(true);
+                    thisObj.GetComponent<Image>().sprite = sadSeg;
+                }
+                else
+                {
+                    Debug.Log("message" + MentalState.message);
                     thisObj.SetActive(true);
                     thisObj.GetComponent<Image>().sprite = sadSeg;
                 }
