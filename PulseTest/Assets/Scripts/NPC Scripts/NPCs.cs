@@ -169,7 +169,7 @@ public class NPCs : MonoBehaviour
         }
     }
 
-    protected virtual void checkRabbitBit()
+    protected virtual void checkRabbitBit()                         //For the bunny girl will have to create an override method for this
     {
         if (rabNameChange)
         {

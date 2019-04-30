@@ -42,6 +42,42 @@ public class RabbitChasers : NPCs
             toClass();
         }
     }
+    protected override void checkBallBunny(bool inDist, Vector3 avatarPos)
+    {
+        if (inDist)
+        {
+            float dist = Vector3.Distance(avatarPos, transform.position);
+
+            if (dist > 10.0f)
+            {
+                target = avatarPos;
+                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            }
+            else
+            {
+                /*
+                 * YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                 * 
+                 * 
+                 *  PUT THE ANIMATION FOR THE BUNNY CARROT HEREEEEEEE
+                 * 
+                 * 
+                 * YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                 * 
+                 * */
+            }
+        }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            if (transform.position == target)
+            {
+                int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
+                int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
+                target = new Vector3(ranX, ranY, -1);
+            }
+        }
+    }
 
     protected override void checkRabbitCarry()
     {
