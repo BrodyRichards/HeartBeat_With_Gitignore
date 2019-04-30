@@ -79,6 +79,38 @@ public class RabbitChasers : NPCs
         }
     }
 
+    //UNCOMMENT THIS WHEN YOU PUT THE ANIM IN
+    /*
+    protected override void checkRabbitBit()                   
+    {
+        if (rabNameChange)
+        {
+            int count = transform.childCount;
+            for (int i = 0; i < count; i++)
+            {
+                if (transform.GetChild(i).gameObject.tag != "Avatars" && holdBunny == false)
+                {
+                    GameObject.Destroy(transform.GetChild(i).gameObject);
+                }
+            }
+            timer = time + 2.0f;
+            Emo = master.GetComponent<NpcInstantiator>().happyFace;
+            addEmo();
+            /*
+             * 
+             * 
+             * 
+             * PUT THE FRAME OF HER SMILING IN HERE
+             * 
+             * 
+             * 
+             * 
+             * */
+             /*
+            anim.SetTrigger("isBit");
+        }
+    } */
+
     protected override void checkRabbitCarry()
     {
         if (RabbitJump.beingCarried)
