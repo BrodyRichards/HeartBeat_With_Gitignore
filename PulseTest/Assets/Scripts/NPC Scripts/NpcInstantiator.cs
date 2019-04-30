@@ -6,7 +6,7 @@ public class NpcInstantiator : MonoBehaviour
 {
     //private int npcCount = 1;
 
-    private int runnerCount = 2;    //0
+    private int runnerCount = 0;    //0
     private int lonerCount = 1;     //1
     private int rcCount = 1;        //2
     private int bpCount = 1;        //3

@@ -184,6 +184,7 @@ public class NPCs : MonoBehaviour
             timer = time + 2.0f;
             Emo = master.GetComponent<NpcInstantiator>().hurtFace;
             addEmo();
+            anim.SetTrigger("isBit");
         }
     }
 
@@ -289,13 +290,18 @@ public class NPCs : MonoBehaviour
             if (BallProjectile.meanBallThrown)
             {
                 Debug.Log("ouch");
+                anim.SetTrigger("isHit");
                 timer = time + 2.0f;
                 Emo = master.GetComponent<NpcInstantiator>().madFace;
                 addQueue(2);
                 addEmo();
                 BallProjectile.meanBallThrown = false;
             }
-            else { addQueue(1); }
+            else 
+            {
+                anim.SetTrigger("playCatch");
+                addQueue(1); 
+            }
         }
     }
 

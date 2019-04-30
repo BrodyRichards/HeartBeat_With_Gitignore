@@ -18359,12 +18359,12 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 20722761965035776, guid: fce55a7740c9bd7488d94c06368b7557,
+    - target: {fileID: 20722763564241256, guid: fce55a7740c9bd7488d94c06368b7557,
         type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 20722763564241256, guid: fce55a7740c9bd7488d94c06368b7557,
+    - target: {fileID: 20722761965035776, guid: fce55a7740c9bd7488d94c06368b7557,
         type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -19982,21 +19982,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6373760172409858981, guid: 993a81acb1e2044dd835d4808f2ff9cb,
-        type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6373760172302962360, guid: 993a81acb1e2044dd835d4808f2ff9cb,
-        type: 3}
-      propertyPath: mc
-      value: 
-      objectReference: {fileID: 1333830097}
-    - target: {fileID: 6373760172302962360, guid: 993a81acb1e2044dd835d4808f2ff9cb,
-        type: 3}
-      propertyPath: text
-      value: 
-      objectReference: {fileID: 1166803907}
     - target: {fileID: 3606486943301875293, guid: 993a81acb1e2044dd835d4808f2ff9cb,
         type: 3}
       propertyPath: m_inputSource
@@ -20057,6 +20042,21 @@ PrefabInstance:
       propertyPath: text
       value: 
       objectReference: {fileID: 1166803907}
+    - target: {fileID: 6373760172302962360, guid: 993a81acb1e2044dd835d4808f2ff9cb,
+        type: 3}
+      propertyPath: mc
+      value: 
+      objectReference: {fileID: 1333830097}
+    - target: {fileID: 6373760172302962360, guid: 993a81acb1e2044dd835d4808f2ff9cb,
+        type: 3}
+      propertyPath: text
+      value: 
+      objectReference: {fileID: 1166803907}
+    - target: {fileID: 6373760172409858981, guid: 993a81acb1e2044dd835d4808f2ff9cb,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 6373760172409858981, guid: 993a81acb1e2044dd835d4808f2ff9cb,
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
