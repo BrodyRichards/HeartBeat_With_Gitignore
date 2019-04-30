@@ -33,7 +33,7 @@ public class BallProjectile : MonoBehaviour
         meanSpeed = speed * 1.5f;
         delayTime = 0.5f;
         McCheckDist = 5f;
-        radius = 4f;
+        radius = 2f;
     }
 
     // Update is called once per frame
