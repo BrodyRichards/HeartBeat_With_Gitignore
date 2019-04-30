@@ -63,7 +63,8 @@
         
         float3x3 Gx = float3x3( -1, -2, -1, 0, 0, 0, 1, 2, 1 ); // x direction kernel
         float3x3 Gy = float3x3( -1, 0, 1, -2, 0, 2, -1, 0, 1 ); // y direction kernel
-
+        //float3x3 Gx = float3x3( -1, -1, -1, -1, 8, -1, -1, -1, -1 ); // y direction kernel
+        //float3x3 Gy = float3x3( -1, -1, -1, -1, 8, -1, -1, -1, -1 ); // y direction kernel
         
         // fetch the 3x3 neighborhood of a fragment
         float tx0y0 = tex2D( _MainTex, i.uv + texel * float2( -1, -1 ) ).r;
