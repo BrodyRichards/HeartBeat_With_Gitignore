@@ -133,6 +133,8 @@ public class MCBTCreator : MonoBehaviour
 
     private void McGoesToAvatar(Vector2 target)
     {
+        FlipAssetDirection();
+
         //When standing still, if not played catch then walk away after 5 secs
         //Otherwise, increment time when not playing catch until 5 secs
         if (Vector2.Distance(transform.position, target) < 10.0f)
