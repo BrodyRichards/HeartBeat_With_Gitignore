@@ -63,9 +63,11 @@ public class BallPlayers : NPCs
                 addEmo();
                 addQueue(2);
                 BallProjectile.meanBallThrown = false;
+                anim.SetTrigger("isHit");
             }
             else
             {
+                anim.SetTrigger("playCatch");
                 timer = time + 2.0f;
                 Emo = master.GetComponent<NpcInstantiator>().happyFace;
                 addQueue(1);
