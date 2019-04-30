@@ -34,6 +34,7 @@ public class TutorialFade : MonoBehaviour
 
     public void FadeOut(){
         fadeAnimator.Play("Fade_Out",0,0f);
+        
     }
 
     public void FadeOutStay()
