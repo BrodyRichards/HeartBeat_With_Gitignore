@@ -19,11 +19,12 @@ public class characterSwitcher : MonoBehaviour
     void Start()
     {
         //Initially disable all but the chosen one
+        charChoice = -1;
         disableOthers();
         GameObject.Find("3").GetComponent<Movement>().enabled = false;
         isMusicGuyInCharge = false;
         GameObject.Find("MC").GetComponent<Movement>().enabled = false;
-        charChoice = -1;
+
 
         anim_keyPrompt = GameObject.Find("KeyPrompt1").GetComponent<Animator>();
         anim_keyPrompt.enabled = false;
