@@ -60,14 +60,17 @@ public class MCBTCreator : MonoBehaviour
         Leaf Walk = new Leaf(GoToWaypoints);
 
         //Create Rabbit Bite Check Sequence
-        Leaf CheckBite = new Leaf(checkBite);
-        Leaf RunFromRabbit = new Leaf(runFromRabbit);
-        Sequence RabbitSeq = createSeqRoot(CheckBite, RunFromRabbit);
+        //Leaf CheckBite = new Leaf(checkBite);
+        //Leaf RunFromRabbit = new Leaf(runFromRabbit);
+        //Sequence RabbitSeq = createSeqRoot(CheckBite, RunFromRabbit);
 
         //Create Ball Kid mean ball check Sequence
-        Leaf CheckMeanThrow = new Leaf(checkMeanThrow);
-        Leaf RunFromBallKid = new Leaf(runFromBallKid);
-        Sequence MeanBallSeq = createSeqRoot(CheckMeanThrow, RunFromBallKid);
+        //Leaf CheckMeanThrow = new Leaf(checkMeanThrow);
+        //Leaf RunFromBallKid = new Leaf(runFromBallKid);
+        //Sequence MeanBallSeq = createSeqRoot(CheckMeanThrow, RunFromBallKid);
+
+        //Update MC
+        Leaf UpdateMC = new Leaf(updateMC);
 
         //Create Play Catch with Ball Kid Sequence
         Leaf CheckInterest = new Leaf(checkInterest);
@@ -77,7 +80,7 @@ public class MCBTCreator : MonoBehaviour
         //Music Kid Sequence
         Leaf CheckMusic = new Leaf(checkMusic);
 
-        Selector root = createSelRoot(RabbitSeq, PlayCatch, MeanBallSeq, CheckMusic, Walk);
+        Selector root = createSelRoot(PlayCatch, CheckMusic, Walk);
 
         return root;
     }
@@ -399,5 +402,13 @@ public class MCBTCreator : MonoBehaviour
         {
             return NodeStatus.FAILURE;
         }
+    }
+
+    NodeStatus updateMC()
+    {
+        //FlipAssetDirection();
+        AnimationMoodCheck();
+
+        return NodeStatus.SUCCESS;
     }
 }
