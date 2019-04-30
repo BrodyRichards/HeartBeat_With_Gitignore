@@ -52,9 +52,12 @@ public class RabbitChasers : NPCs
             {
                 target = avatarPos;
                 transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+                anim.SetBool("isFeeding", false);
+                anim.SetBool("wantToFeed", false);
             }
             else
             {
+                anim.SetBool("wantToFeed", true);
                 /*
                  * YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
                  * 
@@ -80,7 +83,7 @@ public class RabbitChasers : NPCs
     }
 
     //UNCOMMENT THIS WHEN YOU PUT THE ANIM IN
-    /*
+
     protected override void checkRabbitBit()                   
     {
         if (rabNameChange)
@@ -96,6 +99,7 @@ public class RabbitChasers : NPCs
             timer = time + 2.0f;
             Emo = master.GetComponent<NpcInstantiator>().happyFace;
             addEmo();
+            anim.SetBool("isFeeding", true);
             /*
              * 
              * 
@@ -109,7 +113,7 @@ public class RabbitChasers : NPCs
              /*
             anim.SetTrigger("isBit");
         }
-    } */
+    } 
 
     protected override void checkRabbitCarry()
     {
