@@ -39,7 +39,7 @@ public class TutorialProcControl : MonoBehaviour
             //var meh = fadeObject.GetComponent<TutorialFade>();
             //meh.FadeOut();
             //meh.FadeIn();
-            Invoke("fadeOut", mcAppearWaitTime - 0.5f);
+            Invoke("fadeOut", mcAppearWaitTime - 1.0f);             //original is 0.5
             Invoke("fadeIn", mcAppearWaitTime);
         }
     }
