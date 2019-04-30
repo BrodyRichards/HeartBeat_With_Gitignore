@@ -80,7 +80,7 @@ public class MCBTCreator : MonoBehaviour
         //Music Kid Sequence
         Leaf CheckMusic = new Leaf(checkMusic);
 
-        Selector root = createSelRoot(PlayCatch, CheckMusic, Walk);
+        Selector root = createSelRoot(UpdateMC, PlayCatch, CheckMusic, Walk);
 
         return root;
     }
@@ -409,6 +409,6 @@ public class MCBTCreator : MonoBehaviour
         //FlipAssetDirection();
         AnimationMoodCheck();
 
-        return NodeStatus.SUCCESS;
+        return NodeStatus.FAILURE;
     }
 }
