@@ -17,6 +17,7 @@ public class RabbitJump : MonoBehaviour
     private double lastPosX;
 
     public Animator anim;
+    public Animator mcAnim;
     public AudioSource ass;
    
     // Start is called before the first frame update
@@ -26,6 +27,8 @@ public class RabbitJump : MonoBehaviour
         actionDist = 4f;
         biteTimer = 2f;
         coolTime = 0f;
+
+        mcAnim = GameObject.Find("MC").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -104,6 +107,9 @@ public class RabbitJump : MonoBehaviour
                             MentalState.sendMsg("Bit by rabbit");
                             ass.Play();
                             PutRabbitDown();
+                            mcAnim.SetTrigger("isBit");
+
+
                         }
                         else if (victim.gameObject.tag == "Person")
                         {
