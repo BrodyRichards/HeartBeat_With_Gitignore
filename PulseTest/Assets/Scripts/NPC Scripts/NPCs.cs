@@ -169,7 +169,7 @@ public class NPCs : MonoBehaviour
         }
     }
 
-    protected virtual void checkRabbitBit()
+    protected virtual void checkRabbitBit()              
     {
         if (rabNameChange)
         {
