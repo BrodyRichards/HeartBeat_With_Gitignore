@@ -34,6 +34,8 @@ public class CameraMovement : MonoBehaviour
     public GameObject rightBound;
     float right;
 
+    float leftBoundDist;
+
     float time;
     float timer;
 
@@ -69,12 +71,13 @@ public class CameraMovement : MonoBehaviour
     void LateUpdate()
     {
         time = Time.fixedUnscaledTime;
-        if (characterSwitcher.charChoice == -1 && McMovement.leftBoundDist <= 30.0f)
+        leftBoundDist = Vector3.Distance(mainChar.transform.position, leftBound.transform.position);
+        if (characterSwitcher.charChoice == -1 && leftBoundDist <= 30.0f)
         {
             target = mainChar.transform.position + mcOffset;// + offset;
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
         }
-        else if (characterSwitcher.charChoice == -1 && McMovement.leftBoundDist >= 30.0f)
+        else if (characterSwitcher.charChoice == -1 && leftBoundDist >= 30.0f)
         {
             thoughtSystem = true;
             Vector3 pos = new Vector3(-35.2f, 1.0f, -1.3f);

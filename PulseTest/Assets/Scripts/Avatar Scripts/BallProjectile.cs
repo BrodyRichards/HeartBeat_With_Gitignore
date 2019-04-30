@@ -32,7 +32,7 @@ public class BallProjectile : MonoBehaviour
         startPos = transform.position;
         meanSpeed = speed * 1.5f;
         delayTime = 0.5f;
-        McCheckDist = 10f;
+        McCheckDist = 5f;
         radius = 4f;
     }
 
@@ -43,7 +43,7 @@ public class BallProjectile : MonoBehaviour
         RaycastHit2D[] McCheck = Physics2D.CircleCastAll(transform.position, radius, transform.right, McCheckDist, hittableObjects);
         if (McCheck != null && CheckForMC(McCheck))
         {
-            //Debug.Log("MC Detected");
+            Debug.Log("MC Detected");
             RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, distance, hittableObjects);
             if (hit.collider != null && hit.collider.gameObject.name != "2")
             {
@@ -54,7 +54,7 @@ public class BallProjectile : MonoBehaviour
                         //A mean ball was thrown
                         //Debug.Log("You threw a mean ball!");
                         //Update Mental State
-
+                        TriggerHitAnim();
                         MentalState.sendMsg("Hit by ball");
                         McMovement.gotHit = true;
 
@@ -68,7 +68,8 @@ public class BallProjectile : MonoBehaviour
                         meanBallThrown = false;
                         GameObject MC = hit.collider.gameObject;
                         MentalState.sendMsg("Played catch");
-                        McMovement.playedCatch = true;
+                        MCBTCreator.playedCatch = true;
+                        //McMovement.playedCatch = true;
                         GameObject.Find("MC").GetComponent<Animator>().SetTrigger("playCatch");
 
                         PlayCatch delayCatch = MC.GetComponent<PlayCatch>();
@@ -123,6 +124,19 @@ public class BallProjectile : MonoBehaviour
         }
 
     }
+
+    private void TriggerHitAnim()
+    {
+        GameObject mc = GameObject.Find("MC");
+        if (Vector2.Distance(gameObject.transform.position, mc.transform.position) < 3f)
+        {
+            mc.GetComponent<Animator>().SetTrigger("isHit");
+
+
+        }
+    }
+
+
 
     private void SimulateProjectile()
     {

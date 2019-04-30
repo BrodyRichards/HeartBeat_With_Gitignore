@@ -36,7 +36,7 @@ public class CinematicBars : MonoBehaviour
         
         if(timer < TimeWait){
             timer+= Time.deltaTime;
-            Debug.Log(timer);
+            //Debug.Log(timer);
         }else if(timer>TimeWait){
             Hide(.3f);
         }

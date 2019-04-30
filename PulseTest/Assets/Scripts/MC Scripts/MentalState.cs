@@ -36,14 +36,14 @@ public class MentalState : MonoBehaviour
         journalInProgress = true;
         noEventCounting = 0.0f;
         currentActionCombo = 0;
-        emoTimeline = new Queue<EmoPlot>() { };
+
         currentState = 0;
-        message = "";
+
     }
     void Start()
     {
-
-
+        emoTimeline = new Queue<EmoPlot>() { };
+        message = "";
         //Dictionary storing weights for NPC interactions
         npcEffectWeights = new Dictionary<int, int>
         {
@@ -100,6 +100,8 @@ public class MentalState : MonoBehaviour
 
         int currCount;
         message = msg;
+        RingUI.fuckingString = msg;
+        Debug.Log("message = " + message);
         moodLog.TryGetValue(msg, out currCount);
         firstTime = moodLog[msg];
         moodLog[msg] = currCount + 1;
@@ -207,7 +209,6 @@ public class MentalState : MonoBehaviour
     public void PacifyMood()
     {
         noEventCounting *= 0.0f;
-        currentActionCombo = -999;
 
         if (WithinRange(currentState, normalBound.x, normalBound.y))
         {

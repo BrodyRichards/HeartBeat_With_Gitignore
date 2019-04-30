@@ -12,7 +12,7 @@ public class NpcInstantiator : MonoBehaviour
     private int bpCount = 1;        //3
     private string rename;
     
-    public GameObject[] NPCs; //contains the 3 types of NPCs
+    public GameObject[] NPCtypes; //contains the 3 types of NPCs
     public GameObject[] groupies;
     public GameObject groupiePrefab;
     private int groupCount = 3;
@@ -54,7 +54,7 @@ public class NpcInstantiator : MonoBehaviour
         createNPCs(1, lonerCount, ranX, ranY);
         createNPCs(2, rcCount, ranX, ranY);
         createNPCs(3, bpCount, ranX, ranY);
-        NPCs[0].name = "Runner"; NPCs[1].name = "Loner"; NPCs[2].name = "RabbitChaser"; NPCs[3].name = "BallPlayers";
+        NPCtypes[0].name = "Runner"; NPCtypes[1].name = "Loner"; NPCtypes[2].name = "RabbitChaser"; NPCtypes[3].name = "BallPlayers";
         groupies = new GameObject[groupCount];
         for (int i = 0; i < groupCount; i++)
         {
@@ -100,7 +100,7 @@ public class NpcInstantiator : MonoBehaviour
 
     private void createNPCs(int choice, int count, int ranX, int ranY)
     {
-        rename = NPCs[choice].name;
+        rename = NPCtypes[choice].name;
         for (int i = 0; i < count; i++)
         {
             //NPCs[choice].name = rename;
@@ -108,40 +108,43 @@ public class NpcInstantiator : MonoBehaviour
             ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
             Vector3 pos = new Vector3(ranX, ranY, -1);
             Quaternion rot = new Quaternion(0, 0, 0, 0);
-            GameObject temp = Instantiate(NPCs[choice], pos, rot);
+            GameObject temp = Instantiate(NPCtypes[choice], pos, rot);
             npcPositions.Add(temp);
-            NPCs[choice].GetComponent<SpriteRenderer>().sortingLayerName = "Main";
+            NPCtypes[choice].GetComponent<SpriteRenderer>().sortingLayerName = "Main";
             //string rename = NPCs[choice].name + i;
-            NPCs[choice].name = rename + i;
+            NPCtypes[choice].name = rename + i;
         }        
     }
 
     private void checkPositions()
     {
         //int temp = npcPositions[0].layer;
-        for (int i = 0; i < npcPositions.Count - 1; i++)
+        if (NPCs.schoolBell == false)
         {
-            for (int j = 1; j < npcPositions.Count; j++)
+            for (int i = 0; i < npcPositions.Count - 1; i++)
             {
-                //if (npcPositions[i].)
-                Vector3 pos1 = npcPositions[i].transform.position;
-                Vector3 pos2 = npcPositions[j].transform.position;
-                bool checkXPos = checkXPosition(pos1.x, pos2.x);
-                bool checkYPos = checkYPosition(pos1.y, pos2.y);
-                
-                if (checkXPos && checkYPos)
+                for (int j = 1; j < npcPositions.Count; j++)
                 {
-                    npcPositions[i].layer = 31;
-                    //Debug.Log("should be 31 on layer " + npcPositions[i].layer);
+                    //if (npcPositions[i].)
+                    Vector3 pos1 = npcPositions[i].transform.position;
+                    Vector3 pos2 = npcPositions[j].transform.position;
+                    bool checkXPos = checkXPosition(pos1.x, pos2.x);
+                    bool checkYPos = checkYPosition(pos1.y, pos2.y);
+
+                    if (checkXPos && checkYPos)
+                    {
+                        npcPositions[i].layer = 31;
+                        //Debug.Log("should be 31 on layer " + npcPositions[i].layer);
+                    }
+                    else
+                    {
+                        //npcPositions[i].layer = temp;
+                        npcPositions[i].layer = origLayer;
+                        //Debug.Log("should be whatever on layer " + npcPositions[i].layer);
+                    }
                 }
-                else
-                {
-                    //npcPositions[i].layer = temp;
-                    npcPositions[i].layer = origLayer;
-                    //Debug.Log("should be whatever on layer " + npcPositions[i].layer);
-                }     
             }
-        }
+        }  
     }
 
     private bool checkXPosition(float x1, float x2)

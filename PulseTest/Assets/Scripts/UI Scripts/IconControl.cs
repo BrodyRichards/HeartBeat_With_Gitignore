@@ -61,7 +61,7 @@ public class IconControl : MonoBehaviour
             if ( icons.IndexOf(img) + 1 == characterSwitcher.charChoice)
             {
                 
-                Rescale(img, 70f);
+                Rescale(img, 100f);
 
                 if (Input.GetKey(Control.positiveAction))
                 {
@@ -79,7 +79,7 @@ public class IconControl : MonoBehaviour
             else
             {
                 
-                Rescale(img, 50f);
+                Rescale(img, 80f);
             }
         }
 
@@ -116,7 +116,7 @@ public class IconControl : MonoBehaviour
 
     void Rescale(Image im, float pixel)
     {
-        im.rectTransform.sizeDelta = new Vector2(pixel, 50f);
+        im.rectTransform.sizeDelta = new Vector2(pixel, pixel);
     }
 
     private void ToggleIcons(bool boo)

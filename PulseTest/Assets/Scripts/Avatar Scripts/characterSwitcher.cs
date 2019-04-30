@@ -19,11 +19,12 @@ public class characterSwitcher : MonoBehaviour
     void Start()
     {
         //Initially disable all but the chosen one
+        charChoice = -1;
         disableOthers();
         GameObject.Find("3").GetComponent<Movement>().enabled = false;
         isMusicGuyInCharge = false;
         GameObject.Find("MC").GetComponent<Movement>().enabled = false;
-        charChoice = -1;
+
 
         anim_keyPrompt = GameObject.Find("KeyPrompt1").GetComponent<Animator>();
         anim_keyPrompt.enabled = false;
@@ -35,13 +36,13 @@ public class characterSwitcher : MonoBehaviour
     void Update()
     {
 
-        if (charChoice == -1)
-        {
-            PlayerIdleCheck();
-        }else if (anim_keyPrompt.enabled)
-        {
-            anim_keyPrompt.enabled = false;
-        }
+        //if (charChoice == -1)
+        //{
+        //    PlayerIdleCheck();
+        //}else if (anim_keyPrompt.enabled)
+        //{
+        //    anim_keyPrompt.enabled = false;
+        //}
         //Poll for input
         switchCharacter();
     }
@@ -89,6 +90,7 @@ public class characterSwitcher : MonoBehaviour
                 GameObject.Find("MC").GetComponent<McMovement>().enabled = false;
                 GameObject.Find("MC").GetComponent<Animator>().SetBool("wantToPlay", false);
                 GameObject.Find("MC").GetComponent<Animator>().SetBool("isWalking", true);
+                GameObject.Find("MC").GetComponent<MCBTCreator>().enabled = false;
                 Movement.timeToLeave = true;
                 disableOthers();
                 EnableAll();

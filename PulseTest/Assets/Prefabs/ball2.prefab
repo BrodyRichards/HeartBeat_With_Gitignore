@@ -99,11 +99,13 @@ MonoBehaviour:
   delayTime: 0
   speed: 15
   meanSpeed: 0
-  lifetime: 0.75
+  lifetime: 0.9
   hittableObjects:
     serializedVersion: 2
     m_Bits: 512
   distance: 0.25
+  McCheckDist: 0
+  radius: 0
 --- !u!58 &7261722426891715402
 CircleCollider2D:
   m_ObjectHideFlags: 0

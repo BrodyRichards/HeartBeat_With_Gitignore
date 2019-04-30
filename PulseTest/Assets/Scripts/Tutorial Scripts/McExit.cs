@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class McExit : MonoBehaviour
 {
     private float timer;
     public float busArrival;
+    public float momSpeech;
+    public float momSpeechEnd;
     public bool printedAlready;
     public GameObject bus;
+    public Image speechBubble;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +25,7 @@ public class McExit : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > busArrival)
         {
-            bus.SetActive(true);
+            bus.SetActive(true); 
             if (!printedAlready)
             {
                 printedAlready = true;
@@ -34,6 +38,15 @@ public class McExit : MonoBehaviour
                 //SceneManager.LoadScene("SampleScene");
             }
         }
+        if (timer > momSpeech)
+        {
+            speechBubble.GetComponent<Image>().gameObject.SetActive(true);
+        }
+        if (timer > momSpeechEnd)
+        {
+            speechBubble.GetComponent<Image>().gameObject.SetActive(false);
+        }
+        
     }
 
     //Function to exit on collision with door
