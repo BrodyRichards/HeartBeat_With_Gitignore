@@ -1081,7 +1081,7 @@ RectTransform:
   m_LocalScale: {x: 1.3625001, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3722858952490545720}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -1409,7 +1409,7 @@ RectTransform:
   - {fileID: 4427281448577586261}
   - {fileID: 2950492696128697181}
   m_Father: {fileID: 3722858952490545720}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1627,6 +1627,7 @@ MonoBehaviour:
   ring: {fileID: 6855383757305853440}
   face: {fileID: 3154404420775989205}
   buttonPrompt: {fileID: 4443322806728806545}
+  ringBg: {fileID: 0}
   happySeg: {fileID: 21300000, guid: 2fb4c5115d82f445d8122a7659bc494a, type: 3}
   sadSeg: {fileID: 21300000, guid: aba00ca34433e441f8a5c45b0d6d55f2, type: 3}
   angrySeg: {fileID: 21300000, guid: 4fbdd1beb6c9341ffba8e716eb40503a, type: 3}
@@ -1973,16 +1974,16 @@ RectTransform:
   m_GameObject: {fileID: 4443322806728806545}
   m_LocalRotation: {x: -0.17661598, y: 0.033003476, z: 0.080145255, w: 0.98045623}
   m_LocalPosition: {x: 0, y: 0, z: 36}
-  m_LocalScale: {x: 2.1009007, y: 2.100901, z: 2.1009007}
+  m_LocalScale: {x: 2.1009018, y: 2.1009026, z: 2.100902}
   m_Children:
   - {fileID: 1090656565447754004}
   - {fileID: 2578162397869563948}
   m_Father: {fileID: 3722858952490545720}
-  m_RootOrder: 1
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -20.586, y: 2.229, z: 8.941}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5, y: -9}
+  m_AnchoredPosition: {x: -5.000279, y: -9.000055}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4486364884805194381
@@ -2089,12 +2090,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 123222759134117485}
-  - {fileID: 9217209590320236787}
   - {fileID: 4179372635821550209}
   - {fileID: 2950492696230696284}
   - {fileID: 2950492697455251290}
   - {fileID: 6515284381353627492}
   - {fileID: 8338037520105796950}
+  - {fileID: 9217209590320236787}
   m_Father: {fileID: 2950492697692242941}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2903,7 +2904,7 @@ RectTransform:
   - {fileID: 2950492696828512510}
   - {fileID: 2950492696384282601}
   m_Father: {fileID: 3722858952490545720}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -3067,7 +3068,6 @@ GameObject:
   - component: {fileID: 3638062379710430007}
   - component: {fileID: 7323709896814256093}
   - component: {fileID: 2894115327291571039}
-  - component: {fileID: 559884538098873015}
   - component: {fileID: 1519797402459980515}
   m_Layer: 5
   m_Name: Bell
@@ -3085,7 +3085,7 @@ RectTransform:
   m_GameObject: {fileID: 6855383757305853440}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.548195, y: 1.548195, z: 1.548195}
+  m_LocalScale: {x: 1.7993195, y: 1.7993195, z: 1.7993195}
   m_Children:
   - {fileID: 6584659268617873903}
   - {fileID: 7381498671174320183}
@@ -3102,11 +3102,11 @@ RectTransform:
   - {fileID: 1022541221494224493}
   - {fileID: 4113250913094296961}
   m_Father: {fileID: 3722858952490545720}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -60, y: -27}
+  m_AnchoredPosition: {x: -73.274, y: -35.355}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.38522798, y: 0.72955143}
 --- !u!222 &3638062379710430007
@@ -3165,18 +3165,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &559884538098873015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6855383757305853440}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 752a59d7669ff4476838d76ab8c3055f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1519797402459980515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3205,6 +3193,7 @@ MonoBehaviour:
   ring: {fileID: 6855383757305853440}
   face: {fileID: 3154404420775989205}
   buttonPrompt: {fileID: 4443322806728806545}
+  ringBg: {fileID: 8417657987711923703}
   happySeg: {fileID: 21300000, guid: 2fb4c5115d82f445d8122a7659bc494a, type: 3}
   sadSeg: {fileID: 21300000, guid: aba00ca34433e441f8a5c45b0d6d55f2, type: 3}
   angrySeg: {fileID: 21300000, guid: 4fbdd1beb6c9341ffba8e716eb40503a, type: 3}
@@ -3470,7 +3459,7 @@ RectTransform:
   m_LocalScale: {x: 3.169226, y: 3.169226, z: 1.584613}
   m_Children: []
   m_Father: {fileID: 3722858952490545720}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -3694,7 +3683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.14117648}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.38431373}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

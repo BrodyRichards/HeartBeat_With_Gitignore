@@ -54,6 +54,8 @@ public class IconControl : MonoBehaviour
         if (characterSwitcher.charChoice==1000 && iconsGroup.activeSelf)
         {
             iconsGroup.SetActive(false);
+            journalIcon.enabled = false;
+            tabPrompt.SetActive(false);
         }
 
         foreach (var img in icons)

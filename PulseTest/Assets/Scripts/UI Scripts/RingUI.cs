@@ -10,6 +10,7 @@ public class RingUI : MonoBehaviour
     public GameObject ring;
     public GameObject face;
     public GameObject buttonPrompt;
+    public GameObject ringBg;
 
     public static bool isCompleted;
 
@@ -140,7 +141,7 @@ public class RingUI : MonoBehaviour
         {
             es.SetActive(false);
         }
-
+        ringBg.SetActive(false);
         face.SetActive(false);
         buttonPrompt.SetActive(true);
     }
