@@ -87,7 +87,6 @@ public class characterSwitcher : MonoBehaviour
             {
                 charChoice = 1000;
                 GameObject.Find("MC").GetComponent<Movement>().enabled = true;
-                GameObject.Find("MC").GetComponent<McMovement>().enabled = false;
                 GameObject.Find("MC").GetComponent<Animator>().SetBool("wantToPlay", false);
                 GameObject.Find("MC").GetComponent<Animator>().SetBool("isWalking", true);
                 GameObject.Find("MC").GetComponent<MCBTCreator>().enabled = false;

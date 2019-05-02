@@ -36,14 +36,14 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!timeToLeave || this.gameObject.name == "MC")
+        if (!timeToLeave) //|| this.gameObject.name == "MC"
         {
             getInput();
             Move();
-            if (this.gameObject.name == "MC")
+            /*if (this.gameObject.name == "MC")
             {
                 ExitCheck();
-            }
+            }*/
         }
         else
         {
@@ -146,6 +146,11 @@ public class Movement : MonoBehaviour
 
         transform.localScale = scale;
 
+        if(this.name == "MC")
+        {
+            maxSpeed = MCBTCreator.walkSpeed;
+        }
+
         if (currSpeed < maxSpeed)
         {
             currSpeed += acceleration;
@@ -153,9 +158,9 @@ public class Movement : MonoBehaviour
 
         transform.position = Vector3.MoveTowards(transform.position, target, currSpeed * Time.deltaTime);
 
-        if (transform.position == target)
+        if (this.name == "MC")
         {
-            //Destroy(gameObject);
+            ExitCheck();
         }
     }
 }
