@@ -28,7 +28,8 @@ public class ResultFade : MonoBehaviour
 
     public void OnFadeComplete()
     {
-        SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(0);
+        SceneManager.LoadScene("DayTwoScene");
     }
 
     public void FadeOut()
