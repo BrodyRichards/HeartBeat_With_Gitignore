@@ -40,6 +40,7 @@ public class RabbitChasers : NPCs
         else
         {
             toClass();
+            anim.SetBool("wantToFeed", false);
         }
     }
     protected override void checkBallBunny(bool inDist, Vector3 avatarPos)
@@ -57,7 +58,11 @@ public class RabbitChasers : NPCs
             }
             else
             {
-                anim.SetBool("wantToFeed", true);
+                if (anim.GetBool("isWalking") == false)
+                {
+                    anim.SetBool("wantToFeed", true);
+                }
+                //anim.SetBool("wantToFeed", true);
                 /*
                  * YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
                  * 
