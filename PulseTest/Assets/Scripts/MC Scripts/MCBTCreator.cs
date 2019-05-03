@@ -12,7 +12,7 @@ public class MCBTCreator : MonoBehaviour
     private enum Mood { happy, sad, idle };
 
     public float followDist;
-    public float walkSpeed;
+    public static float walkSpeed;
     public bool stillInterested;
 
     private bool isFlipped;
@@ -26,6 +26,8 @@ public class MCBTCreator : MonoBehaviour
 
     public static bool gotHit = false;
     public static bool playedCatch = false;
+
+    private Vector3 target;
 
     Node MC_BT;
 
@@ -44,6 +46,8 @@ public class MCBTCreator : MonoBehaviour
 
         MC_BT = createBehaviorTree();
         refPoints = new List<Vector2>(mcWaypoints);
+
+        target = GameObject.Find("GameController").GetComponent<NpcInstantiator>().rightBound.transform.position;
     }
 
     // Update is called once per frame
@@ -113,6 +117,20 @@ public class MCBTCreator : MonoBehaviour
         Selector newSel = new Selector(rootOrder);
 
         return newSel;
+    }
+
+    private void ExitCheck()
+    {
+        RaycastHit2D wallCheck = Physics2D.Raycast(transform.position, transform.right, 0.25f);
+        Debug.Log("Checking...");
+        //Check for MC exit scene
+        if (wallCheck.collider != null && wallCheck.collider.gameObject.name == "RightBound")
+        {
+            Debug.Log("Leaving now");
+            LevelFade.readyToLeave = true;
+            //Debug.Log("Loading ResultScreen...");
+            //SceneManager.LoadScene("ResultScreen");
+        }
     }
 
     private void FlipAssetDirection()
