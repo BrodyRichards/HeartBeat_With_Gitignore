@@ -2922,7 +2922,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &922739989
 Transform:
   m_ObjectHideFlags: 0
@@ -6367,6 +6367,7 @@ MonoBehaviour:
   pointLight: {fileID: 236231324}
   directionalLight: {fileID: 967474705}
   fadeObject: {fileID: 406323834}
+  waypointObjs: {fileID: 922739988}
 --- !u!114 &1970880727
 MonoBehaviour:
   m_ObjectHideFlags: 0

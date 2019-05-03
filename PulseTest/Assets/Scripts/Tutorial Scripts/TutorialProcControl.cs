@@ -13,6 +13,8 @@ public class TutorialProcControl : MonoBehaviour
     public GameObject directionalLight;
     public GameObject fadeObject;
 
+    public GameObject waypointObjs;
+
     private bool mcWokeUp;
     private float mcAppearWaitTime; // Play around with the value for fade in/out
     // Start is called before the first frame update
@@ -36,11 +38,9 @@ public class TutorialProcControl : MonoBehaviour
             animForBed.SetTrigger("wakeuplo");
             mcWokeUp = true;
             Invoke("MagicMcAppear", mcAppearWaitTime);
-            //var meh = fadeObject.GetComponent<TutorialFade>();
-            //meh.FadeOut();
-            //meh.FadeIn();
             Invoke("fadeOut", mcAppearWaitTime - 1.0f);             //original is 0.5
             Invoke("fadeIn", mcAppearWaitTime);
+            Invoke("showWaypoints", mcAppearWaitTime);
         }
     }
 
@@ -65,6 +65,11 @@ public class TutorialProcControl : MonoBehaviour
         var meh = fadeObject.GetComponent<TutorialFade>();
         meh.FadeOutStay();
         //Debug.Log("Fade Out");
+    }
+
+    private void showWaypoints()
+    {
+        waypointObjs.SetActive(true);
     }
 
 
