@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BallProjectile : MonoBehaviour
 {
+    public GameObject ballHitParticle;
     public Vector3 targetLoc;
     public Vector3 startPos;
     public float arcHeight = 2;
@@ -22,7 +23,6 @@ public class BallProjectile : MonoBehaviour
     //public static bool playBallPlayer = false;
 
     public static string NpcName = "";
-    
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +55,7 @@ public class BallProjectile : MonoBehaviour
                         //Debug.Log("You threw a mean ball!");
                         //Update Mental State
                         TriggerHitAnim();
+                        Instantiate(ballHitParticle, transform.position, Quaternion.identity);
                         MentalState.sendMsg("Hit by ball");
                         McMovement.gotHit = true;
 
@@ -90,6 +91,7 @@ public class BallProjectile : MonoBehaviour
                 if (meanBallThrown)
                 {
                     NpcName = hit.collider.gameObject.name;
+                    Instantiate(ballHitParticle, transform.position, Quaternion.identity);
                     stationaryBall();
                 }
                 else

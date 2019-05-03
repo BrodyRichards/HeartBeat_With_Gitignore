@@ -93,6 +93,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c432e2e2c1d2e644096cab48cd0181ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballHitParticle: {fileID: 2211061812496165974, guid: a29b773acedf740a7bc3fc26bd2add37,
+    type: 3}
   targetLoc: {x: 0, y: 0, z: 0}
   startPos: {x: 0, y: 0, z: 0}
   arcHeight: 2
