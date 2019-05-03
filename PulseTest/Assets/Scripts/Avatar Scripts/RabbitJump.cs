@@ -15,6 +15,7 @@ public class RabbitJump : MonoBehaviour
     private Rigidbody2D rb;
     private double currentPosX;
     private double lastPosX;
+    private GameObject currentCarrier;
 
     public Animator anim;
     public Animator mcAnim;
@@ -70,12 +71,14 @@ public class RabbitJump : MonoBehaviour
                     {
                         if (coll.gameObject.tag == "MC")
                         {
+                            currentCarrier = coll.gameObject;
                             PickRabbitUp(coll.gameObject);
                             
                             InvokeRepeating("RabbitHappiness", 0f, 3f);
                             break;
                         }else if (coll.gameObject.tag == "Person")
                         {
+                            currentCarrier = coll.gameObject;
                             PickRabbitUp(coll.gameObject);
                             break;
                         }
@@ -92,8 +95,27 @@ public class RabbitJump : MonoBehaviour
                 //Send out circle cast to see who's around to munch on
                 //RaycastHit2D biteCheck = Physics2D.CircleCast(transform.position, actionDist, Vector2.zero);
                 Collider2D[] theBitten = Physics2D.OverlapCircleAll(transform.position, actionDist, Carriers);
-
-                if (theBitten.Length != 0)
+                if (beingCarried)
+                {
+                    if(currentCarrier.name == "MC")
+                    {
+                        BiteMC();
+                        //bittenMC = true;
+                        //MentalState.sendMsg("Bit by rabbit");
+                        //ass.Play();
+                        //mcAnim.SetTrigger("isBit");
+                        PutRabbitDown();
+                    }
+                    else
+                    {
+                        BiteNPC(currentCarrier);
+                        //Debug.Log("I bit " + currentCarrier.gameObject.name + "!");
+                        //bitNpcName = currentCarrier.gameObject.name;
+                        //ass.Play();
+                        PutRabbitDown();
+                    }
+                }
+                else if (theBitten.Length != 0)
                 {
                     Array.Reverse(theBitten);
 
@@ -106,10 +128,8 @@ public class RabbitJump : MonoBehaviour
                             bittenMC = true;
                             MentalState.sendMsg("Bit by rabbit");
                             ass.Play();
-                            PutRabbitDown();
+                            //PutRabbitDown();
                             mcAnim.SetTrigger("isBit");
-
-
                         }
                         else if (victim.gameObject.tag == "Person")
                         {
@@ -147,5 +167,20 @@ public class RabbitJump : MonoBehaviour
         transform.parent = carrier.transform;
         GetComponent<Movement>().enabled = false;
         GetComponent<SortRender>().offset = 0;
+    }
+
+    public void BiteMC()
+    {
+        bittenMC = true;
+        MentalState.sendMsg("Bit by rabbit");
+        ass.Play();
+        mcAnim.SetTrigger("isBit");
+    }
+
+    public void BiteNPC(GameObject carrier)
+    {
+        Debug.Log("I bit " + currentCarrier.gameObject.name + "!");
+        bitNpcName = currentCarrier.gameObject.name;
+        ass.Play();
     }
 }
