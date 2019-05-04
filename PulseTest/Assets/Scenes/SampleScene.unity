@@ -10621,6 +10621,8 @@ MonoBehaviour:
   sadNote1: {fileID: 21300000, guid: 83d979842124c7d49bfa917aed70b8ae, type: 3}
   sadNote2: {fileID: 21300000, guid: 7d822487eeb463e44b091a1b0fefc002, type: 3}
   sadNote3: {fileID: 21300000, guid: 11da7545a22166b4ab9971368ac782c1, type: 3}
+  happyNoteMat: {fileID: 2100000, guid: b73fc57fc6e05854e8ca999c30c6677f, type: 2}
+  sadNoteMat: {fileID: 2100000, guid: 7182dfdd69eaa4a6ebb02c01d2f6a07d, type: 2}
   mc_anim: {fileID: 0}
 --- !u!114 &1332290340
 MonoBehaviour:
@@ -12277,7 +12279,7 @@ Transform:
   m_GameObject: {fileID: 1840503296}
   m_LocalRotation: {x: -0.61342496, y: 0.35172406, z: -0.35172436, w: 0.61342484}
   m_LocalPosition: {x: 0.3, y: 1.3, z: 2.18}
-  m_LocalScale: {x: 1.4285713, y: 1, z: 1.4285719}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1.4285719}
   m_Children: []
   m_Father: {fileID: 874476369}
   m_RootOrder: 0
@@ -12480,7 +12482,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -12534,7 +12536,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.92001164, b: 0, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -12912,7 +12914,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 100
+    maxNumParticles: 50
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -13058,7 +13060,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 2
       mode: 0
       spread: 0
       speed:
@@ -13177,7 +13179,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 3
       minScalar: 10
       maxCurve:
         serializedVersion: 2

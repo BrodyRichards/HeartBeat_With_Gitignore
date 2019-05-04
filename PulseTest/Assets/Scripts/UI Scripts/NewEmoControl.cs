@@ -40,7 +40,7 @@ public class NewEmoControl : MonoBehaviour
                 NoEmoAtm = false;
                 Invoke("ResetEmo", 1.0f);
             }
-            else if(ReactEmo=="Happy Song")
+            else if(ReactEmo=="Happy Song" || ReactEmo== "Sad Song")
             {
 
                 if (!RadioControl.mcIsAffected)

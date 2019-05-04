@@ -13,12 +13,11 @@ public class RadioControl : MonoBehaviour
     public static bool isMusic = false;
     public static float actionDist;
 
-    private bool musicNoteCreated = false;
+    private bool musicNoteCreated;
     private bool emitParticleNow;
     private bool isBG;
 
     private readonly float mcAffectedInterval = 3f;
-    //private readonly float musicCreatedInterval = 0.2f;
 
     public LayerMask Carriers;
     public ParticleSystem ps;
@@ -44,6 +43,9 @@ public class RadioControl : MonoBehaviour
     public Sprite sadNote2;
     public Sprite sadNote3;
 
+    public Material happyNoteMat;
+    public Material sadNoteMat;
+
     Sprite[] sprites;
     Sprite[] happyNoteSprites;
     Sprite[] sadNoteSprites;
@@ -53,11 +55,11 @@ public class RadioControl : MonoBehaviour
     public Animator mc_anim;
 
     private ParticleSystem.EmissionModule em;
-    private ParticleSystem.MainModule pm;
 
     private void Awake()
     {
         emitParticleNow = false;
+        musicNoteCreated = false;
     }
 
     private void Start()
@@ -79,7 +81,6 @@ public class RadioControl : MonoBehaviour
         mc_anim = GameObject.Find("MC").GetComponent<Animator>();
 
         em = ps.emission;
-        pm = ps.main;
         em.enabled = false;
 
 
@@ -104,13 +105,13 @@ public class RadioControl : MonoBehaviour
             ResetThisGuy();
         }
 
-        if (emitParticleNow)
-        {
-            ChooseParticleColor();
+        //if (emitParticleNow)
+        //{
+        //    ChooseParticleColor();
 
-            em.enabled = true;
-            Invoke("PauseEmoPs", 0.5f);
-        }
+        //    em.enabled = true;
+        //    Invoke("PauseEmoPs", 0.5f);
+        //}
     }
 
     private void DetectAction()
@@ -215,7 +216,9 @@ public class RadioControl : MonoBehaviour
 
         isMusic = true;
 
-        emitParticleNow = true;
+        ChooseParticleColor();
+        em.enabled = true;
+        //emitParticleNow = true;
     }
    
 
@@ -231,6 +234,7 @@ public class RadioControl : MonoBehaviour
         CancelInvoke("McNotAffected");
 
     }
+
     private void TurnBgOff()
     {
         if (isBG && currentMood != (int)Mood.idle)
@@ -326,7 +330,7 @@ public class RadioControl : MonoBehaviour
         var index = UnityEngine.Random.Range(0, 3);
         srsr.sprite = spriteArray[index];
         var col = srsr.color;
-        col.a = 0.8f;
+        col.a = 1.0f;
         srsr.color = col;
         return go;
     }
@@ -343,6 +347,7 @@ public class RadioControl : MonoBehaviour
         mcIsAffected = false;
         npcIsAffected = false;
         musicListener = "";
+        em.enabled = false;
     }
 
     private void SendNotesToMusicListenerOrDestroy()
@@ -362,12 +367,12 @@ public class RadioControl : MonoBehaviour
         if (currentMood==(int)Mood.happy)
         {
 
-            pm.startColor = Color.yellow;
+            ps.GetComponent<ParticleSystemRenderer>().material = happyNoteMat;
         }
         else if (currentMood == (int)Mood.sad)
         {
 
-            pm.startColor = Color.blue;
+            ps.GetComponent<ParticleSystemRenderer>().material = sadNoteMat;
         }
 
     }
