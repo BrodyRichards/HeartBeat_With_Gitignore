@@ -157,12 +157,14 @@ public class RabbitJump : MonoBehaviour
         beingCarried = false;
         GetComponent<SortRender>().offset = 12;
         anim.SetBool("isCarried", false);
+        mcAnim.SetBool("isHolding", false);
     }
 
     public void PickRabbitUp(GameObject carrier)
     {
         beingCarried = true;
         anim.SetBool("isCarried", true);
+        mcAnim.SetBool("isHolding", true);
         transform.position = new Vector3(carrier.transform.position.x + 0.1f, carrier.transform.position.y, -1);
         transform.parent = carrier.transform;
         GetComponent<Movement>().enabled = false;
