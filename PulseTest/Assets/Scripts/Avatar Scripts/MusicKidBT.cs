@@ -255,7 +255,7 @@ public class MusicKidBT : MonoBehaviour
 
     private NodeStatus SongTimeCount()
     {
-        if (mcSadSongCounter > 200 || mcHappySongCounter > 300)
+        if (mcSadSongCounter > 200 || mcHappySongCounter > 200)
         {
             return NodeStatus.SUCCESS;
         }

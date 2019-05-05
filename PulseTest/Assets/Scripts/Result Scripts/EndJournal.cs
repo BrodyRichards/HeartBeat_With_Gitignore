@@ -8,7 +8,6 @@ public class EndJournal : MonoBehaviour
     public GameObject sleepIcon;
     public GameObject tabIcon;
     public GameObject bed;
-    public GameObject emptyBed;
     public GameObject fadeObject;
     public static bool journalIsOpened;
     public static bool deemLight;
@@ -24,7 +23,7 @@ public class EndJournal : MonoBehaviour
     {
         anim = journalIcon.GetComponent<Animator>();
         bedAnim = bed.GetComponent<Animator>();
-        bed.GetComponent<SpriteRenderer>().enabled = false;
+
         journalIcon.SetActive(false);
         tabIcon.SetActive(false);
     }
@@ -63,8 +62,7 @@ public class EndJournal : MonoBehaviour
             {
                 if (GameObject.Find("MC") != null)
                 {
-                    bed.GetComponent<SpriteRenderer>().enabled = true;
-                    emptyBed.GetComponent<SpriteRenderer>().enabled = false;
+
 
                     //Invoke("fadeOut", 0.1f);
                     Invoke("fadeOut", 0.5f);
