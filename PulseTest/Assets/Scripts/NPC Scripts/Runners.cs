@@ -46,12 +46,12 @@ public class Runners : NPCs
     /*
     protected override void checkMusic()
     {
-        if (RadioControl.currentMood == 1) //
+        if (MusicKidBT.currentMood == 1) //
         {
             Emo = master.GetComponent<NpcInstantiator>().sadFace;
 
         }
-        else if (RadioControl.currentMood == 0)
+        else if (MusicKidBT.currentMood == 0)
         {
             Emo = master.GetComponent<NpcInstantiator>().happyFace;
         }

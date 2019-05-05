@@ -164,14 +164,10 @@ public class MusicKidBT : MonoBehaviour
         em.enabled = false;
         mcIsAffected = false;
         npcIsAffected = false;
+        musicListener = "";
         return NodeStatus.FAILURE;
 
     }
-
-
-
-
-
     private NodeStatus FindMC()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, actionDist, Carriers);
@@ -204,15 +200,19 @@ public class MusicKidBT : MonoBehaviour
             Array.Reverse(colliders);
             foreach (Collider2D coll in colliders)
             {
-                if (coll.gameObject.tag == "NPC")
+                //Debug.Log("We detect" + coll.gameObject.name);
+                //Debug.Log("ohhh " + coll.gameObject.tag);
+                if (coll.gameObject.tag == "Person")
                 {
                     musicListener = coll.gameObject.name;
+                    Debug.Log("NPC detected");
+
                     return NodeStatus.SUCCESS;
                 }
 
             }
         }
-
+        musicListener = "";
         return NodeStatus.FAILURE;
 
     }
@@ -243,55 +243,19 @@ public class MusicKidBT : MonoBehaviour
     private NodeStatus AffectNpc()
     {
         npcIsAffected = true;
-        SendNotesToMusicListenerOrDestroy();
-        if (!musicNoteCreated)
-        {
-            CreateMusicNote();
-            var musicCreatedInterval = (currentMood == 0 ? 0.3f : 0.6f);
-            Invoke("ResetMusicNote", musicCreatedInterval);
-
-        }
+        Debug.Log("IN AFFECT NPC");
         return NodeStatus.SUCCESS;
     }
 
-    private void CreateMusicNote()
-    {
-        if (currentMood == (int)Mood.happy)
-        {
-            InstantiateNoteObj(happyNotesSprite);
-        }
-        else if (currentMood == (int)Mood.sad)
-        {
-            InstantiateNoteObj(sadNotesSprite);
-        }
-
-        musicNoteCreated = true;
 
 
-    }
 
-    private GameObject InstantiateNoteObj(Sprite[] spriteArray)
-    {
-        GameObject go = Instantiate(notes, transform.position, Quaternion.identity) as GameObject;
-        SpriteRenderer srsr = go.GetComponent<SpriteRenderer>();
-        var index = UnityEngine.Random.Range(0, 3);
-        srsr.sprite = spriteArray[index];
-        var col = srsr.color;
-        col.a = 1.0f;
-        srsr.color = col;
-        return go;
-    }
 
-    private void DestroyRemainingNote()
-    {
-        var temp = GameObject.FindGameObjectsWithTag("MusicNote");
-        foreach (var t in temp) { Destroy(t); }
-        //musicNoteCreated = false;
-    }
+
 
     private NodeStatus SongTimeCount()
     {
-        if (mcSadSongCounter > 200 || mcHappySongCounter > 400)
+        if (mcSadSongCounter > 200 || mcHappySongCounter > 300)
         {
             return NodeStatus.SUCCESS;
         }
@@ -404,7 +368,6 @@ public class MusicKidBT : MonoBehaviour
 
         audioSource.clip = theAudioClips[index];
 
-
         audioSource.Play();
 
         isMusic = true;
@@ -455,10 +418,49 @@ public class MusicKidBT : MonoBehaviour
 
     private void MCAffectReset()
     {
-        musicListener = "";
         mcIsAffected = false;
         mcSadSongCounter *= 0;
         mcHappySongCounter *= 0;
         DestroyRemainingNote();
+
+    }
+
+    private GameObject InstantiateNoteObj(Sprite[] spriteArray)
+    {
+        GameObject go = Instantiate(notes, transform.position, Quaternion.identity) as GameObject;
+        SpriteRenderer srsr = go.GetComponent<SpriteRenderer>();
+        var index = UnityEngine.Random.Range(0, 3);
+        srsr.sprite = spriteArray[index];
+        var col = srsr.color;
+        col.a = 1.0f;
+        srsr.color = col;
+        return go;
+    }
+
+    private void DestroyRemainingNote()
+    {
+        var temp = GameObject.FindGameObjectsWithTag("MusicNote");
+        foreach (var t in temp) { Destroy(t); }
+    }
+
+    private void CreateMusicNote()
+    {
+        if (currentMood == (int)Mood.happy)
+        {
+            InstantiateNoteObj(happyNotesSprite);
+        }
+        else if (currentMood == (int)Mood.sad)
+        {
+            InstantiateNoteObj(sadNotesSprite);
+        }
+
+        musicNoteCreated = true;
+
+
+    }
+
+    private void NpcNotAffected()
+    {
+        npcIsAffected = false;
     }
 }

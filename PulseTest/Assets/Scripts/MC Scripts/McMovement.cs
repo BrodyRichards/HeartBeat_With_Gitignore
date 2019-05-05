@@ -56,7 +56,7 @@ public class McMovement : MonoBehaviour
     {
         
         // check whether the radio guy has been activated yet 
-        //if (RadioControl.isMusic && !walkedIn)
+        //if (MusicKidBT.isMusic && !walkedIn)
         /*
         if (characterSwitcher.charChoice != -1 && !walkedIn)
         {
@@ -101,7 +101,7 @@ public class McMovement : MonoBehaviour
                     McGoesToAvatar(NpcInstantiator.ballKidPos, step);
                 }
             }
-            else if (RadioControl.musicListener=="MC" && RadioControl.currentMood == 0)
+            else if (MusicKidBT.musicListener=="MC" && MusicKidBT.currentMood == 0)
             {
                 anim.SetBool("isWalking", false);
             }
