@@ -6,7 +6,7 @@ using UnityEngine;
 public class RadioControl : MonoBehaviour
 {
     
-    public static int currentMood = 0;
+    public static int currentMood;
     public static string musicListener = "";
     public static bool mcIsAffected = false;
     public static bool npcIsAffected = false;
@@ -16,6 +16,7 @@ public class RadioControl : MonoBehaviour
     private bool musicNoteCreated;
     private bool emitParticleNow;
     private bool isBG;
+    private bool foundTheMC;
 
     private readonly float mcAffectedInterval = 3f;
 
@@ -153,7 +154,7 @@ public class RadioControl : MonoBehaviour
         if (isMusic)
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, actionDist, Carriers);
-
+            foundTheMC = false;
             //Check if array is empty or if there was anything collided with
             // Codes from Justin's Rabbit script 
             if (colliders.Length != 0)
@@ -167,32 +168,49 @@ public class RadioControl : MonoBehaviour
                         var musicCreatedInterval = (currentMood == 0 ? 0.3f : 0.6f);
                         Invoke("ResetMusicNote", musicCreatedInterval);
                     }
-                    
-                    if (coll.gameObject.tag == "MC" && !mcIsAffected)
+
+                    if (coll.gameObject.tag == "MC" && musicListener != coll.gameObject.name)
                     {
                         musicListener = coll.gameObject.name;
-                        mcIsAffected = true;
-                        // 4 seconds later call this function and reset MC 
-                        Invoke("McNotAffected", mcAffectedInterval);
-
-
-                    }
-                    else if (coll.gameObject.tag == "Person" && !mcIsAffected && !npcIsAffected)
-                    {
-                        
-                        npcIsAffected = true;
-                        musicListener = coll.gameObject.name;
-                        Invoke("NpcNotAffected", 3f);
+                        foundTheMC = true;
                         break;
                     }
+
                 }
+                if (!foundTheMC)
+                {
+                    foreach (Collider2D coll in colliders)
+                    {
+                        if (!musicNoteCreated)
+                        {
+                            CreateMusicNote();
+                            var musicCreatedInterval = (currentMood == 0 ? 0.3f : 0.6f);
+                            Invoke("ResetMusicNote", musicCreatedInterval);
+                        }
+
+                        if (coll.gameObject.tag == "NPC" && !npcIsAffected && !mcIsAffected)
+                        {
+                            musicListener = coll.gameObject.name;
+                            npcIsAffected = true;
+                            // 4 seconds later call this function and reset MC 
+                            break;
+                        }
+
+                    }
+                }
+
+
+
             }
             else
             {
                 CancelInvoke("MCNotAffected");
                 musicListener = "";
                 mcIsAffected = false;
+                npcIsAffected = false;
             }
+
+            
         }
         else
         {
@@ -269,7 +287,20 @@ public class RadioControl : MonoBehaviour
     private void McNotAffected()
     {
         // doesne't send message from emoControl anymore 
-        var msg = currentMood == 0 ? "Happy Song" : "Sad Song";
+        var msg="";
+        if (currentMood == (int)Mood.happy)
+        {
+            msg = "Happy Song";
+        }
+        else if (currentMood == (int)Mood.sad)
+        {
+            msg = "Sad Song";
+        }
+        else
+        {
+            Debug.Log("How did this happen?");
+            return;
+        }
         MentalState.sendMsg(msg);
         mcIsAffected = false;
     }

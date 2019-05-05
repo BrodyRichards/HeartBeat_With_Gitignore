@@ -425,7 +425,7 @@ public class MCBTCreator : MonoBehaviour
 
     NodeStatus checkMusic()
     {
-        if (RadioControl.musicListener == "MC" && RadioControl.currentMood == 0)
+        if (MusicKidBT.musicListener == "MC" && MusicKidBT.currentMood == 0)
         {
             Debug.Log("Listening to music");
             anim.SetBool("isWalking", false);
