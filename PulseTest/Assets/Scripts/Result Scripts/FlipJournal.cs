@@ -30,7 +30,7 @@ public class FlipJournal : MonoBehaviour
 
         haveYouReadMeYet = new bool[]{ false, false, false };
         //this is for the next scenes
-        int rabbit = MentalState.moodLog["Held Rabbit"] + MentalState.moodLog["Bit by rabbit"];
+    
         int ballKid = MentalState.moodLog["Played catch"] + MentalState.moodLog["Hit by ball"];
         int musicKid = MentalState.moodLog["Happy Song"] + MentalState.moodLog["Sad Song"];
         lastAvatar = 1;
