@@ -16,7 +16,7 @@ public class characterSwitcher : MonoBehaviour
     
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         //Initially disable all but the chosen one
         charChoice = -1;
@@ -30,6 +30,9 @@ public class characterSwitcher : MonoBehaviour
         anim_keyPrompt.enabled = false;
 
         doNothingTimer = 0f;
+        if (FlipJournal.lastAvatar == 1) { findGO(1).SetActive(false); }
+        else if (FlipJournal.lastAvatar == 2) { findGO(2).SetActive(false); }
+        else if (FlipJournal.lastAvatar == 3) { findGO(3).SetActive(false); }
     }
 
     // Update is called once per frame

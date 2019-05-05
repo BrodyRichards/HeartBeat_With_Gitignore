@@ -8,9 +8,9 @@ public class BallPlayers : NPCs
     private Rigidbody2D rb;
     private Vector3 mcPos;
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         rb = GetComponent<Rigidbody2D>();
         int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
         int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);

@@ -12,7 +12,7 @@ public class FlipJournal : MonoBehaviour
     private int currentIndex;
     private bool[] haveYouReadMeYet;
 
-    public static int lastAvatar;               //var used to determine which avatar to rule out next scene, 1 rabbit, 2 ballkid, 3 music
+    public static int lastAvatar = 0;               //var used to determine which avatar to rule out next scene, 1 rabbit, 2 ballkid, 3 music
     // Start is called before the first frame update
     private void Awake()
     {
@@ -36,6 +36,7 @@ public class FlipJournal : MonoBehaviour
         lastAvatar = 1;
         if (ballKid < lastAvatar) { lastAvatar = 2; }
         if (musicKid < lastAvatar) { lastAvatar = 3; }
+        NPCs.schoolBell = false;
     }
 
     // Update is called once per frame

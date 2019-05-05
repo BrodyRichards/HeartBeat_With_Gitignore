@@ -6,9 +6,9 @@ using UnityEngine;
 public class RabbitChasers : NPCs
 {
 
-    protected override void Start()
+    protected override void Awake()
     {       
-        base.Start();
+        base.Awake();
 
         int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
         int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
