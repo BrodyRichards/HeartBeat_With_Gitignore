@@ -430,10 +430,12 @@ public class MCBTCreator : MonoBehaviour
             Debug.Log("Listening to music");
             anim.SetBool("isWalking", false);
             anim.SetBool("wantToPlay", false);
+            anim.SetBool("isHappySong", true);
             return NodeStatus.SUCCESS;
         }
         else
         {
+            anim.SetBool("isHappySong", false);
             return NodeStatus.FAILURE;
         }
     }
