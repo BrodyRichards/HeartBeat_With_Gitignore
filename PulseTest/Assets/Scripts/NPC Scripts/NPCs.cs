@@ -39,7 +39,7 @@ public class NPCs : MonoBehaviour
 
 
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
         anim.SetBool("IsWalking", true);

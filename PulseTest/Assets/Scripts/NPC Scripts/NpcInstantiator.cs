@@ -42,7 +42,7 @@ public class NpcInstantiator : MonoBehaviour
     int origLayer;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         npcPositions = new List<GameObject>();
         int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);

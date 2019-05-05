@@ -13,6 +13,11 @@ public class EndJournal : MonoBehaviour
     public static bool deemLight;
     private Animator anim;
     private Animator bedAnim;
+
+    public GameObject dream;
+    public GameObject rabAsset;
+    public GameObject ballAsset;
+    public GameObject musicAsset;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -69,7 +74,8 @@ public class EndJournal : MonoBehaviour
                     Invoke("CharlieGoAway", 1f);
                     Invoke("fadeIn", 1.25f);
                     Invoke("GoToBedPlsKid", 2f);
-                    Invoke("DeemTheLight", 8f);
+                    Invoke("Dreaming", 9f);
+                    //Invoke("DeemTheLight", 8f);
 
                 }
                 
@@ -92,6 +98,27 @@ public class EndJournal : MonoBehaviour
     {
         var meh = fadeObject.GetComponent<ResultFade>();
         meh.FadeOut();
+    }
+
+    void Dreaming()
+    {
+        dream.gameObject.SetActive(true);
+        int avatar = 1;
+        if (MentalState.moodLog["Played catch"] > avatar) { avatar = 2; }
+        else if (MentalState.moodLog["Happy Song"] > 3) { avatar = 3; }
+        if (avatar == 1)
+        {
+            rabAsset.gameObject.SetActive(true);
+        }
+        else if (avatar == 2)
+        {
+            ballAsset.gameObject.SetActive(true);
+        }
+        else if (avatar == 3)
+        {
+            musicAsset.gameObject.SetActive(true);
+        }
+        //dream.gameObject.SetActive(true);
     }
 
     private void fadeOut()
