@@ -68,6 +68,7 @@ public class MusicKidBT : MonoBehaviour
         Leaf playCheck = new Leaf(PassedFunc: DetectTurnOn);
         Leaf playMusic = new Leaf(PassedFunc: PlayMusic);
         Leaf stopCheck = new Leaf(PassedFunc: DetectTurnOff);
+        Inverter iv = new Inverter(stopCheck);
 
         Sequence playMusicSQ = createSeqRoot(playCheck, playMusic);
 
@@ -131,6 +132,12 @@ public class MusicKidBT : MonoBehaviour
 
     private NodeStatus DetectTurnOff()
     {
+        if (!characterSwitcher.isMusicGuyInCharge || Movement.timeToLeave)
+        {
+
+            ResetThisGurl();
+
+        }
         if (!isMusic)
         {
             return NodeStatus.FAILURE;
@@ -138,7 +145,7 @@ public class MusicKidBT : MonoBehaviour
 
         if ((Input.GetKeyDown(Control.negativeAction) && currentMood == (int)Mood.sad) || (Input.GetKeyDown(Control.positiveAction) && currentMood == (int)Mood.happy))
         {
-            TurnBgOn();
+
             anim.SetTrigger("click");
             ResetThisGurl();
             return NodeStatus.FAILURE;
@@ -154,6 +161,7 @@ public class MusicKidBT : MonoBehaviour
 
     private NodeStatus ResetThisGurl()
     {
+        TurnBgOn();
         currentMood = (int)Mood.idle;
         audioSource.clip = null;
         audioSource.Pause();
