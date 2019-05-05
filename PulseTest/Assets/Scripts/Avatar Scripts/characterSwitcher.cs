@@ -95,6 +95,9 @@ public class characterSwitcher : MonoBehaviour
                 EnableAll();
                 this.enabled = false;
                 NPCs.schoolBell = true;
+                DisablePrompt("Q1");
+                DisablePrompt("Q2");
+                DisablePrompt("Q3");
                 GameObject.Find("BellRing").GetComponent<AudioSource>().Play();
             }
         }
