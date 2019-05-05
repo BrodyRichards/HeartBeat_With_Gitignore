@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class McFreeMove : MonoBehaviour
 {
-
+    public Animator anim;
     private float currSpeed;
+    private float lastX;
+    private bool isFlipped;
     private Animator animForMC;
     private enum Mood { happy, sad, idle };
     public float maxSpeed;
     public float acceleration;
     public float deceleration;
+    private float step;
     public bool inFinalScene;
     private Vector2 direction;
     public Vector3 scale;
     public Vector3 scaleOpposite;
     private string[] controllersName = { "MC_happy", "MC_sad", "MC_controller" };
+    public List<Vector2> mcWaypoints;
+    public List<Vector2> refPoints;
+    public Vector2 waypoint1;
+    public Vector2 waypoint2;
+    public Vector2 waypoint3;
 
     private void Awake()
     {
@@ -25,15 +33,20 @@ public class McFreeMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        step = maxSpeed * Time.deltaTime;
+        isFlipped = false;
         animForMC = GetComponent<Animator>();
         if (inFinalScene)
         {
             AnimationMoodCheck();
+            isFlipped = true;
+        }
+        else
+        {
+            lastX = 10f;
         }
         scale = transform.localScale;
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-
     }
 
     // Update is called once per frame
@@ -42,12 +55,11 @@ public class McFreeMove : MonoBehaviour
         getInput();
         if (!EndJournal.journalIsOpened)
         {
-            Move();
+            GoToWaypoints(step);
         }
-       
-
     }
 
+    /*
     public void Move()
     {
         var v2 = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -129,10 +141,31 @@ public class McFreeMove : MonoBehaviour
         }
 
     }
+    */  
+
+    protected void getInput()
+    {
+        if (mcWaypoints.Count <= 3)
+        {
+            if (Input.GetKey(KeyCode.Alpha1))
+            {
+                mcWaypoints.Add(waypoint1);
+            }
+
+            if (Input.GetKey(KeyCode.Alpha2))
+            {
+                mcWaypoints.Add(waypoint2);
+            }
+
+            if (Input.GetKey(KeyCode.Alpha3))
+            {
+                mcWaypoints.Add(waypoint3);
+            }
+        }
+    }
 
     private void AnimationMoodCheck()
     {
-
         var mood = MentalState.OverallResult();
         //var mood = -10;
         if (mood < 5 && mood > -5) // no mood
@@ -150,6 +183,51 @@ public class McFreeMove : MonoBehaviour
             animForMC.SetFloat("speed", 0.2f);
 
             SwitchAnimController((int)Mood.sad);
+        }
+    }
+
+    private void FlipAssetDirection()
+    {
+        if (lastX < transform.position.x && !isFlipped)
+        {
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+            isFlipped = true;
+        }
+        else if (lastX > transform.position.x && isFlipped)
+        {
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+            isFlipped = false;
+        }
+
+        lastX = transform.position.x;
+    }
+
+    // Go to the assigned waypoints that haven't been reached yet
+    private void GoToWaypoints(float step)
+    {
+        if (mcWaypoints.Count != 0)
+        {
+            FlipAssetDirection();
+            McGoesTo(mcWaypoints[0], step);
+        }
+        else
+        {
+            mcWaypoints = new List<Vector2>(refPoints);
+        }
+    }
+
+    // Move towards the assigned waypoint, if arrive, will return true 
+    private void McGoesTo(Vector2 target, float step)
+    {
+
+        transform.position = Vector2.MoveTowards(transform.position, target, step);
+        anim.SetBool("isWalking", true);
+
+        if (Vector2.Distance(transform.position, target) < 1.0f)
+        {
+            //Debug.Log("arrive at" + target);
+            mcWaypoints.RemoveAt(0);
+            anim.SetBool("isWalking", false);
         }
     }
 
