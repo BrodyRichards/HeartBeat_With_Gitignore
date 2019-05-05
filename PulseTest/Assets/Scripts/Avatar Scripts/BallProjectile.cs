@@ -5,6 +5,7 @@ using UnityEngine;
 public class BallProjectile : MonoBehaviour
 {
     public GameObject ballHitParticle;
+    private GameObject tempSys;
     public Vector3 targetLoc;
     public Vector3 startPos;
     public float arcHeight = 2;
@@ -55,7 +56,7 @@ public class BallProjectile : MonoBehaviour
                         //Debug.Log("You threw a mean ball!");
                         //Update Mental State
                         TriggerHitAnim();
-                        Instantiate(ballHitParticle, transform.position, Quaternion.identity);
+                        PlayHitParticles();
                         MentalState.sendMsg("Hit by ball");
                         McMovement.gotHit = true;
 
@@ -91,7 +92,7 @@ public class BallProjectile : MonoBehaviour
                 if (meanBallThrown)
                 {
                     NpcName = hit.collider.gameObject.name;
-                    Instantiate(ballHitParticle, transform.position, Quaternion.identity);
+                    PlayHitParticles();
                     stationaryBall();
                 }
                 else
@@ -137,8 +138,6 @@ public class BallProjectile : MonoBehaviour
 
         }
     }
-
-
 
     private void SimulateProjectile()
     {
@@ -189,8 +188,9 @@ public class BallProjectile : MonoBehaviour
         return false;
     }
 
-    private void getBallAnim()
+    private void PlayHitParticles()
     {
-
+        tempSys = Instantiate(ballHitParticle, transform.position, Quaternion.identity) as GameObject;
+        Destroy(tempSys, 1);
     }
 }
