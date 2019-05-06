@@ -77,7 +77,7 @@ public class EndJournal : MonoBehaviour
                     Invoke("fadeIn", 1.25f);
                     Invoke("GoToBedPlsKid", 2f);
                     Invoke("Dreaming", 9f);
-                    //Invoke("DeemTheLight", 8f);
+                    Invoke("DeemTheLight", 12f);
 
                 }
                 

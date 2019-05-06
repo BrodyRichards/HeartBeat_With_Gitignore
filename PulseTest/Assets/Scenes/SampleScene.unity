@@ -9458,7 +9458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1062174792
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11412,6 +11412,7 @@ MonoBehaviour:
   ballNeg: {fileID: 1147922772}
   musicPos: {fileID: 1504785202}
   musicNeg: {fileID: 612980525}
+  moveControls: {fileID: 1062174791}
 --- !u!1 &1464267447
 GameObject:
   m_ObjectHideFlags: 0
@@ -19525,7 +19526,7 @@ PrefabInstance:
     - target: {fileID: 9217209590320236787, guid: d77767d21a93b4e82b20fa4436d930cb,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -9.000061
+      value: -9
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 559884538098873015, guid: d77767d21a93b4e82b20fa4436d930cb, type: 3}
