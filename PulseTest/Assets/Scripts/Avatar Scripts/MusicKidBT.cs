@@ -136,6 +136,7 @@ public class MusicKidBT : MonoBehaviour
         {
 
             ResetThisGurl();
+            return NodeStatus.FAILURE;
 
         }
         if (!isMusic)
