@@ -157,6 +157,7 @@ GameObject:
   - component: {fileID: 5049500}
   - component: {fileID: 5049499}
   - component: {fileID: 5049501}
+  - component: {fileID: 5049502}
   m_Layer: 0
   m_Name: swingSet
   m_TagString: Untagged
@@ -240,6 +241,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: 8
   destroy: 1
+--- !u!95 &5049502
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5049498}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c148dae27b5b73841b70eaf023edb5c6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &32133606
 GameObject:
   m_ObjectHideFlags: 0
@@ -9215,7 +9235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1062174792
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11201,6 +11221,7 @@ MonoBehaviour:
   ballNeg: {fileID: 1147922772}
   musicPos: {fileID: 1504785202}
   musicNeg: {fileID: 612980525}
+  moveControls: {fileID: 1062174791}
 --- !u!1 &1464267447
 GameObject:
   m_ObjectHideFlags: 0
