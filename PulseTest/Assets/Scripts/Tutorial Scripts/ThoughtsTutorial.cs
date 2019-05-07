@@ -8,6 +8,7 @@ public class ThoughtsTutorial : MonoBehaviour
 {
     public GameObject text;
     public Image thoughtBubble;
+    public Image journalPrompt;
     //public Image speechBubble;
 
     private List<string> thoughts;                                          //thoughts on deck
@@ -26,6 +27,9 @@ public class ThoughtsTutorial : MonoBehaviour
     //string next;
 
     private TextMeshProUGUI tmpug;
+
+    public static bool alarm = false;
+    public static bool curtain = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +37,8 @@ public class ThoughtsTutorial : MonoBehaviour
 
         setThoughts();
         hideThought(thoughtBubble);
+        hideThought(journalPrompt);
+        //journalPrompt.gameObject.
         //hideThought(speechBubble);
 
 
@@ -79,6 +85,11 @@ public class ThoughtsTutorial : MonoBehaviour
         thoughtBubble.GetComponent<Image>().gameObject.SetActive(true);
     }
 
+    void promptJournal()
+    {
+        journalPrompt.gameObject.SetActive(true);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -92,7 +103,9 @@ public class ThoughtsTutorial : MonoBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 action = 1;
+                alarm = true;
                 Invoke("changeThought", 9f);
+                Invoke("promptJournal", 9f);
             }
         }
         else if (TutorialCharSwitch.TutCharChoice == 2)
@@ -100,7 +113,9 @@ public class ThoughtsTutorial : MonoBehaviour
             if (Input.GetKey(KeyCode.Q))
             {
                 action = 0;
+                curtain = true;
                 Invoke("changeThought", 5f);
+                Invoke("promptJournal", 5f);
             }
         }   
     }
