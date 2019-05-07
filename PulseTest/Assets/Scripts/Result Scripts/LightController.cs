@@ -14,7 +14,7 @@ public class LightController : MonoBehaviour
     public GameObject lightOn;
     public GameObject lightOff;
     private int mood;
-    private readonly float turnToNightTimer = 7f;
+    private readonly float turnToNightTimer = 2f;
     private bool isRadiateFinish;
     public static bool isNightGlowFinish;
     // Start is called before the first frame update

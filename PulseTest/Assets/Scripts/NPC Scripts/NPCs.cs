@@ -47,7 +47,7 @@ public class NPCs : MonoBehaviour
         master = GameObject.Find("GameController");
         scale = transform.localScale;
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        music = RadioControl.currentMood;
+        music = MusicKidBT.currentMood;
         check = music;
         time = Time.fixedUnscaledTime;
         timer = time;
@@ -91,9 +91,9 @@ public class NPCs : MonoBehaviour
     {
         bool emoDist = checkDist(NpcInstantiator.musicKidPos, transform.position);
         check = music;
-        music = RadioControl.currentMood;
-        //if (music != check || (emoDist && RadioControl.isMusic))
-        if (this.gameObject.name == RadioControl.musicListener)
+        music = MusicKidBT.currentMood;
+        //if (music != check || (emoDist && MusicKidBT.isMusic))
+        if (this.gameObject.name == MusicKidBT.musicListener)
         {
             checkMusic();
         }
@@ -125,7 +125,7 @@ public class NPCs : MonoBehaviour
     protected virtual void checkBools(bool emoDist)
     {
         //if ((characterSwitcher.isMusicGuyInCharge == false && RabbitJump.beingCarried == false) || emoDist == false)
-        if ((RadioControl.musicListener != this.gameObject.name && RabbitJump.beingCarried == false) || emoDist == false)
+        if ((MusicKidBT.musicListener != this.gameObject.name && RabbitJump.beingCarried == false) || emoDist == false)
         {
             if (nameChange == false && rabNameChange == false)
             {
@@ -190,7 +190,7 @@ public class NPCs : MonoBehaviour
 
     protected virtual void checkMusic()
     {
-        if (RadioControl.currentMood == 1)                      //sad song
+        if (MusicKidBT.currentMood == 1)                      //sad song
         {
             Emo = master.GetComponent<NpcInstantiator>().sadFace;
             if (Time.time >= curTime)
@@ -199,7 +199,7 @@ public class NPCs : MonoBehaviour
                 curTime = Time.time + musicCoolDown;
             }
         }
-        else if (RadioControl.currentMood == 0)                 //happy song
+        else if (MusicKidBT.currentMood == 0)                 //happy song
         {
             Emo = master.GetComponent<NpcInstantiator>().groovinFace;
             if (Time.time >= curTime)
@@ -255,7 +255,7 @@ public class NPCs : MonoBehaviour
     protected virtual bool checkDist(Vector3 pos1, Vector3 pos2)  //for AOE
     {
         float dist = Vector3.Distance(pos1, pos2);
-        if (dist <= RadioControl.actionDist && characterSwitcher.isMusicGuyInCharge) { return true; }
+        if (dist <= MusicKidBT.actionDist && characterSwitcher.isMusicGuyInCharge) { return true; }
         else if (dist <= 20.0f) { return true; }
         return false;
     }

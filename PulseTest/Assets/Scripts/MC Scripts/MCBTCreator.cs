@@ -22,6 +22,7 @@ public class MCBTCreator : MonoBehaviour
     private float rabbitTimePassed;
     private float ballTimePassed;
     private float interestTimer;
+    private float interestTime;
     private float interestResetTimer;
 
     public static bool gotHit = false;
@@ -42,6 +43,7 @@ public class MCBTCreator : MonoBehaviour
         rabbitTimePassed = 0f;
         ballTimePassed = 0f;
         interestTimer = 0f;
+        interestTime = 7f;
         interestResetTimer = 0f;
 
         MC_BT = createBehaviorTree();
@@ -77,9 +79,10 @@ public class MCBTCreator : MonoBehaviour
         Leaf UpdateMC = new Leaf(updateMC);
 
         //Create Play Catch with Ball Kid Sequence
+        Leaf CheckCatch = new Leaf(checkCatch);
         Leaf CheckInterest = new Leaf(checkInterest);
         Leaf MoveToBallKid = new Leaf(moveToBallKid);
-        Sequence PlayCatch = createSeqRoot(CheckInterest, MoveToBallKid);
+        Sequence PlayCatch = createSeqRoot(CheckCatch, CheckInterest, MoveToBallKid);
 
         //Music Kid Sequence
         Leaf CheckMusic = new Leaf(checkMusic);
@@ -267,7 +270,7 @@ public class MCBTCreator : MonoBehaviour
     {
         //If the interest timer is still under 7 seconds then the MC is still interested
         //Else if not interested then start counting for 5 seconds to reset interest
-        if (interestTimer <= 7f)
+        if (interestTimer <= interestTime)
         {
             interestResetTimer = 0f;
             stillInterested = true;
@@ -376,12 +379,23 @@ public class MCBTCreator : MonoBehaviour
         return NodeStatus.SUCCESS;
     }
 
+    NodeStatus checkCatch()
+    {
+        if (playedCatch && !stillInterested)
+        {
+            interestTimer = 0f;
+            updateInterest();
+        }
+
+        return NodeStatus.SUCCESS;
+    }
+
     NodeStatus checkInterest()
     {
         //Check if MC is still interested
         updateInterest();
 
-        if(interestTimer <= 7f && stillInterested && !RabbitJump.beingCarried && CheckDist(transform.position, NpcInstantiator.ballKidPos))
+        if(interestTimer <= interestTime && stillInterested && !RabbitJump.beingCarried && CheckDist(transform.position, NpcInstantiator.ballKidPos))
         {
             Debug.Log("Am interested");
             if (playedCatch)
@@ -411,15 +425,17 @@ public class MCBTCreator : MonoBehaviour
 
     NodeStatus checkMusic()
     {
-        if (RadioControl.musicListener == "MC" && RadioControl.currentMood == 0)
+        if (MusicKidBT.musicListener == "MC" && MusicKidBT.currentMood == 0)
         {
             Debug.Log("Listening to music");
             anim.SetBool("isWalking", false);
             anim.SetBool("wantToPlay", false);
+            anim.SetBool("isHappySong", true);
             return NodeStatus.SUCCESS;
         }
         else
         {
+            anim.SetBool("isHappySong", false);
             return NodeStatus.FAILURE;
         }
     }

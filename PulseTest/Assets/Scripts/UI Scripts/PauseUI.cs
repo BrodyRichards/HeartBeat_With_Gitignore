@@ -68,7 +68,7 @@ public class PauseUI : MonoBehaviour
             
             characterSwitcher.charChoice = -1;
             MentalState.journalInProgress = true;
-            RadioControl.isMusic = false;
+            MusicKidBT.isMusic = false;
         }
         else if (thisSceneIndex == 3)
         {
@@ -93,7 +93,7 @@ public class PauseUI : MonoBehaviour
         IsPaused = false;
         Time.timeScale = 1f;
         characterSwitcher.charChoice = -1;
-        RadioControl.isMusic = false;
+        MusicKidBT.isMusic = false;
     }
     IEnumerator LoadAsyncScene(int nextSceneIndex)
     {

@@ -35,15 +35,16 @@ public class NewEmoControl : MonoBehaviour
         if (ReactEmo !="" && NoEmoAtm)
         {
 
-            if (ReactEmo!= "Held Rabbit" && ReactEmo!= "Happy Song")
+            if (ReactEmo != "Held Rabbit" && ReactEmo != "Happy Song")
             {
                 NoEmoAtm = false;
                 Invoke("ResetEmo", 1.0f);
             }
-            else if(ReactEmo=="Happy Song")
+            else if (ReactEmo == "Happy Song" || ReactEmo == "Sad Song")
             {
 
-                if (!RadioControl.mcIsAffected)
+                if (!MusicKidBT.mcIsAffected || (ReactEmo == "Happy Song" && MusicKidBT.currentMood == 1)
+                || (ReactEmo == "Sad Song" && MusicKidBT.currentMood == 0))
                 {
                     ResetEmo();
                 }

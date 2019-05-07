@@ -125,7 +125,6 @@ public class IconControl : MonoBehaviour
     {
         iconsGroup.SetActive(boo);
         journalIcon.enabled = boo;
-        bg.enabled = boo;
         ring.SetActive(boo);
 
     }
