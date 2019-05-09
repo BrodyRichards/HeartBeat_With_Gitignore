@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 6353729515705268352}
+  isAllergic: 1
   target: {x: 0, y: 0, z: 0}
 --- !u!114 &5429563289573589688
 MonoBehaviour:
