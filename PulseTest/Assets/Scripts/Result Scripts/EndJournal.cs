@@ -41,10 +41,14 @@ public class EndJournal : MonoBehaviour
     {
         ReadJournal();
 
-        if (FlipJournal.finishReadingJournal && !journalIsOpened)
+        if (FlipJournal.finishReadingJournal && !journalIsOpened && !AutoToSchool.mcWokeUp)
         {
-            if (!charlieInBed) sleepIcon.SetActive(true);
+            if (!charlieInBed)
+            {
+                sleepIcon.SetActive(true);
+            }
             anim.SetBool("newAccom", false);
+
             tabIcon.SetActive(false);
             if (Input.GetKeyDown(Control.evacuate))
             {
@@ -54,7 +58,7 @@ public class EndJournal : MonoBehaviour
 
                     //Invoke("fadeOut", 0.1f);
                     Invoke("fadeOut", 0.5f);
-                    Invoke("CharlieGoAway", 1f);
+                    Invoke("CharlieGoAway", 1.2f);
                     Invoke("fadeIn", 1.25f);
                     Invoke("GoToBedPlsKid", 2f);
                     Invoke("Dreaming", 8f);
@@ -82,16 +86,13 @@ public class EndJournal : MonoBehaviour
         bedAnim.SetBool("goToBed", true);
         charlieInBed = true;
         sleepIcon.SetActive(false);
+        journalIcon.SetActive(false);
 
 
 
     }
 
-    void DeemTheLight()
-    {
-        var meh = fadeObject.GetComponent<ResultFade>();
-        meh.FadeOut();
-    }
+
 
     void Dreaming()
     {
@@ -130,7 +131,7 @@ public class EndJournal : MonoBehaviour
 
     private void ReadJournal()
     {
-        if (!journalIcon.activeSelf)
+        if (!journalIcon.activeSelf && !charlieInBed) 
         {
             journalIcon.SetActive(true);
             anim.SetBool("newAccom", true);
@@ -138,14 +139,14 @@ public class EndJournal : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(Control.pullJournal) && !journalIsOpened)
+            if (Input.GetKeyDown(Control.pullJournal) && !journalIsOpened && !charlieInBed)
             {
 
                 journalIsOpened = true;
                 tabIcon.SetActive(false);
 
             }
-            else if (Input.GetKeyDown(Control.pullJournal) && journalIsOpened)
+            else if (Input.GetKeyDown(Control.pullJournal) && journalIsOpened && !charlieInBed)
             {
                 journalIsOpened = false;
             }

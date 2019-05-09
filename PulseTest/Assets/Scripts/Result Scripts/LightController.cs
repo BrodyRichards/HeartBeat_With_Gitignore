@@ -11,9 +11,9 @@ public class LightController : MonoBehaviour
 
     public Color darkNightColor = new Color(0f, 0.001166861f, 0.2075472f);
 
-    public Color blue = new Color(0.0f, 0.1f, 0.9f);
-    public Color yellow = new Color(1f, 0.2844f, 1f);
-    public Color white = new Color(1f, 1f, 1f);
+    public Color happyColor;
+    public Color neutralColor;
+    public Color sadColor;
 
     public GameObject lightOn;
     public GameObject lightOff;
@@ -22,11 +22,13 @@ public class LightController : MonoBehaviour
 
     public static bool turnOffRoomLights;
     public static bool morningIsHere;
+    public static bool timeToGetOutOfBed;
 
     private void Awake()
     {
         turnOffRoomLights = false;
         morningIsHere = false;
+        timeToGetOutOfBed = false;
     }
     void Start()
     {
@@ -46,10 +48,12 @@ public class LightController : MonoBehaviour
             foreach(Light l in roomLights)
             {
                 l.enabled = false;
+                lightOn.SetActive(false);
+                lightOff.SetActive(true);
             }
         }
 
-        if (morningIsHere)
+        if (morningIsHere && !timeToGetOutOfBed)
         {
 
             LetTheSunShine();
@@ -64,39 +68,47 @@ public class LightController : MonoBehaviour
     public void LetTheSunShine()
     {
 
-        if (brightMorningPointLight.intensity < 1f)
+        if (brightMorningPointLight.intensity < 0.5f)
         {
             brightMorningPointLight.intensity += 0.002f;
         }
+
 
         //if (darkNightDirLight.intensity > 0.05f)
         //{
         //    darkNightDirLight.intensity -= 0.01f;
         //}
 
-        if (brightMorningDirLight.intensity < 0.5f)
+        if (brightMorningDirLight.intensity < 0.6f)
         {
             brightMorningDirLight.intensity += 0.001f;
         }
+        else
+        {
+            timeToGetOutOfBed = true;
+        }
+
     }
 
     public void DecideRoomLightColor()
     {
         int mood = MentalState.OverallResult();
         Color roomLightColor;
+        lightOn.SetActive(true);
+        lightOff.SetActive(false);
 
         if (mood < 5 && mood > -5)
         {
-            roomLightColor = white;
+            roomLightColor = neutralColor;
 
         }
         else if (mood > 5)
         {
-            roomLightColor = yellow;
+            roomLightColor = happyColor;
         }
         else
         {
-            roomLightColor = blue;
+            roomLightColor = sadColor;
         }
 
 

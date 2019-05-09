@@ -285,7 +285,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 145158090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.61, y: 1.14, z: -20}
+  m_LocalPosition: {x: 3.83, y: 1.61, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 556316813}
@@ -1340,11 +1340,11 @@ MonoBehaviour:
   darkNightDirLight: {fileID: 138959067}
   brightMorningDirLight: {fileID: 1967249548}
   darkNightColor: {r: 0, g: 0.001166861, b: 0.2075472, a: 1}
-  blue: {r: 0.77472985, g: 0.69411767, b: 1, a: 1}
-  yellow: {r: 1, g: 0.9235795, b: 0, a: 1}
-  white: {r: 0.9844417, g: 0, b: 0.990566, a: 1}
-  lightOn: {fileID: 0}
-  lightOff: {fileID: 0}
+  happyColor: {r: 1, g: 0.92001164, b: 0, a: 0}
+  neutralColor: {r: 1, g: 0.5647059, b: 0, a: 0}
+  sadColor: {r: 0, g: 0, b: 0, a: 0}
+  lightOn: {fileID: 1673563560}
+  lightOff: {fileID: 1670041414}
 --- !u!1 &599010070
 GameObject:
   m_ObjectHideFlags: 0
@@ -1514,6 +1514,7 @@ GameObject:
   - component: {fileID: 624765119}
   - component: {fileID: 624765120}
   - component: {fileID: 624765121}
+  - component: {fileID: 624765122}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1656,6 +1657,27 @@ MonoBehaviour:
   - {fileID: 1346860618}
   speechBubble1: {fileID: 1787410747}
   speechBubble2: {fileID: 1092448407}
+--- !u!114 &624765122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624765118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be74cd4a8739f4398917101f6bf0f119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bed: {fileID: 319385215}
+  mc: {fileID: 7476491801832509780}
+  emptyBed: {fileID: 1675450668}
+  busIcon: {fileID: 0}
+  wakeUpBed: {fileID: 9100000, guid: 8553ef35b8cea8444a1e04d84bded699, type: 2}
+  fadeObject: {fileID: 236992023}
+  thoughtBubble: {fileID: 491545696}
+  mcWakeUpPosition: {x: 4.48, y: -0.66}
+  bus: {fileID: 0}
 --- !u!1 &658420942
 GameObject:
   m_ObjectHideFlags: 0
@@ -4065,7 +4087,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675450668}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.31, y: 0.7, z: -0.18538165}
+  m_LocalPosition: {x: 4.46, y: 0.58, z: -0.18538165}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 738901761}
@@ -5192,7 +5214,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7476491801832509780}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.15, y: -2.12, z: 0}
+  m_LocalPosition: {x: -6.69, y: -1.68, z: 0}
   m_LocalScale: {x: 0.44017464, y: 0.44017464, z: 1.4672488}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5501,7 +5523,7 @@ GameObject:
   - component: {fileID: 8318072189635936120}
   - component: {fileID: 8318072189635936123}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: SleepIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
