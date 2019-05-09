@@ -190,12 +190,12 @@ public class McFreeMove : MonoBehaviour
     {
         if (lastX < transform.position.x && !isFlipped)
         {
-            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             isFlipped = true;
         }
         else if (lastX > transform.position.x && isFlipped)
         {
-            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             isFlipped = false;
         }
 

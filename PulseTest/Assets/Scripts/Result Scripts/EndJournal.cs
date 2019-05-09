@@ -18,11 +18,14 @@ public class EndJournal : MonoBehaviour
     public GameObject rabAsset;
     public GameObject ballAsset;
     public GameObject musicAsset;
+
+    private bool charlieInBed;
     // Start is called before the first frame update
     private void Awake()
     {
         journalIsOpened = false;
         deemLight = false;
+        charlieInBed = false;
     }
     void Start()
     {
@@ -36,31 +39,11 @@ public class EndJournal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (LightController.isNightGlowFinish && !journalIcon.activeSelf)
-        {
-            journalIcon.SetActive(true);
-            anim.SetBool("newAccom", true);
-            tabIcon.SetActive(true);
-        }
-
-        if (journalIcon.activeSelf)
-        {
-            if (Input.GetKeyDown(Control.pullJournal) && !journalIsOpened)
-            {
-                
-                journalIsOpened = true;
-                tabIcon.SetActive(false);
-
-            }
-            else if (Input.GetKeyDown(Control.pullJournal) && journalIsOpened)
-            {
-                journalIsOpened = false;
-            }
-        }
+        ReadJournal();
 
         if (FlipJournal.finishReadingJournal && !journalIsOpened)
         {
-            sleepIcon.SetActive(true);
+            if (!charlieInBed) sleepIcon.SetActive(true);
             anim.SetBool("newAccom", false);
             tabIcon.SetActive(false);
             if (Input.GetKeyDown(Control.evacuate))
@@ -74,8 +57,8 @@ public class EndJournal : MonoBehaviour
                     Invoke("CharlieGoAway", 1f);
                     Invoke("fadeIn", 1.25f);
                     Invoke("GoToBedPlsKid", 2f);
-                    Invoke("Dreaming", 9f);
-                    Invoke("DeemTheLight", 12f);
+                    Invoke("Dreaming", 8f);
+                    Invoke("TurnToMorn", 15f);
 
                 }
                 
@@ -83,15 +66,25 @@ public class EndJournal : MonoBehaviour
         }
     }
 
+    void TurnToMorn()
+    {
+        LightController.morningIsHere = true;
+    }
+
     void CharlieGoAway()
     {
         GameObject.Find("MC").SetActive(false);
+        LightController.turnOffRoomLights = true;
     }
 
     void GoToBedPlsKid()
     {
         bedAnim.SetBool("goToBed", true);
-        
+        charlieInBed = true;
+        sleepIcon.SetActive(false);
+
+
+
     }
 
     void DeemTheLight()
@@ -133,6 +126,30 @@ public class EndJournal : MonoBehaviour
         Debug.Log("fadeIn called");
         var meh = fadeObject.GetComponent<ResultFade>();
         meh.FadeIn();
+    }
+
+    private void ReadJournal()
+    {
+        if (!journalIcon.activeSelf)
+        {
+            journalIcon.SetActive(true);
+            anim.SetBool("newAccom", true);
+            tabIcon.SetActive(true);
+        }
+        else
+        {
+            if (Input.GetKeyDown(Control.pullJournal) && !journalIsOpened)
+            {
+
+                journalIsOpened = true;
+                tabIcon.SetActive(false);
+
+            }
+            else if (Input.GetKeyDown(Control.pullJournal) && journalIsOpened)
+            {
+                journalIsOpened = false;
+            }
+        }
     }
 
 }

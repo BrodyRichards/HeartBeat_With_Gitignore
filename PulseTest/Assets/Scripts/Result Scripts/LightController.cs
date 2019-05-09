@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class LightController : MonoBehaviour
 {
-    public Light light;
-    public GameObject go;
+    public Light[] roomLights;
+    public Light brightMorningPointLight;
+    public Light darkNightDirLight;
+    public Light brightMorningDirLight;
+
+    public Color darkNightColor = new Color(0f, 0.001166861f, 0.2075472f);
 
     public Color blue = new Color(0.0f, 0.1f, 0.9f);
     public Color yellow = new Color(1f, 0.2844f, 1f);
@@ -13,41 +17,22 @@ public class LightController : MonoBehaviour
 
     public GameObject lightOn;
     public GameObject lightOff;
-    private int mood;
-    private readonly float turnToNightTimer = 2f;
-    private bool isRadiateFinish;
-    public static bool isNightGlowFinish;
-    // Start is called before the first frame update
+
+    private float turnToDayTimer = 3f;
+
+    public static bool turnOffRoomLights;
+    public static bool morningIsHere;
+
     private void Awake()
     {
-        isRadiateFinish = false;
-        isNightGlowFinish = false;
+        turnOffRoomLights = false;
+        morningIsHere = false;
     }
     void Start()
     {
-        mood = MentalState.OverallResult();
-        
 
-        //light.transform.position = Vector2()
-        if (mood < 5 && mood > -5)
-        {
-            light.color = white;
-            light.range = 20f;
-            light.intensity = 2f;
+        DecideRoomLightColor();
 
-        }
-        else if (mood > 5)
-        {
-            light.color = yellow;
-            light.range = 30f;
-            light.intensity = 2.5f;
-        }
-        else
-        {
-            light.color = blue;
-            light.range = 20f;
-            light.intensity = 1f;
-        }
     }
 
     // Update is called once per frame
@@ -56,49 +41,68 @@ public class LightController : MonoBehaviour
         
         
         
-        if (Time.timeSinceLevelLoad > turnToNightTimer)
+        if (turnOffRoomLights)
         {
-            NightGlow();
-            
-            
+            foreach(Light l in roomLights)
+            {
+                l.enabled = false;
+            }
         }
 
-        if (isNightGlowFinish)
+        if (morningIsHere)
         {
-            
-            lightOn.SetActive(true);
-            lightOff.SetActive(false);
+
+            LetTheSunShine();
 
         }
 
-        
-        
+
+
     }
 
-    private void NightGlow()
+
+    public void LetTheSunShine()
     {
 
-        if (light.intensity > 0.01f)
+        if (brightMorningPointLight.intensity < 1f)
         {
-            light.intensity -= 0.01f;
-            light.range -= 0.01f;
+            brightMorningPointLight.intensity += 0.002f;
+        }
+
+        //if (darkNightDirLight.intensity > 0.05f)
+        //{
+        //    darkNightDirLight.intensity -= 0.01f;
+        //}
+
+        if (brightMorningDirLight.intensity < 0.5f)
+        {
+            brightMorningDirLight.intensity += 0.001f;
+        }
+    }
+
+    public void DecideRoomLightColor()
+    {
+        int mood = MentalState.OverallResult();
+        Color roomLightColor;
+
+        if (mood < 5 && mood > -5)
+        {
+            roomLightColor = white;
+
+        }
+        else if (mood > 5)
+        {
+            roomLightColor = yellow;
         }
         else
         {
-            isNightGlowFinish = true;
+            roomLightColor = blue;
         }
-    }
 
 
-    public void Deem()
-    {
-        
-        if (light.intensity > 0)
+        foreach (Light l in roomLights)
         {
-            light.intensity -= 0.01f;
-            Debug.Log(light.intensity);
-            
+            l.color = roomLightColor;
         }
-        
     }
 }
