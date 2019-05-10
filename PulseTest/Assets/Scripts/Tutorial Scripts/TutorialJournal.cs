@@ -8,7 +8,7 @@ public class TutorialJournal : MonoBehaviour
 {
     public GameObject text;
     public GameObject journal;
-    private bool journalOpen = false;
+    public static bool journalOpen = false;
 
     private TextMeshProUGUI tmpug;
     // Start is called before the first frame update
