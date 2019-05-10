@@ -23,7 +23,7 @@ public class McExit : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer > busArrival && TutorialJournal.journalOpen)
+        if (timer > busArrival)
         {
             bus.SetActive(true); 
             if (!printedAlready)

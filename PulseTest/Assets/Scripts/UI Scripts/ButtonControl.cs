@@ -8,24 +8,22 @@ public class ButtonControl : MonoBehaviour
     public Button resume;
     public Button reset;
     public Button exit;
+    public GameObject[] starIndicators;
 
     private Button[] buttons;
-
-    private KeyCode kcForButton;
     private int currentIndex;
     private Button selected;
 
     private Color unselectedColor = Color.red;
     private Color selectedColor = new Color(0.6117f, 0.8705f, 0.8821f);
 
+   
+
     // Start is called before the first frame update
     void Start()
     {
-        kcForButton = KeyCode.Space;
         buttons = new Button[] { resume, reset, exit }; //0, 1, 2
         currentIndex = 0;
-        
-       
     }
 
     // Update is called once per frame
@@ -50,11 +48,23 @@ public class ButtonControl : MonoBehaviour
             
         }
 
-        if (Input.GetKey(KeyCode.Return))
+        if (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.Space))
         {
             buttons[currentIndex].onClick.Invoke();
         }
 
+        //if (currentIndex == 0)
+        //{
+        //    starIndicator.GetComponent<RectTransform>().position = resumeIndicatorPos;
+        //}
+        //else if (currentIndex == 1)
+        //{
+        //    starIndicator.GetComponent<RectTransform>().position = restartIndicatorPos;
+        //}
+        //else if (currentIndex == 2)
+        //{
+        //    starIndicator.GetComponent<RectTransform>().position = quitIndicatorPos;
+        //}
 
     }
 
@@ -76,6 +86,18 @@ public class ButtonControl : MonoBehaviour
             if (!but.Equals(sel))
             {
                 but.OnDeselect(null);
+            }
+        }
+
+        for(var i=0; i<3; i++)
+        {
+            if (i != index)
+            {
+                starIndicators[i].SetActive(false);
+            }
+            else
+            {
+                starIndicators[i].SetActive(true);
             }
         }
     }

@@ -59,7 +59,7 @@ public class EndJournal : MonoBehaviour
                     //Invoke("fadeOut", 0.1f);
                     Invoke("fadeOut", 0.5f);
                     Invoke("CharlieGoAway", 1.2f);
-                    Invoke("fadeIn", 1.25f);
+                    Invoke("fadeIn", 1.5f);
                     Invoke("GoToBedPlsKid", 2f);
                     Invoke("Dreaming", 8f);
                     Invoke("TurnToMorn", 15f);
@@ -79,14 +79,16 @@ public class EndJournal : MonoBehaviour
     {
         GameObject.Find("MC").SetActive(false);
         LightController.turnOffRoomLights = true;
+        charlieInBed = true;
+        sleepIcon.SetActive(false);
+        journalIcon.SetActive(false);
+
     }
 
     void GoToBedPlsKid()
     {
         bedAnim.SetBool("goToBed", true);
-        charlieInBed = true;
-        sleepIcon.SetActive(false);
-        journalIcon.SetActive(false);
+
 
 
 
@@ -125,6 +127,7 @@ public class EndJournal : MonoBehaviour
     private void fadeIn()
     {
         Debug.Log("fadeIn called");
+
         var meh = fadeObject.GetComponent<ResultFade>();
         meh.FadeIn();
     }

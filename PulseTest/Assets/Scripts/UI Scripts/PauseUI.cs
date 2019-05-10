@@ -8,13 +8,20 @@ public class PauseUI : MonoBehaviour
     // thanks to Brackey's tutorial
     // https://www.youtube.com/watch?v=JivuXdrIHK0
 
-    public static bool IsPaused = false;
+    public static bool IsPaused;
     public GameObject pauseUI;
     private int thisSceneIndex;
 
+    private void Awake()
+    {
+        IsPaused = false;
+
+    }
+
     private void Start()
     {
-        
+        thisSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        Time.timeScale = 1f;
         pauseUI.SetActive(false);
     }
     // Update is called once per frame
@@ -22,9 +29,6 @@ public class PauseUI : MonoBehaviour
     {
         if (Input.GetKeyDown(Control.pullPauseMenu))
         {
-          
-            
-            
             if (IsPaused)
             {
                 Resume();
@@ -54,53 +58,14 @@ public class PauseUI : MonoBehaviour
 
     public void Restart()
     {
-        thisSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log("restart the scene");
-        StartCoroutine(LoadAsyncScene(thisSceneIndex));
-        IsPaused = false;
-        Time.timeScale = 1f;
-        if (thisSceneIndex == 1) // the tutorial scene 
-        {
-            
-        }
-        else if (thisSceneIndex == 2)
-        {
-            
-            characterSwitcher.charChoice = -1;
-            MentalState.journalInProgress = true;
-            MusicKidBT.isMusic = false;
-        }
-        else if (thisSceneIndex == 3)
-        {
-            
-        }
-        
+
+        SceneManager.LoadScene(thisSceneIndex);
+
     }
 
-    public void Quit()
-    {
-        Application.Quit();
-        //if (thisSceneIndex != 0)
-        //{
-        //    StartCoroutine(LoadAsyncScene(thisSceneIndex - 1));
-        //}
-        Time.timeScale = 1f;
-        IsPaused = false;
-    }
     public void BackToMenu()
     {
-        StartCoroutine(LoadAsyncScene(0));
-        IsPaused = false;
-        Time.timeScale = 1f;
-        characterSwitcher.charChoice = -1;
-        MusicKidBT.isMusic = false;
+        SceneManager.LoadScene(0);
     }
-    IEnumerator LoadAsyncScene(int nextSceneIndex)
-    {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextSceneIndex, LoadSceneMode.Single);
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-    }
+
 }
