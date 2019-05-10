@@ -20,7 +20,7 @@ public class characterSwitcher : MonoBehaviour
     {
         //Initially disable all but the chosen one
         charChoice = -1;
-        //disableOthers();
+        disableOthers();
         //EnableAll();
         GameObject.Find("3").GetComponent<Movement>().enabled = false;
         isMusicGuyInCharge = false;
