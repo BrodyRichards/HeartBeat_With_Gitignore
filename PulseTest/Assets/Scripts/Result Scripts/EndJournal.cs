@@ -100,8 +100,16 @@ public class EndJournal : MonoBehaviour
     {
         dream.gameObject.SetActive(true);
         int avatar = 1;
-        if (MentalState.moodLog["Played catch"] > avatar) { avatar = 2; }
-        else if (MentalState.moodLog["Happy Song"] > 3) { avatar = 3; }
+        int temp = MentalState.moodLog["Held Rabbit"] - MentalState.moodLog["Bit by rabbit"];
+        if ((MentalState.moodLog["Played catch"] - MentalState.moodLog["Hit by ball"]) > temp)
+        {
+            avatar = 2;
+            temp = MentalState.moodLog["Played catch"] - MentalState.moodLog["Hit by ball"];
+        }
+        else if ((MentalState.moodLog["Happy Song"] - MentalState.moodLog["Sad Song"]) > temp)
+        {
+            avatar = 3;
+        }
         if (avatar == 1)
         {
             rabAsset.gameObject.SetActive(true);
