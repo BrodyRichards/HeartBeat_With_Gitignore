@@ -46,13 +46,13 @@ public class TutorialCharSwitch : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                Debug.Log("On the alarm clock");
+                Debug.Log("On the curtain");
                 TutCharChoice = 1;
                 PerformSwitch();
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                Debug.Log("On the curtain");
+                Debug.Log("On the alarm");
                 TutCharChoice = 2;
                 PerformSwitch();
             }
@@ -119,12 +119,12 @@ public class TutorialCharSwitch : MonoBehaviour
         switch (TutCharChoice)
         {
             case 1:
-                B.GetComponent<AlarmClock>().enabled = true;
-                EnablePrompts(E, Q);
-                break;
-            case 2:
                 B.GetComponent<Curtains>().enabled = true;
                 EnablePrompts(Q, E);
+                break;
+            case 2:
+                B.GetComponent<AlarmClock>().enabled = true;
+                EnablePrompts(E, Q);
                 break;
             case 3:
                 B.GetComponent<ToyCar>().enabled = true;
@@ -140,28 +140,23 @@ public class TutorialCharSwitch : MonoBehaviour
         switch (TutCharChoice)
         {
             case -1:
-                findGO(1).GetComponent<AlarmClock>().enabled = false;
-                findGO(2).GetComponent<Curtains>().enabled = false;
+                findGO(2).GetComponent<AlarmClock>().enabled = false;
+                findGO(1).GetComponent<Curtains>().enabled = false;
                 break;
             case 1:
-                findGO(2).GetComponent<Curtains>().enabled = false;
+                findGO(2).GetComponent<AlarmClock>().enabled = false;
                 //findGO(3).GetComponent<ToyCar>().enabled = false;
-                //findGO(2).GetComponent<Animator>().SetBool("isThrowing", false);
-                //findGO(2).GetComponent<Animator>().SetBool("isWalking", false);
-                //findGO(3).GetComponent<Animator>().SetBool("isWalking", false);
+
                 break;
             case 2:
-                findGO(1).GetComponent<AlarmClock>().enabled = false;
+                findGO(1).GetComponent<Curtains>().enabled = false;
                 //findGO(3).GetComponent<ToyCar>().enabled = false;
-                //findGO(1).GetComponent<Animator>().SetBool("isWalking", false);
-                //findGO(3).GetComponent<Animator>().SetBool("isWalking", false);
+
                 break;
             case 3:
-                findGO(1).GetComponent<AlarmClock>().enabled = false;
-                findGO(2).GetComponent<Curtains>().enabled = false;
-                //findGO(2).GetComponent<Animator>().SetBool("isThrowing", false);
-                //findGO(1).GetComponent<Animator>().SetBool("isWalking", false);
-                //findGO(2).GetComponent<Animator>().SetBool("isWalking", false);
+                findGO(2).GetComponent<AlarmClock>().enabled = false;
+                findGO(1).GetComponent<Curtains>().enabled = false;
+
                 break;
             default:
                 break;

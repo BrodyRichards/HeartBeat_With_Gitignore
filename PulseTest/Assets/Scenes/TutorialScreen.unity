@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 227058346}
   - component: {fileID: 227058349}
   m_Layer: 0
-  m_Name: 1
+  m_Name: 2
   m_TagString: Avatars
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -706,7 +706,7 @@ Transform:
   - {fileID: 75580934}
   - {fileID: 1164339088}
   m_Father: {fileID: 1000503214}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &227058349
 AudioSource:
@@ -832,7 +832,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 6
+  m_Intensity: 8
   m_Range: 10
   m_SpotAngle: 62
   m_CookieSize: 10
@@ -2878,7 +2878,7 @@ GameObject:
   - component: {fileID: 886577117}
   - component: {fileID: 886577118}
   m_Layer: 0
-  m_Name: 2
+  m_Name: 1
   m_TagString: Avatars
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2898,7 +2898,7 @@ Transform:
   - {fileID: 2131656257}
   - {fileID: 1034294536}
   m_Father: {fileID: 1000503214}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &886577118
 MonoBehaviour:
@@ -3468,8 +3468,8 @@ Transform:
   m_LocalPosition: {x: 1.2264833, y: 0.27330774, z: -13.221269}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 227058348}
   - {fileID: 886577117}
+  - {fileID: 227058348}
   - {fileID: 1680754299}
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -4041,7 +4041,7 @@ GameObject:
   - component: {fileID: 1095577125}
   - component: {fileID: 1095577126}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: OnePrompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4098,7 +4098,7 @@ SpriteRenderer:
   m_SortingLayerID: -2030066595
   m_SortingLayer: 5
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 85ca122f552dbef40947e3c119bf5224, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2c580f6043ae334469e34b9d039de326, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4685,7 +4685,7 @@ GameObject:
   - component: {fileID: 1164339088}
   - component: {fileID: 1164339089}
   m_Layer: 0
-  m_Name: oneIcon
+  m_Name: TwoIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5881,7 +5881,7 @@ GameObject:
   - component: {fileID: 1599122501}
   - component: {fileID: 1599122502}
   m_Layer: 0
-  m_Name: New Sprite (1)
+  m_Name: OnePrompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5938,7 +5938,7 @@ SpriteRenderer:
   m_SortingLayerID: -2030066595
   m_SortingLayer: 5
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 2c580f6043ae334469e34b9d039de326, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 85ca122f552dbef40947e3c119bf5224, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6932,8 +6932,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac364cc7f21446c882fab2bcdc6bcca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  one: {fileID: 1164339087}
-  two: {fileID: 2131656256}
+  one: {fileID: 2131656256}
+  two: {fileID: 1164339087}
   Q: {fileID: 1034294535}
   E: {fileID: 75580933}
 --- !u!82 &1970880725
@@ -7091,7 +7091,7 @@ GameObject:
   - component: {fileID: 2131656257}
   - component: {fileID: 2131656258}
   m_Layer: 0
-  m_Name: twoIcon
+  m_Name: OneIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

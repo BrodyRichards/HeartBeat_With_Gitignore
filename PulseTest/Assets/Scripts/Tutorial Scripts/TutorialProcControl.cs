@@ -39,14 +39,14 @@ public class TutorialProcControl : MonoBehaviour
             Invoke("showWaypoints", mcAppearWaitTime);
         }
 
-        if (mcWokeUp && TutorialCharSwitch.TutCharChoice==2)
+        if (mcWokeUp && TutorialCharSwitch.TutCharChoice==1)
         {
             //pointLight.enabled = false;
             if (directionalLight.intensity <= 1.5f)
             {
                 directionalLight.intensity += 0.05f;
             }
-
+            pointLight.intensity = 5f;
         }
     }
 
