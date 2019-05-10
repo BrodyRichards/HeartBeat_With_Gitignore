@@ -30,6 +30,7 @@ public class NPCs : MonoBehaviour
     protected bool holdBunny = false;
     protected bool nameChange = false;
     protected bool rabNameChange = false;
+    public bool isAllergic = false;
     //public bool isWalking = false;
     public static bool schoolBell = false;
     public Vector3 target;
@@ -157,12 +158,28 @@ public class NPCs : MonoBehaviour
                 if (transform.GetChild(i).gameObject.tag == "Avatars" && holdBunny == false)
                 {
                     holdBunny = true;
-                    Emo = master.GetComponent<NpcInstantiator>().surpriseFace;
+
+                    if (isAllergic)
+                    {
+                        Emo = master.GetComponent<NpcInstantiator>().hurtFace;
+                        Debug.Log("Achoo!");
+                    }
+                    else
+                    {
+                        Emo = master.GetComponent<NpcInstantiator>().surpriseFace;
+                    }
                     addEmo();
                     if (Time.time >= rabbitTime)
                     {
                         rabbitTime = Time.time + rabbitCoolDown;
-                        addQueue(5);
+                        if (isAllergic)
+                        {
+                            addQueue(6);
+                        }
+                        else
+                        {
+                            addQueue(5);
+                        }
                     }
                 }
             }
