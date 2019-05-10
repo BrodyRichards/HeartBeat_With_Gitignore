@@ -34,25 +34,10 @@ public class TransitStates : MonoBehaviour
     {
         loadingText.enabled = true;
         spaceText.enabled = false;
-        
-        StartCoroutine(LoadAsyncScene(1));
+
+        SceneManager.LoadScene(1);
     }
 
 
-    IEnumerator LoadAsyncScene(int nextSceneIndex)
-    {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextSceneIndex, LoadSceneMode.Single);
-        asyncLoad.allowSceneActivation = false;
-        while (!asyncLoad.isDone)
-        {
-            float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f);
-            //slider.value = progress;
-            if (progress > 0.9f)
-            {
-                asyncLoad.allowSceneActivation = true;
-            }
 
-            yield return null;
-        }
-    }
 }
