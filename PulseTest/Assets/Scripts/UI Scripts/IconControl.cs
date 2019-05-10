@@ -85,7 +85,7 @@ public class IconControl : MonoBehaviour
             }
         }
 
-        if (journalTweening)
+        if (journalTweening && characterSwitcher.charChoice != 1000)
         {
             tabPrompt.SetActive(true);
             animator.SetBool("newAccom", true);
