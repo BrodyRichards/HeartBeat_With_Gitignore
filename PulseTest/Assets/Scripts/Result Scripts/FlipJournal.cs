@@ -18,8 +18,8 @@ public class FlipJournal : MonoBehaviour
 
     public static int lastAvatar = 0;               //var used to determine which avatar to rule out next scene, 1 rabbit, 2 ballkid, 3 music
 
-    float time;// = 0f;
-    float timer;// = 0f;
+    private float time;// = 0f;
+    private float timer;// = 0f;
     // Start is called before the first frame update
     private void Awake()
     {

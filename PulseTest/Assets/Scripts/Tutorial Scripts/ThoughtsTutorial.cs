@@ -19,8 +19,8 @@ public class ThoughtsTutorial : MonoBehaviour
     bool thoughtOn = false;
     //bool nextThought = false;
 
-    float time;
-    float timer;
+    private float time;
+    private float timer;
 
     int action = 99;
 
@@ -100,22 +100,22 @@ public class ThoughtsTutorial : MonoBehaviour
         }
         if (TutorialCharSwitch.TutCharChoice == 1)
         {
-            if (Input.GetKey(KeyCode.E))
-            {
-                action = 1;
-                alarm = true;
-                Invoke("changeThought", 9f);
-                Invoke("promptJournal", 9f);
-            }
-        }
-        else if (TutorialCharSwitch.TutCharChoice == 2)
-        {
             if (Input.GetKey(KeyCode.Q))
             {
                 action = 0;
                 curtain = true;
                 Invoke("changeThought", 5f);
                 Invoke("promptJournal", 5f);
+            }
+        }
+        else if (TutorialCharSwitch.TutCharChoice == 2)
+        {
+            if (Input.GetKey(KeyCode.E))
+            {
+                action = 1;
+                alarm = true;
+                Invoke("changeThought", 9f);
+                Invoke("promptJournal", 9f);
             }
         }   
     }
