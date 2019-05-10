@@ -8,6 +8,7 @@ public class FlipJournal : MonoBehaviour
     public GameObject[] journalDrawings; // 0 rabbit+ 1 rabbit- 2 ballkid+ 3 ballkid- 4 music+ 5 music-
     public GameObject speechBubble1;
     public GameObject speechBubble2;
+    public GameObject assObj;
     public static bool finishReadingJournal;
     private int currentIndex;
     private bool[] haveYouReadMeYet;
@@ -52,6 +53,7 @@ public class FlipJournal : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.A))
             {           
                 currentIndex -= 1;
+                assObj.GetComponent<AudioSource>().Play();
                 if (currentIndex == -1)
                 {
                     speechBubble1.SetActive(false);
@@ -63,6 +65,7 @@ public class FlipJournal : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.D))
             {
                 currentIndex += 1;
+                assObj.GetComponent<AudioSource>().Play();
                 if (currentIndex == 3)
                 {
                     speechBubble1.SetActive(false);

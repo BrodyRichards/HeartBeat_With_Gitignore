@@ -58,10 +58,10 @@ public class RabbitChasers : NPCs
             }
             else
             {
-                if (anim.GetBool("isWalking") == false)
-                {
+                //if (anim.GetBool("isWalking") == false)
+                //{
                     anim.SetBool("wantToFeed", true);
-                }
+                //}
                 //anim.SetBool("wantToFeed", true);
                 /*
                  * YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO

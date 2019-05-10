@@ -48,6 +48,8 @@ public class BallProjectile : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, distance, hittableObjects);
             if (hit.collider != null && hit.collider.gameObject.name != "2")
             {
+                this.GetComponent<AudioSource>().Play();
+                Debug.Log("please play");
                 if (hit.collider.CompareTag("MC")) //hit.collider.CompareTag("Person") || 
                 {
                     if (meanBallThrown)
