@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class FlipJournal : MonoBehaviour
 {
+    public GameObject mc;
+
     public GameObject[] journalPages;
     public GameObject[] journalDrawings; // 0 rabbit+ 1 rabbit- 2 ballkid+ 3 ballkid- 4 music+ 5 music-
     public GameObject speechBubble1;
     public GameObject speechBubble2;
+    public GameObject moversThought;
     public GameObject assObj;
     public static bool finishReadingJournal;
     private int currentIndex;
     private bool[] haveYouReadMeYet;
 
     public static int lastAvatar = 0;               //var used to determine which avatar to rule out next scene, 1 rabbit, 2 ballkid, 3 music
+
+    float time;// = 0f;
+    float timer;// = 0f;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -22,8 +28,13 @@ public class FlipJournal : MonoBehaviour
     }
     void Start()
     {
+
+        timer = 7f;
+
         speechBubble1.SetActive(false);
         speechBubble2.SetActive(false);
+        moversThought.transform.position = mc.transform.position + new Vector3(3, 2, 0);
+        //moversThought.SetActive();
         foreach(var j in journalPages)
         {
             j.SetActive(false);
@@ -43,6 +54,12 @@ public class FlipJournal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        time = Time.fixedUnscaledTime;
+        if (time >= timer)
+        {
+            Debug.Log(time);
+            moversThought.SetActive(false);
+        }
         if (EndJournal.journalIsOpened)
         {
             speechBubble1.SetActive(true);
