@@ -144,17 +144,18 @@ public class Movement : MonoBehaviour
     {
         anim.SetBool("isWalking", true);
 
-        transform.localScale = scale;
-
         if(this.name == "MC")
         {
             maxSpeed = MCBTCreator.walkSpeed;
+            scale = new Vector3(1.0f, 1.0f, 1.0f);
         }
 
         if (currSpeed < maxSpeed)
         {
             currSpeed += acceleration;
         }
+
+        transform.localScale = scale;
 
         transform.position = Vector3.MoveTowards(transform.position, target, currSpeed * Time.deltaTime);
 

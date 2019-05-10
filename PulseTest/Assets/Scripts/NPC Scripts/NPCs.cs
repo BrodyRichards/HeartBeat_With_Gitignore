@@ -162,6 +162,7 @@ public class NPCs : MonoBehaviour
                     if (isAllergic)
                     {
                         Emo = master.GetComponent<NpcInstantiator>().hurtFace;
+                        Debug.Log("Achoo!");
                     }
                     else
                     {
@@ -171,7 +172,14 @@ public class NPCs : MonoBehaviour
                     if (Time.time >= rabbitTime)
                     {
                         rabbitTime = Time.time + rabbitCoolDown;
-                        addQueue(5);
+                        if (isAllergic)
+                        {
+                            addQueue(6);
+                        }
+                        else
+                        {
+                            addQueue(5);
+                        }
                     }
                 }
             }
