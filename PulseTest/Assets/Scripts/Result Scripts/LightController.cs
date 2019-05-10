@@ -4,50 +4,37 @@ using UnityEngine;
 
 public class LightController : MonoBehaviour
 {
-    public Light light;
-    public GameObject go;
+    public Light[] roomLights;
+    public Light brightMorningPointLight;
+    public Light darkNightDirLight;
+    public Light brightMorningDirLight;
 
-    public Color blue = new Color(0.0f, 0.1f, 0.9f);
-    public Color yellow = new Color(1f, 0.2844f, 1f);
-    public Color white = new Color(1f, 1f, 1f);
+    public Color darkNightColor = new Color(0f, 0.001166861f, 0.2075472f);
+
+    public Color happyColor;
+    public Color neutralColor;
+    public Color sadColor;
 
     public GameObject lightOn;
     public GameObject lightOff;
-    private int mood;
-    private readonly float turnToNightTimer = 2f;
-    private bool isRadiateFinish;
-    public static bool isNightGlowFinish;
-    // Start is called before the first frame update
+
+    private float turnToDayTimer = 3f;
+
+    public static bool turnOffRoomLights;
+    public static bool morningIsHere;
+    public static bool timeToGetOutOfBed;
+
     private void Awake()
     {
-        isRadiateFinish = false;
-        isNightGlowFinish = false;
+        turnOffRoomLights = false;
+        morningIsHere = false;
+        timeToGetOutOfBed = false;
     }
     void Start()
     {
-        mood = MentalState.OverallResult();
-        
 
-        //light.transform.position = Vector2()
-        if (mood < 5 && mood > -5)
-        {
-            light.color = white;
-            light.range = 20f;
-            light.intensity = 2f;
+        DecideRoomLightColor();
 
-        }
-        else if (mood > 5)
-        {
-            light.color = yellow;
-            light.range = 30f;
-            light.intensity = 2.5f;
-        }
-        else
-        {
-            light.color = blue;
-            light.range = 20f;
-            light.intensity = 1f;
-        }
     }
 
     // Update is called once per frame
@@ -56,49 +43,78 @@ public class LightController : MonoBehaviour
         
         
         
-        if (Time.timeSinceLevelLoad > turnToNightTimer)
+        if (turnOffRoomLights)
         {
-            NightGlow();
-            
-            
+            foreach(Light l in roomLights)
+            {
+                l.enabled = false;
+                lightOn.SetActive(false);
+                lightOff.SetActive(true);
+            }
         }
 
-        if (isNightGlowFinish)
+        if (morningIsHere && !timeToGetOutOfBed)
         {
-            
-            lightOn.SetActive(true);
-            lightOff.SetActive(false);
+
+            LetTheSunShine();
 
         }
 
-        
-        
+
+
     }
 
-    private void NightGlow()
+
+    public void LetTheSunShine()
     {
 
-        if (light.intensity > 0.01f)
+        if (brightMorningPointLight.intensity < 0.5f)
         {
-            light.intensity -= 0.01f;
-            light.range -= 0.01f;
+            brightMorningPointLight.intensity += 0.002f;
+        }
+
+
+        //if (darkNightDirLight.intensity > 0.05f)
+        //{
+        //    darkNightDirLight.intensity -= 0.01f;
+        //}
+
+        if (brightMorningDirLight.intensity < 0.6f)
+        {
+            brightMorningDirLight.intensity += 0.001f;
         }
         else
         {
-            isNightGlowFinish = true;
+            timeToGetOutOfBed = true;
         }
+
     }
 
-
-    public void Deem()
+    public void DecideRoomLightColor()
     {
-        
-        if (light.intensity > 0)
+        int mood = MentalState.OverallResult();
+        Color roomLightColor;
+        lightOn.SetActive(true);
+        lightOff.SetActive(false);
+
+        if (mood < 5 && mood > -5)
         {
-            light.intensity -= 0.01f;
-            Debug.Log(light.intensity);
-            
+            roomLightColor = neutralColor;
+
         }
-        
+        else if (mood > 5)
+        {
+            roomLightColor = happyColor;
+        }
+        else
+        {
+            roomLightColor = sadColor;
+        }
+
+
+        foreach (Light l in roomLights)
+        {
+            l.color = roomLightColor;
+        }
     }
 }

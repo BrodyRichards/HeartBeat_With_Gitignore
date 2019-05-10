@@ -9,8 +9,8 @@ public class TutorialProcControl : MonoBehaviour
     public GameObject mc;
     private Animator animForBed;
 
-    public GameObject pointLight;
-    public GameObject directionalLight;
+    public Light pointLight;
+    public Light directionalLight;
     public GameObject fadeObject;
 
     public GameObject waypointObjs;
@@ -30,17 +30,23 @@ public class TutorialProcControl : MonoBehaviour
     {
         if (TutorialCharSwitch.WakeActionChosen && !mcWokeUp)
         {
-            if (TutorialCharSwitch.TutCharChoice == 2)
-            {
-                directionalLight.SetActive(true);
-                pointLight.GetComponent<Light>().intensity = 1;
-            }
+
             animForBed.SetTrigger("wakeuplo");
             mcWokeUp = true;
             Invoke("MagicMcAppear", mcAppearWaitTime);
             Invoke("fadeOut", mcAppearWaitTime - 1.0f);             //original is 0.5
             Invoke("fadeIn", mcAppearWaitTime);
             Invoke("showWaypoints", mcAppearWaitTime);
+        }
+
+        if (mcWokeUp && TutorialCharSwitch.TutCharChoice==1)
+        {
+            //pointLight.enabled = false;
+            if (directionalLight.intensity <= 1.5f)
+            {
+                directionalLight.intensity += 0.05f;
+            }
+            pointLight.intensity = 5f;
         }
     }
 
