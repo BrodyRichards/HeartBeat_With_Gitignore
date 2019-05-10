@@ -48,7 +48,7 @@ public class ButtonControl : MonoBehaviour
             
         }
 
-        if (Input.GetKey(KeyCode.Return))
+        if (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.Space))
         {
             buttons[currentIndex].onClick.Invoke();
         }

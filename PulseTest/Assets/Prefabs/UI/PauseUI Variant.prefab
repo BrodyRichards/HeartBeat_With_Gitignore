@@ -15,7 +15,7 @@ MonoBehaviour:
   resume: {fileID: 6304648010964249171}
   reset: {fileID: 6304648009243675800}
   exit: {fileID: 6304648010086114328}
-  starIndicator: {fileID: 5155714852572364660}
+  starIndicators: []
 --- !u!1001 &6304648010160039936
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -124,8 +124,20 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 933340312, guid: 3eb72fb30cbc15349abaad80b114a556, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 74976280, guid: 3eb72fb30cbc15349abaad80b114a556, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1343472211, guid: 3eb72fb30cbc15349abaad80b114a556, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343472211, guid: 3eb72fb30cbc15349abaad80b114a556, type: 3}
+      propertyPath: m_Interactable
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 933340311, guid: 3eb72fb30cbc15349abaad80b114a556, type: 3}
@@ -235,9 +247,3 @@ MonoBehaviour:
   m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &5155714852572364660 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1221140298377303924, guid: 3eb72fb30cbc15349abaad80b114a556,
-    type: 3}
-  m_PrefabInstance: {fileID: 6304648010160039936}
-  m_PrefabAsset: {fileID: 0}
