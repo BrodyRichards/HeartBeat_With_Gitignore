@@ -7,37 +7,91 @@ using UnityEngine.UI;
 
 public class TransitStates : MonoBehaviour
 {
-    public Text loadingText;
-    public Text spaceText;
+    public Button[] buttons;
+    public GameObject[] starIndicators;
+    private int currentIndex;
+
+
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("In start Menu");
-        loadingText.enabled = false;
+        currentIndex = 0;
+
         
     }
 
     void Update()
     {
+        ButtonSwitch();
         if (Input.GetKey(KeyCode.Escape))
         {
-            Application.Quit();
+            ExitGame();
         }
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            StartGame();
-        }
     }
 
     public void StartGame()
     {
-        loadingText.enabled = true;
-        spaceText.enabled = false;
-
         SceneManager.LoadScene(1);
     }
 
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+    public void ButtonSwitch()
+    {
+        buttons[currentIndex].OnSelect(null);
+        if (Input.GetKeyDown(KeyCode.UpArrow) || (Input.GetKeyDown(KeyCode.W)))
+        {
+            currentIndex += 1;
+            currentIndex %= 2;
+
+            EnableThisDisableRest(currentIndex);
+
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow) || (Input.GetKeyDown(KeyCode.S)))
+        {
+            currentIndex -= 1;
+            if (currentIndex < 0) currentIndex = 1;
 
 
+            EnableThisDisableRest(currentIndex);
+
+
+        }
+
+        if (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.Space))
+        {
+            buttons[currentIndex].onClick.Invoke();
+        }
+    }
+
+    void EnableThisDisableRest(int index)
+    {
+        var sel = buttons[index];
+
+        sel.OnSelect(null);
+        foreach (var but in buttons)
+        {
+            if (!but.Equals(sel))
+            {
+                but.OnDeselect(null);
+            }
+        }
+
+        for (var i = 0; i < 2; i++)
+        {
+            if (i != index)
+            {
+                starIndicators[i].SetActive(false);
+            }
+            else
+            {
+                starIndicators[i].SetActive(true);
+            }
+        }
+    }
 }
