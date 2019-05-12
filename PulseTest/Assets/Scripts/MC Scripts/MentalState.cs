@@ -12,7 +12,7 @@ public class MentalState : MonoBehaviour
     public static Dictionary<string, int> effectWeights;
     public static Dictionary<int, int> npcEffectWeights;
     public static Queue<EmoPlot> emoTimeline;
-
+    public static Dictionary<int, int> relationships;
 
     
     public static bool journalInProgress;
@@ -76,9 +76,16 @@ public class MentalState : MonoBehaviour
             { "Happy Song", 0 },
             { "Sad Song", 0 },
         };
-        
+
+        relationships = new Dictionary<int, int>
+        {
+            {1, 0},
+            {2, 0},
+            {3, 0}
+        };
+
         // call the mood equilibrium every 10 seconds
-        
+
     }
 
     // Update is called once per frame
@@ -233,7 +240,33 @@ public class MentalState : MonoBehaviour
 
         Debug.Log("MC mood pacified " + currentState);
     }
-    
+
+    public static int DecideFriend()
+    {
+        relationships[1] = moodLog["Held Rabbit"] - moodLog["Bit by rabbit"];
+        relationships[2] = moodLog["Play Catch"] - moodLog["Hit by ball"];
+        relationships[3] = moodLog["Happy Song"] - moodLog["Sad Song"];
+
+
+        if (relationships[1] <= 1 && relationships[2] <= 1 && relationships[3] <= 1)
+        {
+            return 0; // Charlie didn't make friend boo hoo
+        }
+
+        int friend = 1; // secretly prioritizes bunny keke 
+
+        if (relationships[2] > relationships[friend])
+        {
+            friend = 2;
+        }
+
+        if (relationships[3] > relationships[friend])
+        {
+            friend = 3;
+        }
+
+        return friend;
+    }
 
     //--------------Functions for Journals--------------------------------------
 
