@@ -53,18 +53,6 @@ public class ButtonControl : MonoBehaviour
             buttons[currentIndex].onClick.Invoke();
         }
 
-        //if (currentIndex == 0)
-        //{
-        //    starIndicator.GetComponent<RectTransform>().position = resumeIndicatorPos;
-        //}
-        //else if (currentIndex == 1)
-        //{
-        //    starIndicator.GetComponent<RectTransform>().position = restartIndicatorPos;
-        //}
-        //else if (currentIndex == 2)
-        //{
-        //    starIndicator.GetComponent<RectTransform>().position = quitIndicatorPos;
-        //}
 
     }
 
@@ -81,6 +69,7 @@ public class ButtonControl : MonoBehaviour
         var sel = buttons[index];
 
         sel.OnSelect(null);
+        Debug.Log("In Pause UI" + sel.ToString());
         foreach (var but in buttons)
         {
             if (!but.Equals(sel))

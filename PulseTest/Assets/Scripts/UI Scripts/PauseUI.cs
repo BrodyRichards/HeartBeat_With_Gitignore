@@ -20,7 +20,7 @@ public class PauseUI : MonoBehaviour
 
     private void Start()
     {
-        thisSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
         Time.timeScale = 1f;
         pauseUI.SetActive(false);
     }
@@ -59,7 +59,7 @@ public class PauseUI : MonoBehaviour
     public void Restart()
     {
 
-        SceneManager.LoadScene(thisSceneIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     }
 
