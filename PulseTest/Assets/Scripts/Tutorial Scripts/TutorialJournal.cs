@@ -23,7 +23,6 @@ public class TutorialJournal : MonoBehaviour
     {
         if (ThoughtsTutorial.alarm || ThoughtsTutorial.curtain)
         {
-            Debug.Log("In here");
             setText();
             if (Input.GetKeyDown(Control.pullJournal))
             {

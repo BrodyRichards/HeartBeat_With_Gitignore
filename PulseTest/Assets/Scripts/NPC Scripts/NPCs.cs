@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NPCs : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class NPCs : MonoBehaviour
     protected bool nameChange = false;
     protected bool rabNameChange = false;
     public bool isAllergic = false;
+    public static bool sneeze = false;
     //public bool isWalking = false;
     public static bool schoolBell = false;
     public Vector3 target;
@@ -162,6 +164,8 @@ public class NPCs : MonoBehaviour
                     if (isAllergic)
                     {
                         Emo = master.GetComponent<NpcInstantiator>().hurtFace;
+                        sneeze = true;
+                        //addSneeze();
                         Debug.Log("Achoo!");
                     }
                     else
@@ -252,6 +256,16 @@ public class NPCs : MonoBehaviour
             }
         }
     }
+
+    /*
+    protected virtual void addSneeze()
+    {
+        Vector3 offset = new Vector3(2f, 4.5f, 0);
+        Image sneeze = Instantiate(master.GetComponent<NpcInstantiator>().sneezeBubble, transform.localPosition + offset, transform.rotation);
+        sneeze.GetComponent<SpriteRenderer>().sortingLayerName = "Front Props";
+        sneeze.transform.parent = transform;
+    }
+    */
 
     protected virtual void addEmo()
     {
