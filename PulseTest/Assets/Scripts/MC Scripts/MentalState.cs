@@ -100,6 +100,8 @@ public class MentalState : MonoBehaviour
         {
             PacifyMood();
         }
+
+        Debug.Log("Decide Friend" + DecideFriend()); 
     }
 
     public static void sendMsg(string msg)
@@ -244,8 +246,10 @@ public class MentalState : MonoBehaviour
     public static int DecideFriend()
     {
         relationships[1] = moodLog["Held Rabbit"] - moodLog["Bit by rabbit"];
-        relationships[2] = moodLog["Play Catch"] - moodLog["Hit by ball"];
+        relationships[2] = moodLog["Played Catch"] - moodLog["Hit by ball"];
         relationships[3] = moodLog["Happy Song"] - moodLog["Sad Song"];
+
+
 
 
         if (relationships[1] <= 1 && relationships[2] <= 1 && relationships[3] <= 1)
@@ -264,6 +268,8 @@ public class MentalState : MonoBehaviour
         {
             friend = 3;
         }
+
+        Debug.Log("friend" + friend);
 
         return friend;
     }
@@ -303,6 +309,15 @@ public class MentalState : MonoBehaviour
         JournalTween.ball.Num = moodLog["Played catch"] + moodLog["Hit by ball"];
         JournalTween.rabbit.Num = moodLog["Held Rabbit"] + moodLog["Bit by rabbit"];
         JournalTween.music.Num = moodLog["Happy Song"] + moodLog["Sad Song"];
+    }
+
+
+
+    //------------------- Debug Print functions-----------------------------
+    public static void PrintMoodLog()
+    {
+
+        Debug.Log("");
     }
     //------------------------------------------------------------------
 
