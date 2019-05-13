@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 5757435429797941116}
+  isAllergic: 0
   target: {x: 0, y: 0, z: 0}
 --- !u!50 &129615881879475042
 Rigidbody2D:
