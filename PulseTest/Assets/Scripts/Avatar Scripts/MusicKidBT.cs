@@ -98,7 +98,11 @@ public class MusicKidBT : MonoBehaviour
     void Update()
     {
         UIControl();
-        musicKidBT.Evaluate();
+        if (!IconControl.journalActivated && !PauseUI.IsPaused)
+        {
+            musicKidBT.Evaluate();
+        }
+
     }
 
 
