@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class characterSwitcher : MonoBehaviour
 {
@@ -52,6 +53,10 @@ public class characterSwitcher : MonoBehaviour
         //}
         //Poll for input
         switchCharacter();
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            SceneManager.LoadScene(3);
+        }
     }
 
     //Function to handle character switching 

@@ -99,7 +99,9 @@ public class EndJournal : MonoBehaviour
     void Dreaming()
     {
         dream.gameObject.SetActive(true);
-        int avatar = 1;
+        //int avatar = 1;
+        int avatar = MentalState.DecideFriend();
+        Debug.Log("Friend: " + avatar);
         int temp = MentalState.moodLog["Held Rabbit"] - MentalState.moodLog["Bit by rabbit"];
         if ((MentalState.moodLog["Played catch"] - MentalState.moodLog["Hit by ball"]) > temp)
         {
@@ -110,6 +112,8 @@ public class EndJournal : MonoBehaviour
         {
             avatar = 3;
         }
+        
+
         if (avatar == 1)
         {
             rabAsset.gameObject.SetActive(true);
