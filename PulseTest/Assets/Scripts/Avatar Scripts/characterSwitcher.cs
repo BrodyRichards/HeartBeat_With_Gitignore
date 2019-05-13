@@ -53,10 +53,6 @@ public class characterSwitcher : MonoBehaviour
         //}
         //Poll for input
         switchCharacter();
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            SceneManager.LoadScene(3);
-        }
     }
 
     //Function to handle character switching 
