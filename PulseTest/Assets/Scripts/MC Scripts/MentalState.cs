@@ -246,7 +246,7 @@ public class MentalState : MonoBehaviour
     public static int DecideFriend()
     {
         relationships[1] = moodLog["Held Rabbit"] - moodLog["Bit by rabbit"];
-        relationships[2] = moodLog["Played Catch"] - moodLog["Hit by ball"];
+        relationships[2] = moodLog["Played catch"] - moodLog["Hit by ball"];
         relationships[3] = moodLog["Happy Song"] - moodLog["Sad Song"];
 
 
