@@ -208,7 +208,6 @@ public class McMovement : MonoBehaviour
 
         transform.position = Vector2.MoveTowards(transform.position, target, step);
 
-
         if (Vector2.Distance(transform.position, target) < 1.0f)
         {
             //Debug.Log("arrive at" + target);
