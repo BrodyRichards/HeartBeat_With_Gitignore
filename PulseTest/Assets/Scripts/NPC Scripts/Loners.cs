@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Loners : NPCs
 {
+
     protected override void Awake()
     {
         base.Awake();
         int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
         int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
         target = new Vector3(ranX, ranY, -1);
+        isAllergic = true;
     }
 
     protected override void Update()

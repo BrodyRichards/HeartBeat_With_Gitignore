@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NpcInstantiator : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class NpcInstantiator : MonoBehaviour
     public GameObject hurtFace;
     public GameObject groovinFace;
 
+    public Image sneezeBubble;
+
     public GameObject ballKid;  //to get the position of these guys
     public static Vector3 ballKidPos;
     public GameObject rabbit;
@@ -32,6 +35,8 @@ public class NpcInstantiator : MonoBehaviour
     public GameObject musicKid;
     public static Vector3 musicKidPos;
     public Vector3 target;
+    public GameObject allergyKid;
+    public static Vector3 allergyKidPos;
 
     public GameObject rightBound;
 
@@ -41,6 +46,7 @@ public class NpcInstantiator : MonoBehaviour
     private List<GameObject> npcPositions;
     int origLayer;
 
+    
     // Start is called before the first frame update
     void Awake()
     {
@@ -66,8 +72,13 @@ public class NpcInstantiator : MonoBehaviour
             groupies[i].GetComponent<SpriteRenderer>().sortingLayerName = "Main";
             groupies[i].GetComponent<Groupies>().target = RandomCircle(center, 3f, groupCount, i);
             groupies[i].name = groupies[i].name + i;
-
-
+        }
+        for (int i = 0; i < npcPositions.Count; i++)
+        {
+            if (npcPositions[i].name.Contains("Loner"))
+            {
+                allergyKid = npcPositions[i];
+            }
         }
         origLayer = npcPositions[0].layer;
     }
@@ -171,6 +182,7 @@ public class NpcInstantiator : MonoBehaviour
     {
         rabbitPos = rabbit.transform.position;
         ballKidPos = ballKid.transform.position;
+        allergyKidPos = allergyKid.transform.position;
         if (characterSwitcher.isMusicGuyInCharge)
         {
             musicKidPos = musicKid.transform.position;
