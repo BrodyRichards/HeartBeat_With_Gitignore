@@ -11,18 +11,23 @@ public class MentalState : MonoBehaviour
     public static Dictionary<string, int> moodLog;
     public static Dictionary<string, int> effectWeights;
     public static Dictionary<int, int> npcEffectWeights;
+    /// <summary>
+    /// the entire timeline of events to store event type, happening time, Charlie current mood 
+    /// </summary>
     public static Queue<EmoPlot> emoTimeline;
+    /// <summary>
+    /// the number of positive interaction minus negative for deciding friend and bedtime journal outcome
+    /// </summary>
     public static Dictionary<int, int> relationships;
+    /// <summary>
+    /// Keeps track of the number of interactions, regardless good or bad, that happen with each avatar
+    /// </summary>
     public static Dictionary<int, int> interactions = new Dictionary<int, int>
         {
             {1, 0},
             {2, 0},
             {3, 0}
         };
-
-    
-    public static bool journalInProgress;
-    public static float noEventCounting;
 
     public readonly static Vector2Int happyBound = new Vector2Int(6, 30);
     public readonly static Vector2Int sadBound = new Vector2Int(-30, -6);
@@ -32,6 +37,9 @@ public class MentalState : MonoBehaviour
         = new List<string>() {  "Held Rabbit", "Played catch", "Happy Song" };
     public readonly static List<string> negativeAct 
         = new List<string>() {  "Bit by rabbit", "Hit by ball", "Sad Song" };
+
+    public static bool journalInProgress; // for the journal
+    public static float noEventCounting; // for the journal 
 
     public static string message;          //for the thought system
     public static int firstTime = 99;           //for the thought system
@@ -118,7 +126,6 @@ public class MentalState : MonoBehaviour
             PacifyMood();
         }
 
-        Debug.Log("Decide Friend" + DecideFriend()); 
     }
 
     public static void sendMsg(string msg)
