@@ -180,14 +180,18 @@ public class NpcInstantiator : MonoBehaviour
 
     private void Update()
     {
-        rabbitPos = rabbit.transform.position;
-        ballKidPos = ballKid.transform.position;
-        allergyKidPos = allergyKid.transform.position;
-        if (characterSwitcher.isMusicGuyInCharge)
+        if (NPCs.schoolBell == false)
         {
-            musicKidPos = musicKid.transform.position;
+            rabbitPos = rabbit.transform.position;
+            ballKidPos = ballKid.transform.position;
+            allergyKidPos = allergyKid.transform.position;
+            if (characterSwitcher.isMusicGuyInCharge)
+            {
+                musicKidPos = musicKid.transform.position;
+            }
+            checkPositions();
         }
-        checkPositions();
+        
     }
 
 

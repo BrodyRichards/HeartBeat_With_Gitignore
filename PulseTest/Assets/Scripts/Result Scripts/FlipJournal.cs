@@ -57,7 +57,7 @@ public class FlipJournal : MonoBehaviour
         time = Time.fixedUnscaledTime;
         if (time >= timer)
         {
-            Debug.Log(time);
+            //Debug.Log(time);
             moversThought.SetActive(false);
         }
         if (EndJournal.journalIsOpened)
