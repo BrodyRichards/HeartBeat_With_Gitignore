@@ -257,15 +257,32 @@ public class NPCs : MonoBehaviour
         }
     }
 
-    /*
-    protected virtual void addSneeze()
+    protected virtual void checkMC()
     {
-        Vector3 offset = new Vector3(2f, 4.5f, 0);
-        Image sneeze = Instantiate(master.GetComponent<NpcInstantiator>().sneezeBubble, transform.localPosition + offset, transform.rotation);
-        sneeze.GetComponent<SpriteRenderer>().sortingLayerName = "Front Props";
-        sneeze.transform.parent = transform;
+        bool mcDist = checkDist(transform.position, NpcInstantiator.mcPos);
+        if (mcDist)
+        {
+            Debug.Log("Towards MC");
+            float dist = Vector3.Distance(NpcInstantiator.mcPos, transform.position);
+
+            if (dist > 10.0f)
+            {
+                target = NpcInstantiator.mcPos;
+                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            }
+        }
+        else
+        {
+            Debug.Log("Not towards MC");
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            if (transform.position == target)
+            {
+                int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
+                int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
+                target = new Vector3(ranX, ranY, -1);
+            }
+        }
     }
-    */
 
     protected virtual void addEmo()
     {

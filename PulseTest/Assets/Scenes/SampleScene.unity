@@ -11217,6 +11217,7 @@ MonoBehaviour:
   musicKid: {fileID: 1332290333}
   target: {x: 0, y: 0, z: 0}
   allergyKid: {fileID: 0}
+  mc: {fileID: 1333830097}
   rightBound: {fileID: 1509511539}
   groupiePos: []
 --- !u!114 &1453256356

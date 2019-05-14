@@ -7,7 +7,7 @@ public class NpcInstantiator : MonoBehaviour
 {
     //private int npcCount = 1;
 
-    private int runnerCount = 0;    //0
+    private int runnerCount = 1;    //0
     private int lonerCount = 1;     //1
     private int rcCount = 1;        //2
     private int bpCount = 1;        //3
@@ -37,6 +37,8 @@ public class NpcInstantiator : MonoBehaviour
     public Vector3 target;
     public GameObject allergyKid;
     public static Vector3 allergyKidPos;
+    public GameObject mc;
+    public static Vector3 mcPos;
 
     public GameObject rightBound;
 
@@ -185,6 +187,7 @@ public class NpcInstantiator : MonoBehaviour
             rabbitPos = rabbit.transform.position;
             ballKidPos = ballKid.transform.position;
             allergyKidPos = allergyKid.transform.position;
+            mcPos = mc.transform.position;
             if (characterSwitcher.isMusicGuyInCharge)
             {
                 musicKidPos = musicKid.transform.position;

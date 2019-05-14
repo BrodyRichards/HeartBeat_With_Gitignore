@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 //using UnityEngine.AI; may need this in the future??
 
+    //Will rework the runner to be the bully instead
 public class Runners : NPCs
 {
     
@@ -16,12 +17,13 @@ public class Runners : NPCs
 
     protected override void Update()
     {
-        //isWalking = anim.GetBool("IsWalking");
         if (schoolBell == false)
         {
             time = Time.fixedUnscaledTime;
             directionCheck(target.x, transform.position.x);
             avatarChecks();
+            checkMC();
+            /*
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             if (transform.position == target)
             {
@@ -29,11 +31,8 @@ public class Runners : NPCs
                 int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
                 target = new Vector3(ranX, ranY, -1);
             }
+            */
             DetectMovement();
-            //if (Input.GetKeyDown(Control.evacuate) && !MentalState.journalInProgress)
-            //{
-            //    schoolBell = true;
-            //}
         }
         else
         {
@@ -43,19 +42,4 @@ public class Runners : NPCs
         
     }
     
-    /*
-    protected override void checkMusic()
-    {
-        if (MusicKidBT.currentMood == 1) //
-        {
-            Emo = master.GetComponent<NpcInstantiator>().sadFace;
-
-        }
-        else if (MusicKidBT.currentMood == 0)
-        {
-            Emo = master.GetComponent<NpcInstantiator>().happyFace;
-        }
-        addEmo();
-    }
-    */
 }
