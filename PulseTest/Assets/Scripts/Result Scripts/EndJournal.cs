@@ -101,7 +101,12 @@ public class EndJournal : MonoBehaviour
         dream.gameObject.SetActive(true);
         int avatar = MentalState.DecideFriend();
         Debug.Log("Friend: " + avatar);
-        if (avatar == 1)
+        if (avatar == 0)
+        {
+            //what should happen?
+            dream.gameObject.SetActive(false);
+        }
+        else if (avatar == 1)
         {
             rabAsset.gameObject.SetActive(true);
         }
