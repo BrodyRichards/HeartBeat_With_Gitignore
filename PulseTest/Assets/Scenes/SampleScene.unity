@@ -19781,6 +19781,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.39999962
       objectReference: {fileID: 0}
+    - target: {fileID: 479842524995646138, guid: d77767d21a93b4e82b20fa4436d930cb,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 479842524995646138, guid: d77767d21a93b4e82b20fa4436d930cb,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 479842524995646138, guid: d77767d21a93b4e82b20fa4436d930cb,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 559884538098873015, guid: d77767d21a93b4e82b20fa4436d930cb, type: 3}
     - {fileID: 9191876175957998652, guid: d77767d21a93b4e82b20fa4436d930cb, type: 3}
@@ -19916,6 +19931,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3508012940846479146, guid: 9119d567abe5dc64b90133ebaeffb6f8,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3508012940846479146, guid: 9119d567abe5dc64b90133ebaeffb6f8,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3508012940846479146, guid: 9119d567abe5dc64b90133ebaeffb6f8,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3508012939377439200, guid: 9119d567abe5dc64b90133ebaeffb6f8,
         type: 3}
