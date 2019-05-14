@@ -40,7 +40,7 @@ public class FlipJournal : MonoBehaviour
     private readonly string[] negativeThoughts =
     {
         "Evil rabbit...",
-        "Mean bastard...",
+        "What a bastard...",
         "Her music is ugly..."
 
     };
@@ -53,6 +53,7 @@ public class FlipJournal : MonoBehaviour
         finishReadingJournal = false;
         currentIndex = 0;
     }
+
     void Start()
     {
 
@@ -78,7 +79,7 @@ public class FlipJournal : MonoBehaviour
             //Debug.Log(time);
             moversThought.SetActive(false);
         }
-        if (EndJournal.journalIsOpened)
+        if (BedtimeProcedure.journalIsOpened)
         {
             speechBubble1.SetActive(true);
             speechBubble2.SetActive(true);
@@ -130,6 +131,7 @@ public class FlipJournal : MonoBehaviour
     void whichDrawingsToShow(int index)
     {
         int affinity;
+        MentalState.DecideFriend();
         if (MentalState.relationships != null)
         {
             affinity = MentalState.relationships[index + 1];
@@ -178,7 +180,7 @@ public class FlipJournal : MonoBehaviour
         drawing.SetActive(false);
         journalText.SetActive(false);
         currentIndex = 0;
-        EndJournal.journalIsOpened = false;
+        BedtimeProcedure.journalIsOpened = false;
         
     }
 

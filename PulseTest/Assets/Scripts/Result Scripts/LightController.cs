@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,9 +7,12 @@ public class LightController : MonoBehaviour
 {
     public Light[] roomLights;
     public Light brightMorningPointLight;
+    public Light sunsetDirLight;
+    public Light sunsetPointLight;
     public Light darkNightDirLight;
     public Light brightMorningDirLight;
 
+    public Color sunsetColor;
     public Color darkNightColor = new Color(0f, 0.001166861f, 0.2075472f);
 
     public Color happyColor;
@@ -19,13 +23,16 @@ public class LightController : MonoBehaviour
     public GameObject lightOff;
 
     private float turnToDayTimer = 3f;
+    private float turnToNightTimer = 5f;
 
+    public static bool nightIsHere;
     public static bool turnOffRoomLights;
     public static bool morningIsHere;
     public static bool timeToGetOutOfBed;
 
     private void Awake()
     {
+        nightIsHere = false;
         turnOffRoomLights = false;
         morningIsHere = false;
         timeToGetOutOfBed = false;
@@ -33,16 +40,27 @@ public class LightController : MonoBehaviour
     void Start()
     {
 
-        DecideRoomLightColor();
-
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        
-        
+        if (!nightIsHere)
+        {
+
+            turnToNightTimer -= Time.deltaTime;
+            if (turnToNightTimer < 0)
+            {
+
+                nightIsHere = ShiftToNightLight();
+            }
+        }
+        else
+        {
+            DecideRoomLightColor();
+        }
+
         if (turnOffRoomLights)
         {
             foreach(Light l in roomLights)
@@ -64,6 +82,36 @@ public class LightController : MonoBehaviour
 
     }
 
+    private bool ShiftToNightLight()
+    {
+        bool lightIsReady = false;
+        if (darkNightDirLight.intensity < 2.2f)
+        {
+            darkNightDirLight.intensity += 0.002f;
+        }
+        else
+        {
+            lightIsReady = true;
+        }
+
+        if (sunsetDirLight.intensity > 0f)
+        {
+            sunsetDirLight.intensity -= 0.001f;
+        }
+        else
+        {
+            lightIsReady = lightIsReady && true;
+        }
+
+        if (sunsetPointLight.intensity > 0f)
+        {
+            sunsetPointLight.intensity -= 0.001f;
+        }
+
+
+        return lightIsReady;
+
+    }
 
     public void LetTheSunShine()
     {
@@ -114,7 +162,10 @@ public class LightController : MonoBehaviour
 
         foreach (Light l in roomLights)
         {
+            l.enabled = true;
             l.color = roomLightColor;
         }
     }
+
+    
 }

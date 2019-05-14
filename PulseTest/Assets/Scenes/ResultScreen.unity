@@ -460,7 +460,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 0, g: 0.010291583, b: 0.11320752, a: 1}
-  m_Intensity: 2.11
+  m_Intensity: 0
   m_Range: 21.371359
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1009,7 +1009,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210000479}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 0.97185034, b: 0, a: 1}
@@ -1222,6 +1222,75 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 236992022}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &306801547
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 306801549}
+  - component: {fileID: 306801548}
+  m_Layer: 0
+  m_Name: SunSetLight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &306801548
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306801547}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 1
+  m_Color: {r: 0.4056604, g: 0.32104257, b: 0.0057404665, a: 1}
+  m_Intensity: 1
+  m_Range: 21.371359
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &306801549
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306801547}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.137068, y: 1.6385661, z: -12.324219}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 556316813}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &319385215 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3578396215768619455, guid: ea7c0ce8199844db58b7f8051fec6a0a,
@@ -1604,7 +1673,8 @@ MonoBehaviour:
   inFinalScene: 1
   scale: {x: 0, y: 0, z: 0}
   scaleOpposite: {x: 0, y: 0, z: 0}
-  mcWaypoints: []
+  mcWaypoints:
+  - {x: 6, y: -3}
 --- !u!1 &508741721
 GameObject:
   m_ObjectHideFlags: 0
@@ -1714,6 +1784,8 @@ Transform:
   - {fileID: 138959068}
   - {fileID: 145158091}
   - {fileID: 1967249549}
+  - {fileID: 306801549}
+  - {fileID: 1200840005}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1734,8 +1806,11 @@ MonoBehaviour:
   - {fileID: 210000480}
   - {fileID: 1865165983}
   brightMorningPointLight: {fileID: 145158092}
+  sunsetDirLight: {fileID: 306801548}
+  sunsetPointLight: {fileID: 1200840004}
   darkNightDirLight: {fileID: 138959067}
   brightMorningDirLight: {fileID: 1967249548}
+  sunsetColor: {r: 0, g: 0, b: 0, a: 0}
   darkNightColor: {r: 0, g: 0.001166861, b: 0.2075472, a: 1}
   happyColor: {r: 1, g: 0.92001164, b: 0, a: 0}
   neutralColor: {r: 1, g: 0.5647059, b: 0, a: 0}
@@ -1839,6 +1914,7 @@ GameObject:
   - component: {fileID: 624765120}
   - component: {fileID: 624765121}
   - component: {fileID: 624765122}
+  - component: {fileID: 624765123}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -2010,6 +2086,27 @@ MonoBehaviour:
   thoughtBubble: {fileID: 491545696}
   mcWakeUpPosition: {x: 4.48, y: -0.66}
   bus: {fileID: 21300000, guid: 278bf2cea97108f49a1a6e9a081ef9d2, type: 3}
+--- !u!114 &624765123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624765118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15cd545be66bb46b095df47f6bc10a90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  journalIcon: {fileID: 418332162}
+  sleepIcon: {fileID: 8318072189635936121}
+  tabIcon: {fileID: 1452810736}
+  bed: {fileID: 319385215}
+  fadeObject: {fileID: 236992023}
+  dream: {fileID: 491545696}
+  rabAsset: {fileID: 1884667151}
+  ballAsset: {fileID: 1969043918}
+  musicAsset: {fileID: 1248607711}
 --- !u!1 &658420942
 GameObject:
   m_ObjectHideFlags: 0
@@ -2948,7 +3045,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1149367395}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 0.97185034, b: 0, a: 1}
@@ -3072,6 +3169,75 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1200840003
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1200840005}
+  - component: {fileID: 1200840004}
+  m_Layer: 0
+  m_Name: SunsetPointLight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &1200840004
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200840003}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 1, g: 0.6640022, b: 0, a: 1}
+  m_Intensity: 1
+  m_Range: 19.1
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &1200840005
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200840003}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.02, y: 1.61, z: -20}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 556316813}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1248607711
 GameObject:
   m_ObjectHideFlags: 0
@@ -3526,7 +3692,6 @@ GameObject:
   - component: {fileID: 1490269922}
   - component: {fileID: 1490269921}
   - component: {fileID: 1490269920}
-  - component: {fileID: 1490269924}
   m_Layer: 5
   m_Name: JournalIcon
   m_TagString: Untagged
@@ -3614,27 +3779,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1490269924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1490269919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e55a189ce5b5d442ac5ed210f466895, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  journalIcon: {fileID: 418332162}
-  sleepIcon: {fileID: 8318072189251770186}
-  tabIcon: {fileID: 1452810736}
-  bed: {fileID: 319385215}
-  fadeObject: {fileID: 236992023}
-  dream: {fileID: 491545696}
-  rabAsset: {fileID: 1884667151}
-  ballAsset: {fileID: 1969043918}
-  musicAsset: {fileID: 1248607711}
 --- !u!1 &1519800436
 GameObject:
   m_ObjectHideFlags: 0
@@ -3850,7 +3994,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1572763404}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.82, y: 2.3993165, z: -0.18538167}
+  m_LocalPosition: {x: 1.82, y: 2.3993165, z: 3.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 738901761}
@@ -3873,7 +4017,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 29f859f530c5740b38161051376e5fae, type: 2}
+  - {fileID: 2100000, guid: 107714b6f7207294288fbe5ab53ce7b0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3978,8 +4122,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1600420767}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.28, y: -2.63, z: -0.18538167}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 5.08, y: -2.95, z: -0.18538167}
+  m_LocalScale: {x: 0.79586, y: 0.79586, z: 0.79586}
   m_Children: []
   m_Father: {fileID: 738901761}
   m_RootOrder: 18
@@ -4240,6 +4384,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 738901761}
   m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1677100536
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1677100537}
+  m_Layer: 0
+  m_Name: Waypoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1677100537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677100536}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.23, y: -2.77, z: 4.533203}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1741771728 stripped
 MonoBehaviour:
@@ -4689,7 +4863,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1865165982}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 0.97185034, b: 0, a: 1}

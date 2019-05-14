@@ -2,29 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndJournal : MonoBehaviour
+public class BedtimeProcedure : MonoBehaviour
 {
+    // Game objects
     public GameObject journalIcon;
     public GameObject sleepIcon;
     public GameObject tabIcon;
     public GameObject bed;
     public GameObject fadeObject;
-    public static bool journalIsOpened;
-    public static bool deemLight;
-    private Animator anim;
-    private Animator bedAnim;
-
     public GameObject dream;
     public GameObject rabAsset;
     public GameObject ballAsset;
     public GameObject musicAsset;
+
+    // Animators
+    private Animator anim;
+    private Animator bedAnim;
+
+    public static bool journalIsOpened;
 
     private bool charlieInBed;
     // Start is called before the first frame update
     private void Awake()
     {
         journalIsOpened = false;
-        deemLight = false;
         charlieInBed = false;
     }
     void Start()
@@ -39,34 +40,50 @@ public class EndJournal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ReadJournal();
+        if (LightController.nightIsHere)
+        {
+            ReadJournal();
+            FinishJournal();
+        }
 
+    }
+
+    private void JustGotHome()
+    {
+
+    }
+
+    private void FinishJournal()
+    {
         if (FlipJournal.finishReadingJournal && !journalIsOpened && !AutoToSchool.mcWokeUp)
         {
             if (!charlieInBed)
             {
                 sleepIcon.SetActive(true);
             }
-            anim.SetBool("newAccom", false);
-
+            journalIcon.SetActive(false);
             tabIcon.SetActive(false);
             if (Input.GetKeyDown(Control.evacuate))
             {
-                if (GameObject.Find("MC") != null)
-                {
-
-
-                    //Invoke("fadeOut", 0.1f);
-                    Invoke("fadeOut", 0.5f);
-                    Invoke("CharlieGoAway", 1.2f);
-                    Invoke("fadeIn", 1.5f);
-                    Invoke("GoToBedPlsKid", 2f);
-                    Invoke("Dreaming", 8f);
-                    Invoke("TurnToMorn", 15f);
-
-                }
-                
+                GoToBedProcedure();
             }
+        }
+    }
+
+    private void GoToBedProcedure()
+    {
+        if (GameObject.Find("MC") != null)
+        {
+
+
+            //Invoke("fadeOut", 0.1f);
+            Invoke("fadeOut", 0.5f);
+            Invoke("CharlieGoAway", 1.2f);
+            Invoke("fadeIn", 1.5f);
+            Invoke("GoToBedPlsKid", 2f);
+            Invoke("Dreaming", 8f);
+            Invoke("TurnToMorn", 15f);
+
         }
     }
 
@@ -81,17 +98,13 @@ public class EndJournal : MonoBehaviour
         LightController.turnOffRoomLights = true;
         charlieInBed = true;
         sleepIcon.SetActive(false);
-        journalIcon.SetActive(false);
+
 
     }
 
     void GoToBedPlsKid()
     {
         bedAnim.SetBool("goToBed", true);
-
-
-
-
     }
 
 
