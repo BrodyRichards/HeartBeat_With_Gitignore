@@ -1,16 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class FlipJournal : MonoBehaviour
 {
     public GameObject mc;
 
-    public GameObject[] journalPages;
-    public GameObject[] journalDrawings; // 0 rabbit+ 1 rabbit- 2 ballkid+ 3 ballkid- 4 music+ 5 music-
+
+    public Sprite[] positiveDrawings;
+    public Sprite[] negativeDrawings;
+    public Sprite nullDrawing;
+    public Sprite[] pageSprites;
+    public GameObject drawing;
+    public GameObject page;
     public GameObject speechBubble1;
     public GameObject speechBubble2;
     public GameObject moversThought;
+    public GameObject journalText;
     public GameObject assObj;
     public static bool finishReadingJournal;
     private int currentIndex;
@@ -20,7 +28,26 @@ public class FlipJournal : MonoBehaviour
 
     private float time;// = 0f;
     private float timer;// = 0f;
-    // Start is called before the first frame update
+
+    private readonly string[] positiveThoughts =
+    {
+        "this little guy!",
+        "He is so cool~",
+        "Her music is awesome!"
+
+    };
+
+    private readonly string[] negativeThoughts =
+    {
+        "Evil rabbit...",
+        "Mean bastard...",
+        "Her music is ugly..."
+
+    };
+
+    private readonly string nothingHappenThought = "Nothing happened";
+
+
     private void Awake()
     {
         finishReadingJournal = false;
@@ -35,19 +62,10 @@ public class FlipJournal : MonoBehaviour
         speechBubble2.SetActive(false);
         moversThought.transform.position = mc.transform.position + new Vector3(3, 2, 0);
         //moversThought.SetActive();
-        foreach(var j in journalPages)
-        {
-            j.SetActive(false);
-        }
-
+        page.SetActive(false);
+        journalText.SetActive(false);
         haveYouReadMeYet = new bool[]{ false, false, false };
-        //this is for the next scenes
-    
-        int ballKid = MentalState.moodLog["Played catch"] + MentalState.moodLog["Hit by ball"];
-        int musicKid = MentalState.moodLog["Happy Song"] + MentalState.moodLog["Sad Song"];
-        lastAvatar = 1;
-        if (ballKid < lastAvatar) { lastAvatar = 2; }
-        if (musicKid < lastAvatar) { lastAvatar = 3; }
+        //this is for the next scene
         NPCs.schoolBell = false;
     }
 
@@ -64,7 +82,10 @@ public class FlipJournal : MonoBehaviour
         {
             speechBubble1.SetActive(true);
             speechBubble2.SetActive(true);
-            EnableThisDisableRest(currentIndex, journalPages);
+            drawing.SetActive(true);
+            page.SetActive(true);
+            journalText.SetActive(true);
+            ChangeObjectSprite(page, pageSprites[currentIndex]);
             haveYouReadMeYet[currentIndex] = true;
             whichDrawingsToShow(currentIndex);
             if (Input.GetKeyDown(KeyCode.A))
@@ -108,64 +129,52 @@ public class FlipJournal : MonoBehaviour
 
     void whichDrawingsToShow(int index)
     {
-        switch (index)
+        int affinity;
+        if (MentalState.relationships != null)
         {
-            case 0:
-                if (EventHasPositiveResult("Held Rabbit", "Bit by rabbit"))
-                {
-                    EnableThisDisableRest(0, journalDrawings);
-                }
-                else
-                {
-                    EnableThisDisableRest(1, journalDrawings);
-                }
-
-                break;
-            case 1:
-                if (EventHasPositiveResult("Played catch", "Hit by ball"))
-                {
-                    EnableThisDisableRest(2, journalDrawings);
-                }
-                else
-                {
-                    EnableThisDisableRest(3, journalDrawings);
-                }
-                break;
-            case 2:
-                if (EventHasPositiveResult("Happy Song", "Sad Song"))
-                {
-                    EnableThisDisableRest(4, journalDrawings);
-                }
-                else
-                {
-                    EnableThisDisableRest(5, journalDrawings);
-                }
-                break;
-            default:
-                break;
+            affinity = MentalState.relationships[index + 1];
         }
-        
+        else
+        {
+            affinity = -2;
+        }
+
+        if (MentalState.interactions[index+1] == 0)
+        {
+            ChangeObjectSprite(drawing, nullDrawing);
+            journalText.GetComponent<TextMeshProUGUI>().text = nothingHappenThought;
+
+        }
+        else if (affinity > 0 )
+        {
+            ChangeObjectSprite(drawing, positiveDrawings[index]);
+            journalText.GetComponent<TextMeshProUGUI>().text = positiveThoughts[index];
+        }
+        else if (affinity < 0)
+        {
+            ChangeObjectSprite(drawing, negativeDrawings[index]);
+            journalText.GetComponent<TextMeshProUGUI>().text = negativeThoughts[index];
+        }
+        else
+        {
+            Debug.LogError("IN FlipJournal.cs, function is broken!");
+        }
+
     }
 
 
-    void EnableThisDisableRest(int index, GameObject[] go)
+    void ChangeObjectSprite(GameObject go, Sprite s)
     {
-        var sel = go[index];
-
-        sel.SetActive(true);
-        foreach (var j in go)
-        {
-            if (!j.Equals(sel))
-            {
-                j.SetActive(false);
-            }
-        }
+        go.GetComponent<Image>().sprite = s;
     }
+
+
 
     void CloseJournalAndReset()
     {
-        journalPages[currentIndex].SetActive(false);
-        foreach(var d in journalDrawings) { d.SetActive(false); }
+        page.SetActive(false);
+        drawing.SetActive(false);
+        journalText.SetActive(false);
         currentIndex = 0;
         EndJournal.journalIsOpened = false;
         
@@ -181,23 +190,9 @@ public class FlipJournal : MonoBehaviour
         return tempBool;
     }
 
-    bool EventHasPositiveResult(string pos, string neg)
-    {
-        if (MentalState.moodLog != null)
-        {
-            if (MentalState.moodLog[pos] > MentalState.moodLog[neg])
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        return false;
 
-        
-    }
+
+
 
    
 }

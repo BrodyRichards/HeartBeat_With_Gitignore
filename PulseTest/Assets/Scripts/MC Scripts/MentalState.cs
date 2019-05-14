@@ -13,6 +13,12 @@ public class MentalState : MonoBehaviour
     public static Dictionary<int, int> npcEffectWeights;
     public static Queue<EmoPlot> emoTimeline;
     public static Dictionary<int, int> relationships;
+    public static Dictionary<int, int> interactions = new Dictionary<int, int>
+        {
+            {1, 0},
+            {2, 0},
+            {3, 0}
+        };
 
     
     public static bool journalInProgress;
@@ -23,9 +29,9 @@ public class MentalState : MonoBehaviour
     public readonly static Vector2Int normalBound = new Vector2Int(-5, 5);
     public readonly static int comboBound = 4;
     public readonly static List<string> positiveAct 
-        = new List<string>() { "Played catch", "Held Rabbit", "Happy Song" };
+        = new List<string>() {  "Held Rabbit", "Played catch", "Happy Song" };
     public readonly static List<string> negativeAct 
-        = new List<string>() { "Hit by ball", "Bit by rabbit", "Sad Song" };
+        = new List<string>() {  "Bit by rabbit", "Hit by ball", "Sad Song" };
 
     public static string message;          //for the thought system
     public static int firstTime = 99;           //for the thought system
@@ -38,6 +44,8 @@ public class MentalState : MonoBehaviour
         currentActionCombo = 0;
 
         currentState = 0;
+
+
 
     }
     void Start()
@@ -84,6 +92,15 @@ public class MentalState : MonoBehaviour
             {3, 0}
         };
 
+        interactions = new Dictionary<int, int>
+        {
+            {1, 0},
+            {2, 0},
+            {3, 0}
+        };
+
+
+
         // call the mood equilibrium every 10 seconds
 
     }
@@ -117,7 +134,7 @@ public class MentalState : MonoBehaviour
         UpdateEmoWithAction(msg);
         if (journalInProgress)
         {
-            EventTracking();
+            EventTracking(msg);
             CheckForTween();
         }
         UpdateCurrentMood(msg);
@@ -242,7 +259,10 @@ public class MentalState : MonoBehaviour
 
         Debug.Log("MC mood pacified " + currentState);
     }
-
+    /// <summary>
+    /// Decides the friend of Charlie based on positive inteaction minus negative interaction, if equal bunny gets the upperhand
+    /// </summary>
+    /// <returns>The friend. 0=No friend 1=Rabbit 2=Ball kid 3=Music girl</returns>
     public static int DecideFriend()
     {
         relationships[1] = moodLog["Held Rabbit"] - moodLog["Bit by rabbit"];
@@ -304,11 +324,11 @@ public class MentalState : MonoBehaviour
         }
     }
 
-    public static void EventTracking()
+    public static void EventTracking(string msg)
     {
-        JournalTween.ball.Num = moodLog["Played catch"] + moodLog["Hit by ball"];
-        JournalTween.rabbit.Num = moodLog["Held Rabbit"] + moodLog["Bit by rabbit"];
-        JournalTween.music.Num = moodLog["Happy Song"] + moodLog["Sad Song"];
+        var index = positiveAct.IndexOf(msg) == -1 ? negativeAct.IndexOf(msg) : positiveAct.IndexOf(msg); 
+        interactions[index+1] = moodLog[positiveAct[index]] + moodLog[negativeAct[index]];
+        JournalTween.accomplishments[index].Num = interactions[index + 1];
     }
 
 
@@ -316,7 +336,6 @@ public class MentalState : MonoBehaviour
     //------------------- Debug Print functions-----------------------------
     public static void PrintMoodLog()
     {
-
         Debug.Log("");
     }
     //------------------------------------------------------------------
