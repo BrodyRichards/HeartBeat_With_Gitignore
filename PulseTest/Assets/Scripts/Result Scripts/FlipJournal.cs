@@ -143,9 +143,11 @@ public class FlipJournal : MonoBehaviour
         {
             ChangeObjectSprite(drawing, nullDrawing);
             journalText.GetComponent<TextMeshProUGUI>().text = nothingHappenThought;
+            return;
 
         }
-        else if (affinity > 0 )
+
+        if (affinity >= 0 )
         {
             ChangeObjectSprite(drawing, positiveDrawings[index]);
             journalText.GetComponent<TextMeshProUGUI>().text = positiveThoughts[index];

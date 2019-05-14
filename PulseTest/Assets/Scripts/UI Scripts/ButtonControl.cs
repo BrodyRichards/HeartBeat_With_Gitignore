@@ -29,29 +29,32 @@ public class ButtonControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        buttons[currentIndex].OnSelect(null);
-        if (Input.GetKeyDown(KeyCode.UpArrow) || (Input.GetKeyDown(KeyCode.W)))
+        if (PauseUI.IsPaused)
         {
-            currentIndex = currentIndex==0 ? 2 : currentIndex -1;
-           
-            EnableThisDisableRest(currentIndex);
-            
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) || (Input.GetKeyDown(KeyCode.S)))
-        {
-            currentIndex = (currentIndex+1) % 3;
-           
-            
-            EnableThisDisableRest(currentIndex);
+            buttons[currentIndex].OnSelect(null);
+            if (Input.GetKeyDown(KeyCode.UpArrow) || (Input.GetKeyDown(KeyCode.W)))
+            {
+                currentIndex = currentIndex == 0 ? 2 : currentIndex - 1;
 
-            
-        }
+                EnableThisDisableRest(currentIndex);
 
-        if (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.Space))
-        {
-            buttons[currentIndex].onClick.Invoke();
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow) || (Input.GetKeyDown(KeyCode.S)))
+            {
+                currentIndex = (currentIndex + 1) % 3;
+
+
+                EnableThisDisableRest(currentIndex);
+
+
+            }
+
+            if (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.Space))
+            {
+                buttons[currentIndex].onClick.Invoke();
+            }
         }
+            
 
 
     }
