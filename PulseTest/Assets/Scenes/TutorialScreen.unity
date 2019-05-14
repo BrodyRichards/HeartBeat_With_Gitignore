@@ -2252,6 +2252,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &682863862
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 682863863}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &682863863
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682863862}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.4, y: -2.73, z: -0.21220705}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &724679100 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1665155324493108864, guid: aa2c28c1e1cb9b3449e217cbf52328ee,
@@ -3030,14 +3060,12 @@ MonoBehaviour:
   maxSpeed: 5
   acceleration: 0.8
   deceleration: 1
+  stayTimer: 3
   inFinalScene: 0
   scale: {x: 0, y: 0, z: 0}
   scaleOpposite: {x: 0, y: 0, z: 0}
-  mcWaypoints: []
-  refPoints: []
-  waypoint1: {x: -5, y: -1}
-  waypoint2: {x: -1.35, y: -1}
-  waypoint3: {x: 4, y: -3}
+  mcWaypoints:
+  - {x: 4, y: -3}
 --- !u!50 &914818215
 Rigidbody2D:
   serializedVersion: 4

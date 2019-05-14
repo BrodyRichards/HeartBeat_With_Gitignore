@@ -11,6 +11,8 @@ public class Movement : MonoBehaviour
     public float currSpeed = 0f;
     public float acceleration;
     public float deceleration;
+    public float leaveTime;
+    private float leaveTimer;
     public static bool isRight;
     public static bool timeToLeave;
     private Vector2 direction;
@@ -137,6 +139,13 @@ public class Movement : MonoBehaviour
             LevelFade.readyToLeave = true;
             //Debug.Log("Loading ResultScreen...");
             //SceneManager.LoadScene("ResultScreen");
+        }else if(leaveTimer >= leaveTime)
+        {
+            LevelFade.readyToLeave = true;
+        }
+        else
+        {
+            leaveTimer += Time.deltaTime;
         }
     }
 
