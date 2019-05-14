@@ -13,6 +13,8 @@ public class McFreeMove : MonoBehaviour
     public float maxSpeed;
     public float acceleration;
     public float deceleration;
+    public float stayTimer;
+    private float stayTime;
     private float step;
     public bool inFinalScene;
     private Vector2 direction;
@@ -20,10 +22,10 @@ public class McFreeMove : MonoBehaviour
     public Vector3 scaleOpposite;
     private string[] controllersName = { "MC_happy", "MC_sad", "MC_controller" };
     public List<Vector2> mcWaypoints;
-    public List<Vector2> refPoints;
-    public Vector2 waypoint1;
-    public Vector2 waypoint2;
-    public Vector2 waypoint3;
+    //public List<Vector2> refPoints;
+    //public Vector2 waypoint1;
+    //public Vector2 waypoint2;
+    //public Vector2 waypoint3;
 
     private void Awake()
     {
@@ -145,7 +147,7 @@ public class McFreeMove : MonoBehaviour
 
     protected void getInput()
     {
-        if (mcWaypoints.Count <= 3)
+        /*if (mcWaypoints.Count <= 3)
         {
             if (Input.GetKey(KeyCode.Alpha1))
             {
@@ -161,7 +163,7 @@ public class McFreeMove : MonoBehaviour
             {
                 mcWaypoints.Add(waypoint3);
             }
-        }
+        }*/
     }
 
     private void AnimationMoodCheck()
@@ -205,14 +207,17 @@ public class McFreeMove : MonoBehaviour
     // Go to the assigned waypoints that haven't been reached yet
     private void GoToWaypoints(float step)
     {
-        if (mcWaypoints.Count != 0)
+        Debug.Log(stayTime >= stayTimer);
+        if (mcWaypoints.Count != 0 && stayTime >= stayTimer)
         {
             FlipAssetDirection();
             McGoesTo(mcWaypoints[0], step);
         }
         else
         {
-            mcWaypoints = new List<Vector2>(refPoints);
+            stayTime += Time.deltaTime;
+            //Debug.Log("stayTime" + stayTime);
+            //mcWaypoints = new List<Vector2>(refPoints);
         }
     }
 
@@ -226,6 +231,7 @@ public class McFreeMove : MonoBehaviour
         if (Vector2.Distance(transform.position, target) < 1.0f)
         {
             //Debug.Log("arrive at" + target);
+            stayTime = 0f;
             mcWaypoints.RemoveAt(0);
             anim.SetBool("isWalking", false);
         }

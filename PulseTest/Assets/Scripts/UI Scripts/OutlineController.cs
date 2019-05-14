@@ -12,7 +12,7 @@ public class OutlineController : MonoBehaviour
     private GameObject rabbit; //1
 
 
-    public static Color glowColor = Color.yellow;
+    public static Color glowColor = new Color(1f, 1f, 0f);
     public static int outlineWidth = 5;
     public static float alphaThreshold = 0.3f;
     public static float glowBrightness = 3f;
