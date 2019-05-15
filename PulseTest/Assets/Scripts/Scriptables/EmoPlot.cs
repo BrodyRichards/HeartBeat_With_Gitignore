@@ -28,7 +28,7 @@ public class EmoPlot : ScriptableObject
 
     public override string ToString()
     {
-        return "happening time: " + this.Time + "/causing event: " + this.Event + "/MC current mood: " + this.Mood;
+        return "Happening time: " + this.Time + "/ Causing event: " + this.Event + "/ MC current mood: " + this.Mood;
     }
     
     // use as emoPlotObject.Time

@@ -55,7 +55,7 @@ public class McFreeMove : MonoBehaviour
     void Update()
     {
         getInput();
-        if (!EndJournal.journalIsOpened)
+        if (!BedtimeProcedure.journalIsOpened)
         {
             GoToWaypoints(step);
         }
