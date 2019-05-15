@@ -23,7 +23,7 @@ public class LightController : MonoBehaviour
     public GameObject lightOff;
 
     private float turnToDayTimer = 3f;
-    private float turnToNightTimer = 5f;
+    private float turnToNightTimer = 1f;
 
     public static bool nightIsHere;
     public static bool turnOffRoomLights;
@@ -118,7 +118,7 @@ public class LightController : MonoBehaviour
 
         if (brightMorningPointLight.intensity < 0.5f)
         {
-            brightMorningPointLight.intensity += 0.002f;
+            brightMorningPointLight.intensity += 0.01f;
         }
 
 
@@ -129,7 +129,7 @@ public class LightController : MonoBehaviour
 
         if (brightMorningDirLight.intensity < 0.6f)
         {
-            brightMorningDirLight.intensity += 0.001f;
+            brightMorningDirLight.intensity += 0.005f;
         }
         else
         {
