@@ -157,7 +157,8 @@ public class RabbitJump : MonoBehaviour
         beingCarried = false;
         GetComponent<SortRender>().offset = 12;
         anim.SetBool("isCarried", false);
-        mcAnim.SetBool("isHolding", false);
+        var thisCharAnim = currentCarrier.GetComponent<Animator>();
+        thisCharAnim.SetBool("isHolding", false);
         transform.GetComponent<SpriteRenderer>().enabled = true;
     }
 
@@ -165,7 +166,8 @@ public class RabbitJump : MonoBehaviour
     {
         beingCarried = true;
         anim.SetBool("isCarried", true);
-        mcAnim.SetBool("isHolding", true);
+        var thisCharAnim = carrier.GetComponent<Animator>();
+        thisCharAnim.SetBool("isHolding", true);
         transform.position = new Vector3(carrier.transform.position.x + 0.1f, carrier.transform.position.y, -1);
         transform.parent = carrier.transform;
         GetComponent<Movement>().enabled = false;
