@@ -112,7 +112,7 @@ public class BallProjectile : MonoBehaviour
 
         if ( transform.position.x > Playground.RightX ||
             transform.position.x < Playground.LeftX  ||
-            transform.position.y > Playground.UpperY ||
+            transform.position.y > Playground.UpperY + 10f ||
             transform.position.y < Playground.LowerY - 5f )
         {
             stationaryBall();

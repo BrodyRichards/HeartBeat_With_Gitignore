@@ -10,7 +10,7 @@ public class McFreeMove : MonoBehaviour
     private bool isFlipped;
     private Animator animForMC;
     private enum Mood { happy, sad, idle };
-    public float maxSpeed;
+    private float maxSpeed;
     public float acceleration;
     public float deceleration;
     public float stayTimer;
@@ -35,7 +35,7 @@ public class McFreeMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        step = maxSpeed * Time.deltaTime;
+        maxSpeed = 5;
         isFlipped = false;
         animForMC = GetComponent<Animator>();
         if (inFinalScene)
@@ -54,8 +54,9 @@ public class McFreeMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        step = maxSpeed * Time.deltaTime;
         getInput();
-        if (!EndJournal.journalIsOpened)
+        if (!BedtimeProcedure.journalIsOpened)
         {
             GoToWaypoints(step);
         }
