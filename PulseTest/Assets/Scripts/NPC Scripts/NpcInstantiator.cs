@@ -7,8 +7,8 @@ public class NpcInstantiator : MonoBehaviour
 {
     //private int npcCount = 1;
 
-    private int runnerCount = 1;    //0
-    private int lonerCount = 1;     //1
+    private int runnerCount = 1;    //0  Refactored to be the bully kid
+    private int lonerCount = 1;     //1  Refactored to be the allergy kid
     private int rcCount = 1;        //2
     private int bpCount = 1;        //3
     private string rename;
@@ -37,6 +37,8 @@ public class NpcInstantiator : MonoBehaviour
     public Vector3 target;
     public GameObject allergyKid;
     public static Vector3 allergyKidPos;
+    public GameObject bullyKid;
+    public static Vector3 bullyKidPos;
     public GameObject mc;
     public static Vector3 mcPos;
 
@@ -80,6 +82,10 @@ public class NpcInstantiator : MonoBehaviour
             if (npcPositions[i].name.Contains("Loner"))
             {
                 allergyKid = npcPositions[i];
+            }
+            else if (npcPositions[i].name.Contains("Runner"))
+            {
+                bullyKid = npcPositions[i];
             }
         }
         origLayer = npcPositions[0].layer;
@@ -187,6 +193,7 @@ public class NpcInstantiator : MonoBehaviour
             rabbitPos = rabbit.transform.position;
             ballKidPos = ballKid.transform.position;
             allergyKidPos = allergyKid.transform.position;
+            bullyKidPos = bullyKid.transform.position;
             mcPos = mc.transform.position;
             if (characterSwitcher.isMusicGuyInCharge)
             {

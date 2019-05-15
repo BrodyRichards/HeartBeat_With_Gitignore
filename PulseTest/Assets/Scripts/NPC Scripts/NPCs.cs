@@ -257,33 +257,6 @@ public class NPCs : MonoBehaviour
         }
     }
 
-    protected virtual void checkMC()
-    {
-        bool mcDist = checkDist(transform.position, NpcInstantiator.mcPos);
-        if (mcDist)
-        {
-            Debug.Log("Towards MC");
-            float dist = Vector3.Distance(NpcInstantiator.mcPos, transform.position);
-
-            if (dist > 10.0f)
-            {
-                target = NpcInstantiator.mcPos;
-                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-            }
-        }
-        else
-        {
-            Debug.Log("Not towards MC");
-            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-            if (transform.position == target)
-            {
-                int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
-                int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
-                target = new Vector3(ranX, ranY, -1);
-            }
-        }
-    }
-
     protected virtual void addEmo()
     {
         int count = transform.childCount;
