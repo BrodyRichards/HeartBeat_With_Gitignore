@@ -49,11 +49,13 @@ public class McFreeMove : MonoBehaviour
         }
         scale = transform.localScale;
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        Debug.Log("Max Speed in Start: " + maxSpeed);
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Max Speed in Update: " + maxSpeed);
         getInput();
         if (!BedtimeProcedure.journalIsOpened)
         {
