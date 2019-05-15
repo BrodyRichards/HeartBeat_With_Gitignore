@@ -2099,7 +2099,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   journalIcon: {fileID: 418332162}
-  sleepIcon: {fileID: 8318072189635936121}
+  sleepIcon: {fileID: 8318072189251770186}
   tabIcon: {fileID: 1452810736}
   bed: {fileID: 319385215}
   fadeObject: {fileID: 236992023}
@@ -4453,7 +4453,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1779774758}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.07, y: 1.45, z: 1.9117694}
+  m_LocalPosition: {x: 8.07, y: -1.33, z: 1.9117694}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 738901761}
