@@ -8,7 +8,15 @@ public class MentalState : MonoBehaviour
     public static int currentActionCombo;
     public static float coolDownCounting = 0.0f;
 
-    public static Dictionary<string, int> moodLog;
+    public static Dictionary<string, int> moodLog = new Dictionary<string, int>
+        {
+            { "Played catch", 0},
+            { "Hit by ball", 0},
+            { "Held Rabbit", 0 },
+            { "Bit by rabbit", 0 },
+            { "Happy Song", 0 },
+            { "Sad Song", 0 },
+        };
     public static Dictionary<string, int> effectWeights;
     public static Dictionary<int, int> npcEffectWeights;
     /// <summary>
@@ -18,7 +26,12 @@ public class MentalState : MonoBehaviour
     /// <summary>
     /// the number of positive interaction minus negative for deciding friend and bedtime journal outcome
     /// </summary>
-    public static Dictionary<int, int> relationships;
+    public static Dictionary<int, int> relationships = new Dictionary<int, int>
+        {
+            {1, 0},
+            {2, 0},
+            {3, 0}
+        };
     /// <summary>
     /// Keeps track of the number of interactions, regardless good or bad, that happen with each avatar
     /// </summary>

@@ -22,7 +22,7 @@ public class LightController : MonoBehaviour
     public GameObject lightOn;
     public GameObject lightOff;
 
-    private float turnToDayTimer = 3f;
+    private float turnToDayTimer = 8f;
     private float turnToNightTimer = 1f;
 
     public static bool nightIsHere;
