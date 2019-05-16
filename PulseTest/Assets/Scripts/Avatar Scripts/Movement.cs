@@ -38,14 +38,11 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!timeToLeave) //|| this.gameObject.name == "MC"
+        if (!timeToLeave)
         {
+            UpdatePlayTimes();
             getInput();
             Move();
-            /*if (this.gameObject.name == "MC")
-            {
-                ExitCheck();
-            }*/
         }
         else
         {
@@ -130,7 +127,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    public void ExitCheck()
+    private void ExitCheck()
     {
         RaycastHit2D wallCheck = Physics2D.Raycast(transform.position, transform.right, 0.25f);
         //Check for MC exit scene
@@ -149,7 +146,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    public void AvatarsExit()
+    private void AvatarsExit()
     {
         anim.SetBool("isWalking", true);
 
@@ -171,6 +168,26 @@ public class Movement : MonoBehaviour
         if (this.name == "MC")
         {
             ExitCheck();
+        }
+    }
+
+    //Helper function to update play times for each avatar
+    //Times are stored in IterationController static floats
+    private void UpdatePlayTimes()
+    {
+        if(this.name == "1")
+        {
+            IterationController.bunnyTimer += Time.deltaTime;
+            //Debug.Log("Bunny Time: " + IterationController.bunnyTimer);
+        }else if (this.name == "2")
+        {
+            IterationController.ballKidTimer += Time.deltaTime;
+            //Debug.Log("BallKid Time: " + IterationController.ballKidTimer);
+        }
+        else if (this.name == "3")
+        {
+            IterationController.musicKidTimer += Time.deltaTime;
+            //Debug.Log("MusicKid Time: " + IterationController.musicKidTimer);
         }
     }
 }
