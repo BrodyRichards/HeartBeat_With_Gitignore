@@ -47,6 +47,10 @@ public class BullySpeech : MonoBehaviour
             showThought();
             setTimer();
         }
+        else if (NPCs.schoolBell)
+        {
+            hideThought();
+        }
     }
 
     void hideThought()

@@ -29,11 +29,11 @@ public class IterationController : MonoBehaviour
     public void PrepareNextDay()
     {
         //If there is one that is least used then we need to alternate which avatar is disabled
-        if (dayCount >= 3)
-        {
-            //Replace the avatar that is missing
-            leastPlayed.transform.localScale = new Vector3(1, 1, 1);
-        }
+        //if (dayCount >= 3)
+        //{
+        //    //Replace the avatar that is missing
+        //    leastPlayed.transform.localScale = new Vector3(1, 1, 1);
+        //}
 
         //Have to keep this array in order
         leastUsed = FindLeastPlayed(bunnyTimer, ballKidTimer, musicKidTimer);
