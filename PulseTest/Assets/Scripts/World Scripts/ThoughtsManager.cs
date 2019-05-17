@@ -115,6 +115,10 @@ public class ThoughtsManager : MonoBehaviour
             nextThought = true;
             next = successiveThoughts[ok];
         }
+        else
+        {
+            nextThought = false;
+        }
         setTimer();
     }
 

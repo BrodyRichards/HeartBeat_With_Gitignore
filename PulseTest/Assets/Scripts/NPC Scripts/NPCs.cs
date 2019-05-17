@@ -257,16 +257,6 @@ public class NPCs : MonoBehaviour
         }
     }
 
-    /*
-    protected virtual void addSneeze()
-    {
-        Vector3 offset = new Vector3(2f, 4.5f, 0);
-        Image sneeze = Instantiate(master.GetComponent<NpcInstantiator>().sneezeBubble, transform.localPosition + offset, transform.rotation);
-        sneeze.GetComponent<SpriteRenderer>().sortingLayerName = "Front Props";
-        sneeze.transform.parent = transform;
-    }
-    */
-
     protected virtual void addEmo()
     {
         int count = transform.childCount;
