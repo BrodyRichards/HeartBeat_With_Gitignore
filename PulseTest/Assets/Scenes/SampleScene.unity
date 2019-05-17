@@ -11567,11 +11567,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1453256351}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bc070d857f55544eae3977cf2589797, type: 3}
+  m_Script: {fileID: 11500000, guid: 74be4211ed50c40c28c5ba962dbeda9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 86284012}
-  speechBubble: {fileID: 1780550157}
 --- !u!1 &1464267447
 GameObject:
   m_ObjectHideFlags: 0
@@ -19523,6 +19521,16 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 112204844209154752, guid: 4bf9b18058c14214082cc7246e2c2a5d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578386868106148820, guid: 4bf9b18058c14214082cc7246e2c2a5d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bf9b18058c14214082cc7246e2c2a5d, type: 3}
 --- !u!1001 &2950492696032815856
@@ -19747,6 +19755,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2950492697086137975, guid: d77767d21a93b4e82b20fa4436d930cb,
+        type: 3}
+      propertyPath: itCon
+      value: 
+      objectReference: {fileID: 1453256362}
+    - target: {fileID: 2950492697086137975, guid: d77767d21a93b4e82b20fa4436d930cb,
+        type: 3}
+      propertyPath: iterationController
+      value: 
+      objectReference: {fileID: 1453256362}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d77767d21a93b4e82b20fa4436d930cb, type: 3}
 --- !u!1001 &3508012940238463565
