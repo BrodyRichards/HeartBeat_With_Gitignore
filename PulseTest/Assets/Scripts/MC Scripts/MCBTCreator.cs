@@ -79,10 +79,11 @@ public class MCBTCreator : MonoBehaviour
         Leaf UpdateMC = new Leaf(updateMC);
 
         //Create Play Catch with Ball Kid Sequence
+        Leaf CheckExist = new Leaf(checkExist);
         Leaf CheckCatch = new Leaf(checkCatch);
         Leaf CheckInterest = new Leaf(checkInterest);
         Leaf MoveToBallKid = new Leaf(moveToBallKid);
-        Sequence PlayCatch = createSeqRoot(CheckCatch, CheckInterest, MoveToBallKid);
+        Sequence PlayCatch = createSeqRoot(CheckExist, CheckCatch, CheckInterest, MoveToBallKid);
 
         //Music Kid Sequence
         Leaf CheckMusic = new Leaf(checkMusic);
@@ -375,6 +376,16 @@ public class MCBTCreator : MonoBehaviour
     NodeStatus runFromBallKid()
     {
         McRunsFromAvatar(NpcInstantiator.ballKidPos);
+
+        return NodeStatus.SUCCESS;
+    }
+
+    NodeStatus checkExist()
+    {
+        if(IterationController.leastUsed == 2)
+        {
+            return NodeStatus.FAILURE;
+        }
 
         return NodeStatus.SUCCESS;
     }
