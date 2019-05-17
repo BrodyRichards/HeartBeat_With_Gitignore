@@ -48,10 +48,10 @@ public class RabbitChasers : NPCs
         if (inDist)
         {
             float dist = Vector3.Distance(avatarPos, transform.position);
-
+            target = avatarPos;
             if (dist > 10.0f)
             {
-                target = avatarPos;
+                
                 transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
                 anim.SetBool("isFeeding", false);
                 anim.SetBool("wantToFeed", false);
