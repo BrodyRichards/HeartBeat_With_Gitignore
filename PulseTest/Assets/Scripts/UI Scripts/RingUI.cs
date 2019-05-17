@@ -30,6 +30,8 @@ public class RingUI : MonoBehaviour
     private int emoCurrentLength;
     private readonly int segNum = 12;
 
+    private GameObject ProgSpirit;
+
     // Start is called before the first frame update
 
     private void Awake()
@@ -47,6 +49,9 @@ public class RingUI : MonoBehaviour
         }
 
         bell_anim.enabled = false;
+
+        ProgSpirit = GameObject.FindGameObjectWithTag("ProgSpirit");
+
     }
 
     // Update is called once per frame
@@ -94,7 +99,8 @@ public class RingUI : MonoBehaviour
             {
 
                 emoCurrentLength = MentalState.emoTimeline.Count;
-                
+                var script = ProgSpirit.GetComponent<ProgSpirit>();
+                script.MSpiritC();
 
                 var thisObj = emoSegments[emoCurrentLength - 1];
                 if (MentalState.positiveAct.Contains(fuckingString))

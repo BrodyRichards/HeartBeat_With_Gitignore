@@ -11,6 +11,10 @@ public class Spirit : MonoBehaviour
 
     private GameObject MC;
     private GameObject possessed;
+
+    private GameObject progressbar;
+
+    private int flag;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +23,10 @@ public class Spirit : MonoBehaviour
 
         avatars = GameObject.FindGameObjectsWithTag("Avatars");
         MC = GameObject.FindGameObjectWithTag("MC");
+        progressbar = GameObject.FindGameObjectWithTag("ProgressBar");
         transform.position = MC.transform.position;
         possessed = MC;
+        flag = 1;
     }
 
     // Update is called once per frame
@@ -30,7 +36,7 @@ public class Spirit : MonoBehaviour
         var ball = avatars[1];
         var music = avatars[2];
 
-        transform.position = possessed.transform.position;
+        transform.position = possessed.transform.position; 
 
         if(Input.GetKeyDown(KeyCode.Alpha1)){
             
@@ -62,6 +68,3 @@ public class Spirit : MonoBehaviour
     }
 }
 
-/*
-    How to get positions of individual avatars
- */
