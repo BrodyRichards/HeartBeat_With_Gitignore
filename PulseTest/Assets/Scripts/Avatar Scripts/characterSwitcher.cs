@@ -13,7 +13,6 @@ public class characterSwitcher : MonoBehaviour
     public static bool isMusicGuyInCharge;
     //public static bool isChar = false;
     private Animator anim_keyPrompt;
-    //public IterationController iterationController;
     private float doNothingTimer; 
     
 
@@ -33,11 +32,6 @@ public class characterSwitcher : MonoBehaviour
         anim_keyPrompt.enabled = false;
 
         doNothingTimer = 0f;
-
-        if(IterationController.dayCount >= 1)
-        {
-            GetComponent<IterationController>().PrepareNextDay();
-        }
 
         /*
         if (FlipJournal.lastAvatar == 1) { findGO(1).SetActive(false); }
@@ -68,27 +62,18 @@ public class characterSwitcher : MonoBehaviour
         {
             if (Input.GetKeyDown(Control.toRabbit))
             {
-                if (IterationController.leastUsed != 1)
-                {
-                    charChoice = 1;
-                    PerformSwitch();
-                }
+                charChoice = 1;
+                PerformSwitch();
             }
             else if (Input.GetKeyDown(Control.toBallKid))
             {
-                if (IterationController.leastUsed != 2)
-                {
-                    charChoice = 2;
-                    PerformSwitch();
-                }
+                charChoice = 2;
+                PerformSwitch();
             }
             else if (Input.GetKeyDown(Control.toMusicKid))
             {
-                if (IterationController.leastUsed != 3)
-                {
-                    charChoice = 3;
-                    PerformSwitch();
-                }
+                charChoice = 3;
+                PerformSwitch();
             }
             else if (Input.GetKeyDown(Control.pullJournal))
             {
