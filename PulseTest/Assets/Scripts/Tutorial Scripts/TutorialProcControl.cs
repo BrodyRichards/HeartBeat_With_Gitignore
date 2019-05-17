@@ -36,7 +36,7 @@ public class TutorialProcControl : MonoBehaviour
             Invoke("MagicMcAppear", mcAppearWaitTime);
             Invoke("fadeOut", mcAppearWaitTime - 1.0f);             //original is 0.5
             Invoke("fadeIn", mcAppearWaitTime);
-            Invoke("showWaypoints", mcAppearWaitTime);
+            //Invoke("showWaypoints", mcAppearWaitTime);
         }
 
         if (mcWokeUp && TutorialCharSwitch.TutCharChoice==1)
@@ -72,11 +72,11 @@ public class TutorialProcControl : MonoBehaviour
         meh.FadeOutStay();
         //Debug.Log("Fade Out");
     }
-
+    /*
     private void showWaypoints()
     {
         waypointObjs.SetActive(true);
     }
-
+    */
 
 }
