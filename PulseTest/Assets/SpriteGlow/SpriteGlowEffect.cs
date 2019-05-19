@@ -55,7 +55,7 @@ namespace SpriteGlow
         //[SerializeField] private float alphaThreshold = .01f;
         private float alphaThreshold = OutlineController.alphaThreshold;
         [Tooltip("Whether the outline should only be drawn outside of the sprite borders. Make sure sprite texture has sufficient transparent space for the required outline width.")]
-        [SerializeField] private bool drawOutside = false;
+        [SerializeField] private bool drawOutside = true;
         [Tooltip("Whether to enable GPU instancing.")]
         [SerializeField] private bool enableInstancing = false;
 

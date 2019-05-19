@@ -35,6 +35,9 @@ public class BedtimeProcedure : MonoBehaviour
 
         journalIcon.SetActive(false);
         tabIcon.SetActive(false);
+
+        MentalState.PrintMoodLog();
+        MentalState.PrintEmoTimeline();
     }
 
     // Update is called once per frame
