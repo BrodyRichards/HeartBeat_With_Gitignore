@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BedtimeProcedure : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class BedtimeProcedure : MonoBehaviour
     public GameObject rabAsset;
     public GameObject ballAsset;
     public GameObject musicAsset;
+
+    public GameObject dayIndicator;
 
     // Animators
     private Animator anim;
@@ -48,6 +51,8 @@ public class BedtimeProcedure : MonoBehaviour
             ReadJournal();
             FinishJournal();
         }
+
+        dayIndicator.GetComponent<TextMeshProUGUI>().text = "Day " + (IterationController.dayCount + 1);
 
     }
 

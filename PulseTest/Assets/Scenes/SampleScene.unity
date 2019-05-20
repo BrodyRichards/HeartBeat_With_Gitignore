@@ -3347,6 +3347,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &789922968 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7097077923324735581, guid: d77767d21a93b4e82b20fa4436d930cb,
+    type: 3}
+  m_PrefabInstance: {fileID: 2950492696032815856}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &791866174
 GameObject:
   m_ObjectHideFlags: 0
@@ -19780,6 +19786,26 @@ PrefabInstance:
       propertyPath: iterationController
       value: 
       objectReference: {fileID: 1453256362}
+    - target: {fileID: 4634911725683771169, guid: d77767d21a93b4e82b20fa4436d930cb,
+        type: 3}
+      propertyPath: dayIndicator
+      value: 
+      objectReference: {fileID: 789922968}
+    - target: {fileID: 9082754521606368467, guid: d77767d21a93b4e82b20fa4436d930cb,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082754521606368467, guid: d77767d21a93b4e82b20fa4436d930cb,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082754521606368467, guid: d77767d21a93b4e82b20fa4436d930cb,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d77767d21a93b4e82b20fa4436d930cb, type: 3}
 --- !u!1001 &3508012940238463565

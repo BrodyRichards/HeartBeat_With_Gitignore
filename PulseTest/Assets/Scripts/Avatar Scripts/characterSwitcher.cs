@@ -112,6 +112,7 @@ public class characterSwitcher : MonoBehaviour
                 GameObject.Find("MC").GetComponent<Movement>().enabled = true;
                 GameObject.Find("MC").GetComponent<Animator>().SetBool("wantToPlay", false);
                 GameObject.Find("MC").GetComponent<Animator>().SetBool("isWalking", true);
+                GameObject.Find("MC").GetComponent<Animator>().SetBool("isHappySong", false);
                 GameObject.Find("MC").GetComponent<MCBTCreator>().enabled = false;
                 disableOthers();
                 Movement.timeToLeave = true;
