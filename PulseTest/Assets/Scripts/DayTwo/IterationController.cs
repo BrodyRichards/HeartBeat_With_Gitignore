@@ -58,11 +58,18 @@ public class IterationController : MonoBehaviour
             if (currLowest <= 0f)
             {
                 currLowest = avTimes[i];
+                leastIndex = i + 1;
             }
 
             if(avTimes[i] < currLowest)
             {
                 currLowest = avTimes[i];
+
+                if(currLowest == 0f)
+                {
+                    currLowest += 0.01f;
+                }
+
                 leastIndex = i + 1;
             }
         }
