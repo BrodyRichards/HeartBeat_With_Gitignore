@@ -22,7 +22,7 @@ public class LightController : MonoBehaviour
     public GameObject lightOn;
     public GameObject lightOff;
 
-    private float turnToDayTimer = 8f;
+    private float turnToDayTimer = 1f;
     private float turnToNightTimer = 1f;
 
     public static bool nightIsHere;
@@ -87,7 +87,8 @@ public class LightController : MonoBehaviour
         bool lightIsReady = false;
         if (darkNightDirLight.intensity < 2.2f)
         {
-            darkNightDirLight.intensity += 0.002f;
+            //darkNightDirLight.intensity += 0.002f;
+            darkNightDirLight.intensity += 0.01f;
         }
         else
         {
@@ -96,7 +97,8 @@ public class LightController : MonoBehaviour
 
         if (sunsetDirLight.intensity > 0f)
         {
-            sunsetDirLight.intensity -= 0.001f;
+            //sunsetDirLight.intensity -= 0.001f;
+            sunsetDirLight.intensity -= 0.005f;
         }
         else
         {
@@ -105,7 +107,8 @@ public class LightController : MonoBehaviour
 
         if (sunsetPointLight.intensity > 0f)
         {
-            sunsetPointLight.intensity -= 0.001f;
+            //sunsetPointLight.intensity -= 0.001f;
+            sunsetPointLight.intensity -= 0.005f;
         }
 
 

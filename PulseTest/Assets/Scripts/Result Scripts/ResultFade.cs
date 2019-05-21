@@ -30,7 +30,15 @@ public class ResultFade : MonoBehaviour
     {
         //SceneManager.LoadScene(0);
         //SceneManager.LoadScene("DayTwoScene");
-        SceneManager.LoadScene("SampleScene");
+        if (IterationController.dayCount > 1)
+        {
+            SceneManager.LoadScene("FinalScene");
+        }
+        else
+        {
+            SceneManager.LoadScene("SampleScene");
+        }
+
     }
 
     public void FadeOut()
