@@ -1246,7 +1246,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 252965985}
-  m_LocalRotation: {x: -0, y: -0, z: 0.85108626, w: 0.5250259}
+  m_LocalRotation: {x: -0, y: -0, z: 0.83900344, w: 0.5441262}
   m_LocalPosition: {x: 1.44, y: 0.92, z: 4}
   m_LocalScale: {x: 3, y: 3, z: 1.4610213}
   m_Children: []
@@ -2214,7 +2214,7 @@ MonoBehaviour:
   lightOn: {fileID: 1673563560}
   lightOff: {fileID: 1670041414}
   skyCycle: {fileID: 252965985}
-  rotateAngle: 116.66003
+  rotateAngle: 114.07006
   sunsetAngle: 27
   nightAngle: -120
   morningAngle: -263
@@ -3073,7 +3073,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 5.4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
