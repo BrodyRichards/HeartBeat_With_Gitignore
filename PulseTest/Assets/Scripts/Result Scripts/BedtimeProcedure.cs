@@ -24,7 +24,7 @@ public class BedtimeProcedure : MonoBehaviour
 
     public static bool journalIsOpened;
 
-    private bool charlieInBed;
+    public static bool charlieInBed;
     // Start is called before the first frame update
     private void Awake()
     {

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class LightController : MonoBehaviour
 {
     public Light[] roomLights;
@@ -21,14 +22,24 @@ public class LightController : MonoBehaviour
 
     public GameObject lightOn;
     public GameObject lightOff;
+    public GameObject skyCycle;
 
-    private float turnToDayTimer = 1f;
-    private float turnToNightTimer = 1f;
+    [Range(-360f, 120f)]
+    public float rotateAngle;
+
+    [Range(-360f, 120f)] public float sunsetAngle;
+    [Range(-360f, 120f)] public float nightAngle;
+    [Range(-360f, 120f)] public float morningAngle;
+
+    private float turnToDayTimer = 5f;
+    private float turnToNightTimer = 5f;
 
     public static bool nightIsHere;
     public static bool turnOffRoomLights;
     public static bool morningIsHere;
     public static bool timeToGetOutOfBed;
+
+    public bool isReset;
 
     private void Awake()
     {
@@ -50,10 +61,13 @@ public class LightController : MonoBehaviour
         {
 
             turnToNightTimer -= Time.deltaTime;
+            RotateSkyTo(sunsetAngle, 0.1f);
             if (turnToNightTimer < 0)
             {
 
                 nightIsHere = ShiftToNightLight();
+
+
             }
         }
         else
@@ -69,15 +83,29 @@ public class LightController : MonoBehaviour
                 lightOn.SetActive(false);
                 lightOff.SetActive(true);
             }
+
+        }
+
+        if (BedtimeProcedure.charlieInBed && !timeToGetOutOfBed)
+        {
+            RotateSkyTo(morningAngle, 0.17f);
         }
 
         if (morningIsHere && !timeToGetOutOfBed)
         {
 
             LetTheSunShine();
-
         }
 
+
+
+
+        if (isReset)
+        {
+            darkNightDirLight.intensity = 0f;
+            sunsetDirLight.intensity = 1f;
+            sunsetPointLight.intensity = 0.5f;
+        }
 
 
     }
@@ -87,8 +115,8 @@ public class LightController : MonoBehaviour
         bool lightIsReady = false;
         if (darkNightDirLight.intensity < 2.2f)
         {
-            //darkNightDirLight.intensity += 0.002f;
-            darkNightDirLight.intensity += 0.01f;
+            darkNightDirLight.intensity += 0.002f;
+            //darkNightDirLight.intensity += 0.01f / turnToNightTimer;
         }
         else
         {
@@ -97,20 +125,22 @@ public class LightController : MonoBehaviour
 
         if (sunsetDirLight.intensity > 0f)
         {
-            //sunsetDirLight.intensity -= 0.001f;
-            sunsetDirLight.intensity -= 0.005f;
+            sunsetDirLight.intensity -= 0.001f;
+            //sunsetDirLight.intensity -= 0.005f / turnToNightTimer;
         }
         else
         {
             lightIsReady = lightIsReady && true;
         }
 
+
+
         if (sunsetPointLight.intensity > 0f)
         {
-            //sunsetPointLight.intensity -= 0.001f;
-            sunsetPointLight.intensity -= 0.005f;
+            sunsetPointLight.intensity -= 0.001f;
+            //sunsetPointLight.intensity -= 0.005f / turnToNightTimer;
         }
-
+        RotateSkyTo(nightAngle, 0.2f);
 
         return lightIsReady;
 
@@ -170,5 +200,14 @@ public class LightController : MonoBehaviour
         }
     }
 
-    
+    public void RotateSkyTo(float angle, float rotateSpeed)
+    {
+        if (rotateAngle > angle)
+        {
+            rotateAngle -= rotateSpeed;
+        }
+
+        skyCycle.transform.rotation = Quaternion.Euler(0f, 0f, rotateAngle);
+        Debug.Log("rotate angle" + rotateAngle);
+    }
 }
