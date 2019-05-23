@@ -257,16 +257,6 @@ public class NPCs : MonoBehaviour
         }
     }
 
-    /*
-    protected virtual void addSneeze()
-    {
-        Vector3 offset = new Vector3(2f, 4.5f, 0);
-        Image sneeze = Instantiate(master.GetComponent<NpcInstantiator>().sneezeBubble, transform.localPosition + offset, transform.rotation);
-        sneeze.GetComponent<SpriteRenderer>().sortingLayerName = "Front Props";
-        sneeze.transform.parent = transform;
-    }
-    */
-
     protected virtual void addEmo()
     {
         int count = transform.childCount;
@@ -341,10 +331,10 @@ public class NPCs : MonoBehaviour
         if (inDist)
         {
             float dist = Vector3.Distance(avatarPos, transform.position);
-
+            target = avatarPos;
             if (dist > 10.0f)
             {
-                target = avatarPos;
+                
                 transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             }
         }
