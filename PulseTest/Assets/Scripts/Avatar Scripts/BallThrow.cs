@@ -34,7 +34,7 @@ public class BallThrow : MonoBehaviour
         }
         else if (Input.GetKeyDown(Control.negativeAction) && !thrownBall)
         {
-            isMeanBall = true;
+            BallProjectile.meanBallThrown = isMeanBall = true;
             ThrowBall();
         }
     }
@@ -86,7 +86,7 @@ public class BallThrow : MonoBehaviour
         }
 
         //Update ballProjectile script with mean ball info
-        BallProjectile.meanBallThrown = isMeanBall;
+        //BallProjectile.meanBallThrown = isMeanBall;
 
         anim.SetBool("hasBall", false);
         //Re-enable movement once animation has finished

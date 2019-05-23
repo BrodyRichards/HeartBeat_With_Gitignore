@@ -30,7 +30,7 @@ public class ResultFade : MonoBehaviour
     {
         //SceneManager.LoadScene(0);
         //SceneManager.LoadScene("DayTwoScene");
-        if (IterationController.dayCount > 1)
+        if (IterationController.dayCount > 2)
         {
             SceneManager.LoadScene("FinalScene");
         }
