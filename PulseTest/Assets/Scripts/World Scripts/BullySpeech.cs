@@ -25,7 +25,7 @@ public class BullySpeech : MonoBehaviour
         speechOn = false;
 
         hideThought();
-        taunts = new List<string>() {"Hey new kid", "What a stupid hat", "Go back to your old school", "Hey shrimp", "Hey carrotboy"};
+        taunts = new List<string>() {"Hey new kid", "What a stupid hat", "Go back to your old school", "Hey shrimp", "Hey carrotboy", "Hey what's your name", "Hey you"};
         tmpug = text.GetComponent<TextMeshProUGUI>();
     }
 
@@ -33,7 +33,10 @@ public class BullySpeech : MonoBehaviour
     void Update()
     {
         time = Time.fixedUnscaledTime;
-
+        if (NPCs.schoolBell)
+        {
+            hideThought();
+        }
         if (time >= timer)
         {
             speechOn = false;
@@ -47,10 +50,7 @@ public class BullySpeech : MonoBehaviour
             showThought();
             setTimer();
         }
-        else if (NPCs.schoolBell)
-        {
-            hideThought();
-        }
+        
     }
 
     void hideThought()
