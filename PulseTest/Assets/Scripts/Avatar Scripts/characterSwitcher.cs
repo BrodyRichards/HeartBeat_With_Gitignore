@@ -34,9 +34,12 @@ public class characterSwitcher : MonoBehaviour
 
         doNothingTimer = 0f;
 
-        if(IterationController.dayCount >= 1)
+        if(IterationController.dayCount == 1)
         {
             GetComponent<IterationController>().PrepareNextDay();
+        }else if(IterationController.dayCount == 2)
+        {
+            GetComponent<IterationController>().PrepareFinalDay();
         }
 
         /*

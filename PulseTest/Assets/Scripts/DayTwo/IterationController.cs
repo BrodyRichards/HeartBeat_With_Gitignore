@@ -7,9 +7,12 @@ public class IterationController : MonoBehaviour
     public static float ballKidTimer;
     public static float bunnyTimer;
     public static float musicKidTimer;
-    public static float dayCount;
+    public static int dayCount;
     public static int leastUsed;
     private GameObject leastPlayed;
+    private Vector3 ballKidScale;
+    private Vector3 bunnyScale;
+    private Vector3 musicKidScale; 
 
     // Start is called before the first frame update
     void Awake()
@@ -17,6 +20,9 @@ public class IterationController : MonoBehaviour
         if(dayCount < 1)
         {
             leastUsed = -1;
+            bunnyScale = GameObject.Find("1").transform.localScale;
+            ballKidScale = GameObject.Find("2").transform.localScale;
+            musicKidScale = GameObject.Find("3").transform.localScale;
         }
     }
 
@@ -26,15 +32,9 @@ public class IterationController : MonoBehaviour
         
     }
 
+    //Function for prepping the second day
     public void PrepareNextDay()
     {
-        //If there is one that is least used then we need to alternate which avatar is disabled
-        /*if (dayCount >= 3)
-        {
-            //Replace the avatar that is missing
-            leastPlayed.transform.localScale = new Vector3(1, 1, 1);
-        }*/
-
         //Have to keep this array in order
         leastUsed = FindLeastPlayed(bunnyTimer, ballKidTimer, musicKidTimer);
         //Convert int to string for GameObject lookup
@@ -46,6 +46,58 @@ public class IterationController : MonoBehaviour
         //leastPlayed.SetActive(false);
         leastPlayed.transform.localScale = new Vector3(0, 0, 0);
         Debug.Log("Disabled: " + leastUsed);
+    }
+
+    //Function for prepping the final day
+    public void PrepareFinalDay()
+    {
+        string lUsed;
+        GameObject lastDropped;
+        Vector3 lastDroppedScale;
+        string lastLeast = leastUsed.ToString();
+
+        switch (leastUsed)
+        {
+            case 1:
+                lastDroppedScale = bunnyScale;
+                leastUsed = FindLeastPlayed(ballKidTimer, musicKidTimer);
+                break;
+            case 2:
+                lastDroppedScale = ballKidScale;
+                leastUsed = FindLeastPlayed(bunnyTimer, musicKidTimer);
+                break;
+            case 3:
+                lastDroppedScale = musicKidScale;
+                leastUsed = FindLeastPlayed(bunnyTimer, ballKidTimer);
+                break;
+            default:
+                lastDroppedScale = new Vector3(0, 0, 0);
+                leastUsed = -1;
+                break;
+        }
+
+        if(leastUsed > 0)
+        {
+            lUsed = leastUsed.ToString();
+        }
+        else
+        {
+            lUsed = null;
+        }
+
+        //Find the last avatar that was dropped out
+        //and find the one that's going to be dropped next
+
+        //Last one dropped that's coming back in
+        lastDropped = GameObject.Find(lastLeast);
+        //Next one getting dropped
+        leastPlayed = GameObject.Find(lUsed);
+
+        //Bring last one dropped back in
+        lastDropped.transform.localScale = lastDroppedScale;
+
+        //Drop the next one
+        leastPlayed.transform.localScale = new Vector3(0, 0, 0);
     }
 
     private int FindLeastPlayed(params float[] avTimes)
