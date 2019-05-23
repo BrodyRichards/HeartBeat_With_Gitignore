@@ -10,15 +10,16 @@ public class IterationController : MonoBehaviour
     public static int dayCount;
     public static int leastUsed;
     private GameObject leastPlayed;
-    private Vector3 ballKidScale;
-    private Vector3 bunnyScale;
-    private Vector3 musicKidScale; 
+    public static Vector3 ballKidScale;
+    public static Vector3 bunnyScale;
+    public static Vector3 musicKidScale; 
 
     // Start is called before the first frame update
     void Awake()
     {
         if(dayCount < 1)
         {
+            //I don't think this is being called
             leastUsed = -1;
             bunnyScale = GameObject.Find("1").transform.localScale;
             ballKidScale = GameObject.Find("2").transform.localScale;
@@ -87,6 +88,10 @@ public class IterationController : MonoBehaviour
 
         //Find the last avatar that was dropped out
         //and find the one that's going to be dropped next
+
+        //Debug.Log("Last Least: " + lastLeast);
+        //Debug.Log("Current Least: " + lUsed);
+        //Debug.Log("Last Dropped Scale: " + lastDroppedScale);
 
         //Last one dropped that's coming back in
         lastDropped = GameObject.Find(lastLeast);

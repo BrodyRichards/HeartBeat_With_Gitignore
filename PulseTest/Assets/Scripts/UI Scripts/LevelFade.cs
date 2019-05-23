@@ -25,7 +25,7 @@ public class LevelFade : MonoBehaviour
     public void FadeToNextLevel()
     {
         //Prepare next day information
-        IterationController.dayCount++;
+        //IterationController.dayCount++;
         FadeToLevel(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
