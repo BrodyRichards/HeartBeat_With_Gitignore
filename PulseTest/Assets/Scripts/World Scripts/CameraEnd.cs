@@ -7,7 +7,7 @@ public class CameraEnd : MonoBehaviour
     private Camera cam;
     private Vector3 target;
 
-    private float maxFOV = 22f;
+    private float maxFOV = 30f;
     private float minFOV = 4.84f;
     private float speed = 30f;
 

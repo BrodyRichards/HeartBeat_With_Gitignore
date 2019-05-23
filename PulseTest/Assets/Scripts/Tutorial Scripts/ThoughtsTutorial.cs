@@ -70,7 +70,7 @@ public class ThoughtsTutorial : MonoBehaviour
     void setTimer()
     {
         time = Time.fixedUnscaledTime;
-        timer = time + 2.5f;
+        timer = time + 3.5f;
         thoughtOn = true;
     }
 
