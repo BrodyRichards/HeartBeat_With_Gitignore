@@ -30,6 +30,9 @@ public class RingUI : MonoBehaviour
     private int emoCurrentLength;
     private readonly int segNum = 12;
 
+    public ProgSpirit progs;
+
+
     // Start is called before the first frame update
 
     private void Awake()
@@ -119,6 +122,7 @@ public class RingUI : MonoBehaviour
                     thisObj.SetActive(true);
                     thisObj.GetComponent<Image>().sprite = sadSeg;
                 }
+                progs.Emit();
             }
         }
 
