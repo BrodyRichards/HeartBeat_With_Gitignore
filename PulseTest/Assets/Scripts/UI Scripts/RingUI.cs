@@ -30,8 +30,7 @@ public class RingUI : MonoBehaviour
     private int emoCurrentLength;
     private readonly int segNum = 12;
 
-    public ProgSpirit progs;
-
+    private GameObject pgs;
 
     // Start is called before the first frame update
 
@@ -50,6 +49,7 @@ public class RingUI : MonoBehaviour
         }
 
         bell_anim.enabled = false;
+        pgs = GameObject.FindGameObjectWithTag("ProgSpirit");
     }
 
     // Update is called once per frame
@@ -122,7 +122,8 @@ public class RingUI : MonoBehaviour
                     thisObj.SetActive(true);
                     thisObj.GetComponent<Image>().sprite = sadSeg;
                 }
-                progs.Emit();
+                pgs.GetComponent<ProgSpiritScript>().Emit();
+                
             }
         }
 

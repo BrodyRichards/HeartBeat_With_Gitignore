@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProgSpirit : MonoBehaviour
+public class ProgSpiritScript : MonoBehaviour
 {
     private ParticleSystem ps;
     private ParticleSystem.EmissionModule em;
@@ -10,11 +10,16 @@ public class ProgSpirit : MonoBehaviour
     private GameObject Camera;
     private int flag;
     private float timer;
+    
+    void Awake(){
+        ps = gameObject.GetComponent<ParticleSystem>();
+        ps.gameObject.SetActive(true);
+    }
     // Start is called before the first frame update
     void Start()
     {
-        ps = gameObject.GetComponent<ParticleSystem>();
-        ps.Play();
+        //ps = gameObject.GetComponent<ParticleSystem>();
+       // ps.Play();
         em = ps.emission;
         em.rateOverDistance = 0;
         MC = GameObject.FindGameObjectWithTag("MC");
@@ -33,7 +38,7 @@ public class ProgSpirit : MonoBehaviour
             if (timer < 1.0f)
                 {
                     timer += Time.deltaTime;
-                    ps.transform.position = Camera.transform.position + new Vector3(25, 14, 0);
+                    ps.transform.position = Camera.transform.position + new Vector3(27, 14, 0);
                     Debug.Log("Transforming");
                 }
             if(timer > 1.0f){

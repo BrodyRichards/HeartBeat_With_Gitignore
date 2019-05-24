@@ -2744,7 +2744,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 643875420}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35ea99f37c1ef42428d366adb7f5cff5, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c2d68411e5454e4da829074254c2c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &665860205
@@ -19137,11 +19137,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 689715242}
     m_Modifications:
-    - target: {fileID: 950103261764361764, guid: 161ec8754d04ffb4485fb6c99cd22544,
-        type: 3}
-      propertyPath: m_Name
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 950103261764361770, guid: 161ec8754d04ffb4485fb6c99cd22544,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19211,6 +19206,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.6131
+      objectReference: {fileID: 0}
+    - target: {fileID: 950103261764361764, guid: 161ec8754d04ffb4485fb6c99cd22544,
+        type: 3}
+      propertyPath: m_Name
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4725001187680325888, guid: 161ec8754d04ffb4485fb6c99cd22544,
         type: 3}
@@ -20187,6 +20187,11 @@ PrefabInstance:
     - target: {fileID: 1519797402459980515, guid: d77767d21a93b4e82b20fa4436d930cb,
         type: 3}
       propertyPath: progs
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1519797402459980515, guid: d77767d21a93b4e82b20fa4436d930cb,
+        type: 3}
+      propertyPath: progss
       value: 
       objectReference: {fileID: 643875421}
     m_RemovedComponents:
