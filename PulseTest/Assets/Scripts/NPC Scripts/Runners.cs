@@ -60,7 +60,7 @@ public class Runners : NPCs
             bullying = true;
             float dist = Vector3.Distance(NpcInstantiator.mcPos, transform.position);
             target = NpcInstantiator.mcPos;
-            if (dist > 10.0f)
+            if (dist > 15.0f)
             {
                 //target = NpcInstantiator.mcPos;
                 transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);

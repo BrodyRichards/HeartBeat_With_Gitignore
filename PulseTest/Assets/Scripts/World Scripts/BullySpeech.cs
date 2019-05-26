@@ -37,20 +37,22 @@ public class BullySpeech : MonoBehaviour
         {
             hideThought();
         }
-        if (time >= timer)
+        else
         {
-            speechOn = false;
-            hideThought();
-        }
-        if (Runners.bullying && speechOn == false)
-        {
-            speechOn = true;
-            int ran = Random.Range(0, taunts.Count);
-            tmpug.text = taunts[ran];
-            showThought();
-            setTimer();
-        }
-        
+            if (time >= timer)
+            {
+                speechOn = false;
+                hideThought();
+            }
+            if (Runners.bullying && speechOn == false)
+            {
+                speechOn = true;
+                int ran = Random.Range(0, taunts.Count);
+                tmpug.text = taunts[ran];
+                showThought();
+                setTimer();
+            }
+        }   
     }
 
     void hideThought()
