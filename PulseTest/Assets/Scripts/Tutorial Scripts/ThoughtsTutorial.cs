@@ -105,7 +105,7 @@ public class ThoughtsTutorial : MonoBehaviour
                 action = 0;
                 curtain = true;
                 Invoke("changeThought", 5f);
-                Invoke("promptJournal", 5f);
+                Invoke("promptJournal", 11f);
             }
         }
         else if (TutorialCharSwitch.TutCharChoice == 2)
@@ -115,7 +115,7 @@ public class ThoughtsTutorial : MonoBehaviour
                 action = 1;
                 alarm = true;
                 Invoke("changeThought", 9f);
-                Invoke("promptJournal", 9f);
+                Invoke("promptJournal", 15f);
             }
         }   
     }
