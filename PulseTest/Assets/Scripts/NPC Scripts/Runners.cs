@@ -43,7 +43,6 @@ public class Runners : NPCs
                 target = new Vector3(ranX, ranY, -1);
             }
             */
-            Debug.Log("Bullying: " + bullying);
             DetectMovement();
         }
         else

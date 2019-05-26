@@ -118,5 +118,9 @@ public class ThoughtsTutorial : MonoBehaviour
                 Invoke("promptJournal", 15f);
             }
         }   
+        if (McExit.nextScene)
+        {
+            journalPrompt.gameObject.SetActive(false);
+        }
     }
 }
