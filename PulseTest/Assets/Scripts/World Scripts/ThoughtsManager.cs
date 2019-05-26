@@ -56,11 +56,12 @@ public class ThoughtsManager : MonoBehaviour
             {3, new List<string>(new string[]{"Ow!", "What a big meanie head", "I don't like him", "Why is he doing that"}) },
             {4, new List<string>(new string[]{"Pretty music!", "I like this song", "This sounds like mommy's music"}) },
             {5, new List<string>(new string[]{"Yucky song!", "Sounds bad", "This song is ugly", "Why does she keep playing it?"}) },
+            {6, new List<string>(new string[]{"Why's he so mean", "Stop it...", "I want to cry...", "What a meanie"}) }, //for the bully kid
             //Below are idle thoughts, 6 is for idle, 7 for sad, 8 for happy
-            {6, new List<string>(new string[]{"Snow!", "I'm an ice dragon", "so cold brrr", "I wanna draw", "I hope daddy doesn't work too late"}) }, 
-            {7, new List<string>(new string[]{"Mommy said big kids don't cry", "I didn't see daddy yesterday", "I want to go home", "*Sniffle*", "I miss mommy",
+            {7, new List<string>(new string[]{"Snow!", "I'm an ice dragon", "so cold brrr", "I wanna draw", "I hope daddy doesn't work too late"}) }, 
+            {8, new List<string>(new string[]{"Mommy said big kids don't cry", "I didn't see daddy yesterday", "I want to go home", "*Sniffle*", "I miss mommy",
                                                 "I don't like this school"}) },
-            {8, new List<string>(new string[]{"I want to tell mommy about today!", "Can't wait to make new friends!", "Can't wait for class!"}) }
+            {9, new List<string>(new string[]{"I want to tell mommy about today!", "Can't wait to make new friends!", "Can't wait for class!"}) }
             //maybe I can separate some strings depending on the mood of the MC
         };
 
@@ -157,15 +158,15 @@ public class ThoughtsManager : MonoBehaviour
             {
                 if (McMovement.speed == 4) //no mood
                 {
-                    changeThought(6);
+                    changeThought(7);
                 }
                 else if (McMovement.speed == 6) //happy
                 {
-                    changeThought(8);
+                    changeThought(9);
                 }
                 else if (McMovement.speed == 3) //sad
                 {
-                    changeThought(7);
+                    changeThought(8);
                 }
             }
             if (MentalState.message != "")
@@ -175,6 +176,11 @@ public class ThoughtsManager : MonoBehaviour
                 Debug.Log("lineNum: " + lineNum);
                 MentalState.message = "";
                 changeThought(lineNum);
+            }
+            int ran2 = Random.Range(0, 1000);
+            if (ran2 > 995 && Runners.bullying)
+            {
+                changeThought(6);
             }
         }
         
