@@ -67,11 +67,11 @@ public class Runners : NPCs
             else
             {
                 //PUT THE ANIMATION FOR LAUGHING HEREEEE
-                   //
-                   //
-                   //
-                   //
-                   ///
+                //
+                //
+                //
+                //
+                anim.SetTrigger("taunt");
                    //
                    //
                    //
