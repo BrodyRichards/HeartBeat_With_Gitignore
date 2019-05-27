@@ -64,6 +64,19 @@ public class Runners : NPCs
                 //target = NpcInstantiator.mcPos;
                 transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             }
+            else
+            {
+                //PUT THE ANIMATION FOR LAUGHING HEREEEE
+                   //
+                   //
+                   //
+                   //
+                   ///
+                   //
+                   //
+                   //
+                //RIGHT HERE YOU POOPMATE
+            }
         }
         else
         {
