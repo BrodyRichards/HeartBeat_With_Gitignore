@@ -31,18 +31,20 @@ public class LightController : MonoBehaviour
     [Range(-360f, 120f)] public float nightAngle;
     [Range(-360f, 120f)] public float morningAngle;
 
-    private float turnToDayTimer = 5f;
+    private float turnToDayTimer = 8f;
     private float turnToNightTimer = 5f;
 
     public static bool nightIsHere;
     public static bool turnOffRoomLights;
     public static bool morningIsHere;
     public static bool timeToGetOutOfBed;
+    public static bool sunsetIsHere;
 
     public bool isReset;
 
     private void Awake()
     {
+        sunsetIsHere = false;
         nightIsHere = false;
         turnOffRoomLights = false;
         morningIsHere = false;
@@ -64,7 +66,7 @@ public class LightController : MonoBehaviour
             RotateSkyTo(sunsetAngle, 0.1f);
             if (turnToNightTimer < 0)
             {
-
+                sunsetIsHere = true;
                 nightIsHere = ShiftToNightLight();
 
 
@@ -88,7 +90,7 @@ public class LightController : MonoBehaviour
 
         if (BedtimeProcedure.charlieInBed && !timeToGetOutOfBed)
         {
-            RotateSkyTo(morningAngle, 0.17f);
+            RotateSkyTo(morningAngle, 0.1f);
         }
 
         if (morningIsHere && !timeToGetOutOfBed)
@@ -103,7 +105,7 @@ public class LightController : MonoBehaviour
         if (isReset)
         {
             darkNightDirLight.intensity = 0f;
-            sunsetDirLight.intensity = 1f;
+            sunsetDirLight.intensity = 0.8f;
             sunsetPointLight.intensity = 0.5f;
         }
 
@@ -115,7 +117,7 @@ public class LightController : MonoBehaviour
         bool lightIsReady = false;
         if (darkNightDirLight.intensity < 2.2f)
         {
-            darkNightDirLight.intensity += 0.002f;
+            darkNightDirLight.intensity += 0.001f;
             //darkNightDirLight.intensity += 0.01f / turnToNightTimer;
         }
         else
@@ -137,10 +139,10 @@ public class LightController : MonoBehaviour
 
         if (sunsetPointLight.intensity > 0f)
         {
-            sunsetPointLight.intensity -= 0.001f;
+            sunsetPointLight.intensity -= 0.0005f;
             //sunsetPointLight.intensity -= 0.005f / turnToNightTimer;
         }
-        RotateSkyTo(nightAngle, 0.2f);
+        RotateSkyTo(nightAngle, 0.1f);
 
         return lightIsReady;
 
@@ -151,7 +153,7 @@ public class LightController : MonoBehaviour
 
         if (brightMorningPointLight.intensity < 0.5f)
         {
-            brightMorningPointLight.intensity += 0.01f;
+            brightMorningPointLight.intensity += 0.001f;
         }
 
 
@@ -162,7 +164,7 @@ public class LightController : MonoBehaviour
 
         if (brightMorningDirLight.intensity < 0.6f)
         {
-            brightMorningDirLight.intensity += 0.005f;
+            brightMorningDirLight.intensity += 0.0005f;
         }
         else
         {

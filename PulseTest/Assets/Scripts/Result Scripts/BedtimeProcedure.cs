@@ -46,7 +46,7 @@ public class BedtimeProcedure : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (LightController.nightIsHere)
+        if (LightController.sunsetIsHere)
         {
             ReadJournal();
             FinishJournal();
