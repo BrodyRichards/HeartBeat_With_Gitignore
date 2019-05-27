@@ -132,7 +132,7 @@ PrefabInstance:
     - target: {fileID: 6184395503841328229, guid: aa698b7d14a59c84fb4658e612d75afb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.630504
+      value: -6.93
       objectReference: {fileID: 0}
     - target: {fileID: 6184395503841328229, guid: aa698b7d14a59c84fb4658e612d75afb,
         type: 3}
@@ -1246,7 +1246,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 252965985}
-  m_LocalRotation: {x: -0, y: -0, z: 0.6870907, w: 0.7265717}
+  m_LocalRotation: {x: -0, y: -0, z: 0.52837056, w: 0.84901386}
   m_LocalPosition: {x: 1.54, y: 0.98, z: 4}
   m_LocalScale: {x: 3, y: 3, z: 1.4610213}
   m_Children: []
@@ -2214,7 +2214,7 @@ MonoBehaviour:
   lightOn: {fileID: 1673563560}
   lightOff: {fileID: 1670041414}
   skyCycle: {fileID: 252965985}
-  rotateAngle: 86.80051
+  rotateAngle: 63.790855
   sunsetAngle: 27
   nightAngle: -120
   morningAngle: -263
@@ -5658,7 +5658,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1978183562
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6259,7 +6259,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8318072189251770186}
   m_LocalRotation: {x: -0, y: -0, z: 0.04680824, w: 0.9989039}
-  m_LocalPosition: {x: 8.630504, y: 4.125573, z: -0.013399612}
+  m_LocalPosition: {x: -7.04, y: 4.125573, z: -0.013399612}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children:
   - {fileID: 8318072188427536030}
