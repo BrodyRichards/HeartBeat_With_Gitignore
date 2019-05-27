@@ -10,7 +10,6 @@ public class FinalResultDecision : MonoBehaviour
     {
         int friend = MentalState.DecideFriend();
 
-        friend = 1;
 
         if (friend != 0)
         {
