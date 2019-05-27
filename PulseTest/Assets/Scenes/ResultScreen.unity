@@ -460,7 +460,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 0, g: 0.010291583, b: 0.11320752, a: 1}
-  m_Intensity: 0.76399726
+  m_Intensity: 2.2019908
   m_Range: 21.371359
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1246,7 +1246,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 252965985}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7211583, w: 0.6927703}
+  m_LocalRotation: {x: -0, y: -0, z: -0.80685085, w: 0.5907552}
   m_LocalPosition: {x: 1.44, y: 0.92, z: 4}
   m_LocalScale: {x: 3, y: 3, z: 1.4610213}
   m_Children: []
@@ -1489,7 +1489,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.9684325, b: 0.8443396, a: 1}
-  m_Intensity: 0.6180049
+  m_Intensity: 0
   m_Range: 21.371359
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -2214,7 +2214,7 @@ MonoBehaviour:
   lightOn: {fileID: 1673563560}
   lightOff: {fileID: 1670041414}
   skyCycle: {fileID: 252965985}
-  rotateAngle: 92.30039
+  rotateAngle: -107.578766
   sunsetAngle: 27
   nightAngle: -120
   morningAngle: -263
@@ -3609,7 +3609,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.11800295
+  m_Intensity: 0
   m_Range: 19.1
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -4772,7 +4772,7 @@ SpriteRenderer:
   m_SortingLayerID: 2092895947
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: be7a6ee01f286c545be6f6cb6ad79986, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d78aea4c5e2264c1a9d47bdb59aecb97, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5871,6 +5871,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3578396215768619329, guid: ea7c0ce8199844db58b7f8051fec6a0a,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d78aea4c5e2264c1a9d47bdb59aecb97,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea7c0ce8199844db58b7f8051fec6a0a, type: 3}
 --- !u!1001 &5118900244997073141
@@ -5884,11 +5890,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: JournalCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 308200703274583772, guid: a65a7611b713b41b4923e89639efc33f,
-        type: 3}
-      propertyPath: m_Name
-      value: someJournalThought
       objectReference: {fileID: 0}
     - target: {fileID: 5118900243861740677, guid: a65a7611b713b41b4923e89639efc33f,
         type: 3}
@@ -5994,6 +5995,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 308200703274583772, guid: a65a7611b713b41b4923e89639efc33f,
+        type: 3}
+      propertyPath: m_Name
+      value: someJournalThought
       objectReference: {fileID: 0}
     - target: {fileID: 5118900243861740698, guid: a65a7611b713b41b4923e89639efc33f,
         type: 3}
