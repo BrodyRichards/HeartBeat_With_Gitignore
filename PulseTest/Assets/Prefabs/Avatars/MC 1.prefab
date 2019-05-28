@@ -95,7 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   happy: {fileID: 21300000, guid: f1f52beab3255314bb7d19171cd600a0, type: 3}
   sad: {fileID: 21300000, guid: 0118ce6c620cec848bacbb8088e77987, type: 3}
-  startle: {fileID: 21300000, guid: 673e8baa999e5474bb8d4ddeaba8d99e, type: 3}
+  startle: {fileID: 21300000, guid: fabe04e3b01554c618d5f6ba80c180ab, type: 3}
   angry: {fileID: 21300000, guid: e132baa666e4228428f01485bbc4b87f, type: 3}
 --- !u!1 &20722763311755063
 GameObject:

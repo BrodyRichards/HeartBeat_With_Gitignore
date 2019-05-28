@@ -11426,7 +11426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   happy: {fileID: 21300000, guid: f1f52beab3255314bb7d19171cd600a0, type: 3}
   sad: {fileID: 21300000, guid: 0118ce6c620cec848bacbb8088e77987, type: 3}
-  surprised: {fileID: 21300000, guid: 673e8baa999e5474bb8d4ddeaba8d99e, type: 3}
+  surprised: {fileID: 21300000, guid: fabe04e3b01554c618d5f6ba80c180ab, type: 3}
   mad: {fileID: 21300000, guid: e132baa666e4228428f01485bbc4b87f, type: 3}
   grovin: {fileID: 21300000, guid: 5c16e165f66594d2fbe5b8ac56a538f8, type: 3}
   hurt: {fileID: 21300000, guid: 03a7f53a621984acc9fe2d8c487f4efb, type: 3}
@@ -19283,7 +19283,7 @@ PrefabInstance:
     - target: {fileID: 2901192932752524100, guid: fce55a7740c9bd7488d94c06368b7557,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 20722763564241256, guid: fce55a7740c9bd7488d94c06368b7557,
         type: 3}
@@ -19299,6 +19299,26 @@ PrefabInstance:
         type: 3}
       propertyPath: leaveTime
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 20722763311755057, guid: fce55a7740c9bd7488d94c06368b7557,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 20722763311755057, guid: fce55a7740c9bd7488d94c06368b7557,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.4245283
+      objectReference: {fileID: 0}
+    - target: {fileID: 20722763311755057, guid: fce55a7740c9bd7488d94c06368b7557,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.4245283
+      objectReference: {fileID: 0}
+    - target: {fileID: 20722763311755057, guid: fce55a7740c9bd7488d94c06368b7557,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.4245283
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fce55a7740c9bd7488d94c06368b7557, type: 3}

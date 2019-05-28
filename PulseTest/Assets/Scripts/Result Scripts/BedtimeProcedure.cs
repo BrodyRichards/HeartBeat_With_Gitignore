@@ -21,6 +21,7 @@ public class BedtimeProcedure : MonoBehaviour
     // Animators
     private Animator anim;
     private Animator bedAnim;
+    private bool goToBedProcedureCalled;
 
     public static bool journalIsOpened;
 
@@ -30,6 +31,7 @@ public class BedtimeProcedure : MonoBehaviour
     {
         journalIsOpened = false;
         charlieInBed = false;
+        goToBedProcedureCalled = false;
     }
     void Start()
     {
@@ -46,18 +48,14 @@ public class BedtimeProcedure : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (LightController.sunsetIsHere)
+        Debug.Log("night is here = " + LightController.nightIsHere);
+        if (LightController.nightIsHere)
         {
             ReadJournal();
             FinishJournal();
         }
 
         dayIndicator.GetComponent<TextMeshProUGUI>().text = "Day " + (IterationController.dayCount + 1);
-
-    }
-
-    private void JustGotHome()
-    {
 
     }
 
@@ -73,9 +71,12 @@ public class BedtimeProcedure : MonoBehaviour
 
 
             tabIcon.SetActive(false);
-            if (Input.GetKeyDown(Control.evacuate))
+            if (Input.GetKeyDown(Control.evacuate) && !goToBedProcedureCalled)
             {
+                goToBedProcedureCalled = true;
                 GoToBedProcedure();
+
+                
             }
         }
     }
@@ -89,7 +90,7 @@ public class BedtimeProcedure : MonoBehaviour
             //Invoke("fadeOut", 0.1f);
             Invoke("fadeOut", 0.5f);
             Invoke("CharlieGoAway", 1.2f);
-            Invoke("fadeIn", 1.5f);
+            Invoke("fadeIn", 1.7f);
             Invoke("GoToBedPlsKid", 2f);
             Invoke("Dreaming", 8f);
             Invoke("TurnToMorn", 12f);
