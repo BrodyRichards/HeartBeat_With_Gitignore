@@ -65,18 +65,18 @@ public class IconControl : MonoBehaviour
                 
                 Rescale(img, 90f);
 
-                if (Input.GetKey(Control.positiveAction))
-                {
-                    ChangeColor(img, green);
-                }
-                else if (Input.GetKey(Control.negativeAction))
-                {
-                    ChangeColor(img, red);
-                }
-                else
-                {
-                    ChangeColor(img, Color.white);
-                }
+                //if (Input.GetKey(Control.positiveAction))
+                //{
+                //    ChangeColor(img, green);
+                //}
+                //else if (Input.GetKey(Control.negativeAction))
+                //{
+                //    ChangeColor(img, red);
+                //}
+                //else
+                //{
+                //    ChangeColor(img, Color.white);
+                //}
             }
             else
             {
@@ -118,7 +118,7 @@ public class IconControl : MonoBehaviour
 
     void Rescale(Image im, float pixel)
     {
-        im.rectTransform.sizeDelta = new Vector2(pixel, 70f);
+        im.rectTransform.sizeDelta = new Vector2(pixel, pixel);
     }
 
     private void ToggleIcons(bool boo)
