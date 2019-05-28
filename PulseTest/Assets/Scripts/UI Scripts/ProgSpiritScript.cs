@@ -17,6 +17,8 @@ public class ProgSpiritScript : MonoBehaviour
     private GameObject ball;
     private GameObject music;
     private GameObject possessed;
+    private Renderer rend;
+    public Texture HappyTex, SadTex, MadTex;
 
     void Awake(){
         ps = gameObject.GetComponent<ParticleSystem>();
@@ -37,6 +39,8 @@ public class ProgSpiritScript : MonoBehaviour
         ball = avatars[1];
         music = avatars[2];
         possessed = bunny;
+
+        rend = GetComponent<Renderer>();
 
         Camera = GameObject.FindGameObjectWithTag("MainCamera");
         
@@ -61,7 +65,6 @@ public class ProgSpiritScript : MonoBehaviour
             
         }
 
-        if (Input.GetKeyDown(KeyCode.H)) { Emit(); }
         if(flag == 1){
             Debug.Log("Flag up");
             if (timer < 1.0f)
@@ -81,13 +84,16 @@ public class ProgSpiritScript : MonoBehaviour
             ps.transform.position = possessed.transform.position;
         }
     }
-    public void Emit(){
+    public void Emit(int x){
         flag = 0;
         ps.transform.position = possessed.transform.position;
-        em.rateOverDistance = 10;
+        em.rateOverDistance = 1;
         //ps.transform.position += new Vector3(25, 14, 0);
         //em.rateOverDistance = 0;
         Debug.Log("Emit()");
+        if (x == 1) { rend.material.SetTexture("_MainTex", HappyTex); }
+        if (x == 2) { rend.material.SetTexture("_MainTex", SadTex); }
+        if (x == 3) { rend.material.SetTexture("_MainTex", MadTex); }
         flag = 1;
         return;
     }

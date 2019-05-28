@@ -2164,7 +2164,7 @@ PrefabInstance:
     - target: {fileID: 8862032571274896265, guid: fa821ddc5e8592d41b4b329b551e3b7c,
         type: 3}
       propertyPath: EmissionModule.rateOverDistance.scalar
-      value: 20
+      value: 9.89
       objectReference: {fileID: 0}
     - target: {fileID: 8862032571274896265, guid: fa821ddc5e8592d41b4b329b551e3b7c,
         type: 3}
@@ -2200,6 +2200,11 @@ PrefabInstance:
         type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key1.a
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862032571274896265, guid: fa821ddc5e8592d41b4b329b551e3b7c,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2.08
       objectReference: {fileID: 0}
     - target: {fileID: 8862032571274896264, guid: fa821ddc5e8592d41b4b329b551e3b7c,
         type: 3}
@@ -2918,6 +2923,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c2d68411e5454e4da829074254c2c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HappyTex: {fileID: 2800000, guid: f1f52beab3255314bb7d19171cd600a0, type: 3}
+  SadTex: {fileID: 2800000, guid: 0118ce6c620cec848bacbb8088e77987, type: 3}
+  MadTex: {fileID: 2800000, guid: e132baa666e4228428f01485bbc4b87f, type: 3}
 --- !u!1 &665860205
 GameObject:
   m_ObjectHideFlags: 0
@@ -19547,7 +19555,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19955286, guid: 860341fea059b4058a140f4b9c81947c, type: 3}
       propertyPath: m_SortingLayer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 860341fea059b4058a140f4b9c81947c, type: 3}
@@ -19676,7 +19684,7 @@ PrefabInstance:
     - target: {fileID: 2901192932752524100, guid: fce55a7740c9bd7488d94c06368b7557,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 20722763564241256, guid: fce55a7740c9bd7488d94c06368b7557,
         type: 3}
@@ -20948,6 +20956,12 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4365818459073948437, guid: 9d47d0a828b9a4d74b9dc7c63304ee54,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 258f6ac03aff79a4daf26b4f827bc613,
+        type: 3}
     - target: {fileID: 1805894959078927850, guid: 9d47d0a828b9a4d74b9dc7c63304ee54,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -20958,12 +20972,6 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4365818459073948437, guid: 9d47d0a828b9a4d74b9dc7c63304ee54,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 258f6ac03aff79a4daf26b4f827bc613,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d47d0a828b9a4d74b9dc7c63304ee54, type: 3}
 --- !u!1001 &6331490743919091929
