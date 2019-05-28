@@ -17,6 +17,8 @@ public class TutorialProcControl : MonoBehaviour
 
     private bool mcWokeUp;
     private float mcAppearWaitTime; // Play around with the value for fade in/out
+
+    //public static bool nextScene = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +70,7 @@ public class TutorialProcControl : MonoBehaviour
 
     private void fadeOut()
     {
+        //nextScene = true;
         var meh = fadeObject.GetComponent<TutorialFade>();
         meh.FadeOutStay();
         //Debug.Log("Fade Out");

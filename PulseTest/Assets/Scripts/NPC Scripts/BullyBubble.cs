@@ -9,7 +9,7 @@ public class BullyBubble : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        offset = new Vector3(4, 5, 0);
+        offset = new Vector3(-4, 5, 0);
     }
 
     // Update is called once per frame

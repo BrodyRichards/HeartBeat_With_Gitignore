@@ -13,6 +13,8 @@ public class McExit : MonoBehaviour
     public bool printedAlready;
     public GameObject bus;
     public Image speechBubble;
+
+    public static bool nextScene = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +25,7 @@ public class McExit : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer > busArrival && TutorialJournal.journalOpen)
+        if (timer > busArrival && TutorialJournal.journalOpenOnce)
         {
             bus.SetActive(true); 
             if (!printedAlready)
@@ -34,6 +36,8 @@ public class McExit : MonoBehaviour
 
             if (Input.GetKeyDown(Control.evacuate))
             {
+                nextScene = true;
+                //Debug.Log("next scene: " + nextScene);
                 Debug.Log("Loading Scene...");
                 //SceneManager.LoadScene("SampleScene");
             }

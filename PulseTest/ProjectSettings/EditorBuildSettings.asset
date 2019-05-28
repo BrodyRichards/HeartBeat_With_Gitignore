@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/ResultScreen.unity
     guid: adea2abac312ed7448d423f41712906f
   - enabled: 1
-    path: Assets/Scenes/DayTwoScene.unity
-    guid: 2454e7745841c4a4b806bcc28b84b9d6
+    path: Assets/Scenes/FinalScene.unity
+    guid: e9186d31f38a24b9dacab9d911791f18
+  - enabled: 1
+    path: Assets/Scenes/LoadingScene.unity
+    guid: 1957abcb37b2041b08f8187f2cf1c8d9
   m_configObjects: {}

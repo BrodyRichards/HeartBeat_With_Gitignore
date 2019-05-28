@@ -45,7 +45,6 @@ public class MentalState : MonoBehaviour
     public readonly static Vector2Int happyBound = new Vector2Int(6, 30);
     public readonly static Vector2Int sadBound = new Vector2Int(-30, -6);
     public readonly static Vector2Int normalBound = new Vector2Int(-5, 5);
-    public readonly static int comboBound = 4;
     public readonly static List<string> positiveAct 
         = new List<string>() {  "Held Rabbit", "Played catch", "Happy Song" };
     public readonly static List<string> negativeAct 
@@ -356,7 +355,18 @@ public class MentalState : MonoBehaviour
     //------------------- Debug Print functions-----------------------------
     public static void PrintMoodLog()
     {
-        Debug.Log("");
+        foreach (KeyValuePair<string, int> element in moodLog)
+        {
+            Debug.LogFormat("Action={0}, Count={1}", element.Key, element.Value.ToString());
+        }
+    }
+
+    public static void PrintEmoTimeline()
+    {
+        foreach(EmoPlot ep in emoTimeline)
+        {
+            Debug.LogFormat("Action={0}, Happening time={1}, currentMood={2}", ep.Event, ep.Time.ToString(), ep.Mood.ToString());
+        }
     }
     //------------------------------------------------------------------
 

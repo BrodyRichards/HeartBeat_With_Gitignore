@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BedtimeProcedure : MonoBehaviour
 {
@@ -15,13 +16,15 @@ public class BedtimeProcedure : MonoBehaviour
     public GameObject ballAsset;
     public GameObject musicAsset;
 
+    public GameObject dayIndicator;
+
     // Animators
     private Animator anim;
     private Animator bedAnim;
 
     public static bool journalIsOpened;
 
-    private bool charlieInBed;
+    public static bool charlieInBed;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -35,6 +38,9 @@ public class BedtimeProcedure : MonoBehaviour
 
         journalIcon.SetActive(false);
         tabIcon.SetActive(false);
+
+        MentalState.PrintMoodLog();
+        MentalState.PrintEmoTimeline();
     }
 
     // Update is called once per frame
@@ -45,6 +51,8 @@ public class BedtimeProcedure : MonoBehaviour
             ReadJournal();
             FinishJournal();
         }
+
+        dayIndicator.GetComponent<TextMeshProUGUI>().text = "Day " + (IterationController.dayCount + 1);
 
     }
 

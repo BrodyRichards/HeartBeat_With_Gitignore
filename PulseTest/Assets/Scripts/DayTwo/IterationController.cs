@@ -33,6 +33,7 @@ public class IterationController : MonoBehaviour
         
     }
 
+
     //Function for prepping the second day
     public void PrepareNextDay()
     {
@@ -47,6 +48,7 @@ public class IterationController : MonoBehaviour
         //leastPlayed.SetActive(false);
         leastPlayed.transform.localScale = new Vector3(0, 0, 0);
         Debug.Log("Disabled: " + leastUsed);
+
     }
 
     //Function for prepping the final day

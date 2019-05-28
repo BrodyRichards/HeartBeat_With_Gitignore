@@ -9,6 +9,7 @@ public class TutorialJournal : MonoBehaviour
     public GameObject text;
     public GameObject journal;
     public static bool journalOpen = false;
+    public static bool journalOpenOnce = false;
 
     private TextMeshProUGUI tmpug;
     // Start is called before the first frame update
@@ -21,23 +22,36 @@ public class TutorialJournal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ThoughtsTutorial.alarm || ThoughtsTutorial.curtain)
+        
+        if (McExit.nextScene == false)
         {
-            setText();
-            if (Input.GetKeyDown(Control.pullJournal))
+            if (ThoughtsTutorial.alarm || ThoughtsTutorial.curtain)
             {
-                if (journalOpen == false)
+                setText();
+                Debug.Log("Hello");
+                if (Input.GetKeyDown(Control.pullJournal))
                 {
-                    journalOpen = true;
+                    if (journalOpen == false)
+                    {
+                        journalOpenOnce = true;
+                        journalOpen = true;
+                    }
+                    else if (journalOpen)
+                    {
+                        journalOpen = false;
+                    }
+                    journal.SetActive(journalOpen);
                 }
-                else if (journalOpen)
-                {
-                    journalOpen = false;
-                }
-                journal.SetActive(journalOpen);
-
+                
             }
         }
+        else //if (McExit.nextScene)
+        {
+            Debug.Log("nextScene: " + McExit.nextScene);
+            journal.SetActive(false);
+        }
+        
+        
         
     }
 

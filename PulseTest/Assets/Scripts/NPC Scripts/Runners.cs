@@ -43,7 +43,6 @@ public class Runners : NPCs
                 target = new Vector3(ranX, ranY, -1);
             }
             */
-            Debug.Log("Bullying: " + bullying);
             DetectMovement();
         }
         else
@@ -60,10 +59,23 @@ public class Runners : NPCs
             bullying = true;
             float dist = Vector3.Distance(NpcInstantiator.mcPos, transform.position);
             target = NpcInstantiator.mcPos;
-            if (dist > 10.0f)
+            if (dist > 15.0f)
             {
                 //target = NpcInstantiator.mcPos;
                 transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            }
+            else
+            {
+                //PUT THE ANIMATION FOR LAUGHING HEREEEE
+                   //
+                   //
+                   //
+                   //
+                   ///
+                   //
+                   //
+                   //
+                //RIGHT HERE YOU POOPMATE
             }
         }
         else
@@ -122,6 +134,12 @@ public class Runners : NPCs
                 addQueue(1);
             }
         }
+    }
+
+    protected override void checkRabbitBit()
+    {
+        base.checkRabbitBit();
+        stopBullying = true;
     }
 
 }
