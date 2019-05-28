@@ -40,7 +40,7 @@ public class FlipJournal : MonoBehaviour
     private readonly string[] negativeThoughts =
     {
         "Evil rabbit...",
-        "What a bastard...",
+        "He is so mean to me...",
         "Her music is ugly..."
 
     };

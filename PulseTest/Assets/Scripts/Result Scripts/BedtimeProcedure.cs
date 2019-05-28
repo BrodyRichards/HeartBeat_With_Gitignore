@@ -46,7 +46,7 @@ public class BedtimeProcedure : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (LightController.nightIsHere)
+        if (LightController.sunsetIsHere)
         {
             ReadJournal();
             FinishJournal();
@@ -70,6 +70,8 @@ public class BedtimeProcedure : MonoBehaviour
                 sleepIcon.SetActive(true);
             }
             journalIcon.SetActive(false);
+
+
             tabIcon.SetActive(false);
             if (Input.GetKeyDown(Control.evacuate))
             {
@@ -90,7 +92,7 @@ public class BedtimeProcedure : MonoBehaviour
             Invoke("fadeIn", 1.5f);
             Invoke("GoToBedPlsKid", 2f);
             Invoke("Dreaming", 8f);
-            Invoke("TurnToMorn", 15f);
+            Invoke("TurnToMorn", 12f);
 
         }
     }
