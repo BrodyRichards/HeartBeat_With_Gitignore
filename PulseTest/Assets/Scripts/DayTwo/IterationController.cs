@@ -89,10 +89,6 @@ public class IterationController : MonoBehaviour
         //Find the last avatar that was dropped out
         //and find the one that's going to be dropped next
 
-        //Debug.Log("Last Least: " + lastLeast);
-        //Debug.Log("Current Least: " + lUsed);
-        //Debug.Log("Last Dropped Scale: " + lastDroppedScale);
-
         //Last one dropped that's coming back in
         lastDropped = GameObject.Find(lastLeast);
         //Next one getting dropped

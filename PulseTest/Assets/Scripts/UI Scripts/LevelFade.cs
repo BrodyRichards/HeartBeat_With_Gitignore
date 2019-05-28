@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class LevelFade : MonoBehaviour
 {
     public Animator animator;
-    //public IterationController iterationController;
     private int levelToLoad;
     public static bool readyToLeave = false;
 
