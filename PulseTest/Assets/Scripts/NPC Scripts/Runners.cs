@@ -136,4 +136,10 @@ public class Runners : NPCs
         }
     }
 
+    protected override void checkRabbitBit()
+    {
+        base.checkRabbitBit();
+        stopBullying = true;
+    }
+
 }
