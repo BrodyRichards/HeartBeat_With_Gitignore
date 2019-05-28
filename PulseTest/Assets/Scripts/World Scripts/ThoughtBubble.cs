@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class ThoughtBubble : MonoBehaviour
@@ -24,9 +25,13 @@ public class ThoughtBubble : MonoBehaviour
             scaleText = text.transform.localScale;
             scaleTextOpp = new Vector3(-text.transform.localScale.x, text.transform.localScale.y, text.transform.localScale.z);
         }
-        else //for the tutorial scene
+        else if ("TutorialScreen" == SceneManager.GetActiveScene().name)//for the tutorial scene
         {
             offset = new Vector3(-3, 2, 0);
+        }
+        else
+        {
+            offset = new Vector3(3, 2, 0);
         }
         
     }

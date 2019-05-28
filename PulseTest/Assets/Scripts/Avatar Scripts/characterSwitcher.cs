@@ -13,6 +13,7 @@ public class characterSwitcher : MonoBehaviour
     public static bool isMusicGuyInCharge;
     //public static bool isChar = false;
     private Animator anim_keyPrompt;
+    //public IterationController iterationController;
     private float doNothingTimer; 
     
 
@@ -32,6 +33,21 @@ public class characterSwitcher : MonoBehaviour
         anim_keyPrompt.enabled = false;
 
         doNothingTimer = 0f;
+
+        if(IterationController.dayCount == 0)
+        {
+            IterationController.bunnyScale = GameObject.Find("1").transform.localScale;
+            IterationController.ballKidScale = GameObject.Find("2").transform.localScale;
+            IterationController.musicKidScale = GameObject.Find("3").transform.localScale;
+        }else if (IterationController.dayCount == 1)
+        {
+            GetComponent<IterationController>().PrepareNextDay();
+        }else if(IterationController.dayCount == 2)
+        {
+            GetComponent<IterationController>().PrepareFinalDay();
+        }
+
+        IterationController.dayCount++;
 
         /*
         if (FlipJournal.lastAvatar == 1) { findGO(1).SetActive(false); }
@@ -62,18 +78,27 @@ public class characterSwitcher : MonoBehaviour
         {
             if (Input.GetKeyDown(Control.toRabbit))
             {
-                charChoice = 1;
-                PerformSwitch();
+                if (IterationController.leastUsed != 1)
+                {
+                    charChoice = 1;
+                    PerformSwitch();
+                }
             }
             else if (Input.GetKeyDown(Control.toBallKid))
             {
-                charChoice = 2;
-                PerformSwitch();
+                if (IterationController.leastUsed != 2)
+                {
+                    charChoice = 2;
+                    PerformSwitch();
+                }
             }
             else if (Input.GetKeyDown(Control.toMusicKid))
             {
-                charChoice = 3;
-                PerformSwitch();
+                if (IterationController.leastUsed != 3)
+                {
+                    charChoice = 3;
+                    PerformSwitch();
+                }
             }
             else if (Input.GetKeyDown(Control.pullJournal))
             {
@@ -97,6 +122,7 @@ public class characterSwitcher : MonoBehaviour
                 GameObject.Find("MC").GetComponent<Movement>().enabled = true;
                 GameObject.Find("MC").GetComponent<Animator>().SetBool("wantToPlay", false);
                 GameObject.Find("MC").GetComponent<Animator>().SetBool("isWalking", true);
+                GameObject.Find("MC").GetComponent<Animator>().SetBool("isHappySong", false);
                 GameObject.Find("MC").GetComponent<MCBTCreator>().enabled = false;
                 disableOthers();
                 Movement.timeToLeave = true;

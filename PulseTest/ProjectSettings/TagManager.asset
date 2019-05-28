@@ -51,6 +51,9 @@ TagManager:
   - name: UICanvas
     uniqueID: 3229432217
     locked: 0
+  - name: Skybox
+    uniqueID: 780926021
+    locked: 0
   - name: Background
     uniqueID: 2856727057
     locked: 0

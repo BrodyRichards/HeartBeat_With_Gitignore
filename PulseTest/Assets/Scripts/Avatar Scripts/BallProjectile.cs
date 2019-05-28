@@ -33,8 +33,8 @@ public class BallProjectile : MonoBehaviour
         startPos = transform.position;
         meanSpeed = speed * 1.5f;
         delayTime = 0.5f;
-        McCheckDist = 5f;
-        radius = 2f;
+        McCheckDist = 3f;
+        radius = 1f;
     }
 
     // Update is called once per frame
@@ -55,7 +55,6 @@ public class BallProjectile : MonoBehaviour
                     if (meanBallThrown)
                     {
                         //A mean ball was thrown
-                        //Debug.Log("You threw a mean ball!");
                         //Update Mental State
                         TriggerHitAnim();
                         PlayHitParticles();
@@ -112,7 +111,7 @@ public class BallProjectile : MonoBehaviour
 
         if ( transform.position.x > Playground.RightX ||
             transform.position.x < Playground.LeftX  ||
-            transform.position.y > Playground.UpperY ||
+            transform.position.y > Playground.UpperY + 10f ||
             transform.position.y < Playground.LowerY - 5f )
         {
             stationaryBall();

@@ -24,14 +24,15 @@ public class MusicKidBT : MonoBehaviour
     public GameObject notes;
     public Sprite[] happyNotesSprite;
     public Sprite[] sadNotesSprite;
-    public AudioClip[] theAudioClips;
+    public AudioSource[] theAudioSources;
 
     public LayerMask Carriers;
     public ParticleSystem ps;
     public Material happyNoteMat;
     public Material sadNoteMat;
 
-    private AudioSource audioSource;
+    private AudioSource happySong;
+    private AudioSource sadSong; 
     private AudioSource backgroundMusic;
 
     private Animator anim;
@@ -49,15 +50,17 @@ public class MusicKidBT : MonoBehaviour
     {
         mcHappySongCounter = 0;
         mcSadSongCounter = 0;
-        actionDist = 4f;
+        actionDist = 3f;
         musicNoteCreated = false;
         currentMood = (int)Mood.idle;
         musicKidBT = CreateBehaviorTree();
-        audioSource = GetComponent<AudioSource>();
+        sadSong = GetComponents<AudioSource>()[1];
+        happySong = GetComponents<AudioSource>()[0];
+        theAudioSources = new AudioSource[]{ sadSong, happySong};
         backgroundMusic = GameObject.Find("/GameController").GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         em = ps.emission;
-        songQueued = 2;
+        songQueued = 0;
         em.enabled = false;
         isBG = true;
     }
@@ -97,7 +100,7 @@ public class MusicKidBT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UIControl();
+        //UIControl();
         if (!IconControl.journalActivated && !PauseUI.IsPaused)
         {
             musicKidBT.Evaluate();
@@ -118,6 +121,7 @@ public class MusicKidBT : MonoBehaviour
             else if (Input.GetKeyDown(Control.negativeAction) && currentMood != (int)Mood.sad)
             {
                 songQueued = 1;
+
                 return NodeStatus.SUCCESS;
 
             }
@@ -128,6 +132,7 @@ public class MusicKidBT : MonoBehaviour
 
     private NodeStatus PlayMusic()
     {
+
         PlaySong(songQueued);
         TurnBgOff();
         anim.SetTrigger("click");
@@ -168,8 +173,10 @@ public class MusicKidBT : MonoBehaviour
     {
         TurnBgOn();
         currentMood = (int)Mood.idle;
-        audioSource.clip = null;
-        audioSource.Pause();
+        foreach(var ass in theAudioSources)
+        {
+            ass.Pause();
+        }
         isMusic = false;
         DestroyRemainingNote();
         mcSadSongCounter *= 0;
@@ -215,7 +222,7 @@ public class MusicKidBT : MonoBehaviour
             {
                 //Debug.Log("We detect" + coll.gameObject.name);
                 //Debug.Log("ohhh " + coll.gameObject.tag);
-                if (coll.gameObject.tag == "Person")
+                if (coll.gameObject.tag == "Person" && !npcIsAffected)
                 {
                     musicListener = coll.gameObject.name;
                     Debug.Log("NPC detected");
@@ -225,7 +232,7 @@ public class MusicKidBT : MonoBehaviour
 
             }
         }
-        musicListener = "";
+        //musicListener = "";
         return NodeStatus.FAILURE;
 
     }
@@ -256,6 +263,7 @@ public class MusicKidBT : MonoBehaviour
     private NodeStatus AffectNpc()
     {
         npcIsAffected = true;
+        Invoke("NpcNotAffected", 0.5f);
         Debug.Log("IN AFFECT NPC");
         return NodeStatus.SUCCESS;
     }
@@ -331,11 +339,16 @@ public class MusicKidBT : MonoBehaviour
     {
         if (PauseUI.IsPaused)
         {
-            audioSource.Pause();
+            theAudioSources[songQueued].Pause();
+
         }
         else if (!PauseUI.IsPaused)
         {
-            audioSource.UnPause();
+            if ( theAudioSources[songQueued].time != 0f)
+            {
+                theAudioSources[songQueued].UnPause();
+            }
+
         }
     }
 
@@ -379,9 +392,23 @@ public class MusicKidBT : MonoBehaviour
     {
         currentMood = (index == 0) ? (int)Mood.happy : (int)Mood.sad;
 
-        audioSource.clip = theAudioClips[index];
 
-        audioSource.Play();
+        if (theAudioSources[songQueued].time != 0f)
+        {
+            theAudioSources[songQueued].UnPause();
+        }
+        else
+        {
+            theAudioSources[songQueued].Play();
+        }
+
+        int temp = Math.Abs(songQueued - 1);
+        theAudioSources[temp].Pause();
+
+
+
+
+
 
         isMusic = true;
 

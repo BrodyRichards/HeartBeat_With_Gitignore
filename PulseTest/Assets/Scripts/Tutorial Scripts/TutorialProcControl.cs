@@ -17,6 +17,8 @@ public class TutorialProcControl : MonoBehaviour
 
     private bool mcWokeUp;
     private float mcAppearWaitTime; // Play around with the value for fade in/out
+
+    //public static bool nextScene = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +38,7 @@ public class TutorialProcControl : MonoBehaviour
             Invoke("MagicMcAppear", mcAppearWaitTime);
             Invoke("fadeOut", mcAppearWaitTime - 1.0f);             //original is 0.5
             Invoke("fadeIn", mcAppearWaitTime);
-            Invoke("showWaypoints", mcAppearWaitTime);
+            //Invoke("showWaypoints", mcAppearWaitTime);
         }
 
         if (mcWokeUp && TutorialCharSwitch.TutCharChoice==1)
@@ -68,15 +70,16 @@ public class TutorialProcControl : MonoBehaviour
 
     private void fadeOut()
     {
+        //nextScene = true;
         var meh = fadeObject.GetComponent<TutorialFade>();
         meh.FadeOutStay();
         //Debug.Log("Fade Out");
     }
-
+    /*
     private void showWaypoints()
     {
         waypointObjs.SetActive(true);
     }
-
+    */
 
 }

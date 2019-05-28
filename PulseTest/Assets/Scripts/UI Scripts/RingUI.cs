@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class RingUI : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class RingUI : MonoBehaviour
     public GameObject face;
     public GameObject buttonPrompt;
     public GameObject ringBg;
+    public GameObject dayIndicator;
 
     public static bool isCompleted;
 
@@ -69,6 +71,8 @@ public class RingUI : MonoBehaviour
             ring.SetActive(false);
             buttonPrompt.SetActive(false);  
         }
+
+        dayIndicator.GetComponent<TextMeshProUGUI>().text = "Day " + (IterationController.dayCount + 1.0f);
     }
 
     void SwitchFace()

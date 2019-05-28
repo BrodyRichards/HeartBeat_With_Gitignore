@@ -48,7 +48,7 @@ public class RabbitChasers : NPCs
         if (inDist)
         {
             float dist = Vector3.Distance(avatarPos, transform.position);
-
+            //target = avatarPos;
             if (dist > 10.0f)
             {
                 target = avatarPos;
@@ -58,21 +58,7 @@ public class RabbitChasers : NPCs
             }
             else
             {
-                //if (anim.GetBool("isWalking") == false)
-                //{
-                    anim.SetBool("wantToFeed", true);
-                //}
-                //anim.SetBool("wantToFeed", true);
-                /*
-                 * YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-                 * 
-                 * 
-                 *  PUT THE ANIMATION FOR THE BUNNY CARROT HEREEEEEEE
-                 * 
-                 * 
-                 * YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-                 * 
-                 * */
+                anim.SetBool("wantToFeed", true);
             }
         }
         else
@@ -86,8 +72,6 @@ public class RabbitChasers : NPCs
             }
         }
     }
-
-    //UNCOMMENT THIS WHEN YOU PUT THE ANIM IN
 
     protected override void checkRabbitBit()                   
     {
@@ -105,18 +89,6 @@ public class RabbitChasers : NPCs
             Emo = master.GetComponent<NpcInstantiator>().happyFace;
             addEmo();
             anim.SetBool("isFeeding", true);
-            /*
-             * 
-             * 
-             * 
-             * PUT THE FRAME OF HER SMILING IN HERE
-             * 
-             * 
-             * 
-             * 
-             * */
-             /*
-            anim.SetTrigger("isBit");
         }
     } 
 

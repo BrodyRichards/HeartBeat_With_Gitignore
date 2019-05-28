@@ -70,7 +70,7 @@ public class ThoughtsTutorial : MonoBehaviour
     void setTimer()
     {
         time = Time.fixedUnscaledTime;
-        timer = time + 2.5f;
+        timer = time + 3.5f;
         thoughtOn = true;
     }
 
@@ -105,7 +105,7 @@ public class ThoughtsTutorial : MonoBehaviour
                 action = 0;
                 curtain = true;
                 Invoke("changeThought", 5f);
-                Invoke("promptJournal", 5f);
+                Invoke("promptJournal", 11f);
             }
         }
         else if (TutorialCharSwitch.TutCharChoice == 2)
@@ -115,8 +115,12 @@ public class ThoughtsTutorial : MonoBehaviour
                 action = 1;
                 alarm = true;
                 Invoke("changeThought", 9f);
-                Invoke("promptJournal", 9f);
+                Invoke("promptJournal", 15f);
             }
         }   
+        if (McExit.nextScene)
+        {
+            journalPrompt.gameObject.SetActive(false);
+        }
     }
 }
