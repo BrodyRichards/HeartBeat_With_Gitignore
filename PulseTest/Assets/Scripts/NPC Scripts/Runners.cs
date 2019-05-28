@@ -8,6 +8,8 @@ public class Runners : NPCs
 {
     public static bool bullying;
     private bool stopBullying;
+    private float bullyTimer;
+    private float bullyTime;
 
     protected override void Awake()
     {
@@ -15,6 +17,7 @@ public class Runners : NPCs
         int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
         int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
         target = new Vector3(ranX, ranY, -1);
+        bullyTime = 5f;
         bullying = false;
         stopBullying = false;
     }
@@ -57,6 +60,19 @@ public class Runners : NPCs
         if (mcDist)
         {
             bullying = true;
+            //Insert bully effects
+            if(bullyTimer >= bullyTime)
+            {
+                //Decrement mood
+                Debug.Log("Affecting mood");
+                MentalState.currentState -= 1;
+                bullyTimer = 0f;
+            }
+            else
+            {
+                bullyTimer += Time.deltaTime;
+            }
+
             float dist = Vector3.Distance(NpcInstantiator.mcPos, transform.position);
             target = NpcInstantiator.mcPos;
             if (dist > 15.0f)

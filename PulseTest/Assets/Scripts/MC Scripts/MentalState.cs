@@ -64,10 +64,8 @@ public class MentalState : MonoBehaviour
         currentActionCombo = 0;
 
         currentState = 0;
-
-
-
     }
+    
     void Start()
     {
         emoTimeline = new Queue<EmoPlot>() { };
