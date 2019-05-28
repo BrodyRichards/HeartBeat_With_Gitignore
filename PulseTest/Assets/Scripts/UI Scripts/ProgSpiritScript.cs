@@ -61,7 +61,6 @@ public class ProgSpiritScript : MonoBehaviour
             
         }
 
-         
         if (Input.GetKeyDown(KeyCode.H)) { Emit(); }
         if(flag == 1){
             Debug.Log("Flag up");
