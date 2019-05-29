@@ -7,9 +7,13 @@ using UnityEngine;
 public class Runners : NPCs
 {
     public static bool bullying;
+    public static Vector3 targetPos;
     private bool stopBullying;
+    private bool gotHit;
     private float bullyTimer;
     private float bullyTime;
+    private float hitTime;
+    private float hitTimer;
 
     protected override void Awake()
     {
@@ -18,8 +22,10 @@ public class Runners : NPCs
         int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
         target = new Vector3(ranX, ranY, -1);
         bullyTime = 5f;
+        hitTime = 2.2f;
         bullying = false;
         stopBullying = false;
+        gotHit = false;
     }
 
     protected override void Update()
@@ -31,11 +37,25 @@ public class Runners : NPCs
             avatarChecks();
             if (stopBullying == false)
             {
-                checkMC();
+                if (!gotHit)
+                {
+                    checkMC();
+                }
+                else
+                {
+                    ResetHit();
+                }
             }
             else
             {
-                walkAround();
+                if (!gotHit)
+                {
+                    walkAround();
+                }
+                else
+                {
+                    ResetHit();
+                }
             }
             /*
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
@@ -54,13 +74,25 @@ public class Runners : NPCs
         }
     }
 
+    private void ResetHit()
+    {
+        if (hitTimer >= hitTime)
+        {
+            gotHit = false;
+            hitTimer = 0f;
+        }
+        else
+        {
+            hitTimer += Time.deltaTime;
+        }
+    }
+
     private void checkMC()
     {
         bool mcDist = checkDist(transform.position, NpcInstantiator.mcPos);
         if (mcDist)
         {
             bullying = true;
-            //Insert bully effects
             if(bullyTimer >= bullyTime)
             {
                 //Decrement mood
@@ -137,6 +169,7 @@ public class Runners : NPCs
             if (BallProjectile.meanBallThrown)
             {
                 stopBullying = true;
+                gotHit = true;
                 anim.SetTrigger("isHit");
                 timer = time + 2.0f;
                 Emo = master.GetComponent<NpcInstantiator>().madFace;
