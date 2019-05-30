@@ -142,15 +142,16 @@ public class Runners : NPCs
         }
     }
 
+    //Make the bully walk to the corner
     private void walkAround()
     {
         bullying = false;
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
         if (transform.position == target)
         {
-            int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
-            int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
-            target = new Vector3(ranX, ranY, -1);
+            //int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
+            //int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
+            target = new Vector3(25, -10, -1);
         }
     }
 
