@@ -10,6 +10,7 @@ public class TutorialJournal : MonoBehaviour
     public GameObject journal;
     public static bool journalOpen = false;
     public static bool journalOpenOnce = false;
+    public static string tutText = "";
 
     public Animator journalAnimator;
 
@@ -62,10 +63,12 @@ public class TutorialJournal : MonoBehaviour
         if (ThoughtsTutorial.alarm)
         {
             tmpug.text = "I hate how loud and yucky my alarm sounds. ";
+            tutText = "I hate how loud and yucky my alarm sounds. ";
         }
         else if (ThoughtsTutorial.curtain)
         {
             tmpug.text = "The sun feels so nice and warm! ";
+            tutText = "The sun feels so nice and warm! ";
         }
     }
 }

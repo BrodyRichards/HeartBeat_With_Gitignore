@@ -30,6 +30,7 @@ public class ThoughtsTutorial : MonoBehaviour
 
     public static bool alarm = false;
     public static bool curtain = false;
+
     // Start is called before the first frame update
     void Start()
     {
