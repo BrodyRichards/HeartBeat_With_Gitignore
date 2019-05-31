@@ -6,11 +6,15 @@ public class BallThrow : MonoBehaviour
 {
     public GameObject ball;
     public GameObject newBall;
+    public LayerMask hittableObjects;
+    public float McCheckDist;
+    public float radius;
     public float offset;
     public float pickupDist;
     public Animator anim;
     public bool thrownBall = false;
     public static bool isMeanBall = false;
+    private RaycastHit2D[] McCheck;
     
 
     private bool towardRight;
@@ -27,6 +31,24 @@ public class BallThrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(transform.localScale.x >= 0)
+        {
+            McCheck = Physics2D.CircleCastAll(transform.position, radius, transform.right, McCheckDist, hittableObjects);
+        }
+        else
+        {
+            McCheck = Physics2D.CircleCastAll(transform.position, radius, -transform.right, McCheckDist, hittableObjects);
+        }
+
+        if (CheckForMC(McCheck))
+        {
+            BallProjectile.mcInView = true;
+        }
+        else
+        {
+            BallProjectile.mcInView = false;
+        }
+
         //Space bar for nice action and E for mean action
         if (Input.GetKeyDown(Control.positiveAction) && !thrownBall)
         {
@@ -37,6 +59,19 @@ public class BallThrow : MonoBehaviour
             BallProjectile.meanBallThrown = isMeanBall = true;
             ThrowBall();
         }
+    }
+
+    private bool CheckForMC(RaycastHit2D[] results)
+    {
+        foreach (RaycastHit2D result in results)
+        {
+            if (result.collider.gameObject.name == "MC")
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     //Helper function to throw ball, reset animation, and stop motion while throwing

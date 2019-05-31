@@ -21,6 +21,7 @@ public class BallProjectile : MonoBehaviour
     public float McCheckDist;
     public float radius;
     public static bool meanBallThrown = false;
+    public static bool mcInView;
     //public static bool playBallPlayer = false;
 
     public static string NpcName = "";
@@ -33,7 +34,7 @@ public class BallProjectile : MonoBehaviour
         startPos = transform.position;
         meanSpeed = speed * 1.5f;
         delayTime = 0.5f;
-        McCheckDist = 3f;
+        McCheckDist = 2f;
         radius = 1f;
     }
 
@@ -41,8 +42,7 @@ public class BallProjectile : MonoBehaviour
     void Update()
     {
         //This check is to see if the MC is in view of the ball kid
-        RaycastHit2D[] McCheck = Physics2D.CircleCastAll(transform.position, radius, transform.right, McCheckDist, hittableObjects);
-        if (McCheck != null && CheckForMC(McCheck))
+        if (mcInView) //McCheck != null && CheckForMC(McCheck
         {
             Debug.Log("MC Detected");
             RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, distance, hittableObjects);
@@ -173,20 +173,6 @@ public class BallProjectile : MonoBehaviour
     static Quaternion LookAt2D(Vector2 forward)
     {
         return Quaternion.Euler(0, 0, Mathf.Atan2(forward.y, forward.x) * Mathf.Rad2Deg);
-    }
-
-    //Helper function for checking if the MC is in the Circle Cast
-    private bool CheckForMC(RaycastHit2D[] results)
-    {
-        foreach(RaycastHit2D result in results)
-        {
-            if(result.collider.gameObject.name == "MC")
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     private void PlayHitParticles()
