@@ -44,26 +44,15 @@ public class TransitStates : MonoBehaviour
     public void ButtonSwitch()
     {
         buttons[currentIndex].OnSelect(null);
-        if (Input.GetKeyDown(KeyCode.UpArrow) || (Input.GetKeyDown(KeyCode.W)))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             currentIndex += 1;
             currentIndex %= 2;
 
             EnableThisDisableRest(currentIndex);
-
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) || (Input.GetKeyDown(KeyCode.S)))
-        {
-            currentIndex -= 1;
-            if (currentIndex < 0) currentIndex = 1;
-
-
-            EnableThisDisableRest(currentIndex);
-
-
         }
 
-        if (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.Space))
         {
             buttons[currentIndex].onClick.Invoke();
         }
