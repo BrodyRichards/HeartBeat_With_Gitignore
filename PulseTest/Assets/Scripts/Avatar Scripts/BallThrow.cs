@@ -86,9 +86,8 @@ public class BallThrow : MonoBehaviour
         {
             anim.SetTrigger("kindThrow");
         }
-        
-        
 
+        PlayCatch.scaleX = transform.localScale.x;
         // postpone 0.6 seconds to finish the animation
         //Stop movement while throwing
         GameObject.Find("2").GetComponent<Movement>().enabled = false;

@@ -10,17 +10,24 @@ public class PlayCatch : MonoBehaviour
     public Transform to;
     //This should always be set to -90 cuz it works. Change it to get weird rotations.
     public float offset;
+    //Name of the NPC playing catch
+    private string npcName;
+    private GameObject ballKid;
+    public float faceTime;
+    public static float scaleX;
 
     // Use this for initialization
     void Start()
     {
+        faceTime = 1.2f;
+        ballKid = GameObject.Find("2");
         to = GameObject.Find("2").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     Quaternion npcGetAngle()
@@ -35,6 +42,11 @@ public class PlayCatch : MonoBehaviour
     public void hitByBall()
     {
         Debug.Log("Detected collision");
+        //Make the NPC face the ball kid
+        if(this.name != "MC")
+        {
+            StartCoroutine(FaceCorrectDirection(scaleX, transform.localScale.x));
+        }
         //Get quaternion with correct angle information from avatar to player
         Quaternion q = npcGetAngle();
         //Create projectile of type projectile, at current avatar position, with rotation info in quaternion q
@@ -45,7 +57,32 @@ public class PlayCatch : MonoBehaviour
         NPCBallProjectile bp = npcBall.AddComponent<NPCBallProjectile>();
         //Set variables for projectile script
         bp.hittableObjects |= (1 << LayerMask.NameToLayer("Avatar"));
-        
-        
+    }
+
+    IEnumerator FaceCorrectDirection(float kidScaleX, float NPCScaleX)
+    {
+        float currTime = 0;
+        //If they both are facing the left, make NPC face the right
+        //Else if they are both facing the right make NPC face the left
+        if (kidScaleX < 0 && NPCScaleX < 0)
+        {
+            while(currTime <= faceTime)
+            {
+                Debug.Log("Face right");
+                transform.localScale = new Vector3(1, 1, 1);
+                currTime += Time.deltaTime;
+                yield return null;
+            }
+        }
+        else if(kidScaleX > 0 && NPCScaleX > 0)
+        {
+            while (currTime <= faceTime)
+            {
+                Debug.Log("Face left");
+                transform.localScale = new Vector3(-1, 1, 1);
+                currTime += Time.deltaTime;
+                yield return null;
+            }
+        }
     }
 }
