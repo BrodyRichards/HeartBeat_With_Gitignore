@@ -134,63 +134,60 @@ public class ThoughtsManager : MonoBehaviour
     void Update()
     {
         time = Time.fixedUnscaledTime;
-
-        if (CameraMovement.thoughtSystem)       //makes it that the MC can't get thoughts in the walking in scene
+        if (NPCs.schoolBell)
         {
-            if (time >= timer)
+            hideThought();
+        }
+        else
+        {
+            if (CameraMovement.thoughtSystem)       //makes it that the MC can't get thoughts in the walking in scene
             {
-                if (nextThought)
+                if (time >= timer)
                 {
-                    //Debug.Log("HELLOOO");
-                    tmpug.text = next;
-                    setTimer();
-                    nextThought = false;
+                    if (nextThought)
+                    {
+                        //Debug.Log("HELLOOO");
+                        tmpug.text = next;
+                        setTimer();
+                        nextThought = false;
+                    }
+                    else
+                    {
+                        thoughtOn = false;
+                        hideThought();
+                    }
                 }
-                else
-                {
-                    thoughtOn = false;
-                    hideThought();
-                }
-            }
 
-            int ran = Random.Range(0, 1000);
-            if (ran > 997 && thoughtOn == false)
-            {
-                if (McMovement.speed == 4) //no mood
+                int ran = Random.Range(0, 1000);
+                if (ran > 997 && thoughtOn == false)
                 {
-                    changeThought(7);
+                    if (McMovement.speed == 4) //no mood
+                    {
+                        changeThought(7);
+                    }
+                    else if (McMovement.speed == 6) //happy
+                    {
+                        changeThought(9);
+                    }
+                    else if (McMovement.speed == 3) //sad
+                    {
+                        changeThought(8);
+                    }
                 }
-                else if (McMovement.speed == 6) //happy
+                if (MentalState.message != "")
                 {
-                    changeThought(9);
-                }
-                else if (McMovement.speed == 3) //sad
-                {
-                    changeThought(8);
-                }
-            }
-            if (MentalState.message != "")
-            {
-                int lineNum = thoughtLine[MentalState.message];
+                    int lineNum = thoughtLine[MentalState.message];
 
-                Debug.Log("lineNum: " + lineNum);
-                MentalState.message = "";
-                changeThought(lineNum);
-            }
-            int ran2 = Random.Range(0, 1000);
-            if (ran2 > 995 && Runners.bullying)
-            {
-                changeThought(6);
+                    Debug.Log("lineNum: " + lineNum);
+                    MentalState.message = "";
+                    changeThought(lineNum);
+                }
+                int ran2 = Random.Range(0, 1000);
+                if (ran2 > 995 && Runners.bullying)
+                {
+                    changeThought(6);
+                }
             }
         }
-        
-        
-        
-        /*
-        if (Input.GetKey(KeyCode.T))
-        {
-            changeThought(7);
-        }
-        */
     }
 }

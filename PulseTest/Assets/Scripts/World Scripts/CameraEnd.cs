@@ -9,7 +9,8 @@ public class CameraEnd : MonoBehaviour
 
     private float maxFOV = 30f;
     private float minFOV = 4.84f;
-    private float speed = 30f;
+    private float speed = 40f;
+
 
     private float targetOrtho;
     // Start is called before the first frame update
@@ -46,7 +47,7 @@ public class CameraEnd : MonoBehaviour
             }
             */
             cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, targetOrtho, speed * Time.deltaTime);
-            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, target,  5f * Time.deltaTime);
         //}
     }
 
