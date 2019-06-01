@@ -63,7 +63,7 @@ public class IconControl : MonoBehaviour
             if ( icons.IndexOf(img) + 1 == characterSwitcher.charChoice)
             {
                 
-                Rescale(img, 90f);
+                Rescale(img, 105f);
 
                 //if (Input.GetKey(Control.positiveAction))
                 //{
@@ -81,7 +81,7 @@ public class IconControl : MonoBehaviour
             else
             {
                 
-                Rescale(img, 70f);
+                Rescale(img, 80f);
             }
         }
 
