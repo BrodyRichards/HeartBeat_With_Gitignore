@@ -31,6 +31,8 @@ public class RingUI : MonoBehaviour
     private int emoCurrentLength;
     private readonly int segNum = 12;
 
+    private GameObject pgs;
+
     // Start is called before the first frame update
 
     private void Awake()
@@ -48,6 +50,7 @@ public class RingUI : MonoBehaviour
         }
 
         bell_anim.enabled = false;
+        pgs = GameObject.FindGameObjectWithTag("ProgSpirit");
     }
 
     // Update is called once per frame
@@ -105,16 +108,19 @@ public class RingUI : MonoBehaviour
 
                     thisObj.SetActive(true);
                     thisObj.GetComponent<Image>().sprite = happySeg;
+                    pgs.GetComponent<ProgSpiritScript>().Emit(1);
                 }
                 else if (fuckingString == "Bit by rabbit" || fuckingString == "Hit by ball")
                 {
                     thisObj.SetActive(true);
                     thisObj.GetComponent<Image>().sprite = angrySeg;
+                    pgs.GetComponent<ProgSpiritScript>().Emit(3);
                 }
                 else if (fuckingString == "Sad Song")
                 {
                     thisObj.SetActive(true);
                     thisObj.GetComponent<Image>().sprite = sadSeg;
+                    pgs.GetComponent<ProgSpiritScript>().Emit(2);
                 }
                 else
                 {
@@ -122,6 +128,7 @@ public class RingUI : MonoBehaviour
                     thisObj.SetActive(true);
                     thisObj.GetComponent<Image>().sprite = sadSeg;
                 }
+                
             }
         }
 
