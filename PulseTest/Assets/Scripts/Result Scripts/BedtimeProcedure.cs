@@ -85,11 +85,8 @@ public class BedtimeProcedure : MonoBehaviour
     {
         if (GameObject.Find("MC") != null)
         {
-
-
-            //Invoke("fadeOut", 0.1f);
-            Invoke("fadeOut", 0.5f);
-            Invoke("CharlieGoAway", 1.2f);
+            //Invoke("fadeOut", 0.5f);
+            Invoke("CharlieGoAway", 1.7f);
             Invoke("fadeIn", 1.7f);
             Invoke("GoToBedPlsKid", 2f);
             Invoke("Dreaming", 8f);
