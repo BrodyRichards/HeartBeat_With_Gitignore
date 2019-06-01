@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NpcBT : MonoBehaviour
+public class BullyBT : MonoBehaviour
 {
     Node NPC_BT;
 
     // Start is called before the first frame update
     void Start()
     {
-        NPC_BT = createNpcBT();
+        NPC_BT = createBullyBT();
     }
 
     // Update is called once per frame
@@ -18,7 +18,7 @@ public class NpcBT : MonoBehaviour
         NPC_BT.Evaluate();
     }
 
-    Node createNpcBT()
+    Node createBullyBT()
     {
         Leaf BasicLeaf = new Leaf(basicLeaf);
 

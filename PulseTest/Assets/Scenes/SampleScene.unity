@@ -11593,7 +11593,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1453256351}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.6, y: -0.1, z: 0.621875}
+  m_LocalPosition: {x: -2.2, y: -0.1, z: 0.621875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -19300,25 +19300,25 @@ PrefabInstance:
       propertyPath: leaveTime
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 20722763311755057, guid: fce55a7740c9bd7488d94c06368b7557,
+    - target: {fileID: 20722763564241258, guid: fce55a7740c9bd7488d94c06368b7557,
         type: 3}
-      propertyPath: m_Color.a
-      value: 0.627451
+      propertyPath: m_Offset.x
+      value: 0.61967015
       objectReference: {fileID: 0}
-    - target: {fileID: 20722763311755057, guid: fce55a7740c9bd7488d94c06368b7557,
+    - target: {fileID: 20722763564241258, guid: fce55a7740c9bd7488d94c06368b7557,
         type: 3}
-      propertyPath: m_Color.r
-      value: 0.4245283
+      propertyPath: m_Size.x
+      value: 2.2840943
       objectReference: {fileID: 0}
-    - target: {fileID: 20722763311755057, guid: fce55a7740c9bd7488d94c06368b7557,
+    - target: {fileID: 20722763564241258, guid: fce55a7740c9bd7488d94c06368b7557,
         type: 3}
-      propertyPath: m_Color.g
-      value: 0.4245283
+      propertyPath: m_Offset.y
+      value: 0.1550169
       objectReference: {fileID: 0}
-    - target: {fileID: 20722763311755057, guid: fce55a7740c9bd7488d94c06368b7557,
+    - target: {fileID: 20722763564241258, guid: fce55a7740c9bd7488d94c06368b7557,
         type: 3}
-      propertyPath: m_Color.b
-      value: 0.4245283
+      propertyPath: m_Size.y
+      value: 5.339575
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fce55a7740c9bd7488d94c06368b7557, type: 3}
@@ -19489,6 +19489,21 @@ PrefabInstance:
         type: 3}
       propertyPath: pickupDist
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 950103261764361768, guid: 161ec8754d04ffb4485fb6c99cd22544,
+        type: 3}
+      propertyPath: hittableObjects.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 950103261764361768, guid: 161ec8754d04ffb4485fb6c99cd22544,
+        type: 3}
+      propertyPath: McCheckDist
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 950103261764361768, guid: 161ec8754d04ffb4485fb6c99cd22544,
+        type: 3}
+      propertyPath: radius
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 161ec8754d04ffb4485fb6c99cd22544, type: 3}
