@@ -47,7 +47,6 @@ public class RabbitJump : MonoBehaviour
             bittenMC = !bittenMC;
         }
 
-        
         if (Input.GetKeyDown(Control.positiveAction))
         {
             //If already being carried, put the rabbit down
@@ -76,7 +75,7 @@ public class RabbitJump : MonoBehaviour
                             
                             InvokeRepeating("RabbitHappiness", 0f, 3f);
                             break;
-                        }else if (coll.gameObject.tag == "Person")
+                        }else if (coll.gameObject.tag == "Person" && coll.gameObject.name != "Runner(Clone)")
                         {
                             currentCarrier = coll.gameObject;
                             PickRabbitUp(coll.gameObject);

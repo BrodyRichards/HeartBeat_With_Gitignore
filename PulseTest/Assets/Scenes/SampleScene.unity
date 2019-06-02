@@ -19888,12 +19888,12 @@ PrefabInstance:
     - target: {fileID: 20722763564241258, guid: fce55a7740c9bd7488d94c06368b7557,
         type: 3}
       propertyPath: m_Offset.y
-      value: -0.024015427
+      value: 0.31870937
       objectReference: {fileID: 0}
     - target: {fileID: 20722763564241258, guid: fce55a7740c9bd7488d94c06368b7557,
         type: 3}
       propertyPath: m_Size.y
-      value: 3.4106674
+      value: 4.096117
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fce55a7740c9bd7488d94c06368b7557, type: 3}
@@ -20060,26 +20060,6 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 11.58
       objectReference: {fileID: 0}
-    - target: {fileID: 950103261764361768, guid: 161ec8754d04ffb4485fb6c99cd22544,
-        type: 3}
-      propertyPath: pickupDist
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 950103261764361768, guid: 161ec8754d04ffb4485fb6c99cd22544,
-        type: 3}
-      propertyPath: hittableObjects.m_Bits
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 950103261764361768, guid: 161ec8754d04ffb4485fb6c99cd22544,
-        type: 3}
-      propertyPath: McCheckDist
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 950103261764361768, guid: 161ec8754d04ffb4485fb6c99cd22544,
-        type: 3}
-      propertyPath: radius
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 950103261764361775, guid: 161ec8754d04ffb4485fb6c99cd22544,
         type: 3}
       propertyPath: m_Offset.y
@@ -20109,6 +20089,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 8.696766
+      objectReference: {fileID: 0}
+    - target: {fileID: 950103261764361768, guid: 161ec8754d04ffb4485fb6c99cd22544,
+        type: 3}
+      propertyPath: pickupDist
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 950103261764361768, guid: 161ec8754d04ffb4485fb6c99cd22544,
+        type: 3}
+      propertyPath: hittableObjects.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 950103261764361768, guid: 161ec8754d04ffb4485fb6c99cd22544,
+        type: 3}
+      propertyPath: McCheckDist
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 950103261764361768, guid: 161ec8754d04ffb4485fb6c99cd22544,
+        type: 3}
+      propertyPath: radius
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 161ec8754d04ffb4485fb6c99cd22544, type: 3}
