@@ -11,10 +11,6 @@ public class TransitStates : MonoBehaviour
     public GameObject[] starIndicators;
     private int currentIndex;
 
-    public GameObject startJournal;
-    public GameObject leftSide;
-    public GameObject rightSide;
-
 
     // Start is called before the first frame update
     void Start()
@@ -36,16 +32,6 @@ public class TransitStates : MonoBehaviour
     }
 
     public void StartGame()
-    {
-        startJournal.SetActive(false);
-        leftSide.SetActive(true); rightSide.SetActive(true);
-        leftSide.GetComponent<Animator>().Play("LeftJournalOpen");
-        rightSide.GetComponent<Animator>().Play("RightJournalOpen");
-        Invoke("NextScene", 3f);
-        //SceneManager.LoadScene(1);
-    }
-
-    public void NextScene()
     {
         SceneManager.LoadScene(1);
     }
