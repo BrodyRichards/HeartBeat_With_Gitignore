@@ -15,6 +15,8 @@ public class PlayCatch : MonoBehaviour
     private GameObject ballKid;
     public float faceTime;
     public static float scaleX;
+    public static bool playingCatch;
+    public Animator anim;
 
     // Use this for initialization
     void Start()
@@ -45,7 +47,8 @@ public class PlayCatch : MonoBehaviour
         //Make the NPC face the ball kid
         if(this.name != "MC")
         {
-            StartCoroutine(FaceCorrectDirection(scaleX, transform.localScale.x));
+            playingCatch = true;
+            StartCoroutine(FaceCorrectDirection(scaleX, transform.localScale.x, transform.position, anim.GetBool("isWalking")));
         }
         //Get quaternion with correct angle information from avatar to player
         Quaternion q = npcGetAngle();
@@ -59,9 +62,10 @@ public class PlayCatch : MonoBehaviour
         bp.hittableObjects |= (1 << LayerMask.NameToLayer("Avatar"));
     }
 
-    IEnumerator FaceCorrectDirection(float kidScaleX, float NPCScaleX)
+    IEnumerator FaceCorrectDirection(float kidScaleX, float NPCScaleX, Vector3 currPos, bool status)
     {
         float currTime = 0;
+
         //If they both are facing the left, make NPC face the right
         //Else if they are both facing the right make NPC face the left
         if (kidScaleX < 0 && NPCScaleX < 0)
@@ -69,6 +73,8 @@ public class PlayCatch : MonoBehaviour
             while(currTime <= faceTime)
             {
                 Debug.Log("Face right");
+                anim.SetBool("isWalking", false);
+                transform.position = currPos;
                 transform.localScale = new Vector3(1, 1, 1);
                 currTime += Time.deltaTime;
                 yield return null;
@@ -79,10 +85,26 @@ public class PlayCatch : MonoBehaviour
             while (currTime <= faceTime)
             {
                 Debug.Log("Face left");
+                anim.SetBool("isWalking", false);
+                transform.position = currPos;
                 transform.localScale = new Vector3(-1, 1, 1);
                 currTime += Time.deltaTime;
                 yield return null;
             }
         }
+        else
+        {
+            while(currTime <= faceTime)
+            {
+                anim.SetBool("isWalking", false);
+                transform.position = currPos;
+                currTime += Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        Debug.Log("Got here");
+        playingCatch = false;
+        anim.SetBool("isWalking", status);
     }
 }

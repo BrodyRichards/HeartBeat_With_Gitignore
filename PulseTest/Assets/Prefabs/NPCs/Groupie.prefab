@@ -121,6 +121,8 @@ MonoBehaviour:
   anim: {fileID: 8766129107041071141}
   isAllergic: 0
   target: {x: 0, y: 0, z: 0}
+  stopTime: 0
+  stopTimer: 0
 --- !u!114 &2592314240693076404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +179,8 @@ MonoBehaviour:
     type: 3}
   to: {fileID: 0}
   offset: -90
+  faceTime: 0
+  anim: {fileID: 8766129107041071141}
 --- !u!95 &8766129107041071141
 Animator:
   serializedVersion: 3
