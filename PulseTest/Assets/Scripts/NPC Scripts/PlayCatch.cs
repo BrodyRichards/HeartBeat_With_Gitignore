@@ -11,7 +11,7 @@ public class PlayCatch : MonoBehaviour
     //This should always be set to -90 cuz it works. Change it to get weird rotations.
     public float offset;
     //Name of the NPC playing catch
-    private string npcName;
+    public static string npcName;
     private GameObject ballKid;
     public float faceTime;
     public static float scaleX;
@@ -29,9 +29,9 @@ public class PlayCatch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (this.name != "MC" && playingCatch)
+        if (this.name == npcName && playingCatch)
         {
-            StartCoroutine(FaceCorrectDirection(scaleX, transform.localScale.x, transform.position, anim.GetBool("isWalking")));
+            StartCoroutine(FaceCorrectDirection(scaleX, transform.localScale.x, transform.position, anim.GetBool("IsWalking")));
         }
     }
 
@@ -107,6 +107,6 @@ public class PlayCatch : MonoBehaviour
         }
 
         playingCatch = false;
-        anim.SetBool("IsWalking", status);
+        //anim.SetBool("IsWalking", status);
     }
 }
