@@ -11,6 +11,9 @@ public class ResultFade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown("4")){
+            FadeToNextLevel();
+        }
     }
 
     public void FadeToNextLevel()
@@ -26,16 +29,15 @@ public class ResultFade : MonoBehaviour
     public void OnFadeComplete()
     {
         //SceneManager.LoadScene(0);
-        LoadingController.nextSceneToLoad = "TutorialScreen";
-        SceneManager.LoadScene("FinalScene");
-        //if (IterationController.dayCount > 2)
-        //{
-        //    SceneManager.LoadScene("FinalScene");
-        //}
-        //else
-        //{
-        //    SceneManager.LoadScene("SampleScene");
-        //}
+        //SceneManager.LoadScene("DayTwoScene");
+        if (IterationController.dayCount > 2)
+        {
+            SceneManager.LoadScene("FinalScene");
+        }
+        else
+        {
+            SceneManager.LoadScene("SampleScene");
+        }
 
     }
 

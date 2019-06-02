@@ -89,11 +89,6 @@ public class RingUI : MonoBehaviour
         {
             face.GetComponent<Image>().sprite = sadFace;
         }
-        else
-        {
-            Debug.LogError("Current State overflow!!");
-
-        }
     }
 
     void AddSegToRing()
@@ -121,7 +116,7 @@ public class RingUI : MonoBehaviour
                     thisObj.GetComponent<Image>().sprite = angrySeg;
                     pgs.GetComponent<ProgSpiritScript>().Emit(3);
                 }
-                else if (fuckingString == "Sad Song" || fuckingString == "Bullied")
+                else if (fuckingString == "Sad Song")
                 {
                     thisObj.SetActive(true);
                     thisObj.GetComponent<Image>().sprite = sadSeg;

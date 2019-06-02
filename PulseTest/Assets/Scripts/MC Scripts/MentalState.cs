@@ -16,7 +16,6 @@ public class MentalState : MonoBehaviour
             { "Bit by rabbit", 0 },
             { "Happy Song", 0 },
             { "Sad Song", 0 },
-            { "Bullied", 0}
         };
     public static Dictionary<string, int> effectWeights;
     public static Dictionary<int, int> npcEffectWeights;
@@ -49,7 +48,7 @@ public class MentalState : MonoBehaviour
     public readonly static List<string> positiveAct 
         = new List<string>() {  "Held Rabbit", "Played catch", "Happy Song" };
     public readonly static List<string> negativeAct 
-        = new List<string>() {  "Bit by rabbit", "Hit by ball", "Sad Song", "Bullied" };
+        = new List<string>() {  "Bit by rabbit", "Hit by ball", "Sad Song" };
 
     public static bool journalInProgress; // for the journal
     public static float noEventCounting; // for the journal 
@@ -91,7 +90,6 @@ public class MentalState : MonoBehaviour
             { "Bit by rabbit", -2},
             { "Happy Song", 1},
             { "Sad Song", -1},
-            { "Bullied", -2 }
         };
 
         //Dictionary storing number of interactions
@@ -103,7 +101,6 @@ public class MentalState : MonoBehaviour
             { "Bit by rabbit", 0 },
             { "Happy Song", 0 },
             { "Sad Song", 0 },
-            { "Bullied", 0}
         };
 
         relationships = new Dictionary<int, int>
@@ -205,8 +202,8 @@ public class MentalState : MonoBehaviour
     {
         var tempEmo = EmoPlot.CreateInstance(Mathf.RoundToInt(Time.timeSinceLevelLoad), currentState, m);
         emoTimeline.Enqueue(tempEmo);
-        // if the emotiontime line already contain more than 24 objects, dequeue 
-        if (emoTimeline.Count > 24) // can playaround with the value 
+        // if the emotiontime line already contain more than 30 objects, dequeue 
+        if (emoTimeline.Count > 30) // can playaround with the value 
         {
             emoTimeline.Dequeue();
         }
@@ -346,13 +343,9 @@ public class MentalState : MonoBehaviour
 
     public static void EventTracking(string msg)
     {
-        if (msg != "Bullied")
-        {
-            var index = positiveAct.IndexOf(msg) == -1 ? negativeAct.IndexOf(msg) : positiveAct.IndexOf(msg);
-            interactions[index + 1] = moodLog[positiveAct[index]] + moodLog[negativeAct[index]];
-            JournalTween.accomplishments[index].Num = interactions[index + 1];
-        }
-            
+        var index = positiveAct.IndexOf(msg) == -1 ? negativeAct.IndexOf(msg) : positiveAct.IndexOf(msg); 
+        interactions[index+1] = moodLog[positiveAct[index]] + moodLog[negativeAct[index]];
+        JournalTween.accomplishments[index].Num = interactions[index + 1];
     }
 
 
