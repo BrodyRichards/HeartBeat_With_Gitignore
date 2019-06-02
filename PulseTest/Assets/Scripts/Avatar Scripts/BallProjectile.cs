@@ -42,7 +42,7 @@ public class BallProjectile : MonoBehaviour
     void Update()
     {
         //This check is to see if the MC is in view of the ball kid
-        if (mcInView) //McCheck != null && CheckForMC(McCheck
+        if (mcInView)
         {
             Debug.Log("MC Detected");
             RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, distance, hittableObjects);
@@ -72,7 +72,6 @@ public class BallProjectile : MonoBehaviour
                         GameObject MC = hit.collider.gameObject;
                         MentalState.sendMsg("Played catch");
                         MCBTCreator.playedCatch = true;
-                        //McMovement.playedCatch = true;
                         GameObject.Find("MC").GetComponent<Animator>().SetTrigger("playCatch");
 
                         PlayCatch delayCatch = MC.GetComponent<PlayCatch>();
@@ -99,6 +98,7 @@ public class BallProjectile : MonoBehaviour
                 else
                 {
                     meanBallThrown = false;
+                    PlayCatch.playingCatch = true;
                     GameObject NPC = hit.collider.gameObject;
                     NpcName = NPC.name;
                     PlayCatch delayCatch = NPC.GetComponent<PlayCatch>();
