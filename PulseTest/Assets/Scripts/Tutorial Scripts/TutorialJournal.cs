@@ -8,14 +8,19 @@ public class TutorialJournal : MonoBehaviour
 {
     public GameObject text;
     public GameObject journal;
-    public static bool journalOpen = false;
-    public static bool journalOpenOnce = false;
+    public static bool journalOpen;
+    public static bool journalOpenOnce;
     public static string tutText = "";
 
     public Animator journalAnimator;
 
     private TextMeshProUGUI tmpug;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        journalOpen = false;
+        journalOpenOnce = false;
+    }
     void Start()
     {
         tmpug = text.GetComponent<TextMeshProUGUI>();

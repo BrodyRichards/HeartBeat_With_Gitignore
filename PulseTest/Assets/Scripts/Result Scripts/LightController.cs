@@ -82,8 +82,17 @@ public class LightController : MonoBehaviour
             DecideRoomLightColor();
         }
 
+        if (turnOffRoomLights)
+        {
+            foreach (Light l in roomLights)
+            {
+                l.enabled = false;
+                lightOn.SetActive(false);
+                lightOff.SetActive(true);
+            }
 
-            
+        }
+
 
 
 
