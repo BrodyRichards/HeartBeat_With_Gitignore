@@ -15,8 +15,9 @@ public class BedtimeProcedure : MonoBehaviour
     public GameObject rabAsset;
     public GameObject ballAsset;
     public GameObject musicAsset;
+    public GameObject charlie;
+    public GameObject charlieWriting;
 
-    public GameObject dayIndicator;
 
     // Animators
     private Animator anim;
@@ -24,7 +25,7 @@ public class BedtimeProcedure : MonoBehaviour
     private bool goToBedProcedureCalled;
 
     public static bool journalIsOpened;
-
+    public static bool writingJournal;
     public static bool charlieInBed;
     // Start is called before the first frame update
     private void Awake()
@@ -32,6 +33,7 @@ public class BedtimeProcedure : MonoBehaviour
         journalIsOpened = false;
         charlieInBed = false;
         goToBedProcedureCalled = false;
+        writingJournal = false;
     }
     void Start()
     {
@@ -49,13 +51,18 @@ public class BedtimeProcedure : MonoBehaviour
     void Update()
     {
         Debug.Log("night is here = " + LightController.nightIsHere);
+        if (writingJournal && !charlieInBed)
+        {
+            charlie.SetActive(false);
+            charlieWriting.SetActive(true);
+        }
         if (LightController.nightIsHere)
         {
             ReadJournal();
             FinishJournal();
         }
 
-        dayIndicator.GetComponent<TextMeshProUGUI>().text = "Day " + (IterationController.dayCount + 1);
+
 
     }
 
@@ -83,17 +90,14 @@ public class BedtimeProcedure : MonoBehaviour
 
     private void GoToBedProcedure()
     {
-        if (GameObject.Find("MC") != null)
+        if (charlieWriting.activeSelf)
         {
-
-
-            //Invoke("fadeOut", 0.1f);
-            Invoke("fadeOut", 0.5f);
-            Invoke("CharlieGoAway", 1.2f);
+            //Invoke("fadeOut", 0.5f);
+            Invoke("CharlieGoAway", 1.7f);
             Invoke("fadeIn", 1.7f);
             Invoke("GoToBedPlsKid", 2f);
             Invoke("Dreaming", 8f);
-            Invoke("TurnToMorn", 12f);
+            Invoke("TurnToMorn", 15f);
 
         }
     }
@@ -105,7 +109,7 @@ public class BedtimeProcedure : MonoBehaviour
 
     void CharlieGoAway()
     {
-        GameObject.Find("MC").SetActive(false);
+        charlieWriting.SetActive(false);
         LightController.turnOffRoomLights = true;
         charlieInBed = true;
         sleepIcon.SetActive(false);
