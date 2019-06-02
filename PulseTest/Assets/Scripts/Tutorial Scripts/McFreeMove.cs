@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class McFreeMove : MonoBehaviour
 {
@@ -217,6 +218,14 @@ public class McFreeMove : MonoBehaviour
         else
         {
             stayTime += Time.deltaTime;
+            if (SceneManager.GetActiveScene().buildIndex == 3)
+            {
+                BedtimeProcedure.writingJournal = true;
+            }else if (SceneManager.GetActiveScene().buildIndex == 1 && !TutorialJournal.journalOpenOnce)
+            {
+                TutorialProcControl.writingJournal = true;
+            }
+
             //Debug.Log("stayTime" + stayTime);
             //mcWaypoints = new List<Vector2>(refPoints);
         }
