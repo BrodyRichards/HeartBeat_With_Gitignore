@@ -14,6 +14,8 @@ public class Runners : NPCs
     private float bullyTime;
     private float hitTime;
     private float hitTimer;
+    private bool isTaunting;
+
 
     protected override void Awake()
     {
@@ -26,6 +28,7 @@ public class Runners : NPCs
         bullying = false;
         stopBullying = false;
         gotHit = false;
+        isTaunting = false;
     }
 
     protected override void Update()
@@ -93,17 +96,17 @@ public class Runners : NPCs
         if (mcDist)
         {
             bullying = true;
-            if(bullyTimer >= bullyTime)
-            {
-                //Decrement mood
-                Debug.Log("Affecting mood");
-                MentalState.currentState -= 1;
-                bullyTimer = 0f;
-            }
-            else
-            {
-                bullyTimer += Time.deltaTime;
-            }
+            //if(bullyTimer >= bullyTime)
+            //{
+            //    //Decrement mood
+            //    Debug.Log("Affecting mood");
+            //    MentalState.currentState -= 1;
+            //    bullyTimer = 0f;
+            //}
+            //else
+            //{
+            //    bullyTimer += Time.deltaTime;
+            //}
 
             float dist = Vector3.Distance(NpcInstantiator.mcPos, transform.position);
             target = NpcInstantiator.mcPos;
@@ -111,6 +114,7 @@ public class Runners : NPCs
             {
                 //target = NpcInstantiator.mcPos;
                 transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+               
             }
             else
             {
@@ -119,10 +123,18 @@ public class Runners : NPCs
                 //
                 //
                 //
-                anim.SetTrigger("taunt");
-                   //
-                   //
-                   //
+                if (!isTaunting)
+                {
+                    anim.SetTrigger("taunt");
+                    MentalState.sendMsg("Bullied");
+                    Debug.Log("why does bully kid keeps taunting");
+                    isTaunting = true;
+                    Invoke("ResetTaunt", 15f);
+                }
+
+                //
+                //
+                //
                 //RIGHT HERE YOU POOPMATE
             }
         }
@@ -190,6 +202,12 @@ public class Runners : NPCs
     {
         base.checkRabbitBit();
         stopBullying = true;
+    }
+
+    private void ResetTaunt()
+    {
+        isTaunting = false;
+
     }
 
 }
