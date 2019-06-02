@@ -90,7 +90,7 @@ public class BedtimeProcedure : MonoBehaviour
             Invoke("fadeIn", 1.7f);
             Invoke("GoToBedPlsKid", 2f);
             Invoke("Dreaming", 8f);
-            Invoke("TurnToMorn", 12f);
+            Invoke("TurnToMorn", 15f);
 
         }
     }
