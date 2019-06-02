@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraZoomIn : MonoBehaviour
 {
@@ -37,6 +38,12 @@ public class CameraZoomIn : MonoBehaviour
             }
             cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, targetOrtho, speed * Time.deltaTime);
             transform.position = Vector3.MoveTowards(transform.position, target, 5f * Time.deltaTime);
+            Invoke("nextScene", 2f);
         }
+    }
+
+    void nextScene()
+    {
+        SceneManager.LoadScene("TutorialScreen");
     }
 }
