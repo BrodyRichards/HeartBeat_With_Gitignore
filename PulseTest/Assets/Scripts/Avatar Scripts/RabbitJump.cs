@@ -29,6 +29,7 @@ public class RabbitJump : MonoBehaviour
         biteTimer = 2f;
         coolTime = 0f;
 
+        mcAnim = GameObject.Find("MC").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -129,14 +130,12 @@ public class RabbitJump : MonoBehaviour
                             ass.Play();
                             //PutRabbitDown();
                             mcAnim.SetTrigger("isBit");
-                            anim.SetTrigger("bite");
                         }
                         else if (victim.gameObject.tag == "Person")
                         {
                             Debug.Log("I bit " + victim.gameObject.name + "!");
                             bitNpcName = victim.gameObject.name;
                             ass.Play();
-                            anim.SetTrigger("bite");
                         }
                         break;
                     }
@@ -177,7 +176,6 @@ public class RabbitJump : MonoBehaviour
         MentalState.sendMsg("Bit by rabbit");
         ass.Play();
         mcAnim.SetTrigger("isBit");
-
     }
 
     public void BiteNPC(GameObject carrier)
@@ -185,7 +183,6 @@ public class RabbitJump : MonoBehaviour
         Debug.Log("I bit " + currentCarrier.gameObject.name + "!");
         bitNpcName = currentCarrier.gameObject.name;
         ass.Play();
-
     }
 
     public void SetHoldingAnim(bool isHolding, GameObject target)

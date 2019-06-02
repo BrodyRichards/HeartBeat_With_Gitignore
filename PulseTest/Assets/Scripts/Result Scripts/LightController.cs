@@ -52,12 +52,7 @@ public class LightController : MonoBehaviour
     }
     void Start()
     {
-        foreach(Light l in roomLights)
-            {
-                l.enabled = false;
-                lightOn.SetActive(false);
-                lightOff.SetActive(true);
-            }
+
     }
 
     // Update is called once per frame
@@ -84,7 +79,7 @@ public class LightController : MonoBehaviour
 
         if (turnOffRoomLights)
         {
-            foreach (Light l in roomLights)
+            foreach(Light l in roomLights)
             {
                 l.enabled = false;
                 lightOn.SetActive(false);
@@ -93,12 +88,9 @@ public class LightController : MonoBehaviour
 
         }
 
-
-
-
         if (BedtimeProcedure.charlieInBed && !timeToGetOutOfBed)
         {
-            RotateSkyTo(morningAngle, 0.12f);
+            RotateSkyTo(morningAngle, 0.1f);
         }
 
         if (morningIsHere && !timeToGetOutOfBed)
@@ -125,7 +117,7 @@ public class LightController : MonoBehaviour
         bool lightIsReady = false;
         if (darkNightDirLight.intensity < 2.2f)
         {
-            darkNightDirLight.intensity += 0.003f;
+            darkNightDirLight.intensity += 0.002f;
             //darkNightDirLight.intensity += 0.01f / turnToNightTimer;
         }
         else
@@ -138,7 +130,10 @@ public class LightController : MonoBehaviour
             sunsetDirLight.intensity -= 0.001f;
             //sunsetDirLight.intensity -= 0.005f / turnToNightTimer;
         }
-
+        else
+        {
+            lightIsReady = lightIsReady && true;
+        }
 
 
 
@@ -169,7 +164,7 @@ public class LightController : MonoBehaviour
 
         if (brightMorningDirLight.intensity < 0.6f)
         {
-            brightMorningDirLight.intensity += 0.0008f;
+            brightMorningDirLight.intensity += 0.0005f;
         }
         else
         {

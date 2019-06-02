@@ -202,8 +202,8 @@ public class MentalState : MonoBehaviour
     {
         var tempEmo = EmoPlot.CreateInstance(Mathf.RoundToInt(Time.timeSinceLevelLoad), currentState, m);
         emoTimeline.Enqueue(tempEmo);
-        // if the emotiontime line already contain more than 24 objects, dequeue 
-        if (emoTimeline.Count > 24) // can playaround with the value 
+        // if the emotiontime line already contain more than 30 objects, dequeue 
+        if (emoTimeline.Count > 30) // can playaround with the value 
         {
             emoTimeline.Dequeue();
         }
