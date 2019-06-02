@@ -1340,7 +1340,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 252965985}
-  m_LocalRotation: {x: -0, y: -0, z: 0.45865586, w: 0.888614}
+  m_LocalRotation: {x: -0, y: -0, z: 0.45010486, w: 0.8929757}
   m_LocalPosition: {x: 1.54, y: 0.98, z: 4}
   m_LocalScale: {x: 3, y: 3, z: 1.4610213}
   m_Children: []
@@ -2308,7 +2308,7 @@ MonoBehaviour:
   lightOn: {fileID: 1673563560}
   lightOff: {fileID: 1670041414}
   skyCycle: {fileID: 252965985}
-  rotateAngle: 54.60081
+  rotateAngle: 53.500824
   sunsetAngle: 27
   nightAngle: -77
   morningAngle: -263
@@ -2732,7 +2732,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 90dd830d43c566148ac5d13bd6aac1ae, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
