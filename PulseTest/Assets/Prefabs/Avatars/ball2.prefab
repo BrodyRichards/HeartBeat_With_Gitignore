@@ -106,6 +106,9 @@ MonoBehaviour:
   hittableObjects:
     serializedVersion: 2
     m_Bits: 512
+  avatars:
+    serializedVersion: 2
+    m_Bits: 256
   distance: 0.25
   McCheckDist: 0
   radius: 0

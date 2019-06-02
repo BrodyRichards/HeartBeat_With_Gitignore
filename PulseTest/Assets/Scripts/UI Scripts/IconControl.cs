@@ -14,9 +14,6 @@ public class IconControl : MonoBehaviour
     public GameObject tabPrompt;
     public Image bg;
     public GameObject ring;
-    public GameObject[] texts;
-    public GameObject[] iconPics;
-    public GameObject[] shadowPics;
 
 
     [SerializeField]private Image rabbitIcon;
@@ -63,20 +60,10 @@ public class IconControl : MonoBehaviour
 
         foreach (var img in icons)
         {
-            var currentIndex = icons.IndexOf(img);
-            if ( currentIndex + 1 == characterSwitcher.charChoice)
+            if ( icons.IndexOf(img) + 1 == characterSwitcher.charChoice)
             {
                 
                 Rescale(img, 105f);
-                texts[currentIndex].SetActive(false);
-                iconPics[currentIndex].GetComponent<Image>().rectTransform.sizeDelta = new Vector2(40f, 40f);
-                iconPics[currentIndex].GetComponent<Image>().rectTransform.localPosition
-                    = new Vector2(-15f,
-                    iconPics[currentIndex].GetComponent<Image>().rectTransform.localPosition.y);
-                shadowPics[currentIndex].GetComponent<Image>().rectTransform.sizeDelta = new Vector2(40f, 40f);
-                shadowPics[currentIndex].GetComponent<Image>().rectTransform.localPosition
-                    = new Vector2(-12f,
-                    iconPics[currentIndex].GetComponent<Image>().rectTransform.localPosition.y);
 
                 //if (Input.GetKey(Control.positiveAction))
                 //{
@@ -93,15 +80,7 @@ public class IconControl : MonoBehaviour
             }
             else
             {
-                texts[currentIndex].SetActive(true);
-                iconPics[currentIndex].GetComponent<Image>().rectTransform.sizeDelta = new Vector2(30f, 30f);
-                iconPics[currentIndex].GetComponent<Image>().rectTransform.localPosition
-                    = new Vector2(-25f,
-                    iconPics[currentIndex].GetComponent<Image>().rectTransform.localPosition.y);
-                shadowPics[currentIndex].GetComponent<Image>().rectTransform.sizeDelta = new Vector2(30f, 30f);
-                shadowPics[currentIndex].GetComponent<Image>().rectTransform.localPosition
-                    = new Vector2(-22f,
-                    iconPics[currentIndex].GetComponent<Image>().rectTransform.localPosition.y);
+                
                 Rescale(img, 80f);
             }
         }

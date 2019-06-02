@@ -29,17 +29,17 @@ public class LevelFade : MonoBehaviour
         //Prepare next day information
         //IterationController.dayCount++;
 
-        LoadingController.nextSceneToLoad = "ResultScreen";
-        FadeToLevel();
+        FadeToLevel(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void FadeToLevel ()
+    public void FadeToLevel (int levelIndex)
     {
+        levelToLoad = levelIndex;
         animator.SetTrigger("FadeOut");
     }
 
     public void OnFadeComplete()
     {
-        SceneManager.LoadScene("LoadingScene");
+        SceneManager.LoadScene(levelToLoad);
     }
 }

@@ -10,6 +10,7 @@ public class FinalResultDecision : MonoBehaviour
     {
         int friend = MentalState.DecideFriend();
 
+
         if (friend != 0)
         {
             GameObject.Find(friend.ToString()).GetComponent<SpriteRenderer>().enabled = true;
