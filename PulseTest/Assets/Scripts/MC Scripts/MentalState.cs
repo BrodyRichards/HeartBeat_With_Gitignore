@@ -248,10 +248,10 @@ public class MentalState : MonoBehaviour
             currentState += npcEffectWeights[newAction];
             currentState = Mathf.Clamp(currentState, sadBound.x, happyBound.y);
         }
-
+        message = "NPC Action";
         //currentState = Mathf.Clamp(currentState, sadBound.x, happyBound.y);
         //Debug.Log("Updating emotion");
-        Debug.Log("Current State: " + currentState);
+        //Debug.Log("Current State: " + currentState);
     }
 
     public void PacifyMood()

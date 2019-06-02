@@ -42,7 +42,8 @@ public class ThoughtsManager : MonoBehaviour
             { "Bit by rabbit", 1},
             { "Happy Song", 4},
             { "Sad Song", 5},
-            { "", 6 }
+            { "", 6 },
+            {"NPC Action", 10 }
         };
     }
 
@@ -61,8 +62,9 @@ public class ThoughtsManager : MonoBehaviour
             {7, new List<string>(new string[]{"Snow!", "I'm an ice dragon", "so cold brrr", "I wanna draw", "I hope daddy doesn't work too late"}) }, 
             {8, new List<string>(new string[]{"Mommy said big kids don't cry", "I didn't see daddy yesterday", "I want to go home", "*Sniffle*", "I miss mommy",
                                                 "I don't like this school"}) },
-            {9, new List<string>(new string[]{"I want to tell mommy about today!", "Can't wait to make new friends!", "Can't wait for class!"}) }
+            {9, new List<string>(new string[]{"I want to tell mommy about today!", "Can't wait to make new friends!", "Can't wait for class!"}) },
             //maybe I can separate some strings depending on the mood of the MC
+            {10, new List<string>(new string[]{"What's going on over there?", "What happened?"}) }
         };
 
         successiveThoughts = new Dictionary<string, string>
@@ -91,7 +93,7 @@ public class ThoughtsManager : MonoBehaviour
         //thoughtText.text = thoughts[line];
         thoughts = thoughtPossibilities[line];
         int successive = 999;
-        if (MentalState.firstTime == 0)
+        if (MentalState.firstTime == 0 && line != 10)
         {
             tmpug.text = thoughts[0];
             successive = 0;
@@ -103,12 +105,13 @@ public class ThoughtsManager : MonoBehaviour
             ran2 = Random.Range(0, 10);
             if (ran2 > 5)
             {
-                if (line == 6) { ran = Random.Range(0, num); }
+                if (line == 6 || line == 10) { ran = Random.Range(0, num); }
                 else { ran = Random.Range(1, num); }
                 tmpug.text = thoughts[ran];
                 showThought();
-                successive = ran;       
+                successive = ran;
             }
+            
         }
         string ok = line.ToString() +  successive.ToString();
         if (successiveThoughts.ContainsKey(ok))
@@ -177,8 +180,8 @@ public class ThoughtsManager : MonoBehaviour
                 if (MentalState.message != "")
                 {
                     int lineNum = thoughtLine[MentalState.message];
-
-                    Debug.Log("lineNum: " + lineNum);
+                    Debug.Log("message: " + MentalState.message);
+                    //Debug.Log("lineNum: " + lineNum);
                     MentalState.message = "";
                     changeThought(lineNum);
                 }
