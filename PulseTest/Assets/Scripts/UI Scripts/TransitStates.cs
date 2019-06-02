@@ -15,6 +15,7 @@ public class TransitStates : MonoBehaviour
     public GameObject cloud1;
     public GameObject cloud2;
     public GameObject cloud3;
+    public GameObject fadeObj;
     private int currentIndex;
     private bool startLoading;
     private bool readyToLoad;
@@ -74,11 +75,22 @@ public class TransitStates : MonoBehaviour
 
     public void StartGame()
     {
-        StartCoroutine(LoadNextSceneAsync("JumpIntoJournalScene"));
+        //StartCoroutine(LoadNextSceneAsync("JumpIntoJournalScene"));
+        Invoke("fadeOut", 1f);
+        Invoke("nextScene", 2f);
         startLoading = true;
         Debug.Log("hello~~");
+    }
 
+    public void nextScene()
+    {
+        SceneManager.LoadScene("JumpIntoJournalScene");
+    }
 
+    public void fadeOut()
+    {
+        var meh = fadeObj.GetComponent<StartFade>();
+        meh.FadeOutStay();
     }
 
     public void ExitGame()
