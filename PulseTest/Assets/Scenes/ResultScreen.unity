@@ -460,7 +460,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 0, g: 0.010291583, b: 0.11320752, a: 1}
-  m_Intensity: 0
+  m_Intensity: 0.07799999
   m_Range: 21.371359
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1002,7 +1002,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &209952356
 Transform:
   m_ObjectHideFlags: 0
@@ -1340,7 +1340,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 252965985}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7988465, w: 0.60153496}
+  m_LocalRotation: {x: -0, y: -0, z: 0.45865586, w: 0.888614}
   m_LocalPosition: {x: 1.54, y: 0.98, z: 4}
   m_LocalScale: {x: 3, y: 3, z: 1.4610213}
   m_Children: []
@@ -1412,7 +1412,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &256693102
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1583,7 +1583,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.9684325, b: 0.8443396, a: 1}
-  m_Intensity: 0.8
+  m_Intensity: 0.77400035
   m_Range: 21.371359
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -2085,7 +2085,7 @@ MonoBehaviour:
   scale: {x: 0, y: 0, z: 0}
   scaleOpposite: {x: 0, y: 0, z: 0}
   mcWaypoints:
-  - {x: 6, y: -3}
+  - {x: 6, y: -2}
 --- !u!1 &508741721
 GameObject:
   m_ObjectHideFlags: 0
@@ -2308,7 +2308,7 @@ MonoBehaviour:
   lightOn: {fileID: 1673563560}
   lightOff: {fileID: 1670041414}
   skyCycle: {fileID: 252965985}
-  rotateAngle: 106.04018
+  rotateAngle: 54.60081
   sunsetAngle: 27
   nightAngle: -77
   morningAngle: -263
@@ -2609,7 +2609,8 @@ MonoBehaviour:
   rabAsset: {fileID: 1884667151}
   ballAsset: {fileID: 1969043918}
   musicAsset: {fileID: 1248607711}
-  dayIndicator: {fileID: 256693101}
+  charlie: {fileID: 7476491801832509780}
+  charlieWriting: {fileID: 209952355}
 --- !u!1 &658420942
 GameObject:
   m_ObjectHideFlags: 0
@@ -3704,7 +3705,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 0.6443302, b: 0, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0.48700017
   m_Range: 19.1
   m_SpotAngle: 30
   m_CookieSize: 10

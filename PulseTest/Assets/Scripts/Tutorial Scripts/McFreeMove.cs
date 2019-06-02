@@ -217,6 +217,7 @@ public class McFreeMove : MonoBehaviour
         else
         {
             stayTime += Time.deltaTime;
+            BedtimeProcedure.writingJournal = true;
             //Debug.Log("stayTime" + stayTime);
             //mcWaypoints = new List<Vector2>(refPoints);
         }
