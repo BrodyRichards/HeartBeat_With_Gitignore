@@ -100,6 +100,8 @@ MonoBehaviour:
   anim: {fileID: 5757435429797941116}
   isAllergic: 0
   target: {x: 0, y: 0, z: 0}
+  stopTime: 0
+  stopTimer: 0
 --- !u!50 &129615881879475042
 Rigidbody2D:
   serializedVersion: 4
@@ -182,6 +184,8 @@ MonoBehaviour:
     type: 3}
   to: {fileID: 0}
   offset: -90
+  faceTime: 0
+  anim: {fileID: 5757435429797941116}
 --- !u!114 &2511946785879441771
 MonoBehaviour:
   m_ObjectHideFlags: 0

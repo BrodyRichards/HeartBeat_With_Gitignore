@@ -9,7 +9,7 @@ public class CameraEnd : MonoBehaviour
 
     private float maxFOV = 30f;
     private float minFOV = 4.84f;
-    private float speed = 40f;
+    private float speed = 50f;
 
 
     private float targetOrtho;

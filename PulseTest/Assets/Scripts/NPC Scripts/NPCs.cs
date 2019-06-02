@@ -40,7 +40,8 @@ public class NPCs : MonoBehaviour
     protected float time;
     protected float timer;
 
-
+    public float stopTime;
+    public float stopTimer;
 
     protected virtual void Awake()
     {
@@ -54,6 +55,8 @@ public class NPCs : MonoBehaviour
         check = music;
         time = Time.fixedUnscaledTime;
         timer = time;
+        stopTime = 0f;
+        stopTimer = 1.2f;
         speed = Random.Range(3f, 6f);
         Debug.Log("speed: " + speed);
         actions = new Queue<int> { };
