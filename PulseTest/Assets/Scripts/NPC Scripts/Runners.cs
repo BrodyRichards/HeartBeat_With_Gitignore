@@ -14,6 +14,8 @@ public class Runners : NPCs
     private float bullyTime;
     private float hitTime;
     private float hitTimer;
+    private bool isTaunting;
+
 
     protected override void Awake()
     {
@@ -26,6 +28,7 @@ public class Runners : NPCs
         bullying = false;
         stopBullying = false;
         gotHit = false;
+        isTaunting = false;
     }
 
     protected override void Update()
@@ -206,6 +209,5 @@ public class Runners : NPCs
         isTaunting = false;
 
     }
-
 
 }

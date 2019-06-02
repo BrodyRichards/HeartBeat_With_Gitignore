@@ -16,7 +16,6 @@ public class BallProjectile : MonoBehaviour
     public float meanSpeed;
     public float lifetime;
     public LayerMask hittableObjects;
-    public LayerMask avatars;
     //This is like its hitbox
     public float distance;
     public float McCheckDist;
@@ -88,7 +87,7 @@ public class BallProjectile : MonoBehaviour
         {
             //Ball catch stuff for the NPCs
             RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, distance, hittableObjects);
-            if (hit.collider != null && hit.collider.gameObject.name != "2" && hit.collider.gameObject.name != "Runner(Clone)")
+            if (hit.collider != null && hit.collider.gameObject.name != "2")
             {
                 if (meanBallThrown)
                 {
@@ -102,7 +101,6 @@ public class BallProjectile : MonoBehaviour
                     PlayCatch.playingCatch = true;
                     GameObject NPC = hit.collider.gameObject;
                     NpcName = NPC.name;
-                    PlayCatch.npcName = NpcName;
                     PlayCatch delayCatch = NPC.GetComponent<PlayCatch>();
                     GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", false);
                     delayCatch.Invoke("hitByBall", delayTime);
@@ -111,16 +109,10 @@ public class BallProjectile : MonoBehaviour
             }
         }
 
-        RaycastHit2D avHit = Physics2D.Raycast(transform.position, transform.right, distance, avatars);
-        if(avHit.collider != null && avHit.collider.gameObject.name == "3")
-        {
-            Debug.Log("Hit the music kid");
-        }
-
         if ( transform.position.x > Playground.RightX ||
-             transform.position.x < Playground.LeftX  ||
-             transform.position.y > Playground.UpperY + 10f ||
-             transform.position.y < Playground.LowerY - 5f )
+            transform.position.x < Playground.LeftX  ||
+            transform.position.y > Playground.UpperY + 10f ||
+            transform.position.y < Playground.LowerY - 5f )
         {
             stationaryBall();
         }

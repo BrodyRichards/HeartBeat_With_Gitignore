@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FinalResultPlaythrough : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class FinalResultPlaythrough : MonoBehaviour
 
     private float time;
     private float timer;
+
+    private float endTimer = 20f;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,10 +44,15 @@ public class FinalResultPlaythrough : MonoBehaviour
 
     private void Update()
     {
-        time = Time.fixedUnscaledTime;
+        time = Time.timeSinceLevelLoad;
         if (time >= timer)
         {
             bubble.GetComponent<Image>().gameObject.SetActive(false);
+        }
+
+        if (time >= endTimer)
+        {
+            SceneManager.LoadScene("CreditScreen");
         }
     }
 }

@@ -11,25 +11,29 @@ public class TutorialFade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown("4")){
-            FadeToLevel(2);
+        if (McExit.nextScene)
+        {
+
+            FadeToLevel();
         }
+
+
         
     }
 
     public void FadeToNextLevel()
     {
-        FadeToLevel(SceneManager.GetActiveScene().buildIndex + 1);
+        FadeToLevel();
     }
-    public void FadeToLevel (int levelIndex)
+    public void FadeToLevel()
     {
-        levelToLoad = levelIndex;
+        LoadingController.nextSceneToLoad = "SampleScene";
         fadeAnimator.SetTrigger("FadeOut");
     }
 
     public void OnFadeComplete()
     {
-        SceneManager.LoadScene(levelToLoad);
+        SceneManager.LoadScene("loadingScene");
     }
 
     public void FadeOut(){

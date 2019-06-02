@@ -7,6 +7,7 @@ public class TutorialProcControl : MonoBehaviour
     public GameObject bed;
     public GameObject emptyBed;
     public GameObject mc;
+    public GameObject writingCharlie;
     private Animator animForBed;
 
     public Light pointLight;
@@ -14,9 +15,11 @@ public class TutorialProcControl : MonoBehaviour
     public GameObject fadeObject;
 
     public GameObject waypointObjs;
+    public static bool writingJournal;
 
     private bool mcWokeUp;
     private float mcAppearWaitTime; // Play around with the value for fade in/out
+    private bool mcReappear;
 
     //public static bool nextScene = false;
     // Start is called before the first frame update
@@ -25,11 +28,27 @@ public class TutorialProcControl : MonoBehaviour
         animForBed = bed.GetComponent<Animator>();
         mcWokeUp = false;
         mcAppearWaitTime = 4f;
+        writingJournal = false;
+        mcReappear = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (writingJournal)
+        {
+            mc.SetActive(false);
+            writingCharlie.SetActive(true);
+            writingJournal = false;
+        }
+
+        if (TutorialJournal.journalOpenOnce && !mcReappear)
+        {
+            mc.transform.position = new Vector2(4, -3);
+            mc.SetActive(true);
+            writingCharlie.SetActive(false);
+            mcReappear = true;
+        }
         if (TutorialCharSwitch.WakeActionChosen && !mcWokeUp)
         {
 
