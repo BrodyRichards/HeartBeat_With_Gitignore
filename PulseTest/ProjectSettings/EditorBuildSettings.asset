@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CreditScreen.unity
     guid: c885eb7cf6dc447d999d33929b361424
+  - enabled: 1
+    path: Assets/Scenes/JumpIntoJournalScene.unity
+    guid: 426297c2498f11849af842e249e86f2d
   m_configObjects: {}

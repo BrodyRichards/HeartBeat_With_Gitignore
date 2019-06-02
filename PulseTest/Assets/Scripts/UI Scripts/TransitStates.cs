@@ -74,7 +74,7 @@ public class TransitStates : MonoBehaviour
 
     public void StartGame()
     {
-        StartCoroutine(LoadNextSceneAsync("TutorialScreen"));
+        StartCoroutine(LoadNextSceneAsync("JumpIntoJournalScene"));
         startLoading = true;
         Debug.Log("hello~~");
 
