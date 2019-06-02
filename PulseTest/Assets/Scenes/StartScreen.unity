@@ -653,7 +653,7 @@ GameObject:
   - component: {fileID: 634655899}
   - component: {fileID: 634655898}
   m_Layer: 5
-  m_Name: Image (3)
+  m_Name: cloud1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -675,7 +675,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 283, y: 89}
+  m_AnchoredPosition: {x: 414, y: 202}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &634655898
@@ -751,7 +751,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 88, y: -242}
+  m_AnchoredPosition: {x: 10.999992, y: 954.0001}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &636240759
@@ -849,7 +849,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -68, y: 197}
+  m_AnchoredPosition: {x: -390, y: 66}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &696470481
@@ -901,7 +901,7 @@ GameObject:
   - component: {fileID: 831543801}
   - component: {fileID: 831543800}
   m_Layer: 5
-  m_Name: cloud1
+  m_Name: Charlie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -997,7 +997,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -215, y: 368}
+  m_AnchoredPosition: {x: -540, y: 368}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &869772622
@@ -1530,7 +1530,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 79, y: -178}
+  m_AnchoredPosition: {x: 2, y: 1018}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1576143430
@@ -1712,6 +1712,12 @@ MonoBehaviour:
   starIndicators:
   - {fileID: 1893534075}
   - {fileID: 1485076986}
+  bg: {fileID: 1691857129}
+  logo: {fileID: 950260981}
+  text: {fileID: 1190274042}
+  cloud1: {fileID: 634655896}
+  cloud2: {fileID: 869772620}
+  cloud3: {fileID: 696470479}
 --- !u!1 &1691857127
 GameObject:
   m_ObjectHideFlags: 0
@@ -1774,7 +1780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.7137255}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.76862746}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1957,13 +1963,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hail - Soft - NoGround
       objectReference: {fileID: 0}
+    - target: {fileID: 112158, guid: 860341fea059b4058a140f4b9c81947c, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 480324, guid: 860341fea059b4058a140f4b9c81947c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 480324, guid: 860341fea059b4058a140f4b9c81947c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.1
+      value: 13.4
       objectReference: {fileID: 0}
     - target: {fileID: 480324, guid: 860341fea059b4058a140f4b9c81947c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2020,6 +2030,14 @@ PrefabInstance:
     - target: {fileID: 19864176, guid: 860341fea059b4058a140f4b9c81947c, type: 3}
       propertyPath: InitialModule.gravityModifier.scalar
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19955286, guid: 860341fea059b4058a140f4b9c81947c, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 594697131
+      objectReference: {fileID: 0}
+    - target: {fileID: 19955286, guid: 860341fea059b4058a140f4b9c81947c, type: 3}
+      propertyPath: m_SortingLayer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 860341fea059b4058a140f4b9c81947c, type: 3}

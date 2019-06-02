@@ -8,6 +8,7 @@ public class LoadingController : MonoBehaviour
 {
     public GameObject loadingBar;
     public GameObject loadingText;
+    public GameObject Charlie;
     public static string nextSceneToLoad = "TutorialScreen";
     private int posX;
     private int percentage;
@@ -26,6 +27,10 @@ public class LoadingController : MonoBehaviour
         posX += 5;
         percentage += 1;
         loadingBar.GetComponent<RectTransform>().localPosition = new Vector3(posX, 29, 0);
+        if (loadingBar.GetComponent<RectTransform>().localPosition.x > -57f)
+        {
+            Charlie.SetActive(false);
+        }
         //loadingText.GetComponent<TextMeshProUGUI>().text = percentage + "%";
     }
 

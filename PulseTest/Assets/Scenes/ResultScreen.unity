@@ -1011,8 +1011,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 209952355}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.92, y: -2.55, z: -0.18538165}
-  m_LocalScale: {x: 0.45603576, y: 0.45603576, z: 0.45603576}
+  m_LocalPosition: {x: 6.04, y: -2.55, z: -0.18538165}
+  m_LocalScale: {x: 0.39219075, y: 0.39219075, z: 0.39219075}
   m_Children: []
   m_Father: {fileID: 738901761}
   m_RootOrder: 26
@@ -1340,7 +1340,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 252965985}
-  m_LocalRotation: {x: -0, y: -0, z: 0.83647776, w: 0.5480009}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7988465, w: 0.60153496}
   m_LocalPosition: {x: 1.54, y: 0.98, z: 4}
   m_LocalScale: {x: 3, y: 3, z: 1.4610213}
   m_Children: []
@@ -2308,7 +2308,7 @@ MonoBehaviour:
   lightOn: {fileID: 1673563560}
   lightOff: {fileID: 1670041414}
   skyCycle: {fileID: 252965985}
-  rotateAngle: 113.54006
+  rotateAngle: 106.04018
   sunsetAngle: 27
   nightAngle: -77
   morningAngle: -263
@@ -5485,7 +5485,7 @@ SpriteRenderer:
   m_SortingLayerID: -2030066595
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9544a37b2c9abbe459cad57e90e4c4ae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e75f34ab211084e6faf4b0219312bf68, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
