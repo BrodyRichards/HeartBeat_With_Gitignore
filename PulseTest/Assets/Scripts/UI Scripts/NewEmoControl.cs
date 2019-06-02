@@ -88,6 +88,9 @@ public class NewEmoControl : MonoBehaviour
             case "Bit by rabbit":
                 sr.sprite = hurt;
                 break;
+            case "Bullied":
+                sr.sprite = sad;
+                break;
             default:
                 sr.sprite = null;
                 break;

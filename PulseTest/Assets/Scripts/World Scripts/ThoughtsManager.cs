@@ -42,7 +42,8 @@ public class ThoughtsManager : MonoBehaviour
             { "Bit by rabbit", 1},
             { "Happy Song", 4},
             { "Sad Song", 5},
-            { "", 6 }
+            { "Bullied", 6},
+            { "", 7 }
         };
     }
 
@@ -182,11 +183,13 @@ public class ThoughtsManager : MonoBehaviour
                     MentalState.message = "";
                     changeThought(lineNum);
                 }
+                /*
                 int ran2 = Random.Range(0, 1000);
                 if (ran2 > 995 && Runners.bullying)
                 {
                     changeThought(6);
                 }
+                */
             }
         }
     }
