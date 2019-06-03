@@ -22,10 +22,13 @@ public class Movement : MonoBehaviour
 
     public Animator anim;
 
+    public float offset;
+
     private void Awake()
     {
         timeToLeave = false;
         isRight = true;
+        offset = 0;
     }
     void Start()
     {
@@ -33,6 +36,11 @@ public class Movement : MonoBehaviour
         target = GameObject.Find("GameController").GetComponent<NpcInstantiator>().rightBound.transform.position;
         scale = transform.localScale;
         scaleOpposite = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+
+        if (gameObject.name == "1")
+        {
+            offset = 2f;
+        }
     }
 
     // Update is called once per frame
@@ -65,8 +73,8 @@ public class Movement : MonoBehaviour
 
         if ((transform.position.x > Playground.RightX && v2.x > 0) ||
             (transform.position.x < Playground.LeftX && v2.x < 0) ||
-            (transform.position.y > Playground.UpperY && v2.y > 0) ||
-            (transform.position.y < Playground.LowerY && v2.y < 0))
+            (transform.position.y > Playground.UpperY - offset && v2.y > 0) ||
+            (transform.position.y < Playground.LowerY - offset && v2.y < 0))
         {
             //Hit the bound
         }

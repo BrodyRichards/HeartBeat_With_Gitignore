@@ -50,7 +50,7 @@ public class MusicKidBT : MonoBehaviour
     {
         mcHappySongCounter = 0;
         mcSadSongCounter = 0;
-        actionDist = 3f;
+        actionDist = 2f;
         musicNoteCreated = false;
         currentMood = (int)Mood.idle;
         musicKidBT = CreateBehaviorTree();
@@ -503,4 +503,16 @@ public class MusicKidBT : MonoBehaviour
     {
         npcIsAffected = false;
     }
+
+    //private Collider[] ColliderSort(Collider[] before_sort )
+    //{
+    //    Collider[] after_sort = new Collider[before_sort.Length];
+
+    //    foreach(var col in before_sort)
+    //    {
+
+    //    }
+
+    //    return after_sort;
+    //}
 }

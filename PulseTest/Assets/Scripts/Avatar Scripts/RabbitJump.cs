@@ -25,7 +25,7 @@ public class RabbitJump : MonoBehaviour
     void Start()
     {
         lastPosX = transform.position.x;
-        actionDist = 4f;
+        actionDist = 2f;
         biteTimer = 2f;
         coolTime = 0f;
 
