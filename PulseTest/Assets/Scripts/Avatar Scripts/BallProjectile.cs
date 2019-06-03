@@ -95,8 +95,9 @@ public class BallProjectile : MonoBehaviour
                     NpcName = hit.collider.gameObject.name;
                     PlayHitParticles();
                     stationaryBall();
+                    destroyBall();
                 }
-                else
+                else if (hit.collider.gameObject.name != "Runner(Clone)")
                 {
                     meanBallThrown = false;
                     PlayCatch.playingCatch = true;
@@ -106,8 +107,9 @@ public class BallProjectile : MonoBehaviour
                     PlayCatch delayCatch = NPC.GetComponent<PlayCatch>();
                     GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", false);
                     delayCatch.Invoke("hitByBall", delayTime);
+                    destroyBall();
                 }
-                destroyBall();
+                //destroyBall();
             }
         }
 
