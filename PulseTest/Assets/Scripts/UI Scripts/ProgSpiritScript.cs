@@ -69,6 +69,7 @@ public class ProgSpiritScript : MonoBehaviour
             Debug.Log("Flag up");
             if (timer < 1.0f)
                 {
+                    
                     timer += Time.deltaTime;
                     ps.transform.position = Camera.transform.position + new Vector3(-27, 14, 0);
                     Debug.Log("Transforming");
@@ -76,7 +77,8 @@ public class ProgSpiritScript : MonoBehaviour
             if(timer > 1.0f){
                 flag = 0;
                 timer = 0;
-                em.rateOverDistance = 0;
+                
+                //em.rateOverDistance = 0.0000001f;
                 Debug.Log("Resetting");
             }
         }
@@ -87,7 +89,7 @@ public class ProgSpiritScript : MonoBehaviour
     public void Emit(int x){
         flag = 0;
         ps.transform.position = possessed.transform.position;
-        em.rateOverDistance = 1;
+        em.rateOverDistance = 0.25f;
         //ps.transform.position += new Vector3(25, 14, 0);
         //em.rateOverDistance = 0;
         Debug.Log("Emit()");
