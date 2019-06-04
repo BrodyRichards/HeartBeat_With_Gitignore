@@ -75,7 +75,7 @@ public class RabbitJump : MonoBehaviour
                             
                             InvokeRepeating("RabbitHappiness", 0f, 3f);
                             break;
-                        }else if (coll.gameObject.tag == "Person")
+                        }else if (coll.gameObject.tag == "Person" && coll.gameObject.name != "Runner(Clone)")
                         {
                             currentCarrier = coll.gameObject;
                             PickRabbitUp(coll.gameObject);
@@ -116,12 +116,19 @@ public class RabbitJump : MonoBehaviour
                 }
                 else if (theBitten.Length != 0)
                 {
+                    Array.Sort(theBitten, (x, y) => String.Compare(x.gameObject.name, y.gameObject.name));
                     Array.Reverse(theBitten);
 
                     //Run through each item and check collisions. MC will always be first
                     //because it is sorted in increasing order of Z coordinate. 
                     foreach (Collider2D victim in theBitten)
                     {
+                        if(victim.gameObject.name == "Runner(Clone)")
+                        {
+                            BiteNPC(victim.gameObject.name);
+                            break;
+                        }
+
                         if (victim.gameObject.tag == "MC")
                         {
                             bittenMC = true;
@@ -133,16 +140,21 @@ public class RabbitJump : MonoBehaviour
                         }
                         else if (victim.gameObject.tag == "Person")
                         {
-                            Debug.Log("I bit " + victim.gameObject.name + "!");
-                            bitNpcName = victim.gameObject.name;
-                            ass.Play();
-                            anim.SetTrigger("bite");
+                            BiteNPC(victim.gameObject.name);                           
                         }
                         break;
                     }
                 }
             }
         }
+    }
+
+    private void BiteNPC(string name)
+    {
+        Debug.Log("I bit " + name + "!");
+        bitNpcName = name;
+        ass.Play();
+        anim.SetTrigger("bite");
     }
 
     private void RabbitHappiness()

@@ -16,6 +16,7 @@ public class BallProjectile : MonoBehaviour
     public float meanSpeed;
     public float lifetime;
     public LayerMask hittableObjects;
+    public LayerMask avatars;
     //This is like its hitbox
     public float distance;
     public float McCheckDist;
@@ -94,25 +95,34 @@ public class BallProjectile : MonoBehaviour
                     NpcName = hit.collider.gameObject.name;
                     PlayHitParticles();
                     stationaryBall();
+                    destroyBall();
                 }
-                else
+                else if (hit.collider.gameObject.name != "Runner(Clone)")
                 {
                     meanBallThrown = false;
                     PlayCatch.playingCatch = true;
                     GameObject NPC = hit.collider.gameObject;
                     NpcName = NPC.name;
+                    PlayCatch.npcName = NpcName;
                     PlayCatch delayCatch = NPC.GetComponent<PlayCatch>();
                     GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", false);
                     delayCatch.Invoke("hitByBall", delayTime);
+                    destroyBall();
                 }
-                destroyBall();
+                //destroyBall();
             }
         }
 
+        RaycastHit2D avHit = Physics2D.Raycast(transform.position, transform.right, distance, avatars);
+        if (avHit.collider != null && avHit.collider.gameObject.name == "3")
+        {
+            Debug.Log("Hit the music kid");
+        }
+
         if ( transform.position.x > Playground.RightX ||
-            transform.position.x < Playground.LeftX  ||
-            transform.position.y > Playground.UpperY + 10f ||
-            transform.position.y < Playground.LowerY - 5f )
+             transform.position.x < Playground.LeftX  ||
+             transform.position.y > Playground.UpperY + 10f ||
+             transform.position.y < Playground.LowerY - 5f )
         {
             stationaryBall();
         }
