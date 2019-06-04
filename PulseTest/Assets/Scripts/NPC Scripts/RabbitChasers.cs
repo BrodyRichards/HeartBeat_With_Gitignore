@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class RabbitChasers : NPCs
 {
-
+    private bool wantToFeed;
     protected override void Awake()
     {       
         base.Awake();
 
+        wantToFeed = true;
         int ranX = Random.Range((int)Playground.LeftX, (int)Playground.RightX);
         int ranY = Random.Range((int)Playground.LowerY, (int)Playground.UpperY);
         /*
@@ -41,6 +42,7 @@ public class RabbitChasers : NPCs
         {
             toClass();
             anim.SetBool("wantToFeed", false);
+            anim.SetBool("isFeeding", false);
         }
     }
     protected override void checkBallBunny(bool inDist, Vector3 avatarPos)
@@ -53,12 +55,24 @@ public class RabbitChasers : NPCs
             {
                 target = avatarPos;
                 transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-                anim.SetBool("isFeeding", false);
+
+                // if the rabbit is not carried by anyone at the moment, rabbit girl want to feed 
                 anim.SetBool("wantToFeed", false);
+                anim.SetBool("isFeeding", false);
+
+
             }
             else
             {
-                anim.SetBool("wantToFeed", true);
+                if (!RabbitJump.beingCarried && wantToFeed)
+                {
+                    anim.SetBool("wantToFeed", true);
+                    wantToFeed = false;
+                    Invoke("ResetFeedingTime", 10f);
+
+                }
+
+
             }
         }
         else
@@ -86,9 +100,20 @@ public class RabbitChasers : NPCs
                 }
             }
             timer = time + 2.0f;
-            Emo = master.GetComponent<NpcInstantiator>().happyFace;
+
+            // if she is not trying to feed and the rabbit bite her, she'll be upset too 
+            if (anim.GetCurrentAnimatorStateInfo(0).IsTag("feeding"))
+            {
+                anim.SetBool("isFeeding", true);
+                Emo = master.GetComponent<NpcInstantiator>().happyFace;
+            }
+            else
+            {
+                anim.SetBool("isBit", true);
+                Emo = master.GetComponent<NpcInstantiator>().madFace;
+            }
             addEmo();
-            anim.SetBool("isFeeding", true);
+
         }
     } 
 
@@ -137,5 +162,12 @@ public class RabbitChasers : NPCs
 
         }
     }
-   
+
+    // Rabbit girl will feed again after 10 seconds
+    private void ResetFeedingTime()
+    {
+        wantToFeed = true;
+    }
+
+
 }

@@ -170,7 +170,9 @@ public class RabbitJump : MonoBehaviour
         beingCarried = false;
         GetComponent<SortRender>().offset = 12;
         SetHoldingAnim(false, currentCarrier);
+
         transform.GetComponent<SpriteRenderer>().enabled = true;
+        transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
     }
 
     public void PickRabbitUp(GameObject carrier)
@@ -180,7 +182,9 @@ public class RabbitJump : MonoBehaviour
         transform.position = new Vector3(carrier.transform.position.x + 0.1f, carrier.transform.position.y, -1);
         transform.parent = carrier.transform;
         GetComponent<Movement>().enabled = false;
+        // hide the shadow and rabbit
         transform.GetComponent<SpriteRenderer>().enabled = false;
+        transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false;
     }
 
     public void BiteMC()
