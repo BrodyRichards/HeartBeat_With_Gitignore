@@ -2224,7 +2224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 480324, guid: 860341fea059b4058a140f4b9c81947c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.4
+      value: 5.43
       objectReference: {fileID: 0}
     - target: {fileID: 480324, guid: 860341fea059b4058a140f4b9c81947c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2281,6 +2281,10 @@ PrefabInstance:
     - target: {fileID: 19864176, guid: 860341fea059b4058a140f4b9c81947c, type: 3}
       propertyPath: InitialModule.gravityModifier.scalar
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19864176, guid: 860341fea059b4058a140f4b9c81947c, type: 3}
+      propertyPath: simulationSpeed
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 19955286, guid: 860341fea059b4058a140f4b9c81947c, type: 3}
       propertyPath: m_SortingLayerID
