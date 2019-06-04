@@ -88,15 +88,16 @@ public class BallProjectile : MonoBehaviour
         {
             //Ball catch stuff for the NPCs
             RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, distance, hittableObjects);
-            if (hit.collider != null && hit.collider.gameObject.name != "2" && hit.collider.gameObject.name != "Runner(Clone)")
+            if (hit.collider != null && hit.collider.gameObject.name != "2")
             {
                 if (meanBallThrown)
                 {
                     NpcName = hit.collider.gameObject.name;
                     PlayHitParticles();
                     stationaryBall();
+                    destroyBall();
                 }
-                else
+                else if (hit.collider.gameObject.name != "Runner(Clone)")
                 {
                     meanBallThrown = false;
                     PlayCatch.playingCatch = true;
@@ -106,8 +107,9 @@ public class BallProjectile : MonoBehaviour
                     PlayCatch delayCatch = NPC.GetComponent<PlayCatch>();
                     GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", false);
                     delayCatch.Invoke("hitByBall", delayTime);
+                    destroyBall();
                 }
-                destroyBall();
+                //destroyBall();
             }
         }
 

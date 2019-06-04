@@ -16165,6 +16165,11 @@ PrefabInstance:
       propertyPath: offset
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 3508012940846479144, guid: 9119d567abe5dc64b90133ebaeffb6f8,
+        type: 3}
+      propertyPath: deceleration
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9119d567abe5dc64b90133ebaeffb6f8, type: 3}
 --- !u!1001 &4365818459476042423
