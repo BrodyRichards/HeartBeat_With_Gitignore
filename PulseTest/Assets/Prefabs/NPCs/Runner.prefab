@@ -123,6 +123,7 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   stopTime: 0
   stopTimer: 0
+  bullySpeed: 0
 --- !u!114 &4077814569576629753
 MonoBehaviour:
   m_ObjectHideFlags: 0
