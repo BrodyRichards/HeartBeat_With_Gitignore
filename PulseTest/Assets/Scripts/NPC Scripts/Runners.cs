@@ -8,6 +8,7 @@ public class Runners : NPCs
 {
     public static bool bullying;
     public static Vector3 targetPos;
+    public float bullySpeed;
     private bool stopBullying;
     private bool gotHit;
     private float bullyTimer;
@@ -29,6 +30,7 @@ public class Runners : NPCs
         stopBullying = false;
         gotHit = false;
         isTaunting = false;
+        bullySpeed = 2f;
     }
 
     protected override void Update()
@@ -113,7 +115,7 @@ public class Runners : NPCs
             if (dist > 15.0f)
             {
                 //target = NpcInstantiator.mcPos;
-                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, target, bullySpeed * Time.deltaTime);
                
             }
             else
@@ -126,7 +128,7 @@ public class Runners : NPCs
                 if (!isTaunting)
                 {
                     anim.SetTrigger("taunt");
-                    MentalState.sendMsg("Bullied");
+
                     Debug.Log("why does bully kid keeps taunting");
                     isTaunting = true;
                     Invoke("ResetTaunt", 15f);
@@ -207,6 +209,9 @@ public class Runners : NPCs
     private void ResetTaunt()
     {
         isTaunting = false;
+
+        if (checkDist(transform.position, NpcInstantiator.mcPos))
+            MentalState.sendMsg("Bullied");
 
     }
 
