@@ -40,6 +40,8 @@ public class ActionThoughts : MonoBehaviour
         offsetQ = new Vector3(-7.5f, 6, 0);
         offsetE = new Vector3(8, 6, 0);
         offsetMove = new Vector3(-1, 9, 0);
+
+        //q.transform.position = bunny.transform.position + offsetQ + new Vector3(1, -1, 0);
     }
 
     void hideThought(GameObject obj)
@@ -69,8 +71,11 @@ public class ActionThoughts : MonoBehaviour
             if (bunnyE == false) { showThought(e); }
             else { hideThought(e); }
             q.transform.position = bunny.transform.position + offsetQ + new Vector3(1, -1, 0);
+            //q.transform.position = Vector3.MoveTowards(q.transform.position, bunny.transform.position + offsetQ + new Vector3(1, -1, 0), 100f * Time.deltaTime);
             e.transform.position = bunny.transform.position + offsetE + new Vector3(-1, -1, 0);
+            //e.transform.position = Vector3.MoveTowards(e.transform.position, bunny.transform.position + offsetE + new Vector3(-1, -1, 0), 100f * Time.deltaTime);
             moveControls.transform.position = bunny.transform.position + offsetMove;
+            //moveControls.transform.position = Vector3.MoveTowards(moveControls.transform.position, bunny.transform.position + offsetMove, 100f * Time.deltaTime);
             if (Input.GetKey(KeyCode.Q)) { hideThought(q); bunnyQ = true; }
             if (Input.GetKey(KeyCode.E)) { hideThought(e); bunnyE = true; }
         }
