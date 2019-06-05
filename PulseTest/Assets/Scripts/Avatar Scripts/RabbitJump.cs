@@ -25,7 +25,7 @@ public class RabbitJump : MonoBehaviour
     void Start()
     {
         lastPosX = transform.position.x;
-        actionDist = 4f;
+        actionDist = 2f;
         biteTimer = 2f;
         coolTime = 0f;
 
@@ -36,6 +36,11 @@ public class RabbitJump : MonoBehaviour
     {
         //DetectMovement();
         JumpIntoArms();
+        if (currentCarrier != null)
+        {
+            SetHoldingAnim(beingCarried, currentCarrier);
+        }
+       
     }
 
     public void JumpIntoArms()
@@ -173,18 +178,22 @@ public class RabbitJump : MonoBehaviour
         GetComponent<Movement>().enabled = true;
         beingCarried = false;
         GetComponent<SortRender>().offset = 12;
-        SetHoldingAnim(false, currentCarrier);
+
+
         transform.GetComponent<SpriteRenderer>().enabled = true;
+        transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
     }
 
     public void PickRabbitUp(GameObject carrier)
     {
         beingCarried = true;
-        SetHoldingAnim(true, currentCarrier);
+
         transform.position = new Vector3(carrier.transform.position.x + 0.1f, carrier.transform.position.y, -1);
         transform.parent = carrier.transform;
         GetComponent<Movement>().enabled = false;
+        // hide the shadow and rabbit
         transform.GetComponent<SpriteRenderer>().enabled = false;
+        transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false;
     }
 
     public void BiteMC()
@@ -206,7 +215,6 @@ public class RabbitJump : MonoBehaviour
 
     public void SetHoldingAnim(bool isHolding, GameObject target)
     {
-        anim.SetBool("isCarried", isHolding);
         var animator = target.GetComponent<Animator>();
         animator.SetBool("isHolding", isHolding);
     }

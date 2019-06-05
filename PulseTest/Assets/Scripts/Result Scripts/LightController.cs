@@ -98,7 +98,7 @@ public class LightController : MonoBehaviour
 
         if (BedtimeProcedure.charlieInBed && !timeToGetOutOfBed)
         {
-            RotateSkyTo(morningAngle, 0.12f);
+            RotateSkyTo(morningAngle, 0.11f);
         }
 
         if (morningIsHere && !timeToGetOutOfBed)

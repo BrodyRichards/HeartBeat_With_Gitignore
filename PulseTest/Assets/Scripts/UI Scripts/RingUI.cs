@@ -113,25 +113,25 @@ public class RingUI : MonoBehaviour
 
                     thisObj.SetActive(true);
                     thisObj.GetComponent<Image>().sprite = happySeg;
-                    pgs.GetComponent<ProgSpiritScript>().Emit(1);
+                    //pgs.GetComponent<ProgSpiritScript>().Emit(1);
                 }
                 else if (fuckingString == "Bit by rabbit" || fuckingString == "Hit by ball")
                 {
                     thisObj.SetActive(true);
                     thisObj.GetComponent<Image>().sprite = angrySeg;
-                    pgs.GetComponent<ProgSpiritScript>().Emit(3);
+                    //pgs.GetComponent<ProgSpiritScript>().Emit(3);
                 }
                 else if (fuckingString == "Sad Song" || fuckingString == "Bullied")
                 {
                     thisObj.SetActive(true);
                     thisObj.GetComponent<Image>().sprite = sadSeg;
-                    pgs.GetComponent<ProgSpiritScript>().Emit(2);
+                    //pgs.GetComponent<ProgSpiritScript>().Emit(2);
                 }
                 else
                 {
                     Debug.Log("message" + MentalState.message);
                     thisObj.SetActive(true);
-                    thisObj.GetComponent<Image>().sprite = sadSeg;
+                    //thisObj.GetComponent<Image>().sprite = sadSeg;
                 }
                 
             }
