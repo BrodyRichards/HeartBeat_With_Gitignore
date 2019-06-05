@@ -329,7 +329,7 @@ public class NPCs : MonoBehaviour
                 addEmo();
                 BallProjectile.meanBallThrown = false;
             }
-            else 
+            else if (BallProjectile.meanBallThrown == false)
             {
                 anim.SetTrigger("playCatch");
                 addQueue(1); 
