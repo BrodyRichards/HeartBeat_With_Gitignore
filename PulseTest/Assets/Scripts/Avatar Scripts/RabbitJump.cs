@@ -36,6 +36,11 @@ public class RabbitJump : MonoBehaviour
     {
         //DetectMovement();
         JumpIntoArms();
+        if (currentCarrier != null)
+        {
+            SetHoldingAnim(beingCarried, currentCarrier);
+        }
+       
     }
 
     public void JumpIntoArms()
@@ -169,7 +174,7 @@ public class RabbitJump : MonoBehaviour
         GetComponent<Movement>().enabled = true;
         beingCarried = false;
         GetComponent<SortRender>().offset = 12;
-        SetHoldingAnim(false, currentCarrier);
+
 
         transform.GetComponent<SpriteRenderer>().enabled = true;
         transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
@@ -178,7 +183,7 @@ public class RabbitJump : MonoBehaviour
     public void PickRabbitUp(GameObject carrier)
     {
         beingCarried = true;
-        SetHoldingAnim(true, currentCarrier);
+
         transform.position = new Vector3(carrier.transform.position.x + 0.1f, carrier.transform.position.y, -1);
         transform.parent = carrier.transform;
         GetComponent<Movement>().enabled = false;
@@ -206,7 +211,6 @@ public class RabbitJump : MonoBehaviour
 
     public void SetHoldingAnim(bool isHolding, GameObject target)
     {
-        anim.SetBool("isCarried", isHolding);
         var animator = target.GetComponent<Animator>();
         animator.SetBool("isHolding", isHolding);
     }
