@@ -79,6 +79,11 @@ public class RabbitJump : MonoBehaviour
                         {
                             currentCarrier = coll.gameObject;
                             PickRabbitUp(coll.gameObject);
+                            if (coll.gameObject.name == "Loner(Clone)")
+                            {
+                                Debug.Log("Hold me");
+                                Invoke("PutRabbitDown", 1f);
+                            }
                             break;
                         }
                     }
