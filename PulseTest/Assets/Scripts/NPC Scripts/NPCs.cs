@@ -66,6 +66,8 @@ public class NPCs : MonoBehaviour
         rabbitTime = 0f;
     }
 
+
+
     protected virtual void Update()
     {
         //isWalking = anim.GetBool("IsWalking");
@@ -85,7 +87,7 @@ public class NPCs : MonoBehaviour
             target = master.GetComponent<NpcInstantiator>().rightBound.transform.position;
             directionCheck(target.x, transform.position.x);
             runOff();
-            DetectMovement();
+            //DetectMovement();
             if (transform.position == target)
             {
                 Destroy(gameObject);
@@ -122,7 +124,15 @@ public class NPCs : MonoBehaviour
             RabbitJump.bitNpcName = "";
             rabNameChange = true;
             checkRabbitBit();
-            addQueue(6);
+            if (this.gameObject.name.Contains("RabbitChaser"))
+            {
+                addQueue(5);
+            }
+            else
+            {
+                addQueue(6);
+            }
+            
         }
         checkBools(emoDist);
         checkRabbitCarry();      

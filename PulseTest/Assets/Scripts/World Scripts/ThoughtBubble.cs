@@ -15,9 +15,10 @@ public class ThoughtBubble : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pos = mc.transform.position;
+        //pos = mc.transform.position;
         if ("SampleScene" == SceneManager.GetActiveScene().name)
-        { 
+        {
+            pos = mc.transform.position;
             offset = new Vector3(-8, 5, 0);
             offset2 = new Vector3(8, 5, 0);
             scale = transform.localScale;
@@ -27,10 +28,12 @@ public class ThoughtBubble : MonoBehaviour
         }
         else if ("TutorialScreen" == SceneManager.GetActiveScene().name)//for the tutorial scene
         {
-            offset = new Vector3(-3, 2, 0);
+            pos = new Vector3(4.27f, -2.58f, 0);
+            offset = new Vector3(0, 3, 0);
         }
         else
         {
+            pos = mc.transform.position;
             offset = new Vector3(3, 2, 0);
         }
         
@@ -39,11 +42,15 @@ public class ThoughtBubble : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        pos = mc.transform.position;
+        if ("TutorialScreen" != SceneManager.GetActiveScene().name)
+        {
+            pos = mc.transform.position;
+        }
         transform.position = pos + offset;
         
         if ("SampleScene" == SceneManager.GetActiveScene().name)
         {
+            
             if (Vector3.Distance(transform.position, GameObject.Find("LeftBound").transform.position) <= 30)
             {
                 transform.localScale = scaleOpp;            //make it flip

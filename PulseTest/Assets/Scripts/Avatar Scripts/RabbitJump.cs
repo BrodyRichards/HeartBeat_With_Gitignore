@@ -25,7 +25,7 @@ public class RabbitJump : MonoBehaviour
     void Start()
     {
         lastPosX = transform.position.x;
-        actionDist = 4f;
+        actionDist = 2f;
         biteTimer = 2f;
         coolTime = 0f;
 
@@ -36,6 +36,11 @@ public class RabbitJump : MonoBehaviour
     {
         //DetectMovement();
         JumpIntoArms();
+        if (currentCarrier != null)
+        {
+            SetHoldingAnim(beingCarried, currentCarrier);
+        }
+       
     }
 
     public void JumpIntoArms()
@@ -79,6 +84,10 @@ public class RabbitJump : MonoBehaviour
                         {
                             currentCarrier = coll.gameObject;
                             PickRabbitUp(coll.gameObject);
+                            if (coll.gameObject.name == "Loner(Clone)")
+                            {
+                                Invoke("PutRabbitDown", 1f);
+                            }
                             break;
                         }
                     }
@@ -116,12 +125,19 @@ public class RabbitJump : MonoBehaviour
                 }
                 else if (theBitten.Length != 0)
                 {
+                    Array.Sort(theBitten, (x, y) => String.Compare(x.gameObject.name, y.gameObject.name));
                     Array.Reverse(theBitten);
 
                     //Run through each item and check collisions. MC will always be first
                     //because it is sorted in increasing order of Z coordinate. 
                     foreach (Collider2D victim in theBitten)
                     {
+                        if(victim.gameObject.name == "Runner(Clone)")
+                        {
+                            BiteNPC(victim.gameObject.name);
+                            break;
+                        }
+
                         if (victim.gameObject.tag == "MC")
                         {
                             bittenMC = true;
@@ -133,16 +149,21 @@ public class RabbitJump : MonoBehaviour
                         }
                         else if (victim.gameObject.tag == "Person")
                         {
-                            Debug.Log("I bit " + victim.gameObject.name + "!");
-                            bitNpcName = victim.gameObject.name;
-                            ass.Play();
-                            anim.SetTrigger("bite");
+                            BiteNPC(victim.gameObject.name);                           
                         }
                         break;
                     }
                 }
             }
         }
+    }
+
+    private void BiteNPC(string name)
+    {
+        Debug.Log("I bit " + name + "!");
+        bitNpcName = name;
+        ass.Play();
+        anim.SetTrigger("bite");
     }
 
     private void RabbitHappiness()
@@ -157,18 +178,22 @@ public class RabbitJump : MonoBehaviour
         GetComponent<Movement>().enabled = true;
         beingCarried = false;
         GetComponent<SortRender>().offset = 12;
-        SetHoldingAnim(false, currentCarrier);
+
+
         transform.GetComponent<SpriteRenderer>().enabled = true;
+        transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
     }
 
     public void PickRabbitUp(GameObject carrier)
     {
         beingCarried = true;
-        SetHoldingAnim(true, currentCarrier);
+
         transform.position = new Vector3(carrier.transform.position.x + 0.1f, carrier.transform.position.y, -1);
         transform.parent = carrier.transform;
         GetComponent<Movement>().enabled = false;
+        // hide the shadow and rabbit
         transform.GetComponent<SpriteRenderer>().enabled = false;
+        transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false;
     }
 
     public void BiteMC()
@@ -190,7 +215,6 @@ public class RabbitJump : MonoBehaviour
 
     public void SetHoldingAnim(bool isHolding, GameObject target)
     {
-        anim.SetBool("isCarried", isHolding);
         var animator = target.GetComponent<Animator>();
         animator.SetBool("isHolding", isHolding);
     }

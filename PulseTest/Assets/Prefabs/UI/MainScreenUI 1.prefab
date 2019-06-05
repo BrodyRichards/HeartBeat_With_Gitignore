@@ -1157,6 +1157,9 @@ MonoBehaviour:
   tabPrompt: {fileID: 2136824791784996614}
   bg: {fileID: 0}
   ring: {fileID: 7671583579243526746}
+  texts: []
+  iconPics: []
+  shadowPics: []
   rabbitIcon: {fileID: 2136824791791939961}
   ballIcon: {fileID: 2136824791664690341}
   musicIcon: {fileID: 2136824792042148784}

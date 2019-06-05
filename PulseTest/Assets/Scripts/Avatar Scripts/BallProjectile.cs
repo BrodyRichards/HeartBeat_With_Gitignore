@@ -23,6 +23,7 @@ public class BallProjectile : MonoBehaviour
     public float radius;
     public static bool meanBallThrown = false;
     public static bool mcInView;
+    public static bool musicKidTalk = false;
     //public static bool playBallPlayer = false;
 
     public static string NpcName = "";
@@ -88,15 +89,16 @@ public class BallProjectile : MonoBehaviour
         {
             //Ball catch stuff for the NPCs
             RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, distance, hittableObjects);
-            if (hit.collider != null && hit.collider.gameObject.name != "2" && hit.collider.gameObject.name != "Runner(Clone)")
+            if (hit.collider != null && hit.collider.gameObject.name != "2")
             {
                 if (meanBallThrown)
                 {
                     NpcName = hit.collider.gameObject.name;
                     PlayHitParticles();
                     stationaryBall();
+                    destroyBall();
                 }
-                else
+                else if (hit.collider.gameObject.name != "Runner(Clone)")
                 {
                     meanBallThrown = false;
                     PlayCatch.playingCatch = true;
@@ -106,8 +108,9 @@ public class BallProjectile : MonoBehaviour
                     PlayCatch delayCatch = NPC.GetComponent<PlayCatch>();
                     GameObject.Find("2").GetComponent<Animator>().SetBool("hasBall", false);
                     delayCatch.Invoke("hitByBall", delayTime);
+                    destroyBall();
                 }
-                destroyBall();
+                //destroyBall();
             }
         }
 
@@ -115,6 +118,7 @@ public class BallProjectile : MonoBehaviour
         if (avHit.collider != null && avHit.collider.gameObject.name == "3")
         {
             Debug.Log("Hit the music kid");
+            musicKidTalk = true;
         }
 
         if ( transform.position.x > Playground.RightX ||
