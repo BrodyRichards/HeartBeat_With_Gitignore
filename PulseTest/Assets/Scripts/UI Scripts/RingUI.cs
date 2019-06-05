@@ -33,6 +33,8 @@ public class RingUI : MonoBehaviour
 
     private GameObject pgs;
 
+    private GameObject pbs;
+
     // Start is called before the first frame update
 
     private void Awake()
@@ -51,6 +53,7 @@ public class RingUI : MonoBehaviour
 
         bell_anim.enabled = false;
         pgs = GameObject.FindGameObjectWithTag("ProgSpirit");
+        pbs = GameObject.FindGameObjectWithTag("ProgBurst");
     }
 
     // Update is called once per frame
@@ -113,25 +116,29 @@ public class RingUI : MonoBehaviour
 
                     thisObj.SetActive(true);
                     thisObj.GetComponent<Image>().sprite = happySeg;
-                    pgs.GetComponent<ProgSpiritScript>().Emit(1);
+                    //pgs.GetComponent<ProgSpiritScript>().Emit(1);
+                    pbs.GetComponent<ProgBurstScript>().Boom();
                 }
                 else if (fuckingString == "Bit by rabbit" || fuckingString == "Hit by ball")
                 {
                     thisObj.SetActive(true);
                     thisObj.GetComponent<Image>().sprite = angrySeg;
-                    pgs.GetComponent<ProgSpiritScript>().Emit(3);
+                    pbs.GetComponent<ProgBurstScript>().Boom();
+                    //pgs.GetComponent<ProgSpiritScript>().Emit(3);
                 }
                 else if (fuckingString == "Sad Song" || fuckingString == "Bullied")
                 {
                     thisObj.SetActive(true);
                     thisObj.GetComponent<Image>().sprite = sadSeg;
-                    pgs.GetComponent<ProgSpiritScript>().Emit(2);
+                    pbs.GetComponent<ProgBurstScript>().Boom();
+                    //pgs.GetComponent<ProgSpiritScript>().Emit(2);
                 }
                 else
                 {
                     Debug.Log("message" + MentalState.message);
                     thisObj.SetActive(true);
                     thisObj.GetComponent<Image>().sprite = sadSeg;
+                    pbs.GetComponent<ProgBurstScript>().Boom();
                 }
                 
             }

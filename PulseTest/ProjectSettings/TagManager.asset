@@ -11,6 +11,7 @@ TagManager:
   - Snow
   - MusicNote
   - ProgSpirit
+  - ProgBurst
   layers:
   - Default
   - TransparentFX
