@@ -176,6 +176,8 @@ public class BallProjectile : MonoBehaviour
         //Sound and special FX can go here
         Destroy(gameObject);
         GameObject newBall = Instantiate(gameObject, transform.position, Quaternion.identity);
+        SpriteRenderer ballSprite = newBall.GetComponent<SpriteRenderer>();
+        ballSprite.sortingLayerName = "Background Props";
         newBall.name = "newBall";
         newBall.AddComponent<CircleCollider2D>().isTrigger = true;
     }
