@@ -23,6 +23,7 @@ public class BallProjectile : MonoBehaviour
     public float radius;
     public static bool meanBallThrown = false;
     public static bool mcInView;
+    public static bool musicKidTalk = false;
     //public static bool playBallPlayer = false;
 
     public static string NpcName = "";
@@ -117,6 +118,7 @@ public class BallProjectile : MonoBehaviour
         if (avHit.collider != null && avHit.collider.gameObject.name == "3")
         {
             Debug.Log("Hit the music kid");
+            musicKidTalk = true;
         }
 
         if ( transform.position.x > Playground.RightX ||

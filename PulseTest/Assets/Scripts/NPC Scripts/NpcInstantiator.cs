@@ -195,10 +195,10 @@ public class NpcInstantiator : MonoBehaviour
             allergyKidPos = allergyKid.transform.position;
             bullyKidPos = bullyKid.transform.position;
             mcPos = mc.transform.position;
-            if (characterSwitcher.isMusicGuyInCharge)
-            {
+            //if (characterSwitcher.isMusicGuyInCharge)
+            //{
                 musicKidPos = musicKid.transform.position;
-            }
+            //}
             checkPositions();
         }
         
