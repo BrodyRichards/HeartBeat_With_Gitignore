@@ -6994,7 +6994,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1970880722}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5f9b679c10112d34e8556f425f718f20, type: 3}
@@ -7133,7 +7133,6 @@ MonoBehaviour:
   text: {fileID: 1462790913}
   journal: {fileID: 1877248411}
   journalAnimator: {fileID: 1120174646}
-  turnPage: {fileID: 0}
 --- !u!1001 &2075879393
 PrefabInstance:
   m_ObjectHideFlags: 0
