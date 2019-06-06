@@ -20,6 +20,7 @@ public class FlipJournal : MonoBehaviour
     public GameObject moversThought;
     public GameObject journalText;
     public GameObject assObj;
+    private AudioSource turnPageSound;
     public static bool finishReadingJournal;
     private int currentIndex;
     private bool[] haveYouReadMeYet;
@@ -56,8 +57,8 @@ public class FlipJournal : MonoBehaviour
 
     void Start()
     {
-
-        timer = 7f;
+        turnPageSound = assObj.GetComponent<AudioSource>();
+        timer = 6.5f;
 
         speechBubble1.SetActive(false);
         speechBubble2.SetActive(false);
@@ -74,6 +75,7 @@ public class FlipJournal : MonoBehaviour
     void Update()
     {
         time = Time.fixedUnscaledTime;
+        moversThought.transform.position = mc.transform.position + new Vector3(3, 2, 0);
         if (time >= timer)
         {
             //Debug.Log(time);
@@ -81,6 +83,7 @@ public class FlipJournal : MonoBehaviour
         }
         if (BedtimeProcedure.journalIsOpened)
         {
+            turnPageSound.Play();
             speechBubble1.SetActive(true);
             speechBubble2.SetActive(true);
             drawing.SetActive(true);
@@ -92,7 +95,7 @@ public class FlipJournal : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.A))
             {           
                 currentIndex -= 1;
-                assObj.GetComponent<AudioSource>().Play();
+                turnPageSound.Play();
                 if (currentIndex == -1)
                 {
                     speechBubble1.SetActive(false);
@@ -104,7 +107,7 @@ public class FlipJournal : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.D))
             {
                 currentIndex += 1;
-                assObj.GetComponent<AudioSource>().Play();
+                turnPageSound.Play();
                 if (currentIndex == 3)
                 {
                     speechBubble1.SetActive(false);
