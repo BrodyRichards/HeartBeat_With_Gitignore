@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WalkingSounds : MonoBehaviour
 {
+
     private AudioSource ass;
     public AudioClip[] walkCarpet;
     private AudioClip step;

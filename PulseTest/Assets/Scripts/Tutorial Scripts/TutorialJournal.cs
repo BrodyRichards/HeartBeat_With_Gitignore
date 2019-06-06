@@ -14,6 +14,8 @@ public class TutorialJournal : MonoBehaviour
 
     public Animator journalAnimator;
 
+    private AudioSource turnPage;
+
     private TextMeshProUGUI tmpug;
     // Start is called before the first frame update
     private void Awake()
@@ -25,6 +27,7 @@ public class TutorialJournal : MonoBehaviour
     {
         tmpug = text.GetComponent<TextMeshProUGUI>();
         journal.SetActive(journalOpen);
+        turnPage = journal.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -41,6 +44,7 @@ public class TutorialJournal : MonoBehaviour
                 {
                     if (journalOpen == false)
                     {
+                        
                         journalOpenOnce = true;
                         journalOpen = true;
                     }
@@ -49,6 +53,10 @@ public class TutorialJournal : MonoBehaviour
                         journalOpen = false;
                     }
                     journal.SetActive(journalOpen);
+                    if (journalOpen)
+                    {
+                        turnPage.Play();
+                    }
                 }
                 
             }

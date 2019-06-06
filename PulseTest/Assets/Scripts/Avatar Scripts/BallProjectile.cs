@@ -74,6 +74,7 @@ public class BallProjectile : MonoBehaviour
                         //This is stuff for normal nicely thrown balls
                         //Debug.Log("You played catch with " + hit.collider.gameObject.name);
                         meanBallThrown = false;
+                        Debug.Log("BallProjectile Else: " + meanBallThrown);
                         GameObject MC = hit.collider.gameObject;
                         MentalState.sendMsg("Played catch");
                         MCBTCreator.playedCatch = true;
@@ -104,6 +105,7 @@ public class BallProjectile : MonoBehaviour
                 else if (hit.collider.gameObject.name != "Runner(Clone)")
                 {
                     meanBallThrown = false;
+                    Debug.Log("BallProjectile NPC Else: " + meanBallThrown);
                     PlayCatch.playingCatch = true;
                     GameObject NPC = hit.collider.gameObject;
                     NpcName = NPC.name;

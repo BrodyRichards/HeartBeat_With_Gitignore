@@ -58,6 +58,7 @@ public class BallPlayers : NPCs
             }
             if (BallProjectile.meanBallThrown)
             {
+                NPCs.playScreamSound = true;
                 timer = time + 2.0f;
                 Emo = master.GetComponent<NpcInstantiator>().madFace;
                 addEmo();

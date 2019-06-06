@@ -31,7 +31,7 @@ public class BallThrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.localScale.x >= 0)
+        if (transform.localScale.x >= 0)
         {
             McCheck = Physics2D.CircleCastAll(transform.position, radius, transform.right, McCheckDist, hittableObjects);
 
@@ -55,6 +55,7 @@ public class BallThrow : MonoBehaviour
         //Space bar for nice action and E for mean action
         if (Input.GetKeyDown(Control.positiveAction) && !thrownBall)
         {
+            BallProjectile.meanBallThrown = false;
             ThrowBall();
         }
         else if (Input.GetKeyDown(Control.negativeAction) && !thrownBall)
@@ -139,7 +140,7 @@ public class BallThrow : MonoBehaviour
         
         thrownBall = false;
         isMeanBall = false;
-        BallProjectile.meanBallThrown = false;
+
         Destroy(newBall);
         anim.SetBool("hasBall", true);
     }

@@ -120,11 +120,6 @@ public class Runners : NPCs
             }
             else
             {
-                //PUT THE ANIMATION FOR LAUGHING HEREEEE
-                //
-                //
-                //
-                //
                 if (!isTaunting)
                 {
                     anim.SetTrigger("taunt");
@@ -134,10 +129,6 @@ public class Runners : NPCs
                     Invoke("ResetTaunt", 15f);
                 }
 
-                //
-                //
-                //
-                //RIGHT HERE YOU POOPMATE
             }
         }
         else
@@ -183,6 +174,7 @@ public class Runners : NPCs
             }
             if (BallProjectile.meanBallThrown)
             {
+                NPCs.playScreamSound = true;
                 stopBullying = true;
                 gotHit = true;
                 anim.SetTrigger("isHit");

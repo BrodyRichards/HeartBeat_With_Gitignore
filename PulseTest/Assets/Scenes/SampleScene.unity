@@ -16877,9 +16877,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c7dc5d6e326d9154aa0fac51cdf070a8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: eeed6ab5e56389641940a26d62e96ce1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.67
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -19593,6 +19593,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2127117190}
   - component: {fileID: 2127117189}
+  - component: {fileID: 2127117192}
+  - component: {fileID: 2127117191}
   m_Layer: 0
   m_Name: LeftBound
   m_TagString: Untagged
@@ -19662,6 +19664,119 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2127117191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127117188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dccea1ca235128e4792c461284858cfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screamClips:
+  - {fileID: 8300000, guid: 5f2efc70d451ce64ea9c4bfa96a83eda, type: 3}
+  - {fileID: 8300000, guid: 6ad1041257101bc459af99662859422d, type: 3}
+  - {fileID: 8300000, guid: 4aed0c529dec96046849f67b8d14f78c, type: 3}
+  - {fileID: 8300000, guid: 424e586da81703e4f9fe540aebbadff0, type: 3}
+--- !u!82 &2127117192
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127117188}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2133174309 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8038446244020139324, guid: 1626f3e1e5048485ea28787d447f34e3,
@@ -20443,6 +20558,11 @@ PrefabInstance:
       propertyPath: deceleration
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1141273045071350155, guid: 7df97e70a54b64efa94d45ec5b0f4830,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 63b4ce015a18aed47aec327338ff0ac7, type: 3}
     - target: {fileID: 1141273045071350193, guid: 7df97e70a54b64efa94d45ec5b0f4830,
         type: 3}
       propertyPath: offset
