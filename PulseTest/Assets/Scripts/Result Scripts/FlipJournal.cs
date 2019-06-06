@@ -83,7 +83,7 @@ public class FlipJournal : MonoBehaviour
         }
         if (BedtimeProcedure.journalIsOpened)
         {
-            turnPageSound.Play();
+            //turnPageSound.Play();
             speechBubble1.SetActive(true);
             speechBubble2.SetActive(true);
             drawing.SetActive(true);
