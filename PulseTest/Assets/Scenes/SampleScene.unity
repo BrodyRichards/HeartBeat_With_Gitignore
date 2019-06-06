@@ -16215,6 +16215,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: 10
   destroy: 1
+--- !u!1 &1312496486
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1312496487}
+  m_Layer: 0
+  m_Name: meanTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1312496487
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312496486}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 20.6, y: -3.3, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_Children: []
+  m_Father: {fileID: 118138681}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1313953926 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5647780876635164020, guid: 1626f3e1e5048485ea28787d447f34e3,
@@ -20112,22 +20142,22 @@ PrefabInstance:
     - target: {fileID: 20722763564241258, guid: fce55a7740c9bd7488d94c06368b7557,
         type: 3}
       propertyPath: m_Offset.x
-      value: 0.61967015
+      value: 0.6103821
       objectReference: {fileID: 0}
     - target: {fileID: 20722763564241258, guid: fce55a7740c9bd7488d94c06368b7557,
         type: 3}
       propertyPath: m_Size.x
-      value: 2.2840943
+      value: 1.7404785
       objectReference: {fileID: 0}
     - target: {fileID: 20722763564241258, guid: fce55a7740c9bd7488d94c06368b7557,
         type: 3}
       propertyPath: m_Offset.y
-      value: -0.024015427
+      value: 0.22444105
       objectReference: {fileID: 0}
     - target: {fileID: 20722763564241258, guid: fce55a7740c9bd7488d94c06368b7557,
         type: 3}
       propertyPath: m_Size.y
-      value: 3.4106674
+      value: 4.5333223
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fce55a7740c9bd7488d94c06368b7557, type: 3}
@@ -20307,7 +20337,7 @@ PrefabInstance:
     - target: {fileID: 950103261764361768, guid: 161ec8754d04ffb4485fb6c99cd22544,
         type: 3}
       propertyPath: McCheckDist
-      value: 10
+      value: 11.5
       objectReference: {fileID: 0}
     - target: {fileID: 950103261764361768, guid: 161ec8754d04ffb4485fb6c99cd22544,
         type: 3}

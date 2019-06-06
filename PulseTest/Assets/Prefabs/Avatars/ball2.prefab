@@ -109,7 +109,7 @@ MonoBehaviour:
   avatars:
     serializedVersion: 2
     m_Bits: 256
-  distance: 0.25
+  distance: 1.1
   McCheckDist: 0
   radius: 0
 --- !u!58 &7261722426891715402

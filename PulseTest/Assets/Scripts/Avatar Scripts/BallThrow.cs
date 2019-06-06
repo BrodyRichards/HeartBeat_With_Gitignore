@@ -44,6 +44,7 @@ public class BallThrow : MonoBehaviour
 
         if (CheckForMC(McCheck))
         {
+            Debug.Log("MC in view");
             BallProjectile.mcInView = true;
         }
         else
