@@ -15312,7 +15312,7 @@ PrefabInstance:
     - target: {fileID: 950103261764361768, guid: 161ec8754d04ffb4485fb6c99cd22544,
         type: 3}
       propertyPath: McCheckDist
-      value: 13
+      value: 11.5
       objectReference: {fileID: 0}
     - target: {fileID: 950103261764361768, guid: 161ec8754d04ffb4485fb6c99cd22544,
         type: 3}
