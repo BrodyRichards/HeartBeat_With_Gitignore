@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
+
 public class LightController : MonoBehaviour
 {
     public Light[] roomLights;
@@ -24,7 +24,6 @@ public class LightController : MonoBehaviour
     public GameObject lightOff;
     public GameObject skyCycle;
 
-    [Range(-360f, 120f)]
     public float rotateAngle;
 
     [Range(-360f, 120f)] public float sunsetAngle;
@@ -49,6 +48,7 @@ public class LightController : MonoBehaviour
         turnOffRoomLights = false;
         morningIsHere = false;
         timeToGetOutOfBed = false;
+        rotateAngle = 107.670f;
     }
     void Start()
     {
