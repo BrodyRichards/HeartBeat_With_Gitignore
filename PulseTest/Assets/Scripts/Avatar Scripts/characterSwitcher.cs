@@ -29,8 +29,8 @@ public class characterSwitcher : MonoBehaviour
         GameObject.Find("MC").GetComponent<Movement>().enabled = false;
 
 
-        anim_keyPrompt = GameObject.Find("KeyPrompt1").GetComponent<Animator>();
-        anim_keyPrompt.enabled = false;
+        //anim_keyPrompt = GameObject.Find("KeyPrompt1").GetComponent<Animator>();
+        //anim_keyPrompt.enabled = false;
 
         doNothingTimer = 0f;
 
