@@ -132,7 +132,7 @@ PrefabInstance:
     - target: {fileID: 6184395503841328229, guid: aa698b7d14a59c84fb4658e612d75afb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.93
+      value: -5.67
       objectReference: {fileID: 0}
     - target: {fileID: 6184395503841328229, guid: aa698b7d14a59c84fb4658e612d75afb,
         type: 3}
@@ -183,6 +183,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.366
+      objectReference: {fileID: 0}
+    - target: {fileID: 6184395504090764361, guid: aa698b7d14a59c84fb4658e612d75afb,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5319
+      objectReference: {fileID: 0}
+    - target: {fileID: 6184395504090764361, guid: aa698b7d14a59c84fb4658e612d75afb,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5319
+      objectReference: {fileID: 0}
+    - target: {fileID: 6184395504090764361, guid: aa698b7d14a59c84fb4658e612d75afb,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5319
+      objectReference: {fileID: 0}
+    - target: {fileID: 6184395504090764361, guid: aa698b7d14a59c84fb4658e612d75afb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.073570356
+      objectReference: {fileID: 0}
+    - target: {fileID: 6184395504090764361, guid: aa698b7d14a59c84fb4658e612d75afb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9972901
+      objectReference: {fileID: 0}
+    - target: {fileID: 6184395504090764361, guid: aa698b7d14a59c84fb4658e612d75afb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 8.438001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa698b7d14a59c84fb4658e612d75afb, type: 3}
@@ -460,7 +490,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 0, g: 0.010291583, b: 0.11320752, a: 1}
-  m_Intensity: 0
+  m_Intensity: 0.69000083
   m_Range: 21.371359
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1340,8 +1370,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 252965985}
-  m_LocalRotation: {x: -0, y: -0, z: 0.8093762, w: 0.5872905}
-  m_LocalPosition: {x: 1.54, y: 0.98, z: 4}
+  m_LocalRotation: {x: -0, y: -0, z: -0.12506603, w: 0.99214846}
+  m_LocalPosition: {x: 1.54, y: 0.98, z: 5.07}
   m_LocalScale: {x: 3, y: 3, z: 1.4610213}
   m_Children: []
   m_Father: {fileID: 738901761}
@@ -1583,7 +1613,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.9684325, b: 0.8443396, a: 1}
-  m_Intensity: 0.8
+  m_Intensity: 0.570003
   m_Range: 21.371359
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -2111,8 +2141,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 491545696}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.05, y: 3, z: 0}
-  m_LocalScale: {x: 3, y: 2, z: 1}
+  m_LocalPosition: {x: -0.81, y: 2.97, z: 0}
+  m_LocalScale: {x: 2.9384735, y: 1.9589823, z: 0.9794912}
   m_Children:
   - {fileID: 1969043920}
   - {fileID: 1884667153}
@@ -2377,7 +2407,7 @@ MonoBehaviour:
   lightOn: {fileID: 1673563560}
   lightOff: {fileID: 1670041414}
   skyCycle: {fileID: 252965985}
-  rotateAngle: 108.07006
+  rotateAngle: -14.369135
   sunsetAngle: 27
   nightAngle: -77
   morningAngle: -263
@@ -3775,7 +3805,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 0.6443302, b: 0, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0.38500148
   m_Range: 19.1
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -5385,7 +5415,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1864959909}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.8, y: 3.7481534, z: 0}
+  m_LocalPosition: {x: 1.8, y: 3.7481534, z: 1.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 738901761}
@@ -5524,7 +5554,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1884667152
 SpriteRenderer:
   m_ObjectHideFlags: 0

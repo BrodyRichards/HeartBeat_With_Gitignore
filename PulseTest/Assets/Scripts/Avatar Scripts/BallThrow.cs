@@ -34,10 +34,12 @@ public class BallThrow : MonoBehaviour
         if(transform.localScale.x >= 0)
         {
             McCheck = Physics2D.CircleCastAll(transform.position, radius, transform.right, McCheckDist, hittableObjects);
+
         }
         else
         {
             McCheck = Physics2D.CircleCastAll(transform.position, radius, -transform.right, McCheckDist, hittableObjects);
+
         }
 
         if (CheckForMC(McCheck))

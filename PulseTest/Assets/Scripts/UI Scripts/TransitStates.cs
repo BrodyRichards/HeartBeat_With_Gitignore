@@ -101,15 +101,22 @@ public class TransitStates : MonoBehaviour
     public void ButtonSwitch()
     {
         buttons[currentIndex].OnSelect(null);
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             currentIndex += 1;
             currentIndex %= 2;
 
             EnableThisDisableRest(currentIndex);
         }
+        else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (currentIndex == 1) currentIndex = 0;
+            else { currentIndex = 1; }
 
-            if (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.Space))
+            EnableThisDisableRest(currentIndex);
+        }
+
+        if (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.Space))
         {
             buttons[currentIndex].onClick.Invoke();
         }

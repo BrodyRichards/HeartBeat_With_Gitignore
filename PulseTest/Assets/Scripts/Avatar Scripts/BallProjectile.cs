@@ -54,6 +54,7 @@ public class BallProjectile : MonoBehaviour
                 Debug.Log("please play");
                 if (hit.collider.CompareTag("MC")) //hit.collider.CompareTag("Person") || 
                 {
+
                     if (meanBallThrown)
                     {
                         //A mean ball was thrown
@@ -144,7 +145,7 @@ public class BallProjectile : MonoBehaviour
     private void TriggerHitAnim()
     {
         GameObject mc = GameObject.Find("MC");
-        if (Vector2.Distance(gameObject.transform.position, mc.transform.position) < 3f)
+        if (Vector2.Distance(gameObject.transform.position, mc.transform.position) < 4f)
         {
             mc.GetComponent<Animator>().SetTrigger("isHit");
 

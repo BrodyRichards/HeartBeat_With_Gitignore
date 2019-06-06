@@ -7,20 +7,28 @@ public class CreditController : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    private float endTimer;
+    private bool end;
+    private bool callOnce;
     void Start()
     {
-        endTimer = 10f;
+        end = false;
+        callOnce = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        endTimer -= Time.deltaTime;
-        if (endTimer < 0f)
+
+        if (end && !callOnce)
         {
+            callOnce = true;
             LoadingController.nextSceneToLoad = "TutorialScreen";
             SceneManager.LoadScene("StartScreen");
         }
+    }
+
+    public void TimeToEnd()
+    {
+        end = true;
     }
 }
