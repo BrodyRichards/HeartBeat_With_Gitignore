@@ -6,7 +6,8 @@ public class BallProjectile : MonoBehaviour
 {
     public GameObject ballHitParticle;
     private GameObject tempSys;
-    public Vector3 targetLoc;
+    public Vector3 niceTargetLoc;
+    public Vector3 meanTargetLoc;
     public Vector3 startPos;
     public float arcHeight = 2;
 
@@ -32,7 +33,8 @@ public class BallProjectile : MonoBehaviour
     void Start()
     {
         Invoke("stationaryBall", lifetime);
-        targetLoc = GameObject.Find("target").transform.position;
+        niceTargetLoc = GameObject.Find("target").transform.position;
+        meanTargetLoc = GameObject.Find("meanTarget").transform.position;
         startPos = transform.position;
         meanSpeed = speed * 1.5f;
         delayTime = 0.5f;
@@ -134,11 +136,13 @@ public class BallProjectile : MonoBehaviour
         if (meanBallThrown)
         {
             speed = meanSpeed;
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
+            //transform.Translate(Vector2.right * speed * Time.deltaTime);
+            //transform.position = Vector2.MoveTowards(transform.position, meanTargetLoc, speed * Time.deltaTime);
+            SimulateProjectile(meanTargetLoc);
         }
         else
         {
-            SimulateProjectile();
+            SimulateProjectile(niceTargetLoc);
         }
 
     }
@@ -154,7 +158,7 @@ public class BallProjectile : MonoBehaviour
         }
     }
 
-    private void SimulateProjectile()
+    private void SimulateProjectile(Vector3 targetLoc)
     {
         float x0 = startPos.x;
         float x1 = targetLoc.x;
@@ -180,6 +184,8 @@ public class BallProjectile : MonoBehaviour
         //Sound and special FX can go here
         Destroy(gameObject);
         GameObject newBall = Instantiate(gameObject, transform.position, Quaternion.identity);
+        SpriteRenderer ballSprite = newBall.GetComponent<SpriteRenderer>();
+        ballSprite.sortingLayerName = "Background Props";
         newBall.name = "newBall";
         newBall.AddComponent<CircleCollider2D>().isTrigger = true;
     }

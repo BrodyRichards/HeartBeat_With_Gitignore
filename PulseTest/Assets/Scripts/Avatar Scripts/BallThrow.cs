@@ -42,6 +42,7 @@ public class BallThrow : MonoBehaviour
 
         if (CheckForMC(McCheck))
         {
+            Debug.Log("MC in view");
             BallProjectile.mcInView = true;
         }
         else
@@ -81,7 +82,7 @@ public class BallThrow : MonoBehaviour
         thrownBall = true;
         if (isMeanBall)
         {
-            anim.SetBool("isThrowing", true);
+            anim.SetTrigger("meanThrow");
         }
         else
         {
@@ -93,7 +94,7 @@ public class BallThrow : MonoBehaviour
         //Stop movement while throwing
         GameObject.Find("2").GetComponent<Movement>().enabled = false;
         StartCoroutine(PutOutBall());
-        StartCoroutine(ResetAnimation());
+
     }
 
     //Function to instantiate ball when thrown
@@ -150,10 +151,6 @@ public class BallThrow : MonoBehaviour
         }
     }
 
-    IEnumerator ResetAnimation()
-    {
-        yield return new WaitForSeconds(0.25f);
-        anim.SetBool("isThrowing", false);
-    }
+
 
 }
