@@ -35,6 +35,7 @@ public class NPCs : MonoBehaviour
     public static bool sneeze = false;
     //public bool isWalking = false;
     public static bool schoolBell = false;
+    public static bool playScreamSound = false;
     public Vector3 target;
 
     protected float time;
@@ -214,6 +215,7 @@ public class NPCs : MonoBehaviour
                 }
             }
             timer = time + 2.0f;
+            playScreamSound = true;
             Emo = master.GetComponent<NpcInstantiator>().hurtFace;
             addEmo();
             anim.SetTrigger("isBit");
@@ -321,6 +323,8 @@ public class NPCs : MonoBehaviour
             }
             if (BallProjectile.meanBallThrown)
             {
+                //ScreamSounds.playScream();
+                playScreamSound = true;
                 Debug.Log("ouch");
                 anim.SetTrigger("isHit");
                 timer = time + 2.0f;
