@@ -244,11 +244,15 @@ public class MusicKidBT : MonoBehaviour
         {
             mcHappySongCounter += 1;
             mcSadSongCounter *= 0;
+            if (mcHappySongCounter > 200)
+                mcHappySongCounter *= 0;
         }
         else
         {
             mcHappySongCounter *= 0;
             mcSadSongCounter += 1;
+            if (mcSadSongCounter > 200)
+                mcSadSongCounter *= 0;
         }
         if (!musicNoteCreated)
         {
@@ -276,8 +280,14 @@ public class MusicKidBT : MonoBehaviour
 
     private NodeStatus SongTimeCount()
     {
-        if (mcSadSongCounter > 200 || mcHappySongCounter > 200)
+        if (mcSadSongCounter == 3)
         {
+            mcSadSongCounter += 1;
+            return NodeStatus.SUCCESS;
+        }
+        else if (mcHappySongCounter == 3)
+        {
+            mcHappySongCounter += 1;
             return NodeStatus.SUCCESS;
         }
         return NodeStatus.FAILURE;
@@ -300,9 +310,9 @@ public class MusicKidBT : MonoBehaviour
             Debug.Log("How did this happen?");
             return NodeStatus.FAILURE;
         }
+        Debug.Log("herror");
         MentalState.sendMsg(msg);
-        mcSadSongCounter *= 0;
-        mcHappySongCounter *= 0;
+
         return NodeStatus.SUCCESS;
     }
 
