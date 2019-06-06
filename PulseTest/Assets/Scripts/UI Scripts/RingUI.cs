@@ -18,6 +18,7 @@ public class RingUI : MonoBehaviour
     public Sprite happySeg;
     public Sprite sadSeg;
     public Sprite angrySeg;
+    public Sprite bullySeg;
 
     public Sprite neutralFace;
     public Sprite happyFace;
@@ -126,12 +127,18 @@ public class RingUI : MonoBehaviour
                     pbs.GetComponent<ProgBurstScript>().Boom();
                     //pgs.GetComponent<ProgSpiritScript>().Emit(3);
                 }
-                else if (fuckingString == "Sad Song" || fuckingString == "Bullied")
+                else if (fuckingString == "Sad Song")
                 {
                     thisObj.SetActive(true);
                     thisObj.GetComponent<Image>().sprite = sadSeg;
                     pbs.GetComponent<ProgBurstScript>().Boom();
                     //pgs.GetComponent<ProgSpiritScript>().Emit(2);
+                }
+                else if (fuckingString == "Bullied")
+                {
+                    thisObj.SetActive(true);
+                    thisObj.GetComponent<Image>().sprite = bullySeg;
+                    pbs.GetComponent<ProgBurstScript>().Boom();
                 }
                 else
                 {
