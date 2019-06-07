@@ -12,6 +12,8 @@ public class RabbitJump : MonoBehaviour
     public float actionDist;
     public float biteTimer;
     private float coolTime;
+    public float carryTimer;
+    private float carryTime;
     private Rigidbody2D rb;
     private double currentPosX;
     private double lastPosX;
@@ -28,7 +30,6 @@ public class RabbitJump : MonoBehaviour
         actionDist = 2f;
         biteTimer = 2f;
         coolTime = 0f;
-
     }
 
     // Update is called once per frame
@@ -51,7 +52,11 @@ public class RabbitJump : MonoBehaviour
             bittenMC = !bittenMC;
         }
 
-        
+        if (beingCarried)
+        {
+            UpdateHappiness();
+        }
+
         if (Input.GetKeyDown(Control.positiveAction))
         {
             //If already being carried, put the rabbit down
@@ -77,8 +82,7 @@ public class RabbitJump : MonoBehaviour
                         {
                             currentCarrier = coll.gameObject;
                             PickRabbitUp(coll.gameObject);
-                            
-                            InvokeRepeating("RabbitHappiness", 0f, 3f);
+                            //InvokeRepeating("RabbitHappiness", 0f, 5f);
                             break;
                         }else if (coll.gameObject.tag == "Person" && coll.gameObject.name != "Runner(Clone)")
                         {
@@ -155,6 +159,19 @@ public class RabbitJump : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    private void UpdateHappiness()
+    {
+        if (carryTime >= carryTimer)
+        {
+            RabbitHappiness();
+            carryTime = 0f;
+        }
+        else
+        {
+            carryTime += Time.deltaTime;
         }
     }
 
