@@ -30,6 +30,7 @@ public class RabbitJump : MonoBehaviour
         actionDist = 2f;
         biteTimer = 2f;
         coolTime = 0f;
+        carryTime = 8f;
     }
 
     // Update is called once per frame
