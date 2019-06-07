@@ -157,7 +157,7 @@ public class BallProjectile : MonoBehaviour
                 if (firstBounce)
                 {
                     firstBounce = false;
-                    speed /= 2;
+                    speed /= 4;
                 }
                 stationaryBall();
             }
@@ -226,6 +226,8 @@ public class BallProjectile : MonoBehaviour
             {
                 if (Vector3.Distance(transform.position, meanTargetLoc1) < 1f)
                 {
+                    speed /= 2;
+                    arcHeight /= 2;
                     numBounces++;
                 }
                 else
@@ -237,6 +239,7 @@ public class BallProjectile : MonoBehaviour
             {
                 if (Vector3.Distance(transform.position, meanTargetLoc2) < 1f)
                 {
+                    //arcHeight /= 2;
                     numBounces++;
                 }
                 else
@@ -255,6 +258,7 @@ public class BallProjectile : MonoBehaviour
             {
                 if (Vector3.Distance(transform.position, niceTargetLoc1) < 1f)
                 {
+                    arcHeight /= 2;
                     numBounces++;
                 }
                 else
