@@ -20694,6 +20694,11 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 63b4ce015a18aed47aec327338ff0ac7, type: 3}
+    - target: {fileID: 1141273045071350205, guid: 7df97e70a54b64efa94d45ec5b0f4830,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 93dfdb3fbc99e4e4593a76c81fd32c53, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7df97e70a54b64efa94d45ec5b0f4830, type: 3}
 --- !u!1001 &2211061812519399774
@@ -20801,11 +20806,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6304648010086114328, guid: 4bf9b18058c14214082cc7246e2c2a5d,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 112204844209154752, guid: 4bf9b18058c14214082cc7246e2c2a5d,
         type: 3}
       propertyPath: m_IsActive
@@ -20815,16 +20815,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6304648009243675800, guid: 4bf9b18058c14214082cc7246e2c2a5d,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6304648010964249171, guid: 4bf9b18058c14214082cc7246e2c2a5d,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7578386868106148820, guid: 4bf9b18058c14214082cc7246e2c2a5d,
         type: 3}
@@ -21057,6 +21047,21 @@ PrefabInstance:
     - target: {fileID: 3839576342078551145, guid: 4bf9b18058c14214082cc7246e2c2a5d,
         type: 3}
       propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6304648010086114328, guid: 4bf9b18058c14214082cc7246e2c2a5d,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6304648009243675800, guid: 4bf9b18058c14214082cc7246e2c2a5d,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6304648010964249171, guid: 4bf9b18058c14214082cc7246e2c2a5d,
+        type: 3}
+      propertyPath: m_Interactable
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
