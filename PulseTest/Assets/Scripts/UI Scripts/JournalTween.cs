@@ -16,7 +16,6 @@ public class JournalTween : MonoBehaviour
     public Image ballLv3;
     public Image rabbitLv2;
     public Image rabbitLv3;
-    public GameObject theBell;
     public AudioSource ass;
 
     public static Accomplish rabbit;
@@ -63,7 +62,6 @@ public class JournalTween : MonoBehaviour
 
         if (FinishedAllStatus())
         {
-            theBell.SetActive(true);
             MentalState.journalInProgress = false;
             rabbit = null;
             ball = null;

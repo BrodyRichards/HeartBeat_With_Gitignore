@@ -691,7 +691,6 @@ MonoBehaviour:
   ballLv3: {fileID: 199990750717924348}
   rabbitLv2: {fileID: 1948914638356017272}
   rabbitLv3: {fileID: 8521506302658424382}
-  theBell: {fileID: 0}
   ass: {fileID: 0}
 --- !u!1 &4365818458750344122
 GameObject:

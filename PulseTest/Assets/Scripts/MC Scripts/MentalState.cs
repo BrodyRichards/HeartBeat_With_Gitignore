@@ -336,6 +336,7 @@ public class MentalState : MonoBehaviour
             (com.Num > com.threshold[1] && !com.finished[1]) ||
             (com.Num > com.threshold[2] && !com.finished[2]))
         {
+           
             return true;
         }
         else

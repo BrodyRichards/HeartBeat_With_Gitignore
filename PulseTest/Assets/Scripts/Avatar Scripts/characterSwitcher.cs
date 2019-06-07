@@ -34,20 +34,20 @@ public class characterSwitcher : MonoBehaviour
 
         doNothingTimer = 0f;
 
-        if(IterationController.dayCount == 0)
-        {
-            IterationController.bunnyScale = GameObject.Find("1").transform.localScale;
-            IterationController.ballKidScale = GameObject.Find("2").transform.localScale;
-            IterationController.musicKidScale = GameObject.Find("3").transform.localScale;
-        }else if (IterationController.dayCount == 1)
-        {
-            GetComponent<IterationController>().PrepareNextDay();
-        }else if(IterationController.dayCount == 2)
-        {
-            GetComponent<IterationController>().PrepareFinalDay();
-        }
+        //if(IterationController.dayCount == 0)
+        //{
+        //    IterationController.bunnyScale = GameObject.Find("1").transform.localScale;
+        //    IterationController.ballKidScale = GameObject.Find("2").transform.localScale;
+        //    IterationController.musicKidScale = GameObject.Find("3").transform.localScale;
+        //}else if (IterationController.dayCount == 1)
+        //{
+        //    GetComponent<IterationController>().PrepareNextDay();
+        //}else if(IterationController.dayCount == 2)
+        //{
+        //    GetComponent<IterationController>().PrepareFinalDay();
+        //}
 
-        IterationController.dayCount++;
+        //IterationController.dayCount++;
 
         /*
         if (FlipJournal.lastAvatar == 1) { findGO(1).SetActive(false); }
