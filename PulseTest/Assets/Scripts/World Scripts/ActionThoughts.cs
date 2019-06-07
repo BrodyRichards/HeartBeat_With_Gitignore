@@ -39,7 +39,7 @@ public class ActionThoughts : MonoBehaviour
 
         offsetQ = new Vector3(-7.5f, 6, 0);
         offsetE = new Vector3(8, 6, 0);
-        offsetMove = new Vector3(-1, 9, 0);
+        offsetMove = new Vector3(-1, 13, 0);
 
         //q.transform.position = bunny.transform.position + offsetQ + new Vector3(1, -1, 0);
     }
