@@ -14,7 +14,7 @@ public class MusicCarryOver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ("SampleScene" == SceneManager.GetActiveScene().name)
+        if ("SampleScene" == SceneManager.GetActiveScene().name || "CreditScreen" == SceneManager.GetActiveScene().name)
         {
             Destroy(this.gameObject);
         }
