@@ -62,7 +62,7 @@ public class FlipJournal : MonoBehaviour
 
         speechBubble1.SetActive(false);
         speechBubble2.SetActive(false);
-        moversThought.transform.position = mc.transform.position + new Vector3(3, 2, 0);
+        //moversThought.transform.position = mc.transform.position + new Vector3(3, 2, 0);
         //moversThought.SetActive();
         page.SetActive(false);
         journalText.SetActive(false);
@@ -75,12 +75,14 @@ public class FlipJournal : MonoBehaviour
     void Update()
     {
         time = Time.fixedUnscaledTime;
-        moversThought.transform.position = mc.transform.position + new Vector3(3, 2, 0);
+        //moversThought.transform.position = mc.transform.position + new Vector3(3, 2, 0);
+        /*
         if (time >= timer)
         {
             //Debug.Log(time);
             moversThought.SetActive(false);
         }
+        */
         if (BedtimeProcedure.journalIsOpened)
         {
             //turnPageSound.Play();

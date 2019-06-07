@@ -17,6 +17,7 @@ public class BedtimeProcedure : MonoBehaviour
     public GameObject musicAsset;
     public GameObject charlie;
     public GameObject charlieWriting;
+    public GameObject moversThought;
 
 
     // Animators
@@ -27,6 +28,10 @@ public class BedtimeProcedure : MonoBehaviour
     public static bool journalIsOpened;
     public static bool writingJournal;
     public static bool charlieInBed;
+    private bool thought = false;
+
+    private float time;// = 0f;
+    private float timer;// = 0f;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -34,6 +39,8 @@ public class BedtimeProcedure : MonoBehaviour
         charlieInBed = false;
         goToBedProcedureCalled = false;
         writingJournal = false;
+        time = 0f;
+        timer = 0f;
     }
     void Start()
     {
@@ -50,9 +57,22 @@ public class BedtimeProcedure : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        time = Time.fixedUnscaledTime; 
         Debug.Log("night is here = " + LightController.nightIsHere);
+        if (time >= timer)
+        {
+            //Debug.Log(time);
+            moversThought.SetActive(false);
+        }
         if (writingJournal && !charlieInBed)
         {
+            if (thought == false)
+            {
+                moversThought.SetActive(true);
+                timer = time + 3f;
+                thought = true;
+            }
+            
             charlie.SetActive(false);
             charlieWriting.SetActive(true);
         }
@@ -93,6 +113,7 @@ public class BedtimeProcedure : MonoBehaviour
         if (charlieWriting.activeSelf)
         {
             //Invoke("fadeOut", 0.5f);
+            
             Invoke("CharlieGoAway", 1.7f);
             Invoke("fadeIn", 1.7f);
             Invoke("GoToBedPlsKid", 2f);
