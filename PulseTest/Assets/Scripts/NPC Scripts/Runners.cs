@@ -201,6 +201,7 @@ public class Runners : NPCs
     private void ResetTaunt()
     {
         isTaunting = false;
+        Debug.Log("Called");
 
         if (checkDist(transform.position, NpcInstantiator.mcPos))
             MentalState.sendMsg("Bullied");

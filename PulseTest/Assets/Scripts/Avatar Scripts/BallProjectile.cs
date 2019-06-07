@@ -6,8 +6,14 @@ public class BallProjectile : MonoBehaviour
 {
     public GameObject ballHitParticle;
     private GameObject tempSys;
+    private int numBounces;
+    private bool firstBounce;
     public Vector3 niceTargetLoc;
+    public Vector3 niceTargetLoc1;
+    public Vector3 niceTargetLoc2;
     public Vector3 meanTargetLoc;
+    public Vector3 meanTargetLoc1;
+    public Vector3 meanTargetLoc2;
     public Vector3 startPos;
     public float arcHeight = 2;
 
@@ -15,6 +21,8 @@ public class BallProjectile : MonoBehaviour
 
     public float speed;
     public float meanSpeed;
+    private float lifeCounter;
+    public float meanLifetime;
     public float lifetime;
     public LayerMask hittableObjects;
     public LayerMask avatars;
@@ -32,11 +40,16 @@ public class BallProjectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("stationaryBall", lifetime);
+        //Invoke("stationaryBall", lifetime);
         niceTargetLoc = GameObject.Find("target").transform.position;
+        niceTargetLoc1 = GameObject.Find("target1").transform.position;
+        niceTargetLoc2 = GameObject.Find("target2").transform.position;
         meanTargetLoc = GameObject.Find("meanTarget").transform.position;
+        meanTargetLoc1 = GameObject.Find("meanTarget1").transform.position;
+        meanTargetLoc2 = GameObject.Find("meanTarget2").transform.position;
         startPos = transform.position;
         meanSpeed = speed * 1.5f;
+        firstBounce = true;
         delayTime = 0.5f;
         McCheckDist = 2f;
         radius = 1f;
@@ -67,7 +80,8 @@ public class BallProjectile : MonoBehaviour
                         McMovement.gotHit = true;
 
                         //MC gets hit by ball and doesn't play catch
-                        stationaryBall();
+                        //stationaryBall();
+                        ballStops();
                     }
                     else
                     {
@@ -99,7 +113,7 @@ public class BallProjectile : MonoBehaviour
                 {
                     NpcName = hit.collider.gameObject.name;
                     PlayHitParticles();
-                    stationaryBall();
+                    ballStops();
                     destroyBall();
                 }
                 else if (hit.collider.gameObject.name != "Runner(Clone)")
@@ -115,7 +129,6 @@ public class BallProjectile : MonoBehaviour
                     delayCatch.Invoke("hitByBall", delayTime);
                     destroyBall();
                 }
-                //destroyBall();
             }
         }
 
@@ -131,7 +144,7 @@ public class BallProjectile : MonoBehaviour
              transform.position.y > Playground.UpperY + 10f ||
              transform.position.y < Playground.LowerY - 5f )
         {
-            stationaryBall();
+            ballStops();
         }
 
         if (meanBallThrown)
@@ -139,13 +152,38 @@ public class BallProjectile : MonoBehaviour
             speed = meanSpeed;
             //transform.Translate(Vector2.right * speed * Time.deltaTime);
             //transform.position = Vector2.MoveTowards(transform.position, meanTargetLoc, speed * Time.deltaTime);
-            SimulateProjectile(meanTargetLoc);
+            if(lifeCounter >= meanLifetime)
+            {
+                if (firstBounce)
+                {
+                    firstBounce = false;
+                    speed /= 2;
+                }
+                stationaryBall();
+            }
+            else
+            {
+                lifeCounter += Time.deltaTime;
+                SimulateProjectile(meanTargetLoc);
+            }
         }
         else
         {
-            SimulateProjectile(niceTargetLoc);
+            if (lifeCounter >= lifetime)
+            {
+                if (firstBounce)
+                {
+                    firstBounce = false;
+                    speed /= 2;
+                }
+                stationaryBall();
+            }
+            else
+            {
+                lifeCounter += Time.deltaTime;
+                SimulateProjectile(niceTargetLoc);
+            }
         }
-
     }
 
     private void TriggerHitAnim()
@@ -182,13 +220,76 @@ public class BallProjectile : MonoBehaviour
 
     private void stationaryBall()
     {
-        //Sound and special FX can go here
+        if (meanBallThrown)
+        {
+            if (numBounces == 0)
+            {
+                if (Vector3.Distance(transform.position, meanTargetLoc1) < 1f)
+                {
+                    numBounces++;
+                }
+                else
+                {
+                    SimulateProjectile(meanTargetLoc1);
+                }
+            }
+            else if (numBounces == 1)
+            {
+                if (Vector3.Distance(transform.position, meanTargetLoc2) < 1f)
+                {
+                    numBounces++;
+                }
+                else
+                {
+                    SimulateProjectile(meanTargetLoc2);
+                }
+            }
+            else
+            {
+                ballStops();
+            }
+        }
+        else
+        {
+            if (numBounces == 0)
+            {
+                if (Vector3.Distance(transform.position, niceTargetLoc1) < 1f)
+                {
+                    numBounces++;
+                }
+                else
+                {
+                    SimulateProjectile(niceTargetLoc1);
+                }
+            }
+            else if (numBounces == 1)
+            {
+                if (Vector3.Distance(transform.position, niceTargetLoc2) < 1f)
+                {
+                    numBounces++;
+                }
+                else
+                {
+                    SimulateProjectile(niceTargetLoc2);
+                }
+            }
+            else
+            {
+                ballStops();
+            }
+        }
+    }
+
+    private void ballStops()
+    {
         Destroy(gameObject);
         GameObject newBall = Instantiate(gameObject, transform.position, Quaternion.identity);
         SpriteRenderer ballSprite = newBall.GetComponent<SpriteRenderer>();
         ballSprite.sortingLayerName = "Background Props";
         newBall.name = "newBall";
         newBall.AddComponent<CircleCollider2D>().isTrigger = true;
+        numBounces = 0;
+        lifeCounter = 0f;
     }
 
     static Quaternion LookAt2D(Vector2 forward)

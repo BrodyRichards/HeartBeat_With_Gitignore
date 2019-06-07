@@ -96,13 +96,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballHitParticle: {fileID: 2211061812496165974, guid: a29b773acedf740a7bc3fc26bd2add37,
     type: 3}
-  targetLoc: {x: 0, y: 0, z: 0}
+  niceTargetLoc: {x: 0, y: 0, z: 0}
+  niceTargetLoc1: {x: 0, y: 0, z: 0}
+  niceTargetLoc2: {x: 0, y: 0, z: 0}
+  meanTargetLoc: {x: 0, y: 0, z: 0}
+  meanTargetLoc1: {x: 0, y: 0, z: 0}
+  meanTargetLoc2: {x: 0, y: 0, z: 0}
   startPos: {x: 0, y: 0, z: 0}
   arcHeight: 2
   delayTime: 0
   speed: 15
   meanSpeed: 0
-  lifetime: 0.9
+  meanLifetime: 0.78
+  lifetime: 0.8
   hittableObjects:
     serializedVersion: 2
     m_Bits: 512
