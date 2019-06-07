@@ -19,7 +19,7 @@ public class FinalResultPlaythrough : MonoBehaviour
     private float time;
     //private float timer;
     
-    private float endTimer = 13f;
+    private float endTimer = 11f;
     // Start is called before the first frame update
     void Start()
     {
