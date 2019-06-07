@@ -19,7 +19,7 @@ public class FinalResultPlaythrough : MonoBehaviour
     private float time;
     //private float timer;
     
-    private float endTimer = 20f;
+    private float endTimer = 13f;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +30,7 @@ public class FinalResultPlaythrough : MonoBehaviour
         rightAnim = rightPage.GetComponent<Animator>();
         handClose = hand.GetComponent<Animator>();
 
-        Invoke("playAnim", 10f);
+        Invoke("playAnim", 5f);
         //Invoke("dialogue", 5f);
     }
 
