@@ -291,27 +291,29 @@ public class MentalState : MonoBehaviour
 
 
 
-
+        int friend = 1;
         if (relationships[1] <= 1 && relationships[2] <= 1 && relationships[3] <= 1)
         {
             return 0; // Charlie didn't make friend boo hoo
         }
 
-        int friend = 1; // secretly prioritizes bunny keke 
+         // secretly prioritizes bunny keke 
 
-        if (relationships[2] > relationships[friend])
+        else if (relationships[2] > relationships[friend])
         {
-            friend = 2;
+            //friend = 2;
+            return 2;
         }
 
-        if (relationships[3] > relationships[friend])
+        else if (relationships[3] > relationships[friend])
         {
-            friend = 3;
+            //friend = 3;
+            return 3;
         }
-
         Debug.Log("friend" + friend);
 
-        return friend;
+        //return friend;
+        return 1;
     }
 
     //--------------Functions for Journals--------------------------------------

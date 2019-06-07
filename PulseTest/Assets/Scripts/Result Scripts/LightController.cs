@@ -215,6 +215,6 @@ public class LightController : MonoBehaviour
         }
 
         skyCycle.transform.rotation = Quaternion.Euler(0f, 0f, rotateAngle);
-        Debug.Log("rotate angle" + rotateAngle);
+        //Debug.Log("rotate angle" + rotateAngle);
     }
 }
