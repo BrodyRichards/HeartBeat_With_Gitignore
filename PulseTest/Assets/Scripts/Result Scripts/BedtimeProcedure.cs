@@ -18,6 +18,7 @@ public class BedtimeProcedure : MonoBehaviour
     public GameObject charlie;
     public GameObject charlieWriting;
     public GameObject moversThought;
+    public GameObject journal;
 
 
     // Animators
@@ -63,6 +64,7 @@ public class BedtimeProcedure : MonoBehaviour
         {
             //Debug.Log(time);
             moversThought.SetActive(false);
+            
         }
         if (writingJournal && !charlieInBed)
         {
@@ -72,7 +74,7 @@ public class BedtimeProcedure : MonoBehaviour
                 timer = time + 3f;
                 thought = true;
             }
-            
+            journal.SetActive(true);
             charlie.SetActive(false);
             charlieWriting.SetActive(true);
         }
@@ -90,6 +92,7 @@ public class BedtimeProcedure : MonoBehaviour
     {
         if (FlipJournal.finishReadingJournal && !journalIsOpened && !AutoToSchool.mcWokeUp)
         {
+            
             if (!charlieInBed)
             {
                 sleepIcon.SetActive(true);
@@ -130,6 +133,7 @@ public class BedtimeProcedure : MonoBehaviour
 
     void CharlieGoAway()
     {
+        journal.SetActive(false);
         charlieWriting.SetActive(false);
         LightController.turnOffRoomLights = true;
         charlieInBed = true;
