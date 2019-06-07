@@ -7,6 +7,7 @@ public class BallProjectile : MonoBehaviour
     public GameObject ballHitParticle;
     private GameObject tempSys;
     private int numBounces;
+    private bool firstBounce;
     public Vector3 niceTargetLoc;
     public Vector3 niceTargetLoc1;
     public Vector3 niceTargetLoc2;
@@ -47,6 +48,7 @@ public class BallProjectile : MonoBehaviour
         meanTargetLoc2 = GameObject.Find("meanTarget2").transform.position;
         startPos = transform.position;
         meanSpeed = speed * 1.5f;
+        firstBounce = true;
         delayTime = 0.5f;
         McCheckDist = 2f;
         radius = 1f;
@@ -147,6 +149,11 @@ public class BallProjectile : MonoBehaviour
             //transform.position = Vector2.MoveTowards(transform.position, meanTargetLoc, speed * Time.deltaTime);
             if(lifeCounter >= meanLifetime)
             {
+                if (firstBounce)
+                {
+                    firstBounce = false;
+                    speed /= 2;
+                }
                 stationaryBall();
             }
             else
@@ -159,6 +166,11 @@ public class BallProjectile : MonoBehaviour
         {
             if (lifeCounter >= lifetime)
             {
+                if (firstBounce)
+                {
+                    firstBounce = false;
+                    speed /= 2;
+                }
                 stationaryBall();
             }
             else
@@ -210,7 +222,6 @@ public class BallProjectile : MonoBehaviour
                 if (Vector3.Distance(transform.position, meanTargetLoc1) < 1f)
                 {
                     numBounces++;
-                    Debug.Log(numBounces);
                 }
                 else
                 {
