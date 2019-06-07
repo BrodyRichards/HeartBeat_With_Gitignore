@@ -52,6 +52,10 @@ public class BullySpeech : MonoBehaviour
                 showThought();
                 setTimer();
             }
+            if (Runners.bullying == false)
+            {
+                hideThought();
+            }
         }   
     }
 
