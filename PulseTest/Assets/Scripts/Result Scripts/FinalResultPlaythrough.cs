@@ -38,7 +38,7 @@ public class FinalResultPlaythrough : MonoBehaviour
     {
         leftAnim.Play("JournalLeftPage");
         rightAnim.Play("JournalRightPage");
-        handClose.Play("handCloseJournal");
+        handClose.Play("newCloseJournal");
     }
     
     /*
