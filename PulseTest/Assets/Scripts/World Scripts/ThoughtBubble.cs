@@ -30,6 +30,7 @@ public class ThoughtBubble : MonoBehaviour
         {
             pos = new Vector3(4.27f, -2.58f, 0);
             offset = new Vector3(0, 3, 0);
+            transform.position = pos + offset;
         }
         else
         {

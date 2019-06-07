@@ -906,7 +906,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5f9b679c10112d34e8556f425f718f20, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c7393563487fc7f4f8631ee236bdeebd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1989,7 +1989,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: ENT
+  m_text: SPC
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c9849e55df824404881bcd9b74c17ee3, type: 2}
   m_sharedMaterial: {fileID: 21855083969898066, guid: c9849e55df824404881bcd9b74c17ee3,
@@ -2067,11 +2067,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -2524,7 +2524,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: ENT
+  m_text: SPC
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c9849e55df824404881bcd9b74c17ee3, type: 2}
   m_sharedMaterial: {fileID: 21855083969898066, guid: c9849e55df824404881bcd9b74c17ee3,

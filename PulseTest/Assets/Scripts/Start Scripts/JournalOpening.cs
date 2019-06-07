@@ -21,7 +21,7 @@ public class JournalOpening : MonoBehaviour
         handOpen = hand.GetComponent<Animator>();
         turnPage = leftPage.GetComponent<AudioSource>();
 
-        Invoke("playAnim", 3f);
+        Invoke("playAnim", 2f);
     }
 
     void playAnim()
