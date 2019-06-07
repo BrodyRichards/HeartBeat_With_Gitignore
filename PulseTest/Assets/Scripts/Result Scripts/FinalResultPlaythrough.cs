@@ -10,6 +10,8 @@ public class FinalResultPlaythrough : MonoBehaviour
     private Animator leftAnim;
     public GameObject rightPage;
     private Animator rightAnim;
+    public GameObject hand;
+    private Animator handClose;
 
     
     //public Image bubble;
@@ -26,6 +28,7 @@ public class FinalResultPlaythrough : MonoBehaviour
 
         leftAnim = leftPage.GetComponent<Animator>();
         rightAnim = rightPage.GetComponent<Animator>();
+        handClose = hand.GetComponent<Animator>();
 
         Invoke("playAnim", 10f);
         //Invoke("dialogue", 5f);
@@ -35,6 +38,7 @@ public class FinalResultPlaythrough : MonoBehaviour
     {
         leftAnim.Play("JournalLeftPage");
         rightAnim.Play("JournalRightPage");
+        handClose.Play("handCloseJournal");
     }
     
     /*
