@@ -9,6 +9,8 @@ public class JournalOpening : MonoBehaviour
     private AudioSource turnPage;
     public GameObject rightPage;
     private Animator rightOpen;
+    public GameObject hand;
+    private Animator handOpen;
 
     public static bool cameraMove = false;
     // Start is called before the first frame update
@@ -16,6 +18,7 @@ public class JournalOpening : MonoBehaviour
     {
         leftOpen = leftPage.GetComponent<Animator>();
         rightOpen = rightPage.GetComponent<Animator>();
+        handOpen = hand.GetComponent<Animator>();
         turnPage = leftPage.GetComponent<AudioSource>();
 
         Invoke("playAnim", 3f);
@@ -25,6 +28,7 @@ public class JournalOpening : MonoBehaviour
     {
         leftOpen.Play("LeftSideOpen");
         rightOpen.Play("RightSideOpen");
+        handOpen.Play("handOpenJournal");
         //leftPage.GetComponent<AudioSource>().Play();
         turnPage.Play();
         Invoke("cameraBool", 1f);
