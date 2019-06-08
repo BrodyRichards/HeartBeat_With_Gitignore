@@ -77,7 +77,7 @@ public class TransitStates : MonoBehaviour
     {
         //StartCoroutine(LoadNextSceneAsync("JumpIntoJournalScene"));
         Invoke("fadeOut", 1f);
-        Invoke("nextScene", 2f);
+        //Invoke("nextScene", 2f);
         startLoading = true;
         Debug.Log("hello~~");
     }

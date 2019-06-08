@@ -24,8 +24,9 @@ public class StartFade : MonoBehaviour
     }
     public void FadeToLevel()
     {
-        LoadingController.nextSceneToLoad = "JumpIntoJournalScene";
-        fadeAnimator.SetTrigger("FadeOut");
+        //LoadingController.nextSceneToLoad = "JumpIntoJournalScene";
+        SceneManager.LoadScene("JumpIntoJournalScene");
+        //fadeAnimator.SetTrigger("FadeOut");
     }
 
     public void OnFadeComplete()
@@ -42,7 +43,7 @@ public class StartFade : MonoBehaviour
     public void FadeOutStay()
     {
         fadeAnimator.Play("Fade_Out_Stay", 0, 0f);
-        FadeToLevel();
+        Invoke("FadeToLevel", 1f);
     }
     public void FadeIn()
     {
