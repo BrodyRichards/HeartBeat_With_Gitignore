@@ -8,6 +8,10 @@ public class ThoughtsManager : MonoBehaviour
 {
     public  GameObject text;
     public Image thoughtBubble;
+    public GameObject mc;
+
+    Vector3 pos;
+    Vector3 offset;
 
     private List<string> thoughts;                                          //thoughts on deck
     public static Dictionary<string, int> thoughtLine;                      //a dictionary that maps action to the index of a possible list of thoughts
@@ -28,9 +32,12 @@ public class ThoughtsManager : MonoBehaviour
     {
         tmpug = text.GetComponent<TextMeshProUGUI>();
 
+        pos = mc.transform.position;
+        offset = new Vector3(-8, 5, 0);
+
         setThoughts();
         hideThought();
-      
+
         time = 0f;
         timer = 0f;
 
@@ -82,6 +89,7 @@ public class ThoughtsManager : MonoBehaviour
     void hideThought()
     {
         thoughtBubble.GetComponent<Image>().gameObject.SetActive(false);
+        thoughtBubble.transform.position = pos + offset;
     }
 
     void showThought()
@@ -137,6 +145,8 @@ public class ThoughtsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        pos = mc.transform.position;
+        offset = new Vector3(-8, 5, 0);
         time = Time.fixedUnscaledTime;
         if (NPCs.schoolBell)
         {
@@ -178,10 +188,6 @@ public class ThoughtsManager : MonoBehaviour
                         changeThought(8);
                     }
                 }
-                else
-                {
-                    hideThought();
-                }
                 if (MentalState.message != "")
                 {
                     int lineNum = thoughtLine[MentalState.message];
@@ -189,10 +195,6 @@ public class ThoughtsManager : MonoBehaviour
                     //Debug.Log("lineNum: " + lineNum);
                     MentalState.message = "";
                     changeThought(lineNum);
-                }
-                else
-                {
-                    hideThought();
                 }
                 /*
                 int ran2 = Random.Range(0, 1000);
