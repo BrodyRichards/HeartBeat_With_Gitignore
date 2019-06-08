@@ -2467,6 +2467,7 @@ MonoBehaviour:
   cloud2: {fileID: 869772620}
   cloud3: {fileID: 696470479}
   fadeObj: {fileID: 404508522}
+  musicObj: {fileID: 576667365}
 --- !u!1 &1670922589
 GameObject:
   m_ObjectHideFlags: 0

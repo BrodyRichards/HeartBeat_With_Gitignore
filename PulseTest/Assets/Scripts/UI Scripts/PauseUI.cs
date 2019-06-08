@@ -9,13 +9,14 @@ public class PauseUI : MonoBehaviour
     // https://www.youtube.com/watch?v=JivuXdrIHK0
 
     public static bool IsPaused;
+    public static bool reset;
     public GameObject pauseUI;
     private int thisSceneIndex;
 
     private void Awake()
     {
         IsPaused = false;
-
+        reset = false;
     }
 
     private void Start()
@@ -65,6 +66,7 @@ public class PauseUI : MonoBehaviour
 
     public void BackToMenu()
     {
+        reset = true;
         SceneManager.LoadScene(0);
     }
 
