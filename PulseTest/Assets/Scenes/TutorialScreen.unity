@@ -5240,6 +5240,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1555502823}
     m_Modifications:
+    - target: {fileID: 1601185659978661126, guid: 321e3e086d17f48708e5b9bb459e2dec,
+        type: 3}
+      propertyPath: m_Name
+      value: journalIcon
+      objectReference: {fileID: 0}
     - target: {fileID: 1601185659978661125, guid: 321e3e086d17f48708e5b9bb459e2dec,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5344,11 +5349,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1601185659978661126, guid: 321e3e086d17f48708e5b9bb459e2dec,
-        type: 3}
-      propertyPath: m_Name
-      value: journalIcon
       objectReference: {fileID: 0}
     - target: {fileID: 1601185658652377346, guid: 321e3e086d17f48708e5b9bb459e2dec,
         type: 3}
@@ -12395,6 +12395,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bus
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172695043414394240, guid: b835ca01aa1164720a80d4dcd23f016e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7172695043414394271, guid: b835ca01aa1164720a80d4dcd23f016e,
         type: 3}
