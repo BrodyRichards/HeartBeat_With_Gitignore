@@ -12,6 +12,9 @@ public class BullySpeech : MonoBehaviour
     private List<string> taunts;
     private bool speechOn;
 
+    private Vector3 pos;
+    private Vector3 offset;
+
     float time;
     float timer;
 
@@ -19,6 +22,8 @@ public class BullySpeech : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        offset = new Vector3(-4, 5, 0);
+        pos = NpcInstantiator.bullyKidPos;
         time = 0f;
         timer = 0f;
 
@@ -56,7 +61,10 @@ public class BullySpeech : MonoBehaviour
             {
                 hideThought();
             }
-        }   
+            pos = NpcInstantiator.bullyKidPos;
+            speechBubble.transform.position = pos + offset;
+        }
+        
     }
 
     void hideThought()

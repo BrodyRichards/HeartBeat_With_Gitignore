@@ -46,5 +46,9 @@ public class MusicKidBubble : MonoBehaviour
             setTimer();
             musicBubble.GetComponent<Image>().gameObject.SetActive(true);
         }
+        else if (BallProjectile.musicKidTalk == false)
+        {
+            musicBubble.GetComponent<Image>().gameObject.SetActive(false);
+        }
     }
 }

@@ -178,6 +178,10 @@ public class ThoughtsManager : MonoBehaviour
                         changeThought(8);
                     }
                 }
+                else
+                {
+                    hideThought();
+                }
                 if (MentalState.message != "")
                 {
                     int lineNum = thoughtLine[MentalState.message];
@@ -185,6 +189,10 @@ public class ThoughtsManager : MonoBehaviour
                     //Debug.Log("lineNum: " + lineNum);
                     MentalState.message = "";
                     changeThought(lineNum);
+                }
+                else
+                {
+                    hideThought();
                 }
                 /*
                 int ran2 = Random.Range(0, 1000);

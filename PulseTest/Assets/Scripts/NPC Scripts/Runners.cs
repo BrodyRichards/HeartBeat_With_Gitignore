@@ -97,7 +97,8 @@ public class Runners : NPCs
         bool mcDist = checkDist(transform.position, NpcInstantiator.mcPos);
         if (mcDist)
         {
-            bullying = true;
+            Invoke("startBully", 0.5f);
+            //bullying = true;
             //if(bullyTimer >= bullyTime)
             //{
             //    //Decrement mood
@@ -143,8 +144,14 @@ public class Runners : NPCs
                 target = new Vector3(ranX, ranY, -1);
             }
             */
+            //bullying = false;
             walkAround();
         }
+    }
+
+    private void startBully()
+    {
+        bullying = true;
     }
 
     //Make the bully walk to the corner
