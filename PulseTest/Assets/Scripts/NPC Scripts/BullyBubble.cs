@@ -10,6 +10,8 @@ public class BullyBubble : MonoBehaviour
     void Start()
     {
         offset = new Vector3(-4, 5, 0);
+        pos = NpcInstantiator.bullyKidPos;
+        transform.position = pos + offset;
     }
 
     // Update is called once per frame

@@ -25,6 +25,7 @@ public class ThoughtBubble : MonoBehaviour
             scaleOpp = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             scaleText = text.transform.localScale;
             scaleTextOpp = new Vector3(-text.transform.localScale.x, text.transform.localScale.y, text.transform.localScale.z);
+            transform.position = pos + offset;
         }
         else if ("TutorialScreen" == SceneManager.GetActiveScene().name)//for the tutorial scene
         {
