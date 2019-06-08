@@ -5240,11 +5240,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1555502823}
     m_Modifications:
-    - target: {fileID: 1601185659978661126, guid: 321e3e086d17f48708e5b9bb459e2dec,
-        type: 3}
-      propertyPath: m_Name
-      value: journalIcon
-      objectReference: {fileID: 0}
     - target: {fileID: 1601185659978661125, guid: 321e3e086d17f48708e5b9bb459e2dec,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5350,6 +5345,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1601185659978661126, guid: 321e3e086d17f48708e5b9bb459e2dec,
+        type: 3}
+      propertyPath: m_Name
+      value: journalIcon
+      objectReference: {fileID: 0}
     - target: {fileID: 1601185658652377346, guid: 321e3e086d17f48708e5b9bb459e2dec,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -5406,7 +5406,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -17.03, y: 1.6}
+  m_AnchoredPosition: {x: -17.03, y: -9.9}
   m_SizeDelta: {x: 244.23, y: 357.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1462790915
