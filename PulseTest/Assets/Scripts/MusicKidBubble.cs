@@ -18,6 +18,8 @@ public class MusicKidBubble : MonoBehaviour
         offset = new Vector3(-4f, 5f, 0f);
         time = 0f;
         timer = 0f;
+        pos = NpcInstantiator.musicKidPos;
+        musicBubble.transform.position = pos + offset;
     }
 
     void setTimer()
