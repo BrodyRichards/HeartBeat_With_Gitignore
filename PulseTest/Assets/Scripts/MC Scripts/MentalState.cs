@@ -301,19 +301,19 @@ public class MentalState : MonoBehaviour
 
         else if (relationships[2] > relationships[friend])
         {
-            //friend = 2;
-            return 2;
+            friend = 2;
+            //return 2;
         }
 
         else if (relationships[3] > relationships[friend])
         {
-            //friend = 3;
-            return 3;
+            friend = 3;
+            //return 3;
         }
         Debug.Log("friend" + friend);
 
-        //return friend;
-        return 1;
+        return friend;
+        //return 1;
     }
 
     //--------------Functions for Journals--------------------------------------

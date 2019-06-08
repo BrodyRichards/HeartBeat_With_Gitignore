@@ -40,8 +40,12 @@ public class BedtimeProcedure : MonoBehaviour
         charlieInBed = false;
         goToBedProcedureCalled = false;
         writingJournal = false;
+        rabAsset.gameObject.SetActive(false);
+        ballAsset.gameObject.SetActive(false);
+        musicAsset.gameObject.SetActive(false);
         time = 0f;
         timer = 0f;
+
     }
     void Start()
     {
