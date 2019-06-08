@@ -123,6 +123,7 @@ public class characterSwitcher : MonoBehaviour
                 GameObject.Find("MC").GetComponent<Animator>().SetBool("wantToPlay", false);
                 GameObject.Find("MC").GetComponent<Animator>().SetBool("isWalking", true);
                 GameObject.Find("MC").GetComponent<Animator>().SetBool("isHappySong", false);
+                if (RabbitJump.currentCarrier != null) RabbitJump.currentCarrier.GetComponent<Animator>().SetBool("isHolding", false);
                 GameObject.Find("MC").GetComponent<MCBTCreator>().enabled = false;
                 disableOthers();
                 Movement.timeToLeave = true;
@@ -230,11 +231,13 @@ public class characterSwitcher : MonoBehaviour
                 break;
             case 2:
                 findGO(1).GetComponent<RabbitJump>().enabled = false;
+                if (RabbitJump.currentCarrier != null) RabbitJump.currentCarrier.GetComponent<Animator>().SetBool("isHolding", false);
                 findGO(1).GetComponent<Animator>().SetBool("isWalking", false);
                 findGO(3).GetComponent<Animator>().SetBool("isWalking", false);
                 isMusicGuyInCharge = false;
                 break;
             case 3:
+                if (RabbitJump.currentCarrier != null) RabbitJump.currentCarrier.GetComponent<Animator>().SetBool("isHolding", false);
                 findGO(2).GetComponent<BallThrow>().enabled = false;
                 findGO(2).GetComponent<Animator>().SetBool("isThrowing", false);
                 findGO(1).GetComponent<RabbitJump>().enabled = false;

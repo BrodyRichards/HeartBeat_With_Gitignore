@@ -17,7 +17,7 @@ public class RabbitJump : MonoBehaviour
     private Rigidbody2D rb;
     private double currentPosX;
     private double lastPosX;
-    private GameObject currentCarrier;
+    public static GameObject currentCarrier;
 
     public Animator anim;
     public Animator mcAnim;
