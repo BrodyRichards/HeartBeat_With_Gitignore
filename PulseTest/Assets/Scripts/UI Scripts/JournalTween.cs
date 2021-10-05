@@ -73,7 +73,7 @@ public class JournalTween : MonoBehaviour
         }
         
     }
-    private void DoTheAlphaShit(Accomplish accom, int index)
+    private void tweenAlpha(Accomplish accom, int index)
     {
         // gradually increase alpha of the corresponding stamp to max 
         accom.images[index].enabled = true;
@@ -94,15 +94,15 @@ public class JournalTween : MonoBehaviour
 
             if (com.Num > com.threshold[0] && !com.finished[0])
             {
-                DoTheAlphaShit(com, 0);
+                tweenAlpha(com, 0);
             }
             else if (com.Num > com.threshold[1] && !com.finished[1])
             {
-                DoTheAlphaShit(com, 1);
+                tweenAlpha(com, 1);
             }
             else if (com.Num > com.threshold[2] && !com.finished[2])
             {
-                DoTheAlphaShit(com, 2);
+                tweenAlpha(com, 2);
             }
         }
     }

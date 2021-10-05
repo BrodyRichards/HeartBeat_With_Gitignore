@@ -27,7 +27,7 @@ public class RingUI : MonoBehaviour
     public Sprite bell;
 
     public Animator bell_anim;
-    public static string fuckingString;
+    public static string ringUiString;
 
     private int emoCurrentLength;
     private readonly int segNum = 12;
@@ -42,7 +42,7 @@ public class RingUI : MonoBehaviour
     {
         emoCurrentLength = 0;
         isCompleted = false;
-        fuckingString = "";
+        ringUiString = "";
 
     }
     void Start()
@@ -112,7 +112,7 @@ public class RingUI : MonoBehaviour
                 
 
                 var thisObj = emoSegments[emoCurrentLength - 1];
-                if (MentalState.positiveAct.Contains(fuckingString))
+                if (MentalState.positiveAct.Contains(ringUiString))
                 {
 
                     thisObj.SetActive(true);
@@ -120,21 +120,21 @@ public class RingUI : MonoBehaviour
                     //pgs.GetComponent<ProgSpiritScript>().Emit(1);
                     pbs.GetComponent<ProgBurstScript>().Boom();
                 }
-                else if (fuckingString == "Bit by rabbit" || fuckingString == "Hit by ball")
+                else if (ringUiString == "Bit by rabbit" || ringUiString == "Hit by ball")
                 {
                     thisObj.SetActive(true);
                     thisObj.GetComponent<Image>().sprite = angrySeg;
                     pbs.GetComponent<ProgBurstScript>().Boom();
                     //pgs.GetComponent<ProgSpiritScript>().Emit(3);
                 }
-                else if (fuckingString == "Sad Song")
+                else if (ringUiString == "Sad Song")
                 {
                     thisObj.SetActive(true);
                     thisObj.GetComponent<Image>().sprite = sadSeg;
                     pbs.GetComponent<ProgBurstScript>().Boom();
                     //pgs.GetComponent<ProgSpiritScript>().Emit(2);
                 }
-                else if (fuckingString == "Bullied")
+                else if (ringUiString == "Bullied")
                 {
                     thisObj.SetActive(true);
                     thisObj.GetComponent<Image>().sprite = bullySeg;
